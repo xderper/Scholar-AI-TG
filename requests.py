@@ -2,6 +2,7 @@ import os
 import httpx
 import openai
 from dotenv import load_dotenv
+from format import Format
 
 # Загрузка переменных окружения
 load_dotenv()
@@ -24,6 +25,8 @@ class Requests:
             api_key=self.openai_api_key,
             http_client=http_client
         )
+
+        self.format = Format()
     
     def _get_response(self, prompt, role = "user"):
         """
@@ -56,21 +59,28 @@ class Requests:
             return f"Произошла ошибка при запросе к ChatGPT: {str(e)}"
     
     def physic(self, text):
-        system_message = "Вы опытный учитель физики, который помогает ученикам решать задачи."
-        prompt = f"{self.physic_query} {text}"
+        """
+        Метод для обработки запросов по физике
         
-        response = self.openai_client.chat.completions.create(
-            model="gpt-4o",  # Используем модель GPT-4o
-            messages=[
-                {"role": "system", "content": system_message},
-                {"role": "user", "content": prompt}
-            ],
-            temperature=0.2,  # Настройка креативности (0.0 - 1.0)
-            max_tokens=2000,  # Максимальная длина ответа
-            top_p=1.0,
-            frequency_penalty=0.0,
-            presence_penalty=0.0
-        )
+        Args:
+            text (str): Текст запроса пользователя
+            
+        Returns:
+            str: Отформатированный ответ для Telegram
+        """
         
-        # Возвращаем текст ответа
-        return response.choices[0].message.content
+        try:
+            # Отправляем запрос к ChatGPT с системной ролью учителя физики
+            response = self._get_response(f"{self.physic_query} {text}", role="system")
+            
+            # Форматируем ответ для Telegram
+            formatted_response = self.format.format_response_for_telegram(response)
+            
+            return formatted_response
+            
+        except Exception as e:
+            # В случае ошибки возвращаем сообщение об ошибке
+            return f"Произошла ошибка при запросе к ChatGPT: {str(e)}"
+    
+   
+    
