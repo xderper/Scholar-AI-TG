@@ -2,6 +2,7 @@ import os
 import httpx
 import openai
 from dotenv import load_dotenv
+from format import Format
 
 # Загрузка переменных окружения
 load_dotenv()
@@ -10,6 +11,7 @@ load_dotenv('.env.local', override=True)  # Приоритет локальны�
 class Requests:
     def __init__(self):
         self.physic_query = os.getenv("Physic_query")
+        self.mathematic_query = os.getenv("Mathematic_query")
         
         # Получение API ключа OpenAI
         self.openai_api_key = os.getenv("OPENAI_API_KEY")
@@ -24,6 +26,8 @@ class Requests:
             api_key=self.openai_api_key,
             http_client=http_client
         )
+
+        self.format = Format()
     
     def _get_response(self, prompt, role = "user"):
         """
@@ -58,6 +62,7 @@ class Requests:
     def physic(self, text):
         """
         Метод для обработки запросов по физике
+<<<<<<< HEAD
         
         Args:
             text (str): Текст запроса пользователя
@@ -180,3 +185,52 @@ class Requests:
         except Exception as e:
             # В случае ошибки форматирования возвращаем исходный текст
             return f"Ошибка форматирования: {str(e)}\n\n{text}"
+=======
+        
+        Args:
+            text (str): Текст запроса пользователя
+            
+        Returns:
+            str: Отформатированный ответ для Telegram
+        """
+        
+        try:
+            # Отправляем запрос к ChatGPT с системной ролью учителя физики
+            response = self._get_response(f"{self.physic_query} {text}", role="system")
+            
+            # Форматируем ответ для Telegram
+            formatted_response = self.format.format_response_for_telegram(response)
+            
+            return formatted_response
+            
+        except Exception as e:
+            # В случае ошибки возвращаем сообщение об ошибке
+            return f"Произошла ошибка при запросе к ChatGPT: {str(e)}"
+
+    # def mathematic(self, text):
+    #     """
+    #     Метод для обработки запросов по математике
+        
+    #     Args:
+    #         text (str): Текст запроса пользователя
+            
+    #     Returns:
+    #         str: Отформатированный ответ для Telegram
+    #     """
+        
+    #     try:
+    #         # Отправляем запрос к ChatGPT с системной ролью учителя математики
+    #         response = self._get_response(f"{self.mathematic_query} {text}", role="system")
+            
+    #         # Форматируем ответ для Telegram
+    #         formatted_response = self.format.format_response_for_telegram(response)
+            
+    #         return formatted_response
+            
+    #     except Exception as e:
+    #         # В случае ошибки возвращаем сообщение об ошибке
+    #         return f"Произошла ошибка при запросе к ChatGPT: {str(e)}"
+    
+   
+    
+>>>>>>> physic-tg

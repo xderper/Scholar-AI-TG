@@ -7,7 +7,7 @@ def get_main_keyboard() -> ReplyKeyboardMarkup:
         keyboard=[
             [
                 KeyboardButton(text="📙 Физика"),
-                KeyboardButton(text="📕 Математика")
+                # KeyboardButton(text="📕 Математика")
             ],
             [
                 KeyboardButton(text="📝 Информация"),
