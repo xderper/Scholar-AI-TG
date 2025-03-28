@@ -11,6 +11,7 @@ load_dotenv('.env.local', override=True)  # Приоритет локальны�
 class Requests:
     def __init__(self):
         self.physic_query = os.getenv("Physic_query")
+        self.mathematic_query = os.getenv("Mathematic_query")
         
         # Получение API ключа OpenAI
         self.openai_api_key = os.getenv("OPENAI_API_KEY")
@@ -81,6 +82,30 @@ class Requests:
         except Exception as e:
             # В случае ошибки возвращаем сообщение об ошибке
             return f"Произошла ошибка при запросе к ChatGPT: {str(e)}"
+
+    # def mathematic(self, text):
+    #     """
+    #     Метод для обработки запросов по математике
+        
+    #     Args:
+    #         text (str): Текст запроса пользователя
+            
+    #     Returns:
+    #         str: Отформатированный ответ для Telegram
+    #     """
+        
+    #     try:
+    #         # Отправляем запрос к ChatGPT с системной ролью учителя математики
+    #         response = self._get_response(f"{self.mathematic_query} {text}", role="system")
+            
+    #         # Форматируем ответ для Telegram
+    #         formatted_response = self.format.format_response_for_telegram(response)
+            
+    #         return formatted_response
+            
+    #     except Exception as e:
+    #         # В случае ошибки возвращаем сообщение об ошибке
+    #         return f"Произошла ошибка при запросе к ChatGPT: {str(e)}"
     
    
     
