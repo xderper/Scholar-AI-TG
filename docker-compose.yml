@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - Physic_query=${Physic_query}
+      - Mathematic_query=${Mathematic_query}
+      - Physic_answer_text=${Physic_answer_text}
+    restart: always
