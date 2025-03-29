@@ -57,24 +57,6 @@ async def help_button_handler(message: Message):
         reply_markup=get_main_keyboard()
     )
 
-
-@router.message(StateFilter(Form.section))
-async def other_message_handler(message: Message, state: FSMContext):
-    """Обработчик для всех остальных сообщений"""
-    state_data = await state.get_data()
-    
-    if state_data.get('section') == 'physics':
-        try:
-            response = Requests().physics(request=message.text, photo=False)
-            await message.answer(response)
-        except Exception as e:
-            await message.answer(f"Произошла ошибка: {str(e)}")
-    else:
-        await message.answer(
-            "Я не могу обработать ваше сообщение в текущем состоянии. Пожалуйста, выберите раздел из меню",
-            reply_markup=get_main_keyboard()
-        )
-
 @router.message(F.photo)
 async def photo_handler(message: Message, state: FSMContext):
     """Обработчик для фотографий"""
@@ -136,3 +118,22 @@ async def photo_handler(message: Message, state: FSMContext):
             "Я не могу обработать ваше сообщение в текущем состоянии. Пожалуйста, выберите раздел из меню",
             reply_markup=get_main_keyboard()
         )
+
+@router.message(StateFilter(Form.section))
+async def other_message_handler(message: Message, state: FSMContext):
+    """Обработчик для всех остальных сообщений"""
+    state_data = await state.get_data()
+    logger.info(f"Получено сообщение: {message.text}")
+    
+    if state_data.get('section') == 'physics':
+        try:
+            response = Requests().physics(request=message.text, photo=False)
+            await message.answer(response)
+        except Exception as e:
+            await message.answer(f"Произошла ошибка: {str(e)}")
+    else:
+        await message.answer(
+            "Я не могу обработать ваше сообщение в текущем состоянии. Пожалуйста, выберите раздел из меню",
+            reply_markup=get_main_keyboard()
+        )
+
