@@ -59,13 +59,7 @@ async def help_button_handler(message: Message):
 async def handle_message(message: Message, state: FSMContext):
     current_state = await state.get_state()
     if current_state == 'physic':
-<<<<<<< HEAD
-        # Получаем отформатированный ответ от ChatGPT
-        formatted_response = Requests().physic(message.text)
-        
-        try:
-            # Отправляем отформатированный ответ с HTML-разметкой
-=======
+
         # Получаем ответ от ChatGPT
         response = Requests().physic(message.text)
         
@@ -73,7 +67,6 @@ async def handle_message(message: Message, state: FSMContext):
             # Форматируем ответ для лучшего отображения в Telegram
             
             # Отправляем отформатированный ответ
->>>>>>> physic-tg
             await message.answer(
                 response,
                 parse_mode="HTML"
@@ -84,11 +77,8 @@ async def handle_message(message: Message, state: FSMContext):
             import re
             clean_text = re.sub(r'<[^>]+>', '', formatted_response)
             await message.answer(
-<<<<<<< HEAD
-                f"Произошла ошибка при форматировании ответа: {str(e)}\n\n{clean_text}"
-=======
+
                 f"Ответ: {response}"
->>>>>>> physic-tg
             )
     # elif current_state == 'mathematic':
     #     # Получаем ответ от ChatGPT
@@ -108,8 +98,4 @@ async def handle_message(message: Message, state: FSMContext):
     #             f"Ответ: {response}"
     #         )
     else:
-<<<<<<< HEAD
-        await message.answer("Вы не в разделе Физика")
-=======
         await message.answer("Вы не выбрали раздел")
->>>>>>> physic-tg
