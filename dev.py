@@ -41,7 +41,7 @@ class BotRestartHandler(FileSystemEventHandler):
     def on_modified(self, event):
         """Обработчик события изменения файла"""
         # Игнорируем изменения в файлах .pyc и временных файлах
-        if event.src_path.endswith((".pyc", ".tmp", ".log")) or "__pycache__" in event.src_path:
+        if event.src_path.endswith((".pyc", ".tmp", ".log")) or "__pycache__" in event.src_path or "temp" in event.src_path:
             return
         
         # Добавляем задержку для предотвращения множественных перезапусков
@@ -55,7 +55,7 @@ class BotRestartHandler(FileSystemEventHandler):
     def on_created(self, event):
         """Обработчик события создания файла"""
         # Игнорируем создание файлов .pyc и временных файлов
-        if event.src_path.endswith((".pyc", ".tmp", ".log")) or "__pycache__" in event.src_path:
+        if event.src_path.endswith((".pyc", ".tmp", ".log")) or "__pycache__" in event.src_path or "temp" in event.src_path:
             return
         
         # Добавляем задержку для предотвращения множественных перезапусков

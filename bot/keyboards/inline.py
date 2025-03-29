@@ -24,3 +24,15 @@ def get_url_keyboard(url: str, text: str = "Открыть ссылку") -> Inl
         ]
     )
     return keyboard
+
+# def get_choose_type_keyboard() -> InlineKeyboardMarkup:
+#     """Создает и возвращает инлайн-клавиатуру для подтверждения действий"""
+#     keyboard = InlineKeyboardMarkup(
+#         inline_keyboard=[
+#             [
+#                 InlineKeyboardButton(text="Текст", callback_data="type_text"),
+#                 InlineKeyboardButton(text="Изоображение", callback_data="type_image")
+#             ]
+#         ]
+#     )
+#     return keyboard

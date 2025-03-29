@@ -1,13 +1,30 @@
-
-
 class Format:
-     def format_response_for_telegram(self, text):
+    def __init__(self):
+        # Словарь для преобразования цифр в верхний индекс
+        self.superscript_map = {
+            '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
+            '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹'
+        }
+
+    def _to_superscript(self, number):
+        """
+        Преобразует число в верхний индекс (суперскрипт)
+        
+        Args:
+            number (str): Число для преобразования
+            
+        Returns:
+            str: Число в виде верхнего индекса
+        """
+        return ''.join(self.superscript_map[digit] for digit in number)
+
+    def format_response_for_telegram(self, text):
         """
         Форматирует текст для лучшего отображения в Telegram
         
         Args:
             text (str): Исходный текст от ChatGPT
-    
+
         Returns:
             str: Отформатированный текст для Telegram   
         """
@@ -73,12 +90,12 @@ class Format:
                               "Примечание:", "Вопрос:", "Анализ:", "Проверка:"]
             
             for section in section_headers:
-                text = text.replace(section, f"\n<b>{section}</b>\n")
+                text = text.replace(section, f"\n{section}\n")
 
             return text
+            
         except Exception as e:
             # Улучшенное сообщение об ошибке с информацией о конкретной проблеме
             import traceback
             error_info = traceback.format_exc()
             return f"Ошибка форматирования: {str(e)}\nПодробности:\n{error_info[:200]}...\n\nИсходный текст:\n{text}"
-            
