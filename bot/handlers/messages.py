@@ -1,34 +1,57 @@
 from aiogram import Router, F
-from aiogram.types import Message, FSInputFile
+from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
 from aiogram.filters import StateFilter
-from bot.keyboards.reply import get_main_keyboard
-from bot.utils.states import Form
-import sys
 import os
-import base64
 import logging
 from dotenv import load_dotenv
+from bot.keyboards.reply import get_main_keyboard
+from bot.utils.states import Form
 from requests import Requests
+import base64
 
 # Настройка логирования
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 # Загружаем переменные окружения
 load_dotenv()
-load_dotenv('.env.local', override=True)
 
 # Создаем роутер для текстовых сообщений
 router = Router()
+
+# ID канала, на который нужно проверить подписку
+CHANNEL_ID = "-1002508751485"
+
+# Функция для проверки подписки пользователя на канал
+async def check_subscription(message: Message):
+    """Проверка подписки пользователя на канал"""
+    user_id = message.from_user.id  # ID пользователя
+    try:
+        # Получаем информацию о пользователе в канале
+        member = await message.bot.get_chat_member(CHANNEL_ID, user_id)
+        
+        # Проверка, является ли пользователь подписчиком
+        if member.status in ['member', 'administrator', 'creator']:
+            return True
+        else:
+            return False
+    except Exception as e:
+        logger.error(f"Ошибка при проверке подписки: {e}")
+        return False
 
 # Обработчик для кнопки "Привет"
 @router.message(F.text == "📙 Физика")
 async def physics_button_handler(message: Message, state: FSMContext):
     """Обработчик для кнопки Физика"""
+    
+    # Проверка подписки
+    if not await check_subscription(message):
+        await message.answer(
+            "❌ Для начала работы подпишитесь на наш Telegram-канал!\n🔗 https://t.me/neurals_etc"
+        )
+        return  # Прерываем выполнение обработчика
+    
     text = os.getenv("Physic_answer_text")
     await state.set_state(Form.section)
     await state.update_data(section="physics")
@@ -41,6 +64,14 @@ async def physics_button_handler(message: Message, state: FSMContext):
 @router.message(F.text == "📝 Информация")
 async def information_button_handler(message: Message):
     """Обработчик для кнопки Информация"""
+    
+    # Проверка подписки
+    if not await check_subscription(message):
+        await message.answer(
+            "❌ Для начала работы подпишитесь на наш Telegram-канал!\n🔗 https://t.me/neurals_etc"
+        )
+        return  # Прерываем выполнение обработчика
+    
     text = os.getenv("Information_text")
     await message.answer(
         text,
@@ -51,15 +82,32 @@ async def information_button_handler(message: Message):
 @router.message(F.text == "❓ Помощь")
 async def help_button_handler(message: Message):
     """Обработчик для кнопки Помощь"""
+    
+    # Проверка подписки
+    if not await check_subscription(message):
+        await message.answer(
+            "❌ Для начала работы подпишитесь на наш Telegram-канал!\n🔗 https://t.me/neurals_etc"
+        )
+        return  # Прерываем выполнение обработчика
+    
     text = os.getenv("Help_text")
     await message.answer(
         text,
         reply_markup=get_main_keyboard()
     )
 
+# Обработчик для фотографий
 @router.message(F.photo)
 async def photo_handler(message: Message, state: FSMContext):
     """Обработчик для фотографий"""
+    
+    # Проверка подписки
+    if not await check_subscription(message):
+        await message.answer(
+            "❌ Для начала работы подпишитесь на наш Telegram-канал!\n🔗 https://t.me/neurals_etc"
+        )
+        return  # Прерываем выполнение обработчика
+    
     current_state = await state.get_state()
     state_data = await state.get_data()
     
@@ -119,9 +167,18 @@ async def photo_handler(message: Message, state: FSMContext):
             reply_markup=get_main_keyboard()
         )
 
+# Обработчик для всех остальных сообщений
 @router.message(StateFilter(Form.section))
 async def other_message_handler(message: Message, state: FSMContext):
     """Обработчик для всех остальных сообщений"""
+    
+    # Проверка подписки
+    if not await check_subscription(message):
+        await message.answer(
+            "❌ Для начала работы подпишитесь на наш Telegram-канал!\n🔗 https://t.me/neurals_etc"
+        )
+        return  # Прерываем выполнение обработчика
+    
     state_data = await state.get_data()
     logger.info(f"Получено сообщение: {message.text}")
     
@@ -136,4 +193,3 @@ async def other_message_handler(message: Message, state: FSMContext):
             "Я не могу обработать ваше сообщение в текущем состоянии. Пожалуйста, выберите раздел из меню",
             reply_markup=get_main_keyboard()
         )
-
