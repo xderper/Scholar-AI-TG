@@ -1,67 +1,69 @@
-from aiogram import Router, types
-from aiogram.types import Message
+from aiogram import Router
+from aiogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 from aiogram.filters import Command
 import os
-from dotenv import load_dotenv
 
-from bot.keyboards.reply import get_main_keyboard
-
-load_dotenv()
-
-# Используем числовой ID вместо @username
 CHANNEL_ID = "-1002508751485"
+
+def get_main_keyboard():
+    """Возвращает основную клавиатуру"""
+    return InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="📙 Физика", callback_data="physics")],
+        [InlineKeyboardButton(text="📝 Информация", callback_data="information")],
+        [InlineKeyboardButton(text="❓ Помощь", callback_data="help")]
+    ])
+
+async def check_subscription(user_id: int, bot):
+    """Проверка подписки пользователя на канал"""
+    try:
+        member = await bot.get_chat_member(CHANNEL_ID, user_id)
+        return member.status in ['member', 'administrator', 'creator']
+    except:
+        return False
+
+def get_subscription_keyboard():
+    """Возвращает клавиатуру с кнопками подписки"""
+    return InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="IT Thinker", url="https://t.me/neurals_etc")],
+        [InlineKeyboardButton(text="Проверить подписку✅", callback_data="check_subscription")]
+    ])
 
 router = Router()
 
-async def is_subscribed(user_id: int, bot) -> bool:
-    """Проверяет, подписан ли пользователь на канал."""
-    try:
-        chat_member = await bot.get_chat_member(chat_id=CHANNEL_ID, user_id=user_id)
-        print(f"Проверка подписки {user_id}: {chat_member.status}")  # Отладка
-        return chat_member.status in ["member", "administrator", "creator"]
-    except Exception as e:
-        print(f"Ошибка проверки подписки у {user_id}: {e}")
-        return False
-
 @router.message(Command("start"))
 async def cmd_start(message: Message):
-    """Обработчик команды /start с проверкой подписки."""
-    user_id = message.from_user.id
-    bot = message.bot
-    
-    if not await is_subscribed(user_id, bot):
+    """Обработчик команды /start"""
+    if not await check_subscription(message.from_user.id, message.bot):
         await message.answer(
-            "❌ Перед началом работы подпишитесь на наш Telegram-канал!\n"
-            f"🔗 [Перейти к каналу](https://t.me/neurals_etc)",  # Сделали ссылку кликабельной
-            parse_mode="Markdown"
+            "❌ Для начала работы подпишитесь на наш Telegram-канал!",
+            reply_markup=get_subscription_keyboard()
         )
         return
-
-    user_name = message.from_user.first_name
-    start_text = os.getenv("Start_text", "Добро пожаловать, {user_name}!").format(user_name=user_name)
-    
-    await message.answer(
-        start_text,
-        reply_markup=get_main_keyboard()
-    )
+    await message.answer(os.getenv("Start_text").format(user_name=message.from_user.first_name),
+                         reply_markup=get_main_keyboard())
 
 @router.message(Command("help"))
 async def cmd_help(message: Message):
-    """Обработчик команды /help."""
-    user_id = message.from_user.id
-    bot = message.bot
-
-    if not await is_subscribed(user_id, bot):
+    """Обработчик команды /help"""
+    if not await check_subscription(message.from_user.id, message.bot):
         await message.answer(
-            "❌ Перед началом работы подпишитесь на наш Telegram-канал!\n"
-            f"🔗 [Перейти к каналу](https://t.me/neurals_etc)",
-            parse_mode="Markdown"
+            "❌ Для начала работы подпишитесь на наш Telegram-канал!",
+            reply_markup=get_subscription_keyboard()
         )
         return
+    await message.answer(os.getenv("Help_text"), reply_markup=get_main_keyboard())
 
-    help_text = os.getenv("Help_text", "Список доступных команд: ...")
+@router.callback_query(lambda c: c.data == "check_subscription")
+async def check_subscription_callback(query: CallbackQuery):
+    """Обработчик для кнопки 'Проверить подписку'"""
+    is_subscribed = await check_subscription(query.from_user.id, query.bot)
     
-    await message.answer(
-        help_text,
-        reply_markup=get_main_keyboard()
-    )
+    new_text = "✅ Вы подписаны, продолжаю работу!" if is_subscribed else "❌ Вы не подписаны. Попробуйте снова.\n\nПодпишитесь на канал и нажмите 'Проверить подписку'."
+    
+    if query.message.text != new_text:
+        await query.message.edit_text(
+            new_text,
+            reply_markup=get_subscription_keyboard()
+        )
+    
+    await query.answer("Проверка подписки завершена.")

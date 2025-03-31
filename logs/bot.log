@@ -412,3 +412,46 @@
 2025-03-30 18:19:58 - bot - INFO - Бот запущен
 2025-03-30 18:20:49 - bot.handlers.messages - INFO - Получено сообщение: дан объект массой 2кг, найдите его силу тяжести
 2025-03-30 18:26:10 - bot - INFO - Бот запущен
+2025-03-30 21:38:17 - bot - INFO - Бот запущен
+2025-03-30 21:44:18 - bot - INFO - Бот запущен
+2025-03-30 21:45:28 - bot - INFO - Бот запущен
+2025-03-30 21:50:17 - bot - INFO - Бот запущен
+2025-03-30 21:58:41 - bot - INFO - Бот запущен
+2025-03-30 22:03:30 - bot - INFO - Бот запущен
+2025-03-30 22:07:52 - bot - INFO - Бот запущен
+2025-03-30 22:22:05 - bot - INFO - Бот запущен
+2025-03-30 22:23:26 - bot - INFO - Бот запущен
+2025-03-30 22:28:16 - bot - INFO - Бот запущен
+2025-03-30 22:29:46 - bot - INFO - Бот запущен
+2025-03-30 22:33:01 - bot - INFO - Бот запущен
+2025-03-30 22:36:58 - bot - INFO - Бот запущен
+2025-03-30 22:48:11 - bot - INFO - Бот запущен
+2025-03-30 22:50:30 - bot - INFO - Бот запущен
+2025-03-30 22:53:10 - bot - INFO - Бот запущен
+2025-03-30 22:56:48 - bot - INFO - Бот запущен
+2025-03-30 23:01:14 - bot - INFO - Бот запущен
+2025-03-30 23:04:54 - bot - INFO - Бот запущен
+2025-03-30 23:08:24 - bot - INFO - Бот запущен
+2025-03-30 23:12:14 - bot - INFO - Бот запущен
+2025-03-30 23:15:15 - bot - INFO - Бот запущен
+2025-03-30 23:19:04 - bot - INFO - Бот запущен
+2025-03-30 23:20:42 - bot - INFO - Бот запущен
+2025-03-30 23:22:37 - bot - INFO - Бот запущен
+2025-03-30 23:24:31 - bot - INFO - Бот запущен
+2025-03-30 23:27:31 - bot - INFO - Бот запущен
+2025-03-30 23:30:44 - bot - INFO - Бот запущен
+2025-03-30 23:38:25 - bot - INFO - Бот запущен
+2025-03-30 23:40:12 - bot - INFO - Бот запущен
+2025-03-30 23:40:47 - bot.handlers.messages - INFO - Получено сообщение: масса 2 кг, найдите силу тяжести
+2025-03-30 23:42:48 - bot - INFO - Бот запущен
+2025-03-30 23:44:28 - bot - INFO - Бот запущен
+2025-03-30 23:48:36 - bot - INFO - Бот запущен
+2025-03-30 23:52:03 - bot.handlers.messages - INFO - Получено фото от пользователя 1593283977
+2025-03-30 23:52:03 - bot.handlers.messages - INFO - Скачивание файла AgACAgIAAxkBAAIB1GfprvWwd-8gk-SYWt4i11C8cqmBAAIO6jEbWR5QSz7WGeE1Zn4VAQADAgADbQADNgQ начато
+2025-03-30 23:52:04 - bot.handlers.messages - INFO - Файл AgACAgIAAxkBAAIB1GfprvWwd-8gk-SYWt4i11C8cqmBAAIO6jEbWR5QSz7WGeE1Zn4VAQADAgADbQADNgQ успешно скачан
+2025-03-30 23:52:04 - bot.handlers.messages - INFO - Конвертация файла AgACAgIAAxkBAAIB1GfprvWwd-8gk-SYWt4i11C8cqmBAAIO6jEbWR5QSz7WGeE1Zn4VAQADAgADbQADNgQ в base64 начата
+2025-03-30 23:52:10 - bot.handlers.messages - INFO - Обработка файла AgACAgIAAxkBAAIB1GfprvWwd-8gk-SYWt4i11C8cqmBAAIO6jEbWR5QSz7WGeE1Zn4VAQADAgADbQADNgQ завершена
+2025-03-30 23:52:10 - bot.handlers.messages - INFO - Ответ отправлен пользователю 1593283977
+2025-03-30 23:52:10 - bot.handlers.messages - INFO - Временный файл temp\temp_AgACAgIAAxkBAAIB1GfprvWwd-8gk-SYWt4i11C8cqmBAAIO6jEbWR5QSz7WGeE1Zn4VAQADAgADbQADNgQ.jpg удален
+2025-03-30 23:52:20 - bot.handlers.messages - INFO - Получено сообщение: спасибо
+2025-03-30 23:53:34 - bot.handlers.messages - INFO - Получено сообщение: масса предмета 10 кг. найди его силу тяжести. g прими за 10
