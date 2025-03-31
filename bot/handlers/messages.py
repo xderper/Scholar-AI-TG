@@ -160,6 +160,7 @@ async def other_message_handler(message: Message, state: FSMContext):
 
     if state_data.get('section') == 'physics':
         try:
+            await message.answer("Получил вашу задачу. Обрабатываю...")
             response = Requests().physics(request=message.text, photo=False)
             await message.answer(response)
         except Exception as e:

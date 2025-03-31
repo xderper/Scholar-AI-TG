@@ -39,8 +39,7 @@ async def cmd_start(message: Message):
             reply_markup=get_subscription_keyboard()
         )
         return
-    await message.answer(os.getenv("Start_text").format(user_name=message.from_user.first_name),
-                         reply_markup=get_main_keyboard())
+    await message.answer(os.getenv("Start_text").format(user_name=message.from_user.first_name))
 
 @router.message(Command("help"))
 async def cmd_help(message: Message):
