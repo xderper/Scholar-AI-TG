@@ -114,7 +114,7 @@ class Requests:
             logger.error(f"Ошибка при обработке запроса по физике: {str(e)}")
             return f"Произошла ошибка при обработке запроса: {str(e)}"
 
-    def mathematics(self, request):
+    def mathematics(self, request, photo=False):
         """
         Метод для обработки математических запросов
         
@@ -125,22 +125,26 @@ class Requests:
             str: Отформатированный ответ для Telegram
         """
         try:
-            logger.info(f"Начало обработки математического запроса")
+            logger.info(f"Начало обработки запроса по физике")
+            logger.info(f"Тип запроса: {'изображение' if photo else 'текст'}")
             
             # Формируем запрос к модели
             prompt = f"{self.mathematic_query}\n{request}"
             
             # Получаем ответ от модели
-            response = self._get_response(prompt)
+            if photo:
+                response = self._get_response(prompt, image_data=request)
+            else:
+                response = self._get_response(prompt)
             
             # Форматируем ответ для Telegram
             formatted_response = self.format.format_response_for_telegram(response)
             
-            logger.info(f"Завершение обработки математического запроса. Длина ответа: {len(formatted_response)} символов")
+            logger.info(f"Завершение обработки запроса по физике. Длина ответа: {len(formatted_response)} символов")
             return formatted_response
             
         except Exception as e:
-            logger.error(f"Ошибка при обработке математического запроса: {str(e)}")
+            logger.error(f"Ошибка при обработке запроса по физике: {str(e)}")
             return f"Произошла ошибка при обработке запроса: {str(e)}"
 
     # Загрузка переменных окружения

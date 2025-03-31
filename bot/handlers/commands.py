@@ -2,16 +2,9 @@ from aiogram import Router
 from aiogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 from aiogram.filters import Command
 import os
+from bot.keyboards.reply import get_main_keyboard
 
 CHANNEL_ID = "-1002508751485"
-
-def get_main_keyboard():
-    """Возвращает основную клавиатуру"""
-    return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="📙 Физика", callback_data="physics")],
-        [InlineKeyboardButton(text="📝 Информация", callback_data="information")],
-        [InlineKeyboardButton(text="❓ Помощь", callback_data="help")]
-    ])
 
 async def check_subscription(user_id: int, bot):
     """Проверка подписки пользователя на канал"""
@@ -39,7 +32,7 @@ async def cmd_start(message: Message):
             reply_markup=get_subscription_keyboard()
         )
         return
-    await message.answer(os.getenv("Start_text").format(user_name=message.from_user.first_name))
+    await message.answer(os.getenv("Start_text").format(user_name=message.from_user.first_name), reply_markup=get_main_keyboard())
 
 @router.message(Command("help"))
 async def cmd_help(message: Message):
