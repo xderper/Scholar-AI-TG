@@ -22,13 +22,10 @@ class Requests:
         if not self.openai_api_key:
             raise ValueError("OPENAI_API_KEY не найден в переменных окружения")
         
-        # Создаем HTTP-клиент без прокси
-        http_client = httpx.Client()
-        
         # Инициализация клиента OpenAI
-        self.openai_client = openai.OpenAI(
+        self.openai_client = openai.Client(
             api_key=self.openai_api_key,
-            http_client=http_client
+            base_url="https://api.openai.com/v1"
         )
 
         self.format = Format()
@@ -36,7 +33,7 @@ class Requests:
     
     def _get_response(self, prompt, role="user", image_data=None):
         """
-        Отправляет запрос к ChatGPT и возвращает ответ
+        Отправляет запрос к OpenAI и возвращает ответ
         
         Args:
             prompt (str): Текст запроса к модели
@@ -46,7 +43,7 @@ class Requests:
             str: Ответ от модели
         """
         try:
-            logger.info(f"Начало отправки запроса к ChatGPT")
+            logger.info(f"Начало отправки запроса к OpenAI")
             logger.info(f"Тип запроса: {'изображение' if image_data else 'текст'}")
             
             # Формируем сообщения для запроса
@@ -64,25 +61,24 @@ class Requests:
                     ]
                 })
             
-            # Отправка запроса к ChatGPT
+            # Отправка запроса к OpenAI
             response = self.openai_client.chat.completions.create(
-                model="gpt-4o",  # Используем модель GPT-4o
+                model="gpt-4o",
                 messages=messages,
-                temperature=0.2,  # Настройка креативности (0.0 - 1.0)
-                max_tokens=2000,  # Максимальная длина ответа
+                temperature=0.2,
+                max_tokens=2000,
                 top_p=1.0,
                 frequency_penalty=0.0,
                 presence_penalty=0.0
             )
-            logger.info(f"Запрос к ChatGPT успешно выполнен")
+            logger.info(f"Запрос к OpenAI успешно выполнен")
             
             # Возвращаем текст ответа
             return response.choices[0].message.content
             
         except Exception as e:
-            logger.error(f"Ошибка при запросе к ChatGPT: {str(e)}")
-            # В случае ошибки возвращаем сообщение об ошибке
-            return f"Произошла ошибка при запросе к ChatGPT: {str(e)}"
+            logger.error(f"Ошибка при запросе к OpenAI: {str(e)}")
+            return f"Произошла ошибка при запросе к OpenAI: {str(e)}"
     
     def physics(self, request, photo=False):
         """
@@ -95,40 +91,57 @@ class Requests:
         Returns:
             str: Отформатированный ответ для Telegram
         """
-        
         try:
             logger.info(f"Начало обработки запроса по физике")
             logger.info(f"Тип запроса: {'изображение' if photo else 'текст'}")
             
-            # Формируем базовый запрос
-            base_prompt = self.physic_query
+            # Формируем запрос к модели
+            prompt = f"{self.physic_query}\n{request}"
             
-            # Если это изображение, отправляем его в запросе
+            # Получаем ответ от модели
             if photo:
-                logger.info("Отправка запроса с изображением")
-                response = self._get_response(
-                    prompt=base_prompt,
-                    role="system",
-                    image_data=request
-                )
+                response = self._get_response(prompt, image_data=request)
             else:
-                logger.info("Отправка текстового запроса")
-                response = self._get_response(
-                    prompt=f"{base_prompt} {request}",
-                    role="system"
-                )
+                response = self._get_response(prompt)
             
-            logger.info("Форматирование ответа")
             # Форматируем ответ для Telegram
             formatted_response = self.format.format_response_for_telegram(response)
             
-            logger.info("Обработка запроса завершена")
+            logger.info(f"Завершение обработки запроса по физике. Длина ответа: {len(formatted_response)} символов")
             return formatted_response
             
         except Exception as e:
-            logger.error(f"Ошибка при обработке запроса: {str(e)}")
-            # В случае ошибки возвращаем сообщение об ошибке
-            return f"Произошла ошибка при запросе к ChatGPT: {str(e)}"
+            logger.error(f"Ошибка при обработке запроса по физике: {str(e)}")
+            return f"Произошла ошибка при обработке запроса: {str(e)}"
+
+    def mathematics(self, request):
+        """
+        Метод для обработки математических запросов
+        
+        Args:
+            request (str): запрос
+            
+        Returns:
+            str: Отформатированный ответ для Telegram
+        """
+        try:
+            logger.info(f"Начало обработки математического запроса")
+            
+            # Формируем запрос к модели
+            prompt = f"{self.mathematic_query}\n{request}"
+            
+            # Получаем ответ от модели
+            response = self._get_response(prompt)
+            
+            # Форматируем ответ для Telegram
+            formatted_response = self.format.format_response_for_telegram(response)
+            
+            logger.info(f"Завершение обработки математического запроса. Длина ответа: {len(formatted_response)} символов")
+            return formatted_response
+            
+        except Exception as e:
+            logger.error(f"Ошибка при обработке математического запроса: {str(e)}")
+            return f"Произошла ошибка при обработке запроса: {str(e)}"
 
     # Загрузка переменных окружения
     load_dotenv()
