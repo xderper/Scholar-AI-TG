@@ -1,22 +1,53 @@
+import re
 class Format:
-    def __init__(self):
-        # Словарь для преобразования цифр в верхний индекс
-        self.superscript_map = {
-            '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
-            '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹'
-        }
 
-    def _to_superscript(self, number):
-        """
-        Преобразует число в верхний индекс (суперскрипт)
-        
-        Args:
-            number (str): Число для преобразования
-            
-        Returns:
-            str: Число в виде верхнего индекса
-        """
-        return ''.join(self.superscript_map[digit] for digit in number)
+    def replace_subscript(self, text):
+        def subscript(match):
+            # Преобразуем каждый символ в нижний индекс
+            subscript_text = ''
+            for char in match.group(1):
+                if char.isdigit():
+                    # Если это цифра, используем superscript_map
+                    subscript_text += self.superscript_map[char]
+                else:
+                    # Для других символов используем специальные символы
+                    subscript_map = {
+                        # Латинские буквы
+                        'a': 'ₐ', 'b': 'ᵦ', 'c': 'ᵣ', 'd': 'ᵈ', 'e': 'ₑ',
+                        'f': 'ᶠ', 'g': 'ᵧ', 'h': 'ₕ', 'i': 'ᵢ', 'j': 'ⱼ',
+                        'k': 'ₖ', 'l': 'ₗ', 'm': 'ₘ', 'n': 'ₙ', 'o': 'ₒ',
+                        'p': 'ₚ', 'q': 'ᵩ', 'r': 'ᵣ', 's': 'ₛ', 't': 'ₜ',
+                        'u': 'ᵤ', 'v': 'ᵥ', 'w': 'ʷ', 'x': 'ₓ', 'y': 'ᵧ',
+                        'z': '₂',
+                        'A': 'ₐ', 'B': 'ᵦ', 'C': 'ᵣ', 'D': 'ᵈ', 'E': 'ₑ',
+                        'F': 'ᶠ', 'G': 'ᵧ', 'H': 'ₕ', 'I': 'ᵢ', 'J': 'ⱼ',
+                        'K': 'ₖ', 'L': 'ₗ', 'M': 'ₘ', 'N': 'ₙ', 'O': 'ₒ',
+                        'P': 'ₚ', 'Q': 'ᵩ', 'R': 'ᵣ', 'S': 'ₛ', 'T': 'ₜ',
+                        'U': 'ᵤ', 'V': 'ᵥ', 'W': 'ʷ', 'X': 'ₓ', 'Y': 'ᵧ',
+                        'Z': '₂',
+
+                        # Русские буквы
+                        'а': 'ₐ', 'б': 'ᵦ', 'в': 'ᵥ', 'г': 'ᵧ', 'д': 'ᵈ',
+                        'е': 'ₑ', 'ё': 'ₑ', 'ж': 'ⱼ', 'з': '₂', 'и': 'ᵢ',
+                        'й': 'ᵢ', 'к': 'ₖ', 'л': 'ₗ', 'м': 'ₘ', 'н': 'ₙ',
+                        'о': 'ₒ', 'п': 'ₚ', 'р': 'ᵣ', 'с': 'ₛ', 'т': 'ₜ',
+                        'у': 'ᵤ', 'ф': 'ᵣ', 'х': 'ₕ', 'ц': 'ₕ', 'ч': 'ₕ',
+                        'ш': 'ₕ', 'щ': 'ₕ', 'ъ': 'ₕ', 'ы': 'ₕ', 'ь': 'ₕ',
+                        'э': 'ₑ', 'ю': 'ᵤ', 'я': 'ₕ',
+
+                        'А': 'ₐ', 'Б': 'ᵦ', 'В': 'ᵥ', 'Г': 'ᵧ', 'Д': 'ᵈ',
+                        'Е': 'ₑ', 'Ё': 'ₑ', 'Ж': 'ⱼ', 'З': '₂', 'И': 'ᵢ',
+                        'Й': 'ᵢ', 'К': 'ₖ', 'Л': 'ₗ', 'М': 'ₘ', 'Н': 'ₙ',
+                        'О': 'ₒ', 'П': 'ₚ', 'Р': 'ᵣ', 'С': 'ₛ', 'Т': 'ₜ',
+                        'У': 'ᵤ', 'Ф': 'ᵣ', 'Х': 'ₕ', 'Ц': 'ₕ', 'Ч': 'ₕ',
+                        'Ш': 'ₕ', 'Щ': 'ₕ', 'Ъ': 'ₕ', 'Ы': 'ₕ', 'Ь': 'ₕ',
+                        'Э': 'ₑ', 'Ю': 'ᵤ', 'Я': 'ₕ'
+                    }
+                    subscript_text += subscript_map.get(char, char)
+            return subscript_text
+
+        pattern = r'\{\{(.*?)\}\}'
+        return re.sub(pattern, subscript, text)
 
     def format_response_for_telegram(self, text):
         """
@@ -29,16 +60,19 @@ class Format:
             str: Отформатированный текст для Telegram   
         """
         try:
-            import re
 
-            # Базовая очистка
-            text = text.removeprefix("Ответ: ")
+
+            # # Базовая очистка
+            # text = text.removeprefix("Ответ: ")
             
-            # Замена LaTeX команд
+            # # Замена LaTeX команд
             text = text.replace("\\text", "")
             text = text.replace("\\textbf", "")
             text = text.replace("\\textit", "")
-            text = text.replace("\\frac", "")
+            
+
+
+            
             text = text.replace("\\sqrt", "√")
             text = text.replace("\\theta", "θ")
             text = text.replace("\\alpha", "α")
@@ -66,31 +100,55 @@ class Format:
             text = text.replace("\\leq", "≤")
             text = text.replace("\\neq", "≠")
             
-            # Удаление специальных символов
-            text = text.replace("*", "")
-            text = text.replace("/", "")    
-            text = text.replace("[", "")
-            text = text.replace("]", "")
-            text = text.replace("{", "")
-            text = text.replace("}", "")
-            text = text.replace("\\", "")
-            text = text.replace("(", "")
-            text = text.replace(")", "")
+            # Замена LaTeX-блоков на HTML код-блоки
+            text = text.replace("\\[", "<pre><code>")
+            text = text.replace("\\]", "</code></pre>")
+            text = text.replace("\\(", "<code>")
+            text = text.replace("\\)", "</code>") 
             
-            # Обработка индексов
-            text = re.sub(r'([A-Za-zА-Яа-я])_([A-Za-zА-Яа-я0-9]+)', r'\1₍\2₎', text)
+            # Замена frac на HTML дробь
+            def replace_frac(match):
+                numerator = match.group(1)
+                denominator = match.group(2)
+                return f'<code>{numerator}/{denominator}</code>'
+            
+            text = re.sub(r'frac\{([^\}]+)\}\{([^\}]+)\}', replace_frac, text)
+            
+            # Замена ^2 на верхний индекс
+            text = text.replace("^2", "²")
+            
+            # Замена E_кин на Eₖᵢₙ
+            text = text.replace("E_к", "Eₖ")
+            text = text.replace("E_ки", "Eₖᵢ")
+            text = text.replace("E_кин", "Eₖᵢₙ")
+            
+            text = self.replace_subscript(text)
+
+            # Замена ** на <b> и </b>
+            f = text.find("**")
+            c = 0
+            while f != -1:
+                if c % 2 == 0:
+                    text = text[:f] + "<b>" + text[f+2:]
+                else:
+                    text = text[:f] + "</b>" + text[f+2:]
+                f = text.find("**")
+                c += 1
+            
+            # Замена индексов на HTML формат
+            # text = re.sub(r'([A-Za-zА-Яа-я])_([A-Za-zА-Яа-я0-9]+)', r'\1<sub>\2</sub>', text)
+            
+            # # Замена степеней на HTML формат
+            # text = re.sub(r'([A-Za-zА-Яа-я0-9])\^([A-Za-zА-Яа-я0-9]+)', r'\1<sup>\2</sup>', text)
             
             # Обработка степеней
-            text = re.sub(r'(\d+)\^(\d+)', lambda m: f'{m.group(1)}{self._to_superscript(m.group(2))}', text)
-            text = re.sub(r'([A-Za-zА-Яа-я])\^(\d+)', lambda m: f'{m.group(1)}{self._to_superscript(m.group(2))}', text)
+            text = re.sub(r'(\\d+)\^(\\d+)', lambda m: f'{m.group(1)}<sup>{m.group(2)}</sup>', text)
+            text = re.sub(r'([A-Za-zА-Яа-я])\^(\\d+)', lambda m: f'{m.group(1)}<sup>{m.group(2)}</sup>', text)
 
-            # Форматирование разделов
-            section_headers = ["Дано:", "Найти:", "Решение:", "По закону сохранения энергии:", 
-                              "Ответ:", "Вывод:", "Решим задачу:", "Вычисления:", "Пример:", 
-                              "Примечание:", "Вопрос:", "Анализ:", "Проверка:"]
-            
-            for section in section_headers:
-                text = text.replace(section, f"\n{section}\n")
+            text = text.replace("\\", "")
+            text = text.replace("{", "")
+            text = text.replace("}", "")
+
 
             return text
             
