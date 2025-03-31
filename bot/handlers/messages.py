@@ -135,7 +135,7 @@ async def photo_handler(message: Message, state: FSMContext):
                 )
                 logger.info(f"Обработка файла {file_id} завершена")
 
-            await message.answer(response)
+            await message.answer(response, parse_mode="HTML")
             logger.info(f"Ответ отправлен пользователю {message.from_user.id}")
 
             if os.path.exists(temp_file_path):
