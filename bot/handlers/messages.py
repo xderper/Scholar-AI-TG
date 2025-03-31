@@ -90,6 +90,18 @@ async def physics_button_handler(message: Message, state: FSMContext):
     await state.update_data(section="mathematics")
     await message.answer(text, reply_markup=get_main_keyboard())
 
+@router.message(F.text == "📗 Химия")
+async def physics_button_handler(message: Message, state: FSMContext):
+    await message.delete()
+    if not await check_subscription(message.from_user.id, message.bot):
+        await message.answer("❌ Вы не подписаны. Попробуйте снова.", reply_markup=get_subscription_keyboard())
+        return
+
+    text = os.getenv("Chemistry_answer_text")
+    await state.set_state(Form.section)
+    await state.update_data(section="chemistry")
+    await message.answer(text, reply_markup=get_main_keyboard())
+
 @router.message(F.text == "📝 Информация")
 async def information_button_handler(message: Message):
     await message.delete()
@@ -196,6 +208,43 @@ async def photo_handler(message: Message, state: FSMContext):
             error_message = f"Произошла ошибка при обработке изображения: {str(e)}. Попробуйте ввести условие задачи текстом."
             logger.error(f"Ошибка при обработке файла {file_id}: {str(e)}")
             await message.answer(error_message)
+    elif current_state == Form.section and state_data.get('section') == 'chemistry':
+        logger.info(f"Получено фото от пользователя {message.from_user.id}")
+        
+        photo = message.photo[-1]
+        await message.answer("Получил ваше фото с задачей. Обрабатываю...")
+
+        try:
+            file_id = photo.file_id
+            file = await message.bot.get_file(file_id)
+            file_path = file.file_path
+            logger.info(f"Скачивание файла {file_id} начато")
+
+            temp_file_path = os.path.join("temp", f"temp_{file_id}.jpg")
+            os.makedirs(os.path.dirname(temp_file_path), exist_ok=True)
+
+            await message.bot.download_file(file_path, destination=temp_file_path)
+            logger.info(f"Файл {file_id} успешно скачан")
+
+            with open(temp_file_path, "rb") as image_file:
+                logger.info(f"Конвертация файла {file_id} в base64 начата")
+                response = Requests().chemistry(
+                    request=f"data:image/jpeg;base64,{base64.b64encode(image_file.read()).decode('utf-8')}",
+                    photo=True
+                )
+                logger.info(f"Обработка файла {file_id} завершена")
+
+            await message.answer(response, parse_mode="HTML")
+            logger.info(f"Ответ отправлен пользователю {message.from_user.id}")
+
+            if os.path.exists(temp_file_path):
+                os.remove(temp_file_path)
+                logger.info(f"Временный файл {temp_file_path} удален")
+
+        except Exception as e:
+            error_message = f"Произошла ошибка при обработке изображения: {str(e)}. Попробуйте ввести условие задачи текстом."
+            logger.error(f"Ошибка при обработке файла {file_id}: {str(e)}")
+            await message.answer(error_message)
     else:
         await message.answer("Я не могу обработать ваше сообщение в текущем состоянии. Пожалуйста, выберите раздел из меню", reply_markup=get_main_keyboard())
 
@@ -218,10 +267,17 @@ async def other_message_handler(message: Message, state: FSMContext):
             await message.answer(response, parse_mode="HTML")
         except Exception as e:
             await message.answer(f"Произошла ошибка: {str(e)}")
-    if state_data.get('section') == 'mathematics':
+    elif state_data.get('section') == 'mathematics':
         try:
             await message.answer("Получил вашу задачу. Обрабатываю...")
             response = Requests().mathematics(request=message.text, photo=False)
+            await message.answer(response, parse_mode="HTML")
+        except Exception as e:
+            await message.answer(f"Произошла ошибка: {str(e)}")
+    elif state_data.get('section') == 'chemistry':
+        try:
+            await message.answer("Получил вашу задачу. Обрабатываю...")
+            response = Requests().chemistry(request=message.text, photo=False)
             await message.answer(response, parse_mode="HTML")
         except Exception as e:
             await message.answer(f"Произошла ошибка: {str(e)}")
