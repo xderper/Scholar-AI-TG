@@ -456,6 +456,7 @@
 2025-03-30 23:52:10 - bot.handlers.messages - INFO - Временный файл temp\temp_AgACAgIAAxkBAAIB1GfprvWwd-8gk-SYWt4i11C8cqmBAAIO6jEbWR5QSz7WGeE1Zn4VAQADAgADbQADNgQ.jpg удален
 2025-03-30 23:52:20 - bot.handlers.messages - INFO - Получено сообщение: спасибо
 2025-03-30 23:53:34 - bot.handlers.messages - INFO - Получено сообщение: масса предмета 10 кг. найди его силу тяжести. g прими за 10
+<<<<<<< HEAD
 2025-03-31 17:46:28 - bot - INFO - Бот запущен
 2025-03-31 17:46:32 - bot - INFO - Бот запущен
 2025-03-31 17:46:46 - bot.handlers.messages - ERROR - Ошибка при проверке подписки: Telegram server says - Bad Request: chat not found
@@ -650,3 +651,27 @@
 2025-03-31 21:37:45 - bot - INFO - Бот запущен
 2025-03-31 21:38:09 - bot - INFO - Бот запущен
 >>>>>>> origin/3-add-formating-text-for-physic-answers
+=======
+2025-03-31 19:15:47 - bot - INFO - Бот запущен
+2025-03-31 19:17:02 - bot.handlers.messages - INFO - Получено сообщение: корону из золота объемом 1/1000 м^3 опустили в воду, найдите силу Архимеда
+2025-03-31 19:23:32 - bot - INFO - Бот запущен
+2025-03-31 19:23:56 - bot.handlers.messages - INFO - Получено сообщение: корону из золота объемом 1/1000 м^3 опустили в воду, найдите силу Архимеда
+2025-03-31 19:26:59 - bot - INFO - Бот запущен
+2025-03-31 19:28:03 - bot.handlers.messages - INFO - Получено сообщение: корону из золота объемом 1/1000 м^3 опустили в воду, найдите силу Архимеда
+2025-03-31 19:28:31 - bot.handlers.messages - INFO - Получено фото от пользователя 1593283977
+2025-03-31 19:28:32 - bot.handlers.messages - INFO - Скачивание файла AgACAgIAAxkBAAICBGfqwq9_fXzbHFR1kjdGiUfrfj9PAAIC8jEb5_1YSzg8ClsNJ5TlAQADAgADeQADNgQ начато
+2025-03-31 19:28:32 - bot.handlers.messages - INFO - Файл AgACAgIAAxkBAAICBGfqwq9_fXzbHFR1kjdGiUfrfj9PAAIC8jEb5_1YSzg8ClsNJ5TlAQADAgADeQADNgQ успешно скачан
+2025-03-31 19:28:32 - bot.handlers.messages - INFO - Конвертация файла AgACAgIAAxkBAAICBGfqwq9_fXzbHFR1kjdGiUfrfj9PAAIC8jEb5_1YSzg8ClsNJ5TlAQADAgADeQADNgQ в base64 начата
+2025-03-31 19:28:47 - bot.handlers.messages - INFO - Обработка файла AgACAgIAAxkBAAICBGfqwq9_fXzbHFR1kjdGiUfrfj9PAAIC8jEb5_1YSzg8ClsNJ5TlAQADAgADeQADNgQ завершена
+2025-03-31 19:28:48 - bot.handlers.messages - INFO - Ответ отправлен пользователю 1593283977
+2025-03-31 19:28:48 - bot.handlers.messages - INFO - Временный файл temp\temp_AgACAgIAAxkBAAICBGfqwq9_fXzbHFR1kjdGiUfrfj9PAAIC8jEb5_1YSzg8ClsNJ5TlAQADAgADeQADNgQ.jpg удален
+2025-03-31 19:40:13 - bot - INFO - Бот запущен
+2025-03-31 19:40:32 - bot.handlers.messages - INFO - Получено фото от пользователя 1593283977
+2025-03-31 19:40:33 - bot.handlers.messages - INFO - Скачивание файла AgACAgIAAxkBAAICC2fqxX-e7TFfuFNVm67dnqQTesH_AAI97TEbFsBYS3BhltuCrjJlAQADAgADeQADNgQ начато
+2025-03-31 19:40:33 - bot.handlers.messages - INFO - Файл AgACAgIAAxkBAAICC2fqxX-e7TFfuFNVm67dnqQTesH_AAI97TEbFsBYS3BhltuCrjJlAQADAgADeQADNgQ успешно скачан
+2025-03-31 19:40:33 - bot.handlers.messages - INFO - Конвертация файла AgACAgIAAxkBAAICC2fqxX-e7TFfuFNVm67dnqQTesH_AAI97TEbFsBYS3BhltuCrjJlAQADAgADeQADNgQ в base64 начата
+2025-03-31 19:40:59 - bot.handlers.messages - INFO - Обработка файла AgACAgIAAxkBAAICC2fqxX-e7TFfuFNVm67dnqQTesH_AAI97TEbFsBYS3BhltuCrjJlAQADAgADeQADNgQ завершена
+2025-03-31 19:41:00 - bot.handlers.messages - INFO - Ответ отправлен пользователю 1593283977
+2025-03-31 19:41:00 - bot.handlers.messages - INFO - Временный файл temp\temp_AgACAgIAAxkBAAICC2fqxX-e7TFfuFNVm67dnqQTesH_AAI97TEbFsBYS3BhltuCrjJlAQADAgADeQADNgQ.jpg удален
+2025-03-31 19:41:41 - bot.handlers.messages - INFO - Получено сообщение: корону из золота объемом 1/1000 м^3 опустили в воду, найдите силу Архимеда
+>>>>>>> origin/14-add-validation-subscribe-for-the-channel

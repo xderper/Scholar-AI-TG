@@ -67,6 +67,7 @@ async def check_subscription_callback(callback_query: CallbackQuery):
 # Обработчики сообщений
 @router.message(F.text == "📙 Физика")
 async def physics_button_handler(message: Message, state: FSMContext):
+    await message.delete()
     if not await check_subscription(message.from_user.id, message.bot):
         await message.answer("❌ Вы не подписаны. Попробуйте снова.", reply_markup=get_subscription_keyboard())
         return
@@ -78,6 +79,7 @@ async def physics_button_handler(message: Message, state: FSMContext):
 
 @router.message(F.text == "📝 Информация")
 async def information_button_handler(message: Message):
+    await message.delete()
     if not await check_subscription(message.from_user.id, message.bot):
         await message.answer("❌ Вы не подписаны. Попробуйте снова.", reply_markup=get_subscription_keyboard())
         return
@@ -87,6 +89,7 @@ async def information_button_handler(message: Message):
 
 @router.message(F.text == "❓ Помощь")
 async def help_button_handler(message: Message):
+    await message.delete()
     if not await check_subscription(message.from_user.id, message.bot):
         await message.answer("❌ Вы не подписаны. Попробуйте снова.", reply_markup=get_subscription_keyboard())
         return
@@ -160,6 +163,7 @@ async def other_message_handler(message: Message, state: FSMContext):
 
     if state_data.get('section') == 'physics':
         try:
+            await message.answer("Получил вашу задачу. Обрабатываю...")
             response = Requests().physics(request=message.text, photo=False)
             await message.answer(response, parse_mode="HTML")
         except Exception as e:
