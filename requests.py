@@ -109,7 +109,7 @@ class Requests:
                 query = os.getenv("Physic_query")   
             elif subject == 'chemistry':
                 query = os.getenv("Chemistry_query")
-            elif subject == 'math':
+            elif subject == 'mathematics':
                 query = os.getenv("Math_query")
             else:
                 return "Неподдерживаемый предмет"
