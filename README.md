@@ -1,4 +1,4 @@
-# Scholar-AI-TG - Physics Education Telegram Bot
+# Scholar-AI-TG - Education Telegram Bot
 
 ## Описание проекта
 Scholar-AI-TG - это Telegram бот для помощи в решении задач. Бот использует современные AI технологии для анализа и решения физических задач, представленных как в текстовом, так и в изображенном виде.
