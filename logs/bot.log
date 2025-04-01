@@ -1061,3 +1061,22 @@ AttributeError: module 'bot.handlers.commands' has no attribute 'router'
 2025-04-01 22:35:48 - bot - INFO - Бот запущен
 2025-04-01 22:36:00 - bot - INFO - Бот запущен
 2025-04-01 22:36:11 - bot - INFO - Бот запущен
+2025-04-01 22:59:19 - bot - INFO - Бот запущен
+2025-04-01 22:59:23 - bot - INFO - Бот запущен
+2025-04-01 22:59:30 - bot - INFO - Бот запущен
+2025-04-01 22:59:32 - bot - INFO - Бот запущен
+2025-04-01 22:59:37 - bot.handlers.messages - ERROR - Ошибка: 1 validation error for SendMessage
+text
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.5/v/string_type
+2025-04-01 22:59:47 - bot.handlers.messages - ERROR - Ошибка: 1 validation error for SendMessage
+text
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.5/v/string_type
+2025-04-01 22:59:57 - bot - INFO - Бот запущен
+2025-04-01 23:00:10 - bot - INFO - Бот запущен
+2025-04-01 23:00:16 - bot - INFO - Бот запущен
+2025-04-01 23:00:20 - bot - INFO - Бот запущен
+2025-04-01 23:00:29 - bot - INFO - Бот запущен
+2025-04-01 23:00:33 - bot - INFO - Бот запущен
+2025-04-01 23:00:51 - bot - INFO - Бот запущен
