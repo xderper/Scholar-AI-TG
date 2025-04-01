@@ -14,9 +14,6 @@ logger = logging.getLogger(__name__)
 
 class Requests:
     def __init__(self):
-        self.physic_query = os.getenv("Physic_query")
-        self.mathematic_query = os.getenv("Mathematic_query")
-        self.chemistry_query = os.getenv("Chemistry_query")
         
         # Получение API ключа OpenAI
         self.openai_api_key = os.getenv("OPENAI_API_KEY")
@@ -30,157 +27,114 @@ class Requests:
         )
 
         self.format = Format()
-        logger.info("Инициализация класса Requests завершена")
     
-    def _get_response(self, prompt, role="user", image_data=None):
+    def _get_response(self, prompt, image_data=None):
         """
-        Отправляет запрос к OpenAI и возвращает ответ
+        Отправляет запрос к OpenAI API
         
         Args:
-            prompt (str): Текст запроса к модели
-            role (str): Роль, которая будет использоваться в запросе
-            image_data (str, optional): Base64-кодированное изображение
+            prompt (str): Текстовый запрос
+            image_data (str, optional): URL изображения для обработки
+            
         Returns:
             str: Ответ от модели
         """
         try:
-            logger.info(f"Начало отправки запроса к OpenAI")
-            logger.info(f"Тип запроса: {'изображение' if image_data else 'текст'}")
+            logger.info(f"Отправка запроса к OpenAI. Длина запроса: {len(prompt)} символов")
             
-            # Формируем сообщения для запроса
-            messages = [
-                {"role": role, "content": prompt}
-            ]
+            messages = [{"role": "user", "content": prompt}]
             
-            # Если есть изображение, добавляем его в запрос
             if image_data:
-                messages.append({
-                    "role": "user",
-                    "content": [
-                        {"type": "text", "text": "Решите задачу по физике с изображения"},
-                        {"type": "image_url", "image_url": {"url": image_data}}
-                    ]
-                })
+                # Форматируем изображение в правильном формате для OpenAI
+                image_content = [{
+                    "type": "text",
+                    "text": prompt
+                }, {
+                    "type": "image_url",
+                    "image_url": {
+                        "url": image_data
+                    }
+                }]
+                messages.append({"role": "user", "content": image_content})
             
-            # Отправка запроса к OpenAI
-            response = self.openai_client.chat.completions.create(
+            response = openai.chat.completions.create(
                 model="gpt-4o",
                 messages=messages,
-                temperature=0.2,
                 max_tokens=2000,
-                top_p=1.0,
-                frequency_penalty=0.0,
-                presence_penalty=0.0
+                temperature=0.2,
+                tools=[
+                    {
+                        "type": "function",
+                        "function": {
+                            "name": "analyze_image",
+                            "description": "Analyze an image and extract information",
+                            "parameters": {
+                                "type": "object",
+                                "properties": {
+                                    "image_url": {
+                                        "type": "string",
+                                        "description": "URL of the image to analyze"
+                                    }
+                                },
+                                "required": ["image_url"]
+                            }
+                        }
+                    }
+                ] if image_data else None,
+                tool_choice="auto" if image_data else None
             )
-            logger.info(f"Запрос к OpenAI успешно выполнен")
             
-            # Возвращаем текст ответа
+            logger.info(f"Получен ответ от OpenAI. Длина ответа: {len(response.choices[0].message.content)} символов")
             return response.choices[0].message.content
             
         except Exception as e:
             logger.error(f"Ошибка при запросе к OpenAI: {str(e)}")
-            return f"Произошла ошибка при запросе к OpenAI: {str(e)}"
+            raise
     
-    def physics(self, request, photo=False):
+    def main(self, request, subject, photo=False):
         """
-        Метод для обработки запросов по физике
+        Основной метод для обработки запросов по различным предметам
         
         Args:
-            request (str): запрос
-            photo (bool): Флаг, указывающий, что запрос пришел от фотографии
+            request (str): Запрос пользователя
+            subject (str): Предмет (physics, chemistry, math)
+            photo (bool): Флаг, указывающий, что запрос содержит изображение
             
         Returns:
             str: Отформатированный ответ для Telegram
         """
         try:
-            logger.info(f"Начало обработки запроса по физике")
-            logger.info(f"Тип запроса: {'изображение' if photo else 'текст'}")
-            
-            # Формируем запрос к модели
-            prompt = f"{self.physic_query}\n{request}"
-            
-            # Получаем ответ от модели
-            if photo:
-                response = self._get_response(prompt, image_data=request)
+            # Получаем соответствующий запрос для выбранного предмета из переменных окружения
+            if subject == 'physics':
+                query = os.getenv("Physic_query")   
+            elif subject == 'chemistry':
+                query = os.getenv("Chemistry_query")
+            elif subject == 'math':
+                query = os.getenv("Math_query")
             else:
-                response = self._get_response(prompt)
-            
-            # Форматируем ответ для Telegram
-            formatted_response = self.format.format_response_for_telegram(response)
-            
-            logger.info(f"Завершение обработки запроса по физике. Длина ответа: {len(formatted_response)} символов")
-            return formatted_response
-            
-        except Exception as e:
-            logger.error(f"Ошибка при обработке запроса по физике: {str(e)}")
-            return f"Произошла ошибка при обработке запроса: {str(e)}"
+                return "Неподдерживаемый предмет"
 
-    def mathematics(self, request, photo=False):
-        """
-        Метод для обработки математических запросов
-        
-        Args:
-            request (str): запрос
-            
-        Returns:
-            str: Отформатированный ответ для Telegram
-        """
-        try:
-            logger.info(f"Начало обработки запроса по физике")
-            logger.info(f"Тип запроса: {'изображение' if photo else 'текст'}")
-            
-            # Формируем запрос к модели
-            prompt = f"{self.mathematic_query}\n{request}"
-            
-            # Получаем ответ от модели
-            if photo:
-                response = self._get_response(prompt, image_data=request)
-            else:
-                response = self._get_response(prompt)
-            
-            # Форматируем ответ для Telegram
-            formatted_response = self.format.format_response_for_telegram(response)
-            
-            logger.info(f"Завершение обработки запроса по физике. Длина ответа: {len(formatted_response)} символов")
-            return formatted_response
-            
-        except Exception as e:
-            logger.error(f"Ошибка при обработке запроса по физике: {str(e)}")
-            return f"Произошла ошибка при обработке запроса: {str(e)}"
+            # Формируем полный запрос, объединяя системный запрос с пользовательским
 
-    def chemistry(self, request, photo=False):
-        """
-        Метод для обработки химических запросов
-        
-        Args:
-            request (str): запрос
-            
-        Returns:
-            str: Отформатированный ответ для Telegram
-        """
-        try:
-            logger.info(f"Начало обработки запроса по химии")
-            logger.info(f"Тип запроса: {'изображение' if photo else 'текст'}")
-            
-            # Формируем запрос к модели
-            prompt = f"{self.chemistry_query}\n{request}"
             
             # Получаем ответ от модели
             if photo:
-                response = self._get_response(prompt, image_data=request)
+                response = self._get_response(query, image_data=request)
             else:
+                prompt = f"{query}\n{request}"
                 response = self._get_response(prompt)
             
-            # Форматируем ответ для Telegram
+            # Форматируем ответ для Telegram, преобразуя LaTeX и другие специальные символы
             formatted_response = self.format.format_response_for_telegram(response)
-            
-            logger.info(f"Завершение обработки запроса по физике. Длина ответа: {len(formatted_response)} символов")
+
             return formatted_response
             
         except Exception as e:
-            logger.error(f"Ошибка при обработке запроса по физике: {str(e)}")
-            return f"Произошла ошибка при обработке запроса: {str(e)}" 
+            logger.error(f"Ошибка при обработке запроса: {str(e)}")
+            return f"Произошла ошибка при обработке запроса: {str(e)}"
 
     # Загрузка переменных окружения
+    # Сначала загружаем общие настройки
     load_dotenv()
-    load_dotenv('.env.local', override=True)  # Приоритет локальным настройкам
+    # Затем загружаем локальные настройки с приоритетом
+    load_dotenv('.env.local', override=True)

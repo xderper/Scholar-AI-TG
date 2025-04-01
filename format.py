@@ -2,6 +2,10 @@ import re
 class Format:
 
     def replace_subscript(self, text):
+        self.superscript_map = {
+            '0': '₀', '1': '₁', '2': '₂', '3': '₃', '4': '₄',
+            '5': '₅', '6': '₆', '7': '₇', '8': '₈', '9': '₉'
+        }
         def subscript(match):
             # Преобразуем каждый символ в нижний индекс
             subscript_text = ''
@@ -100,6 +104,9 @@ class Format:
             text = text.replace("\\leq", "≤")
             text = text.replace("\\neq", "≠")
             
+            # Physics notation
+            text = text.replace('⇒', '⇒')
+            
             # Замена LaTeX-блоков на HTML код-блоки
             text = text.replace("\\[", "<pre><code>")
             text = text.replace("\\]", "</code></pre>")
@@ -134,16 +141,17 @@ class Format:
                     text = text[:f] + "</b>" + text[f+2:]
                 f = text.find("**")
                 c += 1
-            
-            # Замена индексов на HTML формат
-            # text = re.sub(r'([A-Za-zА-Яа-я])_([A-Za-zА-Яа-я0-9]+)', r'\1<sub>\2</sub>', text)
-            
-            # # Замена степеней на HTML формат
-            # text = re.sub(r'([A-Za-zА-Яа-я0-9])\^([A-Za-zА-Яа-я0-9]+)', r'\1<sup>\2</sup>', text)
+
             
             # Обработка степеней
             text = re.sub(r'(\\d+)\^(\\d+)', lambda m: f'{m.group(1)}<sup>{m.group(2)}</sup>', text)
             text = re.sub(r'([A-Za-zА-Яа-я])\^(\\d+)', lambda m: f'{m.group(1)}<sup>{m.group(2)}</sup>', text)
+
+            # Замена стандартных заголовков на жирный шрифт
+            text = text.replace("Дано:", "<b>Дано:</b>")
+            text = text.replace("Найти:", "<b>Найти:</b>")
+            text = text.replace("Решение:", "<b>Решение:</b>")
+            text = text.replace("Ответ:", "<b>Ответ:</b>")
 
             text = text.replace("\\", "")
             text = text.replace("{", "")

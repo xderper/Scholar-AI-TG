@@ -21,265 +21,120 @@ load_dotenv()
 router = Router()
 
 # ID канала, на который нужно проверить подписку
-CHANNEL_ID = "-1002508751485"
-
-# Функция для получения инлайн-клавиатуры с кнопками подписки
-def get_subscription_keyboard():
-    return InlineKeyboardMarkup(
-        inline_keyboard=[
-            [
-                InlineKeyboardButton(text="IT Thinker", url="https://t.me/neurals_etc")
-            ],
-            [
-                InlineKeyboardButton(text="Проверить подписку✅", callback_data="check_subscription")
-            ]
-        ]
-    )
-
-# Функция для проверки подписки пользователя на канал
-async def check_subscription(user_id: int, bot):
-    """Проверка подписки пользователя на канал"""
-    try:
-        member = await bot.get_chat_member(CHANNEL_ID, user_id)
-        return member.status in ['member', 'administrator', 'creator']
-    except Exception as e:
-        logger.error(f"Ошибка при проверке подписки: {e}")
-        return False
-
-# Обработчик для кнопки проверки подписки
-@router.callback_query(F.data == "check_subscription")
-async def check_subscription_callback(callback_query: CallbackQuery):
-    is_subscribed = await check_subscription(callback_query.from_user.id, callback_query.bot)
-
-    if is_subscribed:
-        await callback_query.message.edit_text(
-            "✅ Вы подписаны, продолжаю работу!",
-            reply_markup=get_subscription_keyboard()  # Кнопки остаются
-        )
-    else:
-        await callback_query.message.edit_text(
-            "❌ Вы не подписаны. Попробуйте снова.",
-            reply_markup=get_subscription_keyboard()  # Кнопки остаются
-        )
-
-    await callback_query.answer("Проверка подписки завершена.")
-
-# Обработчики сообщений
-@router.message(F.text == "📙 Физика")
-async def physics_button_handler(message: Message, state: FSMContext):
-    await message.delete()
-    if not await check_subscription(message.from_user.id, message.bot):
-        await message.answer("❌ Вы не подписаны. Попробуйте снова.", reply_markup=get_subscription_keyboard())
-        return
-
-    text = os.getenv("Physic_answer_text")
-    await state.set_state(Form.section)
-    await state.update_data(section="physics")
-    await message.answer(text, reply_markup=get_main_keyboard())
-
-# Обработчики сообщений
-@router.message(F.text == "📕 Математика")
-async def physics_button_handler(message: Message, state: FSMContext):
-    await message.delete()
-    if not await check_subscription(message.from_user.id, message.bot):
-        await message.answer("❌ Вы не подписаны. Попробуйте снова.", reply_markup=get_subscription_keyboard())
-        return
-
-    text = os.getenv("Mathematic_answer_text")
-    await state.set_state(Form.section)
-    await state.update_data(section="mathematics")
-    await message.answer(text, reply_markup=get_main_keyboard())
-
-@router.message(F.text == "📗 Химия")
-async def physics_button_handler(message: Message, state: FSMContext):
-    await message.delete()
-    if not await check_subscription(message.from_user.id, message.bot):
-        await message.answer("❌ Вы не подписаны. Попробуйте снова.", reply_markup=get_subscription_keyboard())
-        return
-
-    text = os.getenv("Chemistry_answer_text")
-    await state.set_state(Form.section)
-    await state.update_data(section="chemistry")
-    await message.answer(text, reply_markup=get_main_keyboard())
+CHANNEL_ID = os.getenv("CHANNEL_ID")
 
 @router.message(F.text == "📝 Информация")
 async def information_button_handler(message: Message):
-    await message.delete()
-    if not await check_subscription(message.from_user.id, message.bot):
-        await message.answer("❌ Вы не подписаны. Попробуйте снова.", reply_markup=get_subscription_keyboard())
-        return
-
-    text = os.getenv("Information_text")
-    await message.answer(text, reply_markup=get_main_keyboard())
+    try:
+        text = os.getenv("Information_text")
+        await message.answer(text, reply_markup=get_main_keyboard())
+        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await message.delete()
+    except Exception as e:
+        logger.error(f"Ошибка при удалении сообщений: {str(e)}")
+        await message.answer(text, reply_markup=get_main_keyboard())
 
 @router.message(F.text == "❓ Помощь")
 async def help_button_handler(message: Message):
-    await message.delete()
-    if not await check_subscription(message.from_user.id, message.bot):
-        await message.answer("❌ Вы не подписаны. Попробуйте снова.", reply_markup=get_subscription_keyboard())
-        return
+    try:
+        text = os.getenv("Help_text")
+        await message.answer(text, reply_markup=get_main_keyboard())
+        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await message.delete()
+    except Exception as e:
+        logger.error(f"Ошибка при удалении сообщений: {str(e)}")
+        await message.answer(text, reply_markup=get_main_keyboard())
 
-    text = os.getenv("Help_text")
-    await message.answer(text, reply_markup=get_main_keyboard())
 
-# Обработчик для фотографий
+@router.message(F.text == "📙 Физика")
+async def physics_button_handler(message: Message, state: FSMContext):
+    try:
+        text = os.getenv("Physic_answer_text")
+        await state.set_state(Form.section)
+        await state.update_data(section="physics")
+        await message.answer(text, reply_markup=get_main_keyboard())
+        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await message.delete()
+    except Exception as e:
+        logger.error(f"Ошибка: {str(e)}")
+        await message.answer(text, reply_markup=get_main_keyboard())
+
+@router.message(F.text == "📕 Математика")
+async def math_button_handler(message: Message, state: FSMContext):
+    try:
+        text = os.getenv("Math_answer_text")
+        await state.set_state(Form.section)
+        await state.update_data(section="mathematics")
+        await message.answer(text, reply_markup=get_main_keyboard())
+        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await message.delete()
+    except Exception as e:
+        logger.error(f"Ошибка: {str(e)}")
+        await message.answer(text, reply_markup=get_main_keyboard())
+
+@router.message(F.text == "📗 Химия")
+async def chemistry_button_handler(message: Message, state: FSMContext):
+    try:
+        text = os.getenv("Chemistry_answer_text")
+        await state.set_state(Form.section)
+        await state.update_data(section="chemistry")
+        await message.answer(text, reply_markup=get_main_keyboard())
+        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await message.delete()
+    except Exception as e:
+        logger.error(f"Ошибка: {str(e)}")
+        await message.answer(text, reply_markup=get_main_keyboard())
+
+
 @router.message(F.photo)
 async def photo_handler(message: Message, state: FSMContext):
     """Обработчик для фотографий"""
-    
-    if not await check_subscription(message.from_user.id, message.bot):
-        await message.answer("❌ Вы не подписаны. Попробуйте снова.", reply_markup=get_subscription_keyboard())
-        return  
+    try:
+        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await message.delete()
+        wait_message = await message.answer(os.getenv("Wait_text"))
+        current_state = await state.get_state()
+        state_data = await state.get_data()
 
-    current_state = await state.get_state()
-    state_data = await state.get_data()
-    
-    if current_state == Form.section and state_data.get('section') == 'physics':
-        logger.info(f"Получено фото от пользователя {message.from_user.id}")
-        
-        photo = message.photo[-1]
-        await message.answer("Получил ваше фото с задачей. Обрабатываю...")
+        photo = message.photo[-1]  # берем самую большую версию
+        file = await message.bot.get_file(photo.file_id)
+        file_path = file.file_path
 
-        try:
-            file_id = photo.file_id
-            file = await message.bot.get_file(file_id)
-            file_path = file.file_path
-            logger.info(f"Скачивание файла {file_id} начато")
+        # Скачиваем файл
+        temp_file_path = os.path.join("temp", f"temp_{photo.file_id}.jpg")
+        os.makedirs(os.path.dirname(temp_file_path), exist_ok=True)
+        await message.bot.download_file(file_path, destination=temp_file_path)
 
-            temp_file_path = os.path.join("temp", f"temp_{file_id}.jpg")
-            os.makedirs(os.path.dirname(temp_file_path), exist_ok=True)
+        # Конвертируем в base64
+        with open(temp_file_path, "rb") as image_file:
+            image_data = f"data:image/jpeg;base64,{base64.b64encode(image_file.read()).decode('utf-8')}"
 
-            await message.bot.download_file(file_path, destination=temp_file_path)
-            logger.info(f"Файл {file_id} успешно скачан")
+        # Удаляем временный файл
+        if os.path.exists(temp_file_path):
+            os.remove(temp_file_path)
 
-            with open(temp_file_path, "rb") as image_file:
-                logger.info(f"Конвертация файла {file_id} в base64 начата")
-                response = Requests().physics(
-                    request=f"data:image/jpeg;base64,{base64.b64encode(image_file.read()).decode('utf-8')}",
-                    photo=True
-                )
-                logger.info(f"Обработка файла {file_id} завершена")
-
-            await message.answer(response, parse_mode="HTML")
-            logger.info(f"Ответ отправлен пользователю {message.from_user.id}")
-
-            if os.path.exists(temp_file_path):
-                os.remove(temp_file_path)
-                logger.info(f"Временный файл {temp_file_path} удален")
-
-        except Exception as e:
-            error_message = f"Произошла ошибка при обработке изображения: {str(e)}. Попробуйте ввести условие задачи текстом."
-            logger.error(f"Ошибка при обработке файла {file_id}: {str(e)}")
-            await message.answer(error_message)
-    elif current_state == Form.section and state_data.get('section') == 'mathematics':
-        logger.info(f"Получено фото от пользователя {message.from_user.id}")
-        
-        photo = message.photo[-1]
-        await message.answer("Получил ваше фото с задачей. Обрабатываю...")
-
-        try:
-            file_id = photo.file_id
-            file = await message.bot.get_file(file_id)
-            file_path = file.file_path
-            logger.info(f"Скачивание файла {file_id} начато")
-
-            temp_file_path = os.path.join("temp", f"temp_{file_id}.jpg")
-            os.makedirs(os.path.dirname(temp_file_path), exist_ok=True)
-
-            await message.bot.download_file(file_path, destination=temp_file_path)
-            logger.info(f"Файл {file_id} успешно скачан")
-
-            with open(temp_file_path, "rb") as image_file:
-                logger.info(f"Конвертация файла {file_id} в base64 начата")
-                response = Requests().mathematics(
-                    request=f"data:image/jpeg;base64,{base64.b64encode(image_file.read()).decode('utf-8')}",
-                    photo=True
-                )
-                logger.info(f"Обработка файла {file_id} завершена")
-
-            await message.answer(response, parse_mode="HTML")
-            logger.info(f"Ответ отправлен пользователю {message.from_user.id}")
-
-            if os.path.exists(temp_file_path):
-                os.remove(temp_file_path)
-                logger.info(f"Временный файл {temp_file_path} удален")
-
-        except Exception as e:
-            error_message = f"Произошла ошибка при обработке изображения: {str(e)}. Попробуйте ввести условие задачи текстом."
-            logger.error(f"Ошибка при обработке файла {file_id}: {str(e)}")
-            await message.answer(error_message)
-    elif current_state == Form.section and state_data.get('section') == 'chemistry':
-        logger.info(f"Получено фото от пользователя {message.from_user.id}")
-        
-        photo = message.photo[-1]
-        await message.answer("Получил ваше фото с задачей. Обрабатываю...")
-
-        try:
-            file_id = photo.file_id
-            file = await message.bot.get_file(file_id)
-            file_path = file.file_path
-            logger.info(f"Скачивание файла {file_id} начато")
-
-            temp_file_path = os.path.join("temp", f"temp_{file_id}.jpg")
-            os.makedirs(os.path.dirname(temp_file_path), exist_ok=True)
-
-            await message.bot.download_file(file_path, destination=temp_file_path)
-            logger.info(f"Файл {file_id} успешно скачан")
-
-            with open(temp_file_path, "rb") as image_file:
-                logger.info(f"Конвертация файла {file_id} в base64 начата")
-                response = Requests().chemistry(
-                    request=f"data:image/jpeg;base64,{base64.b64encode(image_file.read()).decode('utf-8')}",
-                    photo=True
-                )
-                logger.info(f"Обработка файла {file_id} завершена")
-
-            await message.answer(response, parse_mode="HTML")
-            logger.info(f"Ответ отправлен пользователю {message.from_user.id}")
-
-            if os.path.exists(temp_file_path):
-                os.remove(temp_file_path)
-                logger.info(f"Временный файл {temp_file_path} удален")
-
-        except Exception as e:
-            error_message = f"Произошла ошибка при обработке изображения: {str(e)}. Попробуйте ввести условие задачи текстом."
-            logger.error(f"Ошибка при обработке файла {file_id}: {str(e)}")
-            await message.answer(error_message)
-    else:
-        await message.answer("Я не могу обработать ваше сообщение в текущем состоянии. Пожалуйста, выберите раздел из меню", reply_markup=get_main_keyboard())
-
-# Обработчик для всех остальных сообщений
+        response = Requests().main(
+            request=image_data,
+            subject=state_data.get('section'),
+            photo=True
+        )
+        await message.bot.delete_message(message.chat.id, wait_message.message_id)
+        await message.answer(response, parse_mode="HTML", reply_markup=get_main_keyboard())
+    except Exception as e:
+        logger.error(f"Ошибка: {str(e)}")
+        await message.answer("Произошла ошибка при обработке фото. Попробуйте еще раз.")
+#gpt обработка
 @router.message(StateFilter(Form.section))
 async def other_message_handler(message: Message, state: FSMContext):
-    """Обработчик для всех остальных сообщений"""
-    
-    if not await check_subscription(message.from_user.id, message.bot):
-        await message.answer("❌ Вы не подписаны. Попробуйте снова.", reply_markup=get_subscription_keyboard())
-        return  
+    try:
+        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await message.delete()
+        state_data = await state.get_data()
+        wait_message = await message.answer(os.getenv("Wait_text"))
+        response = Requests().main(request=message.text, subject = state_data.get('section'), photo=False)
+        await message.bot.delete_message(message.chat.id, wait_message.message_id)
+        await message.answer(response, parse_mode="HTML", reply_markup=get_main_keyboard())
 
-    state_data = await state.get_data()
-    logger.info(f"Получено сообщение: {message.text}")
-
-    if state_data.get('section') == 'physics':
-        try:
-            await message.answer("Получил вашу задачу. Обрабатываю...")
-            response = Requests().physics(request=message.text, photo=False)
-            await message.answer(response, parse_mode="HTML")
-        except Exception as e:
-            await message.answer(f"Произошла ошибка: {str(e)}")
-    elif state_data.get('section') == 'mathematics':
-        try:
-            await message.answer("Получил вашу задачу. Обрабатываю...")
-            response = Requests().mathematics(request=message.text, photo=False)
-            await message.answer(response, parse_mode="HTML")
-        except Exception as e:
-            await message.answer(f"Произошла ошибка: {str(e)}")
-    elif state_data.get('section') == 'chemistry':
-        try:
-            await message.answer("Получил вашу задачу. Обрабатываю...")
-            response = Requests().chemistry(request=message.text, photo=False)
-            await message.answer(response, parse_mode="HTML")
-        except Exception as e:
-            await message.answer(f"Произошла ошибка: {str(e)}")
-    else:
-        await message.answer("Я не могу обработать ваше сообщение в текущем состоянии. Пожалуйста, выберите раздел из меню", reply_markup=get_main_keyboard())
+    except Exception as e:
+        logger.error(f"Ошибка: {str(e)}")
+        await message.answer("Произошла ошибка при обработке текста. Попробуйте еще раз.")
