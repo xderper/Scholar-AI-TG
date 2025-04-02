@@ -93,6 +93,8 @@ class Format:
             text = text.replace("\\sigma", "σ")
             text = text.replace("\\tau", "τ")
             text = text.replace("\\phi", "φ")
+            text = text.replace("\\varphi", "φ")
+            text = text.replace("varphi1", "φ₁")
             text = text.replace("\\omega", "ω")
             
             # Замена математических символов
