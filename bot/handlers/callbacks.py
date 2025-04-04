@@ -17,9 +17,9 @@ router = Router()
 async def check_subscription_callback(callback: CallbackQuery, state: FSMContext):
     try:
         is_subscribed = await check_subscription(callback.from_user.id, callback.bot)
-        
         if is_subscribed:
-            await callback.message.answer(os.getenv("Start_text"))
+            await callback.message.answer(os.getenv("Start_text").format(user_name=callback.from_user.first_name), reply_markup=get_main_keyboard())
+            await callback.message.delete()
         else:
             await callback.message.answer(
                 os.getenv("Subscribe_text"),
