@@ -26,6 +26,10 @@ CHANNEL_ID = os.getenv("CHANNEL_ID")
 @router.message(F.text == "📝 Информация")
 async def information_button_handler(message: Message):
     try:
+        await message.bot.send_chat_action(
+            chat_id=message.chat.id,
+            action="typing"
+        )
         text = os.getenv("Information_text")
         await message.answer(text, reply_markup=get_main_keyboard())
         await message.bot.delete_message(message.chat.id, message.message_id - 1)
@@ -37,6 +41,10 @@ async def information_button_handler(message: Message):
 @router.message(F.text == "❓ Помощь")
 async def help_button_handler(message: Message):
     try:
+        await message.bot.send_chat_action(
+            chat_id=message.chat.id,
+            action="typing"
+        )
         text = os.getenv("Help_text")
         await message.answer(text, reply_markup=get_main_keyboard())
         await message.bot.delete_message(message.chat.id, message.message_id - 1)
@@ -50,6 +58,10 @@ async def help_button_handler(message: Message):
 @router.message(F.text == "📙 Физика")
 async def physics_button_handler(message: Message, state: FSMContext):
     try:
+        await message.bot.send_chat_action(
+            chat_id=message.chat.id,
+            action="typing"
+        )
         text = os.getenv("Physic_answer_text")
         await state.set_state(Form.section)
         await state.update_data(section="physics")
@@ -63,6 +75,10 @@ async def physics_button_handler(message: Message, state: FSMContext):
 @router.message(F.text == "📕 Математика")
 async def math_button_handler(message: Message, state: FSMContext):
     try:
+        await message.bot.send_chat_action(
+            chat_id=message.chat.id,
+            action="typing"
+        )
         text = os.getenv("Mathematic_answer_text")
         await state.set_state(Form.section)
         await state.update_data(section="mathematics")
@@ -76,6 +92,10 @@ async def math_button_handler(message: Message, state: FSMContext):
 @router.message(F.text == "📗 Химия")
 async def chemistry_button_handler(message: Message, state: FSMContext):
     try:
+        await message.bot.send_chat_action(
+            chat_id=message.chat.id,
+            action="typing"
+        )
         text = os.getenv("Chemistry_answer_text")
         await state.set_state(Form.section)
         await state.update_data(section="chemistry")
@@ -91,6 +111,10 @@ async def chemistry_button_handler(message: Message, state: FSMContext):
 async def photo_handler(message: Message, state: FSMContext):
     """Обработчик для фотографий"""
     try:
+        await message.bot.send_chat_action(
+            chat_id=message.chat.id,
+            action="typing"
+        )
         await message.bot.delete_message(message.chat.id, message.message_id - 1)
         await message.delete()
         wait_message = await message.answer(os.getenv("Wait_text"))
@@ -128,6 +152,10 @@ async def photo_handler(message: Message, state: FSMContext):
 @router.message(StateFilter(Form.section))
 async def other_message_handler(message: Message, state: FSMContext):
     try:
+        await message.bot.send_chat_action(
+            chat_id=message.chat.id,
+            action="typing"
+        )
         await message.bot.delete_message(message.chat.id, message.message_id - 1)
         await message.delete()
         state_data = await state.get_data()
