@@ -12,6 +12,9 @@ def get_main_keyboard() -> ReplyKeyboardMarkup:
             [
                 KeyboardButton(text="📗 Химия")
             ],
+            [   
+                KeyboardButton(text="🤖 ChatGPT o1-pro")
+            ],
             [
                 KeyboardButton(text="📝 Информация"),
                 KeyboardButton(text="❓ Помощь")

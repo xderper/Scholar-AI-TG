@@ -111,6 +111,8 @@ class Requests:
                 query = os.getenv("Chemistry_query")
             elif subject == 'mathematics':
                 query = os.getenv("Mathematics_query")
+            elif subject == 'chatgpt':
+                query = os.getenv("")
             else:
                 return "Неподдерживаемый предмет"
 

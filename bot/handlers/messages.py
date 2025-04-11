@@ -45,6 +45,18 @@ async def help_button_handler(message: Message):
         print(str(e), reply_markup=get_main_keyboard())
 
 
+@router.message(F.text == "🤖 ChatGPT o1-pro")
+async def chatgpt_button_handler(message: Message, state: FSMContext):
+    try:
+        text = os.getenv("ChatGPT_answer_text")
+        await state.set_state(Form.section)
+        await state.update_data(section="chatgpt")
+        await message.answer(text, reply_markup=get_main_keyboard())
+        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await message.delete()
+    except Exception as e:
+        logger.error(f"Ошибка: {str(e)}")
+        await message.answer(f"Произошла ошибка: {str(e)}", reply_markup=get_main_keyboard())
 
 @router.message(F.text == "📙 Физика")
 async def physics_button_handler(message: Message, state: FSMContext):
