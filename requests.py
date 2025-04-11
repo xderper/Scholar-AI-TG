@@ -91,7 +91,7 @@ class Requests:
             logger.error(f"Ошибка при запросе к OpenAI: {str(e)}")
             raise
     
-    def main(self, request, subject, photo=False):
+    def main(self, request, subject, photo=False, solution=False):
         """
         Основной метод для обработки запросов по различным предметам
         
@@ -113,6 +113,8 @@ class Requests:
                 query = os.getenv("Mathematics_query")
             elif subject == 'chatgpt':
                 query = os.getenv("")
+            elif subject == 'question':
+                query = str(solution) + os.getenv("Question_query")
             else:
                 return "Неподдерживаемый предмет"
 

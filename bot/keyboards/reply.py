@@ -24,3 +24,17 @@ def get_main_keyboard() -> ReplyKeyboardMarkup:
         input_field_placeholder="Выберите действие..."
     )
     return keyboard
+
+def get_next_question_keyboard():
+    return ReplyKeyboardMarkup(
+        keyboard=[
+            [
+                KeyboardButton(text="❓ Вопрос по задаче")
+            ],
+            [
+                KeyboardButton(text="➡️ Следующая задача")
+            ]
+        ],
+        resize_keyboard=True,
+        input_field_placeholder="Выберите действие..."
+    )   
