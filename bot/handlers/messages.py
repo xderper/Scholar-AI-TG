@@ -160,7 +160,7 @@ async def next_question_button_handler(message: Message, state: FSMContext):
         
         # Удаляем сообщения только после успешной отправки нового
         try:
-            await message.bot.delete_message(message.chat.id, message.message_id - 1)
+            # await message.bot.delete_message(message.chat.id, message.message_id - 1)
             await message.delete()
         except Exception as delete_error:
             logger.error(f"Ошибка при удалении сообщений: {str(delete_error)}")
