@@ -55,8 +55,8 @@ async def chatgpt_button_handler(message: Message, state: FSMContext):
         await message.bot.delete_message(message.chat.id, message.message_id - 1)
         await message.delete()
     except Exception as e:
-        logger.error(f"Ошибка: {str(e)}")
-        await message.answer(f"Произошла ошибка: {str(e)}", reply_markup=get_main_keyboard())
+        # logger.error(f"Ошибка: {str(e)}")
+        print(str(e), reply_markup=get_main_keyboard())
 
 @router.message(F.text == "📙 Физика")
 async def physics_button_handler(message: Message, state: FSMContext):
