@@ -31,7 +31,8 @@ async def information_button_handler(message: Message):
         await message.delete()
     except Exception as e:
         # logger.error(f"Ошибка при удалении сообщений: {str(e)}")
-        print(str(e), reply_markup=get_main_keyboard())
+        print(str(e))
+        reply_markup=get_main_keyboard()
 
 @router.message(F.text == "❓ Помощь")
 async def help_button_handler(message: Message):
@@ -42,8 +43,8 @@ async def help_button_handler(message: Message):
         await message.delete()
     except Exception as e:
         # logger.error(f"Ошибка при удалении сообщений: {str(e)}")
-        print(str(e), reply_markup=get_main_keyboard())
-
+        print(str(e))
+        reply_markup=get_main_keyboard()
 
 @router.message(F.text == "🤖 ChatGPT o1-pro")
 async def chatgpt_button_handler(message: Message, state: FSMContext):
@@ -56,7 +57,8 @@ async def chatgpt_button_handler(message: Message, state: FSMContext):
         await message.delete()
     except Exception as e:
         # logger.error(f"Ошибка: {str(e)}")
-        print(str(e), reply_markup=get_main_keyboard())
+        print(str(e))
+        reply_markup=get_main_keyboard()
 
 @router.message(F.text == "📙 Физика")
 async def physics_button_handler(message: Message, state: FSMContext):
@@ -69,8 +71,8 @@ async def physics_button_handler(message: Message, state: FSMContext):
         await message.delete()
     except Exception as e:
         # logger.error(f"Ошибка: {str(e)}")
-        print(str(e), reply_markup=get_main_keyboard())
-
+        print(str(e))
+        reply_markup=get_main_keyboard()
 @router.message(F.text == "📕 Математика")
 async def math_button_handler(message: Message, state: FSMContext):
     try:
@@ -82,7 +84,8 @@ async def math_button_handler(message: Message, state: FSMContext):
         await message.delete()
     except Exception as e:
         # logger.error(f"Ошибка: {str(e)}")
-        print(str(e), reply_markup=get_main_keyboard())
+        print(str(e))
+        reply_markup=get_main_keyboard()
 
 @router.message(F.text == "📗 Химия")
 async def chemistry_button_handler(message: Message, state: FSMContext):
@@ -95,7 +98,8 @@ async def chemistry_button_handler(message: Message, state: FSMContext):
         await message.delete()
     except Exception as e:
         # logger.error(f"Ошибка: {str(e)}")
-        print(str(e), reply_markup=get_main_keyboard())
+        print(str(e))
+        reply_markup=get_main_keyboard()
 
 
 @router.message(F.text == "❓ Вопрос по задаче")
@@ -212,7 +216,8 @@ async def photo_handler(message: Message, state: FSMContext):
         await message.answer(response, parse_mode="HTML", reply_markup=get_next_question_keyboard())
     except Exception as e:
         # logger.error(f"Ошибка: {str(e)}")
-        print(str(e), reply_markup=get_main_keyboard())
+        print(str(e))
+        reply_markup=get_main_keyboard()
 #gpt обработка
 @router.message(StateFilter(Form.section))
 async def other_message_handler(message: Message, state: FSMContext):
@@ -231,4 +236,5 @@ async def other_message_handler(message: Message, state: FSMContext):
 
     except Exception as e:
         # logger.error(f"Ошибка: {str(e)}")
-        print(str(e), reply_markup=get_main_keyboard())
+        print(str(e))
+        reply_markup=get_main_keyboard()
