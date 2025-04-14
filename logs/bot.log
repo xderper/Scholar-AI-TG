@@ -1224,3 +1224,198 @@ text
 2025-04-12 00:12:50 - bot - INFO - Бот запущен
 2025-04-12 00:14:02 - bot - INFO - Бот запущен
 2025-04-12 00:17:14 - bot - INFO - Бот запущен
+2025-04-12 23:33:59 - bot - INFO - Бот запущен
+2025-04-12 23:36:33 - bot - INFO - Бот остановлен
+2025-04-12 23:36:41 - bot - INFO - Бот запущен
+2025-04-12 23:40:48 - bot - INFO - Бот остановлен
+2025-04-14 00:30:56 - bot - INFO - Бот запущен
+2025-04-14 00:31:36 - bot - INFO - Бот остановлен
+2025-04-14 00:33:36 - bot - INFO - Бот запущен
+2025-04-14 00:35:26 - bot - INFO - Бот остановлен
+2025-04-14 00:35:40 - bot - INFO - Бот запущен
+2025-04-14 00:35:55 - bot - INFO - Бот остановлен
+2025-04-14 16:22:05 - bot - INFO - Бот запущен
+2025-04-14 16:23:41 - bot - INFO - Бот остановлен
+2025-04-14 16:24:06 - bot - INFO - Бот запущен
+2025-04-14 16:27:01 - bot - INFO - Бот остановлен
+2025-04-14 16:27:07 - bot - INFO - Бот запущен
+2025-04-14 16:29:47 - bot - INFO - Бот остановлен
+2025-04-14 16:30:28 - bot - INFO - Бот запущен
+2025-04-14 16:30:48 - bot.handlers.messages - ERROR - Ошибка при генерации графика: name 'openai' is not defined
+2025-04-14 16:31:20 - bot.handlers.messages - ERROR - Ошибка при генерации графика: name 'openai' is not defined
+2025-04-14 16:31:34 - bot.handlers.messages - ERROR - Ошибка при генерации графика: name 'openai' is not defined
+2025-04-14 16:43:51 - bot - INFO - Бот остановлен
+2025-04-14 16:47:41 - bot - INFO - Бот запущен
+2025-04-14 16:48:52 - bot - INFO - Бот остановлен
+2025-04-14 16:49:47 - bot - INFO - Бот запущен
+2025-04-14 16:52:08 - bot - INFO - Бот остановлен
+2025-04-14 16:53:37 - bot - INFO - Бот запущен
+2025-04-14 16:55:36 - bot - INFO - Бот остановлен
+2025-04-14 16:55:41 - bot - INFO - Бот запущен
+2025-04-14 16:58:34 - bot - INFO - Бот остановлен
+2025-04-14 16:59:38 - bot - INFO - Бот запущен
+2025-04-14 16:59:50 - bot.handlers.messages - ERROR - Ошибка при удалении временного файла: [WinError 32] Процесс не может получить доступ к файлу, так как этот файл занят другим процессом: 'C:\\Users\\spsnekit\\AppData\\Local\\Temp\\tmpra6dtbbc.png'
+2025-04-14 17:01:29 - bot.handlers.messages - ERROR - Ошибка при построении графика: Ошибка при построении графика: Не удалось распознать функцию. Пожалуйста, проверьте синтаксис.
+Исходный ввод: y=2x+3 и y=3x+2
+Обработанный ввод: 2*x+3иy=3*x+2
+Ошибка: invalid syntax (<string>, line 1)
+2025-04-14 17:01:38 - bot.handlers.messages - ERROR - Ошибка при удалении временного файла: [WinError 32] Процесс не может получить доступ к файлу, так как этот файл занят другим процессом: 'C:\\Users\\spsnekit\\AppData\\Local\\Temp\\tmpw_zjc8wa.png'
+2025-04-14 17:02:00 - bot.handlers.messages - ERROR - Ошибка при удалении временного файла: [WinError 32] Процесс не может получить доступ к файлу, так как этот файл занят другим процессом: 'C:\\Users\\spsnekit\\AppData\\Local\\Temp\\tmpjwka5gum.png'
+2025-04-14 17:02:56 - bot - INFO - Бот остановлен
+2025-04-14 17:03:09 - bot - INFO - Бот запущен
+2025-04-14 17:03:29 - bot.handlers.messages - ERROR - Ошибка при удалении временного файла: [WinError 32] Процесс не может получить доступ к файлу, так как этот файл занят другим процессом: 'C:\\Users\\spsnekit\\AppData\\Local\\Temp\\tmp3nem2wd1.png'
+2025-04-14 17:04:43 - bot - INFO - Бот остановлен
+2025-04-14 17:04:50 - bot - INFO - Бот запущен
+2025-04-14 17:06:04 - bot.handlers.messages - ERROR - Ошибка при удалении временного файла: [WinError 32] Процесс не может получить доступ к файлу, так как этот файл занят другим процессом: 'C:\\Users\\spsnekit\\AppData\\Local\\Temp\\tmpze16ghct.png'
+2025-04-14 17:08:06 - bot.handlers.messages - ERROR - Ошибка при удалении временного файла: [WinError 32] Процесс не может получить доступ к файлу, так как этот файл занят другим процессом: 'C:\\Users\\spsnekit\\AppData\\Local\\Temp\\tmpfv77iire.png'
+2025-04-14 17:08:09 - bot - INFO - Бот остановлен
+2025-04-14 17:08:16 - bot - INFO - Бот запущен
+2025-04-14 17:08:28 - bot.handlers.messages - ERROR - Ошибка при удалении временного файла: [WinError 32] Процесс не может получить доступ к файлу, так как этот файл занят другим процессом: 'C:\\Users\\spsnekit\\AppData\\Local\\Temp\\tmpa6po4_v8.png'
+2025-04-14 17:08:44 - bot.handlers.messages - ERROR - Ошибка при удалении временного файла: [WinError 32] Процесс не может получить доступ к файлу, так как этот файл занят другим процессом: 'C:\\Users\\spsnekit\\AppData\\Local\\Temp\\tmpi_gaz8za.png'
+2025-04-14 17:09:33 - bot.handlers.messages - ERROR - Ошибка при удалении временного файла: [WinError 32] Процесс не может получить доступ к файлу, так как этот файл занят другим процессом: 'C:\\Users\\spsnekit\\AppData\\Local\\Temp\\tmp2pte04_d.png'
+2025-04-14 17:09:47 - bot.handlers.messages - ERROR - Ошибка при построении графика: Ошибка при построении графика: Ошибка при вычислении значений функции: ufunc 'isfinite' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+2025-04-14 17:12:57 - bot - INFO - Бот остановлен
+2025-04-14 17:13:03 - bot - INFO - Бот запущен
+2025-04-14 17:13:14 - bot.handlers.messages - ERROR - Ошибка при удалении временного файла: [WinError 32] Процесс не может получить доступ к файлу, так как этот файл занят другим процессом: 'C:\\Users\\spsnekit\\AppData\\Local\\Temp\\tmp2lq1adhs.png'
+2025-04-14 17:13:38 - bot.handlers.messages - ERROR - Ошибка при удалении временного файла: [WinError 32] Процесс не может получить доступ к файлу, так как этот файл занят другим процессом: 'C:\\Users\\spsnekit\\AppData\\Local\\Temp\\tmp0622d05k.png'
+2025-04-14 17:13:53 - bot.handlers.messages - ERROR - Ошибка при удалении временного файла: [WinError 32] Процесс не может получить доступ к файлу, так как этот файл занят другим процессом: 'C:\\Users\\spsnekit\\AppData\\Local\\Temp\\tmpxspz4e0c.png'
+2025-04-14 17:15:54 - bot - INFO - Бот остановлен
+2025-04-14 17:17:22 - bot - INFO - Бот запущен
+2025-04-14 17:21:05 - bot - INFO - Бот остановлен
+2025-04-14 17:22:54 - bot - INFO - Бот запущен
+2025-04-14 17:34:47 - bot - INFO - Бот остановлен
+2025-04-14 17:34:54 - bot - INFO - Бот запущен
+2025-04-14 17:42:46 - bot - INFO - Бот остановлен
+2025-04-14 18:28:29 - bot - INFO - Бот запущен
+2025-04-14 18:32:07 - bot - INFO - Бот остановлен
+2025-04-14 18:34:33 - bot - INFO - Бот запущен
+2025-04-14 18:37:22 - bot - INFO - Бот остановлен
+2025-04-14 18:37:30 - bot - INFO - Бот запущен
+2025-04-14 18:39:37 - bot - INFO - Бот остановлен
+2025-04-14 18:39:50 - bot - INFO - Бот запущен
+2025-04-14 18:42:10 - bot - INFO - Бот остановлен
+2025-04-14 18:43:25 - bot - INFO - Бот запущен
+2025-04-14 18:44:56 - bot - INFO - Бот остановлен
+2025-04-14 18:46:02 - bot - INFO - Бот запущен
+2025-04-14 18:50:20 - bot - INFO - Бот остановлен
+2025-04-14 18:50:29 - bot - INFO - Бот запущен
+2025-04-14 18:53:12 - bot - INFO - Бот остановлен
+2025-04-14 18:55:05 - bot - INFO - Бот запущен
+2025-04-14 18:56:40 - bot.handlers.messages - ERROR - Ошибка при построении графика: Ошибка при построении графика: Не удалось распознать функцию. Пожалуйста, проверьте синтаксис.
+Исходный ввод: It looks like you've provided a linear equation: <code> y = 3x </code>.
+
+This equation represents a straight line on a Cartesian coordinate plane, where <code> y </code> is the dependent variable, <code> x </code> is the independent variable, and 3 is the slope of the line. The slope indicates that for every 1 unit increase in <code> x </code>, <code> y </code> increases by 3 units. The line passes through the origin (0,0) because there is no constant term (y-intercept) added to the equation. If you have any specific questions or need further explanation about this equation, feel free to ask!
+Обработанный ввод: itlookslikeyou'veprovidedalinearequation:<code>y=3*x</code>.
+
+thisequationrepresentsastraightlineonacartesiancoordinateplane,where<code>y</code>isthedependentvariable,<code>x</code>istheindependentvariable,and3istheslopeoftheline.theslopeindicatesthatforevery1unitincreasein<code>x</code>,<code>y</code>increasesby3units.thelinepassesthroughtheorigin(0,0)becausethereisnoconstantterm(y-intercept)addedtotheequation.ifyouhaveanyspecificquestionsorneedfurtherexplanationaboutthisequation,feelfreetoask!
+Ошибка: unterminated string literal (detected at line 1) (<string>, line 1)
+Запрос пользователя: y=3x
+2025-04-14 18:59:01 - bot - INFO - Бот остановлен
+2025-04-14 18:59:07 - bot - INFO - Бот запущен
+2025-04-14 18:59:20 - bot.handlers.messages - ERROR - Ошибка при построении графика: Ошибка при построении графика: Не удалось распознать функцию. Пожалуйста, проверьте синтаксис.
+Исходный ввод: It looks like you've provided the equation of a line in slope-intercept form, which is <code> y = 3x </code>.
+
+In this equation:
+- <code> y </code> is the dependent variable.
+- <code> x </code> is the independent variable.
+- The number 3 is the slope of the line, indicating that for every unit increase in <code> x </code>, <code> y </code> increases by 3.
+- The y-intercept is 0, meaning the line passes through the origin (0,0).
+
+If you have any specific questions or need further explanation about this equation, feel free to ask!
+Обработанный ввод: itlookslikeyou'veprovidedtheequationofalineinslope-interceptform,whichis<code>y=3*x</code>.
+
+inthisequation:
+-<code>y</code>isthedependentvariable.
+-<code>x</code>istheindependentvariable.
+-thenumber3istheslopeoftheline,indicatingthatforeveryunitincreasein<code>x</code>,<code>y</code>increasesby3.
+-they-interceptis0,meaningthelinepassesthroughtheorigin(0,0).
+
+ifyouhaveanyspecificquestionsorneedfurtherexplanationaboutthisequation,feelfreetoask!
+Ошибка: unterminated string literal (detected at line 1) (<string>, line 1)
+Запрос пользователя: y=3x
+2025-04-14 19:00:58 - bot - INFO - Бот остановлен
+2025-04-14 19:01:05 - bot - INFO - Бот запущен
+2025-04-14 19:01:25 - bot.handlers.messages - ERROR - Ошибка при построении графика: Ошибка при построении графика: Не удалось распознать функцию. Пожалуйста, проверьте синтаксис.
+Исходный ввод: It looks like you've provided a linear equation, <code> y = 3x </code>. This equation represents a straight line on a Cartesian coordinate system where:
+
+- <code> y </code> is the dependent variable.
+- <code> x </code> is the independent variable.
+- The coefficient 3 is the slope of the line, indicating that for every unit increase in <code> x </code>, <code> y </code> increases by 3 units.
+- The y-intercept is 0, meaning the line passes through the origin (0,0).
+
+If you have any specific questions or need further explanation about this equation, feel free to ask!
+Обработанный ввод: itlookslikeyou'veprovidedalinearequation,<code>y=3*x</code>.thisequationrepresentsastraightlineonacartesiancoordinatesystemwhere:
+
+-<code>y</code>isthedependentvariable.
+-<code>x</code>istheindependentvariable.
+-thecoefficient3istheslopeoftheline,indicatingthatforeveryunitincreasein<code>x</code>,<code>y</code>increasesby3units.
+-they-interceptis0,meaningthelinepassesthroughtheorigin(0,0).
+
+ifyouhaveanyspecificquestionsorneedfurtherexplanationaboutthisequation,feelfreetoask!
+Ошибка: unterminated string literal (detected at line 1) (<string>, line 1)
+Запрос пользователя: y=3x
+2025-04-14 19:02:56 - bot - INFO - Бот остановлен
+2025-04-14 19:03:01 - bot - INFO - Бот запущен
+2025-04-14 19:03:11 - bot.handlers.messages - ERROR - Ошибка при построении графика: Ошибка при построении графика: Не удалось распознать функцию. Пожалуйста, проверьте синтаксис.
+Исходный ввод: It looks like you've provided the equation of a line in slope-intercept form, which is <code> y = 3x </code>. In this equation:
+
+- <code> y </code> is the dependent variable.
+- <code> x </code> is the independent variable.
+- The number 3 is the slope of the line, indicating that for every unit increase in <code> x </code>, <code> y </code> increases by 3.
+- The y-intercept is 0, meaning the line passes through the origin (0,0).
+
+If you have any specific questions or need further analysis related to this equation, feel free to ask!
+Обработанный ввод: itlookslikeyou'veprovidedtheequationofalineinslope-interceptform,whichis<code>y=3*x</code>.inthisequation:
+
+-<code>y</code>isthedependentvariable.
+-<code>x</code>istheindependentvariable.
+-thenumber3istheslopeoftheline,indicatingthatforeveryunitincreasein<code>x</code>,<code>y</code>increasesby3.
+-they-interceptis0,meaningthelinepassesthroughtheorigin(0,0).
+
+ifyouhaveanyspecificquestionsorneedfurtheranalysisrelatedtothisequation,feelfreetoask!
+Ошибка: unterminated string literal (detected at line 1) (<string>, line 1)
+Запрос пользователя: y=3x
+2025-04-14 19:04:57 - bot - INFO - Бот остановлен
+2025-04-14 19:05:13 - bot - INFO - Бот запущен
+2025-04-14 19:05:23 - bot.handlers.messages - ERROR - Ошибка при построении графика: Ошибка при построении графика: Не удалось распознать функцию. Пожалуйста, проверьте синтаксис.
+Исходный ввод: It looks like you've provided a simple linear equation: <code> y = 3x </code>.
+
+This equation represents a straight line with a slope of 3 and a y-intercept of 0. Here's a bit more detail:
+
+- <b>Slope (m):</b> The slope of the line is 3. This means that for every unit increase in <code> x </code>, <code> y </code> increases by 3 units.
+- <b>Y-intercept (b):</b> The y-intercept is 0, which means the line passes through the origin (0,0).
+
+If you have any specific questions or need further explanation about this equation, feel free to ask!
+Обработанный ввод: itlookslikeyou'veprovidedasimplelinearequation:<code>y=3*x</code>.
+
+thisequationrepresentsastraightlinewithaslopeof3anday-interceptof0.here'sabitmoredetail:
+
+-<b>slope(m):</b>theslopeofthelineis3.thismeansthatforeveryunitincreasein<code>x</code>,<code>y</code>increasesby3units.
+-<b>y-intercept(b):</b>they-interceptis0,whichmeansthelinepassesthroughtheorigin(0,0).
+
+ifyouhaveanyspecificquestionsorneedfurtherexplanationaboutthisequation,feelfreetoask!
+Ошибка: unterminated string literal (detected at line 1) (<string>, line 1)
+Запрос пользователя: y=3x
+2025-04-14 19:09:22 - bot - INFO - Бот остановлен
+2025-04-14 19:09:28 - bot - INFO - Бот запущен
+2025-04-14 19:09:55 - bot.handlers.messages - ERROR - Ошибка при построении графика: Ошибка при построении графика: Не удалось распознать функцию. Пожалуйста, проверьте синтаксис.
+Исходный ввод: It looks like you've provided a linear equation: <code> y = 3x </code>. This equation represents a straight line on a Cartesian coordinate system, where <code> y </code> is the dependent variable and <code> x </code> is the independent variable. The number 3 is the slope of the line, which indicates that for every unit increase in <code> x </code>, <code> y </code> increases by 3 units. The line passes through the origin (0,0) because there is no constant term added to the equation. If you have any specific questions or need further explanation, feel free to ask!
+Обработанный ввод: itlookslikeyou'veprovidedalinearequation:<code>y=3*x</code>.thisequationrepresentsastraightlineonacartesiancoordinatesystem,where<code>y</code>isthedependentvariableand<code>x</code>istheindependentvariable.thenumber3istheslopeoftheline,whichindicatesthatforeveryunitincreasein<code>x</code>,<code>y</code>increasesby3units.thelinepassesthroughtheorigin(0,0)becausethereisnoconstanttermaddedtotheequation.ifyouhaveanyspecificquestionsorneedfurtherexplanation,feelfreetoask!
+Ошибка: unterminated string literal (detected at line 1) (<string>, line 1)
+Запрос пользователя: y=3x
+2025-04-14 19:13:46 - bot - INFO - Бот остановлен
+2025-04-14 19:13:53 - bot - INFO - Бот запущен
+2025-04-14 19:14:05 - bot.handlers.messages - ERROR - Ошибка при построении графика: Не удалось получить корректную формулу из запроса
+Запрос пользователя: y=3x
+2025-04-14 19:15:00 - bot - INFO - Бот остановлен
+2025-04-14 19:15:09 - bot - INFO - Бот запущен
+2025-04-14 19:15:20 - bot.handlers.messages - ERROR - Ошибка при построении графика: Не удалось получить корректную формулу из запроса
+Запрос пользователя: y=3x
+2025-04-14 19:19:15 - bot - INFO - Бот остановлен
+2025-04-14 19:19:21 - bot - INFO - Бот запущен
+2025-04-14 19:19:44 - bot.handlers.messages - ERROR - Общая ошибка при обработке запроса: get_next_question_keyboard() got an unexpected keyword argument 'show_question_button'
+Тип ошибки: TypeError
+Запрос пользователя: y=3x
+2025-04-14 19:20:55 - bot - INFO - Бот остановлен
+2025-04-14 19:21:01 - bot - INFO - Бот запущен
+2025-04-14 19:22:54 - bot - INFO - Бот остановлен
