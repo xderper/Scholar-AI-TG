@@ -1286,3 +1286,136 @@ text
 2025-04-14 17:34:47 - bot - INFO - Бот остановлен
 2025-04-14 17:34:54 - bot - INFO - Бот запущен
 2025-04-14 17:42:46 - bot - INFO - Бот остановлен
+2025-04-14 18:28:29 - bot - INFO - Бот запущен
+2025-04-14 18:32:07 - bot - INFO - Бот остановлен
+2025-04-14 18:34:33 - bot - INFO - Бот запущен
+2025-04-14 18:37:22 - bot - INFO - Бот остановлен
+2025-04-14 18:37:30 - bot - INFO - Бот запущен
+2025-04-14 18:39:37 - bot - INFO - Бот остановлен
+2025-04-14 18:39:50 - bot - INFO - Бот запущен
+2025-04-14 18:42:10 - bot - INFO - Бот остановлен
+2025-04-14 18:43:25 - bot - INFO - Бот запущен
+2025-04-14 18:44:56 - bot - INFO - Бот остановлен
+2025-04-14 18:46:02 - bot - INFO - Бот запущен
+2025-04-14 18:50:20 - bot - INFO - Бот остановлен
+2025-04-14 18:50:29 - bot - INFO - Бот запущен
+2025-04-14 18:53:12 - bot - INFO - Бот остановлен
+2025-04-14 18:55:05 - bot - INFO - Бот запущен
+2025-04-14 18:56:40 - bot.handlers.messages - ERROR - Ошибка при построении графика: Ошибка при построении графика: Не удалось распознать функцию. Пожалуйста, проверьте синтаксис.
+Исходный ввод: It looks like you've provided a linear equation: <code> y = 3x </code>.
+
+This equation represents a straight line on a Cartesian coordinate plane, where <code> y </code> is the dependent variable, <code> x </code> is the independent variable, and 3 is the slope of the line. The slope indicates that for every 1 unit increase in <code> x </code>, <code> y </code> increases by 3 units. The line passes through the origin (0,0) because there is no constant term (y-intercept) added to the equation. If you have any specific questions or need further explanation about this equation, feel free to ask!
+Обработанный ввод: itlookslikeyou'veprovidedalinearequation:<code>y=3*x</code>.
+
+thisequationrepresentsastraightlineonacartesiancoordinateplane,where<code>y</code>isthedependentvariable,<code>x</code>istheindependentvariable,and3istheslopeoftheline.theslopeindicatesthatforevery1unitincreasein<code>x</code>,<code>y</code>increasesby3units.thelinepassesthroughtheorigin(0,0)becausethereisnoconstantterm(y-intercept)addedtotheequation.ifyouhaveanyspecificquestionsorneedfurtherexplanationaboutthisequation,feelfreetoask!
+Ошибка: unterminated string literal (detected at line 1) (<string>, line 1)
+Запрос пользователя: y=3x
+2025-04-14 18:59:01 - bot - INFO - Бот остановлен
+2025-04-14 18:59:07 - bot - INFO - Бот запущен
+2025-04-14 18:59:20 - bot.handlers.messages - ERROR - Ошибка при построении графика: Ошибка при построении графика: Не удалось распознать функцию. Пожалуйста, проверьте синтаксис.
+Исходный ввод: It looks like you've provided the equation of a line in slope-intercept form, which is <code> y = 3x </code>.
+
+In this equation:
+- <code> y </code> is the dependent variable.
+- <code> x </code> is the independent variable.
+- The number 3 is the slope of the line, indicating that for every unit increase in <code> x </code>, <code> y </code> increases by 3.
+- The y-intercept is 0, meaning the line passes through the origin (0,0).
+
+If you have any specific questions or need further explanation about this equation, feel free to ask!
+Обработанный ввод: itlookslikeyou'veprovidedtheequationofalineinslope-interceptform,whichis<code>y=3*x</code>.
+
+inthisequation:
+-<code>y</code>isthedependentvariable.
+-<code>x</code>istheindependentvariable.
+-thenumber3istheslopeoftheline,indicatingthatforeveryunitincreasein<code>x</code>,<code>y</code>increasesby3.
+-they-interceptis0,meaningthelinepassesthroughtheorigin(0,0).
+
+ifyouhaveanyspecificquestionsorneedfurtherexplanationaboutthisequation,feelfreetoask!
+Ошибка: unterminated string literal (detected at line 1) (<string>, line 1)
+Запрос пользователя: y=3x
+2025-04-14 19:00:58 - bot - INFO - Бот остановлен
+2025-04-14 19:01:05 - bot - INFO - Бот запущен
+2025-04-14 19:01:25 - bot.handlers.messages - ERROR - Ошибка при построении графика: Ошибка при построении графика: Не удалось распознать функцию. Пожалуйста, проверьте синтаксис.
+Исходный ввод: It looks like you've provided a linear equation, <code> y = 3x </code>. This equation represents a straight line on a Cartesian coordinate system where:
+
+- <code> y </code> is the dependent variable.
+- <code> x </code> is the independent variable.
+- The coefficient 3 is the slope of the line, indicating that for every unit increase in <code> x </code>, <code> y </code> increases by 3 units.
+- The y-intercept is 0, meaning the line passes through the origin (0,0).
+
+If you have any specific questions or need further explanation about this equation, feel free to ask!
+Обработанный ввод: itlookslikeyou'veprovidedalinearequation,<code>y=3*x</code>.thisequationrepresentsastraightlineonacartesiancoordinatesystemwhere:
+
+-<code>y</code>isthedependentvariable.
+-<code>x</code>istheindependentvariable.
+-thecoefficient3istheslopeoftheline,indicatingthatforeveryunitincreasein<code>x</code>,<code>y</code>increasesby3units.
+-they-interceptis0,meaningthelinepassesthroughtheorigin(0,0).
+
+ifyouhaveanyspecificquestionsorneedfurtherexplanationaboutthisequation,feelfreetoask!
+Ошибка: unterminated string literal (detected at line 1) (<string>, line 1)
+Запрос пользователя: y=3x
+2025-04-14 19:02:56 - bot - INFO - Бот остановлен
+2025-04-14 19:03:01 - bot - INFO - Бот запущен
+2025-04-14 19:03:11 - bot.handlers.messages - ERROR - Ошибка при построении графика: Ошибка при построении графика: Не удалось распознать функцию. Пожалуйста, проверьте синтаксис.
+Исходный ввод: It looks like you've provided the equation of a line in slope-intercept form, which is <code> y = 3x </code>. In this equation:
+
+- <code> y </code> is the dependent variable.
+- <code> x </code> is the independent variable.
+- The number 3 is the slope of the line, indicating that for every unit increase in <code> x </code>, <code> y </code> increases by 3.
+- The y-intercept is 0, meaning the line passes through the origin (0,0).
+
+If you have any specific questions or need further analysis related to this equation, feel free to ask!
+Обработанный ввод: itlookslikeyou'veprovidedtheequationofalineinslope-interceptform,whichis<code>y=3*x</code>.inthisequation:
+
+-<code>y</code>isthedependentvariable.
+-<code>x</code>istheindependentvariable.
+-thenumber3istheslopeoftheline,indicatingthatforeveryunitincreasein<code>x</code>,<code>y</code>increasesby3.
+-they-interceptis0,meaningthelinepassesthroughtheorigin(0,0).
+
+ifyouhaveanyspecificquestionsorneedfurtheranalysisrelatedtothisequation,feelfreetoask!
+Ошибка: unterminated string literal (detected at line 1) (<string>, line 1)
+Запрос пользователя: y=3x
+2025-04-14 19:04:57 - bot - INFO - Бот остановлен
+2025-04-14 19:05:13 - bot - INFO - Бот запущен
+2025-04-14 19:05:23 - bot.handlers.messages - ERROR - Ошибка при построении графика: Ошибка при построении графика: Не удалось распознать функцию. Пожалуйста, проверьте синтаксис.
+Исходный ввод: It looks like you've provided a simple linear equation: <code> y = 3x </code>.
+
+This equation represents a straight line with a slope of 3 and a y-intercept of 0. Here's a bit more detail:
+
+- <b>Slope (m):</b> The slope of the line is 3. This means that for every unit increase in <code> x </code>, <code> y </code> increases by 3 units.
+- <b>Y-intercept (b):</b> The y-intercept is 0, which means the line passes through the origin (0,0).
+
+If you have any specific questions or need further explanation about this equation, feel free to ask!
+Обработанный ввод: itlookslikeyou'veprovidedasimplelinearequation:<code>y=3*x</code>.
+
+thisequationrepresentsastraightlinewithaslopeof3anday-interceptof0.here'sabitmoredetail:
+
+-<b>slope(m):</b>theslopeofthelineis3.thismeansthatforeveryunitincreasein<code>x</code>,<code>y</code>increasesby3units.
+-<b>y-intercept(b):</b>they-interceptis0,whichmeansthelinepassesthroughtheorigin(0,0).
+
+ifyouhaveanyspecificquestionsorneedfurtherexplanationaboutthisequation,feelfreetoask!
+Ошибка: unterminated string literal (detected at line 1) (<string>, line 1)
+Запрос пользователя: y=3x
+2025-04-14 19:09:22 - bot - INFO - Бот остановлен
+2025-04-14 19:09:28 - bot - INFO - Бот запущен
+2025-04-14 19:09:55 - bot.handlers.messages - ERROR - Ошибка при построении графика: Ошибка при построении графика: Не удалось распознать функцию. Пожалуйста, проверьте синтаксис.
+Исходный ввод: It looks like you've provided a linear equation: <code> y = 3x </code>. This equation represents a straight line on a Cartesian coordinate system, where <code> y </code> is the dependent variable and <code> x </code> is the independent variable. The number 3 is the slope of the line, which indicates that for every unit increase in <code> x </code>, <code> y </code> increases by 3 units. The line passes through the origin (0,0) because there is no constant term added to the equation. If you have any specific questions or need further explanation, feel free to ask!
+Обработанный ввод: itlookslikeyou'veprovidedalinearequation:<code>y=3*x</code>.thisequationrepresentsastraightlineonacartesiancoordinatesystem,where<code>y</code>isthedependentvariableand<code>x</code>istheindependentvariable.thenumber3istheslopeoftheline,whichindicatesthatforeveryunitincreasein<code>x</code>,<code>y</code>increasesby3units.thelinepassesthroughtheorigin(0,0)becausethereisnoconstanttermaddedtotheequation.ifyouhaveanyspecificquestionsorneedfurtherexplanation,feelfreetoask!
+Ошибка: unterminated string literal (detected at line 1) (<string>, line 1)
+Запрос пользователя: y=3x
+2025-04-14 19:13:46 - bot - INFO - Бот остановлен
+2025-04-14 19:13:53 - bot - INFO - Бот запущен
+2025-04-14 19:14:05 - bot.handlers.messages - ERROR - Ошибка при построении графика: Не удалось получить корректную формулу из запроса
+Запрос пользователя: y=3x
+2025-04-14 19:15:00 - bot - INFO - Бот остановлен
+2025-04-14 19:15:09 - bot - INFO - Бот запущен
+2025-04-14 19:15:20 - bot.handlers.messages - ERROR - Ошибка при построении графика: Не удалось получить корректную формулу из запроса
+Запрос пользователя: y=3x
+2025-04-14 19:19:15 - bot - INFO - Бот остановлен
+2025-04-14 19:19:21 - bot - INFO - Бот запущен
+2025-04-14 19:19:44 - bot.handlers.messages - ERROR - Общая ошибка при обработке запроса: get_next_question_keyboard() got an unexpected keyword argument 'show_question_button'
+Тип ошибки: TypeError
+Запрос пользователя: y=3x
+2025-04-14 19:20:55 - bot - INFO - Бот остановлен
+2025-04-14 19:21:01 - bot - INFO - Бот запущен
+2025-04-14 19:22:54 - bot - INFO - Бот остановлен

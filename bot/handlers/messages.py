@@ -135,8 +135,15 @@ async def handle_plot_function(message: Message, state: FSMContext):
         wait_message = await message.answer("Генерирую график, пожалуйста подождите...")
         
         try:
-            # Генерируем график
-            plot_buffer, cleaned_function = generate_function_plot(message.text)
+            # Получаем формулу от нейросети
+            requests = Requests()
+            formula = requests.main(message.text, subject="mathematics", photo=False)
+            
+            if not formula or formula == "x" or "ошибка" in formula.lower():
+                raise ValueError("Не удалось получить корректную формулу из запроса")
+            
+            # Генерируем график используя полученную формулу
+            plot_buffer, cleaned_function = generate_function_plot(formula)
             
             # Создаем временный файл с уникальным именем
             temp_file_path = os.path.join(tempfile.gettempdir(), f'plot_{message.message_id}.png')
@@ -149,69 +156,54 @@ async def handle_plot_function(message: Message, state: FSMContext):
             # Создаем InputFile из файла
             input_file = FSInputFile(temp_file_path)
             
-            # Отправляем изображение с новой клавиатурой
+            # Отправляем изображение
             await message.answer_photo(
                 photo=input_file,
                 caption=(
                     f"График функции: {cleaned_function}\n"
                     f"Исходный запрос: {message.text}"
                 ),
-                reply_markup=get_next_plot_keyboard()  # Используем новую клавиатуру
+                reply_markup=get_next_plot_keyboard()
             )
             
-            # Сохраняем текущую функцию в состоянии для возможных вопросов
+            # Сохраняем текущую функцию в состоянии
             await state.update_data(solution=f"График функции: {cleaned_function}\nИсходный запрос: {message.text}")
             # Возвращаемся в главное меню
             await state.set_state(Form.section)
             
         except ValueError as ve:
+            logger.error(f"Ошибка при построении графика: {str(ve)}\nЗапрос пользователя: {message.text}")
             await message.answer(
                 "Ошибка при построении графика:\n\n"
                 "Примеры корректных запросов:\n"
-                "- x^2 + 2x + 1\n"
-                "- синус x\n"
-                "- 2 в квадрате + x\n"
-                "- корень из x\n"
+                "- построй параболу\n"
+                "- нарисуй синусоиду\n"
+                "- график квадратного корня\n"
                 "- построй график x в кубе\n"
-                "- нарисуй y = 2x + 1\n"
-                "- гипербола\n"
-                "- 2/x\n"
-                "- 1/x + 2\n"
-                "- обратная пропорциональность",
+                "- нарисуй гиперболу\n"
+                "- построй график y = 2x + 1",
                 reply_markup=get_main_keyboard()
             )
         
-        # Удаляем только сообщение ожидания
+        # Удаляем сообщение ожидания
         await wait_message.delete()
             
     except Exception as e:
+        logger.error(f"Общая ошибка при обработке запроса: {str(e)}\n"
+                    f"Тип ошибки: {type(e).__name__}\n"
+                    f"Запрос пользователя: {message.text}")
         await message.answer(
-            "Ошибка при построении графика:\n\n"
-            "Примеры корректных запросов:\n"
-            "- x^2 + 2x + 1\n"
-            "- синус x\n"
-            "- 2 в квадрате + x\n"
-            "- корень из x\n"
-            "- построй график x в кубе\n"
-            "- нарисуй y = 2x + 1\n"
-            "- гипербола\n"
-            "- 2/x\n"
-            "- 1/x + 2\n"
-            "- обратная пропорциональность",
+            "Ошибка при построении графика. Попробуйте переформулировать запрос.",
             reply_markup=get_main_keyboard()
         )
     finally:
-        # Пытаемся удалить временный файл в блоке finally
         if temp_file_path and os.path.exists(temp_file_path):
             try:
-                # Закрываем все открытые дескрипторы matplotlib
                 plt.close('all')
-                # Даем небольшую паузу перед удалением
                 await asyncio.sleep(1)
                 os.unlink(temp_file_path)
-            except Exception:
-                # Игнорируем ошибки удаления, файл будет удален системой позже
-                pass
+            except Exception as del_error:
+                logger.error(f"Ошибка при удалении временного файла: {str(del_error)}")
 
 @router.message(F.text == "🔙 Назад")
 async def back_to_main_handler(message: Message, state: FSMContext):
