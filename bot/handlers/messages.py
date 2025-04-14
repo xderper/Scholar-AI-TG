@@ -2,13 +2,20 @@ from aiogram import Router, F
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.fsm.context import FSMContext
 from aiogram.filters import StateFilter
+from aiogram.types import FSInputFile
 import os
 import logging
 from dotenv import load_dotenv
-from bot.keyboards.reply import get_main_keyboard, get_next_question_keyboard
+from bot.keyboards.reply import get_main_keyboard, get_next_question_keyboard, get_next_plot_keyboard
 from bot.utils.states import Form
 from requests import Requests
 import base64
+from bot.keyboards.reply import get_main_keyboard, get_math_submenu_keyboard
+from bot.utils.states import Form
+from bot.utils.plotting import generate_function_plot
+import tempfile
+import asyncio
+import matplotlib.pyplot as plt
 # Настройка логирования
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -73,19 +80,155 @@ async def physics_button_handler(message: Message, state: FSMContext):
         # logger.error(f"Ошибка: {str(e)}")
         print(str(e))
         reply_markup=get_main_keyboard()
+
 @router.message(F.text == "📕 Математика")
 async def math_button_handler(message: Message, state: FSMContext):
+    try:
+        await state.set_state(Form.math_submenu)
+        # Сначала отправляем новое сообщение
+        sent_message = await message.answer("Выберите действие:", reply_markup=get_math_submenu_keyboard())
+        # Удаляем предыдущее сообщение и сообщение пользователя
+        try:
+            await message.bot.delete_message(message.chat.id, message.message_id - 1)
+            await message.delete()
+        except Exception as delete_error:
+            print(f"Ошибка при удалении сообщений: {str(delete_error)}")
+    except Exception as e:
+        print(str(e))
+        reply_markup=get_main_keyboard()
+
+@router.message(F.text == "🧮 Решить задачу")
+async def solve_math_handler(message: Message, state: FSMContext):
     try:
         text = os.getenv("Mathematic_answer_text")
         await state.set_state(Form.section)
         await state.update_data(section="mathematics")
-        await message.answer(text, reply_markup=get_main_keyboard())
+        # Сначала отправляем новое сообщение
+        sent_message = await message.answer(text, reply_markup=get_main_keyboard())
+        # Удаляем предыдущее сообщение и сообщение пользователя
+        try:
+            await message.bot.delete_message(message.chat.id, message.message_id - 1)
+            await message.delete()
+        except Exception as delete_error:
+            print(f"Ошибка при удалении сообщений: {str(delete_error)}")
+    except Exception as e:
+        print(str(e))
+        reply_markup=get_main_keyboard()
+
+@router.message(F.text == "📊 Построить график функции", StateFilter(Form.math_submenu))
+async def plot_function_handler(message: Message, state: FSMContext):
+    try:
+        await state.set_state(Form.plot_function)
+        await message.answer("Конечно. Введите функцию для построения графика (например, 'y = x^2 + 3x - 5')", 
+                           reply_markup=get_main_keyboard())
         await message.bot.delete_message(message.chat.id, message.message_id - 1)
         await message.delete()
     except Exception as e:
-        # logger.error(f"Ошибка: {str(e)}")
+        logger.error(f"Ошибка: {str(e)}")
+        await message.answer("Произошла ошибка", reply_markup=get_main_keyboard())
+
+@router.message(StateFilter(Form.plot_function))
+async def handle_plot_function(message: Message, state: FSMContext):
+    temp_file_path = None
+    try:
+        # Отправляем сообщение о начале обработки
+        wait_message = await message.answer("Генерирую график, пожалуйста подождите...")
+        
+        try:
+            # Генерируем график
+            plot_buffer, cleaned_function = generate_function_plot(message.text)
+            
+            # Создаем временный файл с уникальным именем
+            temp_file_path = os.path.join(tempfile.gettempdir(), f'plot_{message.message_id}.png')
+            
+            # Записываем данные из буфера в файл
+            with open(temp_file_path, 'wb') as tmp_file:
+                plot_buffer.seek(0)
+                tmp_file.write(plot_buffer.getvalue())
+            
+            # Создаем InputFile из файла
+            input_file = FSInputFile(temp_file_path)
+            
+            # Отправляем изображение с новой клавиатурой
+            await message.answer_photo(
+                photo=input_file,
+                caption=(
+                    f"График функции: {cleaned_function}\n"
+                    f"Исходный запрос: {message.text}"
+                ),
+                reply_markup=get_next_plot_keyboard()  # Используем новую клавиатуру
+            )
+            
+            # Сохраняем текущую функцию в состоянии для возможных вопросов
+            await state.update_data(solution=f"График функции: {cleaned_function}\nИсходный запрос: {message.text}")
+            # Возвращаемся в главное меню
+            await state.set_state(Form.section)
+            
+        except ValueError as ve:
+            await message.answer(
+                "Ошибка при построении графика:\n\n"
+                "Примеры корректных запросов:\n"
+                "- x^2 + 2x + 1\n"
+                "- синус x\n"
+                "- 2 в квадрате + x\n"
+                "- корень из x\n"
+                "- построй график x в кубе\n"
+                "- нарисуй y = 2x + 1\n"
+                "- гипербола\n"
+                "- 2/x\n"
+                "- 1/x + 2\n"
+                "- обратная пропорциональность",
+                reply_markup=get_main_keyboard()
+            )
+        
+        # Удаляем только сообщение ожидания
+        await wait_message.delete()
+            
+    except Exception as e:
+        await message.answer(
+            "Ошибка при построении графика:\n\n"
+            "Примеры корректных запросов:\n"
+            "- x^2 + 2x + 1\n"
+            "- синус x\n"
+            "- 2 в квадрате + x\n"
+            "- корень из x\n"
+            "- построй график x в кубе\n"
+            "- нарисуй y = 2x + 1\n"
+            "- гипербола\n"
+            "- 2/x\n"
+            "- 1/x + 2\n"
+            "- обратная пропорциональность",
+            reply_markup=get_main_keyboard()
+        )
+    finally:
+        # Пытаемся удалить временный файл в блоке finally
+        if temp_file_path and os.path.exists(temp_file_path):
+            try:
+                # Закрываем все открытые дескрипторы matplotlib
+                plt.close('all')
+                # Даем небольшую паузу перед удалением
+                await asyncio.sleep(1)
+                os.unlink(temp_file_path)
+            except Exception:
+                # Игнорируем ошибки удаления, файл будет удален системой позже
+                pass
+
+@router.message(F.text == "🔙 Назад")
+async def back_to_main_handler(message: Message, state: FSMContext):
+    try:
+        await state.set_state(Form.section)
+        # Сначала отправляем новое сообщение
+        sent_message = await message.answer("Выберите раздел:", reply_markup=get_main_keyboard())
+        # Удаляем предыдущее сообщение и сообщение пользователя
+        try:
+            await message.bot.delete_message(message.chat.id, message.message_id - 1)
+            await message.delete()
+        except Exception as delete_error:
+            print(f"Ошибка при удалении сообщений: {str(delete_error)}")
+    except Exception as e:
         print(str(e))
         reply_markup=get_main_keyboard()
+
 
 @router.message(F.text == "📗 Химия")
 async def chemistry_button_handler(message: Message, state: FSMContext):
