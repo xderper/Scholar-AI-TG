@@ -10,6 +10,7 @@ import time
 import re
 from typing import Optional, Tuple, Union, Dict, Any, BinaryIO
 
+
 # Настройка логирования
 logging.basicConfig(
     level=logging.INFO,
@@ -27,6 +28,11 @@ class Requests:
         self.client = openai.OpenAI()
         
         self.format = Format()
+        self.headers = {
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {os.getenv('OPENAI_TOKEN')}"
+        }
+        self.url = "https://api.openai.com/v1/chat/completions"
     
     def _get_response(self, prompt, image_data=None):
         """
@@ -58,7 +64,7 @@ class Requests:
                 messages.append({"role": "user", "content": image_content})
             
             response = openai.chat.completions.create(
-                model="gpt-4o",
+                model="gpt-4",
                 messages=messages,
                 max_tokens=2000,
                 temperature=0.2,
@@ -85,13 +91,33 @@ class Requests:
             )
             
             logger.info(f"Получен ответ от OpenAI. Длина ответа: {len(response.choices[0].message.content)} символов")
+            logger.info(f"Ответ от OpenAI: {response.choices[0].message.content}")
+            
+            # Если это математический запрос, просим модель вернуть только формулу
+            if "график" in prompt.lower() or "построить" in prompt.lower() or "=" in prompt:
+                messages = [
+                    {"role": "system", "content": "Ты математический ассистент. Верни ТОЛЬКО математическую формулу в Python-формате (используй ** вместо ^). Не добавляй никаких пояснений."},
+                    {"role": "user", "content": response.choices[0].message.content}
+                ]
+                
+                response = openai.chat.completions.create(
+                    model="gpt-4",
+                    messages=messages,
+                    max_tokens=2000,
+                    temperature=0.1
+                )
+                
+                logger.info(f"Обработанный ответ для формулы: {response.choices[0].message.content}")
+            
             return response.choices[0].message.content
             
         except Exception as e:
             logger.error(f"Ошибка при запросе к OpenAI: {str(e)}")
             raise
     
+
     def main(self, request: str, subject: str, photo: bool = False, solution: str = None) -> Union[str, Tuple[BinaryIO, str]]:
+
         """
         Основной метод для обработки запросов по различным предметам
         
@@ -138,9 +164,23 @@ class Requests:
                 prompt = f"{query}\n{request}"
                 response = self._get_response(prompt)
             
+            # Для математических задач с графиками
+            if subject == "mathematics" and ("график" in request.lower() or "построить" in request.lower() or "=" in request):
+                logger.info(f"Обработка математического запроса: {request}")
+                logger.info(f"Ответ от модели: {response}")
+                
+                # Сначала извлекаем последнюю формулу из текста
+                formula_text = self.extract_last_formula(response)
+                logger.info(f"Извлеченная формула: {formula_text}")
+                
+                # Затем очищаем и форматируем формулу
+                cleaned_formula = self.clean_formula(formula_text)
+                logger.info(f"Очищенная формула: {cleaned_formula}")
+                
+                return cleaned_formula
+            
             # Форматируем ответ для Telegram, преобразуя LaTeX и другие специальные символы
             formatted_response = self.format.format_response_for_telegram(response)
-
             return formatted_response
             
         except Exception as e:

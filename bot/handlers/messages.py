@@ -2,15 +2,18 @@ from aiogram import Router, F
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, FSInputFile
 from aiogram.fsm.context import FSMContext
 from aiogram.filters import StateFilter
+from aiogram.types import FSInputFile
 import os
 import logging
 from dotenv import load_dotenv
+
 from bot.keyboards.reply import get_main_keyboard, get_next_question_keyboard, get_math_submenu_keyboard
 from bot.utils.states import Form
 from requests import Requests
 import base64
 from typing import Union, Tuple, BinaryIO
 import tempfile
+
 # Настройка логирования
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -138,8 +141,10 @@ async def math_button_handler(message: Message, state: FSMContext):
         await message.bot.delete_message(message.chat.id, message.message_id - 1)
         await message.delete()
     except Exception as e:
+
         print(str(e))
         reply_markup=get_main_keyboard()
+
 
 @router.message(F.text == "📗 Химия")
 async def chemistry_button_handler(message: Message, state: FSMContext):
