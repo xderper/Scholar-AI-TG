@@ -4,6 +4,11 @@ import openai
 from dotenv import load_dotenv
 from format import Format
 import logging
+from graphs import Graphs
+import json
+import time
+import re
+from typing import Optional, Tuple, Union, Dict, Any, BinaryIO
 
 # Настройка логирования
 logging.basicConfig(
@@ -14,18 +19,13 @@ logger = logging.getLogger(__name__)
 
 class Requests:
     def __init__(self):
+        self.api_key = os.getenv("OPENAI_API_KEY")
+        if not self.api_key:
+            raise ValueError("OPENAI_API_KEY environment variable is not set")
         
-        # Получение API ключа OpenAI
-        self.openai_api_key = os.getenv("OPENAI_API_KEY")
-        if not self.openai_api_key:
-            raise ValueError("OPENAI_API_KEY не найден в переменных окружения")
+        openai.api_key = self.api_key
+        self.client = openai.OpenAI()
         
-        # Инициализация клиента OpenAI
-        self.openai_client = openai.Client(
-            api_key=self.openai_api_key,
-            base_url="https://api.openai.com/v1"
-        )
-
         self.format = Format()
     
     def _get_response(self, prompt, image_data=None):
@@ -91,7 +91,7 @@ class Requests:
             logger.error(f"Ошибка при запросе к OpenAI: {str(e)}")
             raise
     
-    def main(self, request, subject, photo=False, solution=False):
+    def main(self, request: str, subject: str, photo: bool = False, solution: str = None) -> Union[str, Tuple[BinaryIO, str]]:
         """
         Основной метод для обработки запросов по различным предметам
         
@@ -99,9 +99,10 @@ class Requests:
             request (str): Запрос пользователя
             subject (str): Предмет (physics, chemistry, math)
             photo (bool): Флаг, указывающий, что запрос содержит изображение
+            solution (str): Тип решения (например, "graph" для построения графика)
             
         Returns:
-            str: Отформатированный ответ для Telegram
+            Union[str, Tuple[BinaryIO, str]]: Отформатированный ответ для Telegram или кортеж (изображение, подпись)
         """
         try:
             # Получаем соответствующий запрос для выбранного предмета из переменных окружения
@@ -110,7 +111,19 @@ class Requests:
             elif subject == 'chemistry':
                 query = os.getenv("Chemistry_query")
             elif subject == 'mathematics':
-                query = os.getenv("Mathematics_query")
+                if solution == "graph":
+                    graphs = Graphs(request, subject, solution)
+                    try:
+                        image_buffer, formula = graphs.draw_graph()
+                        if image_buffer and formula:
+                            return image_buffer, f"График функции: {formula}"
+                        else:
+                            return "Не удалось построить график: недостаточно данных"
+                    except Exception as e:
+                        logger.error(f"Ошибка при построении графика: {e}")
+                        return f"Не удалось построить график: {str(e)}"
+                else:
+                    query = os.getenv("Mathematics_query")
             elif subject == 'chatgpt':
                 query = os.getenv("")
             elif subject == 'question':
@@ -118,9 +131,6 @@ class Requests:
             else:
                 return "Неподдерживаемый предмет"
 
-            # Формируем полный запрос, объединяя системный запрос с пользовательским
-
-            
             # Получаем ответ от модели
             if photo:
                 response = self._get_response(query, image_data=request)
@@ -142,3 +152,6 @@ class Requests:
     load_dotenv()
     # Затем загружаем локальные настройки с приоритетом
     load_dotenv('.env.local', override=True)
+
+
+

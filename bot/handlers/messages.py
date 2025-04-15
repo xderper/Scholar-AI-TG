@@ -1,14 +1,16 @@
 from aiogram import Router, F
-from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, FSInputFile
 from aiogram.fsm.context import FSMContext
 from aiogram.filters import StateFilter
 import os
 import logging
 from dotenv import load_dotenv
-from bot.keyboards.reply import get_main_keyboard, get_next_question_keyboard
+from bot.keyboards.reply import get_main_keyboard, get_next_question_keyboard, get_math_submenu_keyboard
 from bot.utils.states import Form
 from requests import Requests
 import base64
+from typing import Union, Tuple, BinaryIO
+import tempfile
 # Настройка логирования
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -21,6 +23,59 @@ router = Router()
 
 # ID канала, на который нужно проверить подписку
 CHANNEL_ID = os.getenv("CHANNEL_ID")
+
+async def send_response(message: Message, response: Union[str, Tuple[BinaryIO, str]], keyboard=None):
+    """
+    Отправляет ответ пользователю, учитывая тип ответа (текст или график)
+    
+    Args:
+        message (Message): Сообщение от пользователя
+        response (Union[str, Tuple[BinaryIO, str]]): Ответ для отправки
+        keyboard: Опциональная клавиатура для добавления к сообщению
+    """
+    temp_file = None
+    try:
+        if isinstance(response, tuple) and len(response) == 2:
+            # Это график
+            image_buffer, caption = response
+            
+            # Создаем временный файл для сохранения изображения
+            temp_file = tempfile.NamedTemporaryFile(suffix='.png', delete=False)
+            try:
+                # Записываем содержимое буфера во временный файл
+                image_buffer.seek(0)
+                temp_file.write(image_buffer.read())
+                temp_file.close()  # Закрываем файл перед использованием
+                
+                # Создаем FSInputFile из временного файла
+                image = FSInputFile(temp_file.name)
+                
+                # Отправляем изображение с подписью
+                await message.answer_photo(
+                    photo=image,
+                    caption=caption,
+                    reply_markup=keyboard
+                )
+            finally:
+                # Удаляем временный файл после использования
+                if os.path.exists(temp_file.name):
+                    try:
+                        os.unlink(temp_file.name)
+                    except Exception as e:
+                        logger.error(f"Ошибка при удалении временного файла: {str(e)}")
+        else:
+            # Это текстовый ответ
+            await message.answer(str(response), reply_markup=keyboard)
+            
+    except Exception as e:
+        logger.error(f"Ошибка при отправке ответа: {str(e)}")
+        await message.answer(f"Произошла ошибка при отправке ответа: {str(e)}", reply_markup=keyboard)
+        # Пытаемся удалить временный файл в случае ошибки
+        if temp_file and os.path.exists(temp_file.name):
+            try:
+                os.unlink(temp_file.name)
+            except Exception as del_e:
+                logger.error(f"Ошибка при удалении временного файла после ошибки: {str(del_e)}")
 
 @router.message(F.text == "📝 Информация")
 async def information_button_handler(message: Message):
@@ -73,17 +128,16 @@ async def physics_button_handler(message: Message, state: FSMContext):
         # logger.error(f"Ошибка: {str(e)}")
         print(str(e))
         reply_markup=get_main_keyboard()
+
 @router.message(F.text == "📕 Математика")
 async def math_button_handler(message: Message, state: FSMContext):
     try:
-        text = os.getenv("Mathematic_answer_text")
-        await state.set_state(Form.section)
-        await state.update_data(section="mathematics")
-        await message.answer(text, reply_markup=get_main_keyboard())
+        await state.set_state(Form.math_submenu)
+        text = os.getenv("Math_choose_text")
+        sent_message = await message.answer(text, reply_markup=get_math_submenu_keyboard())
         await message.bot.delete_message(message.chat.id, message.message_id - 1)
         await message.delete()
     except Exception as e:
-        # logger.error(f"Ошибка: {str(e)}")
         print(str(e))
         reply_markup=get_main_keyboard()
 
@@ -100,6 +154,34 @@ async def chemistry_button_handler(message: Message, state: FSMContext):
         # logger.error(f"Ошибка: {str(e)}")
         print(str(e))
         reply_markup=get_main_keyboard()
+        
+
+@router.message(F.text == "🧮 Решить задачу")
+async def solve_math_handler(message: Message, state: FSMContext):
+    try:
+        text = os.getenv("Mathematic_answer_text")
+        await state.set_state(Form.section)
+        await state.update_data(section="mathematics")
+        await message.answer(text)
+        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await message.delete()
+    except Exception as e:
+        print(str(e))
+        reply_markup=get_main_keyboard()
+
+@router.message(F.text == "📊 Построить график функции", StateFilter(Form.math_submenu))
+async def plot_function_handler(message: Message, state: FSMContext):
+    try:
+        text = os.getenv("Math_graph_text")
+        await state.set_state(Form.section)
+        await state.update_data(section="mathematics", solution="graph")
+        await message.answer(text)
+        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await message.delete()
+    except Exception as e:
+        print(str(e))
+        reply_markup=get_main_keyboard()
+
 
 
 @router.message(F.text == "❓ Вопрос по задаче")
@@ -221,20 +303,33 @@ async def photo_handler(message: Message, state: FSMContext):
 #gpt обработка
 @router.message(StateFilter(Form.section))
 async def other_message_handler(message: Message, state: FSMContext):
+    """Обработчик для всех остальных текстовых сообщений"""
     try:
-        await message.bot.delete_message(message.chat.id, message.message_id - 1)
-        # await message.delete()
+        # Получаем данные из состояния
         state_data = await state.get_data()
-        wait_message = await message.answer(os.getenv("Wait_text"))
-        await message.bot.send_chat_action(
-            chat_id=message.chat.id,
-            action="typing"
+        section = state_data.get('section')
+        solution = state_data.get('solution')
+
+        # Создаем экземпляр класса Requests
+        requests = Requests()
+        
+        # Получаем ответ от модели
+        response = requests.main(
+            request=message.text,
+            subject=section,
+            solution=solution
         )
-        response = Requests().main(request=message.text, subject = state_data.get('section'), solution=state_data.get('solution'), photo=False)
-        await message.bot.delete_message(message.chat.id, wait_message.message_id)
-        await message.answer(response, parse_mode="HTML", reply_markup=get_next_question_keyboard())
+        
+        # Отправляем ответ с использованием общей функции
+        await send_response(
+            message=message,
+            response=response,
+            keyboard=get_next_question_keyboard()
+        )
 
     except Exception as e:
-        # logger.error(f"Ошибка: {str(e)}")
-        print(str(e))
-        reply_markup=get_main_keyboard()
+        logger.error(f"Ошибка при обработке сообщения: {str(e)}")
+        await message.answer(
+            f"Произошла ошибка при обработке запроса: {str(e)}",
+            reply_markup=get_next_question_keyboard()
+        )
