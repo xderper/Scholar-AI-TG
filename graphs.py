@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import io
-from sympy import sympify, symbols, parse_expr, sin, cos, tan, cot, asin, acos, atan, acot, pi, sqrt, log
+from sympy import sympify, symbols, parse_expr, sin, cos, tan, cot, asin, acos, atan, acot, pi, sqrt, log, Abs, Piecewise
 from sympy.utilities.lambdify import lambdify
 import re
 from formula_utils import FormulaUtils
@@ -40,7 +40,7 @@ class Graphs:
             
             # Конвертируем sympy выражение в numpy функцию с поддержкой тригонометрических функций
             try:
-                f = lambdify(x, expr, modules=['numpy'])
+                f = lambdify(x, expr, modules=['numpy', {'Abs': np.abs}])
             except Exception as lambdify_error:
                 raise ValueError(f"Ошибка при конвертации функции: {str(lambdify_error)}")
             
@@ -144,6 +144,10 @@ class Graphs:
         
         # Заменяем ^ на **
         formula = formula.replace("^", "**")
+        
+        # Обработка модулей
+        # Заменяем |x| на Abs(x)
+        formula = re.sub(r'\|([^|]+)\|', r'Abs(\1)', formula)
         
         # Добавляем умножение между числом и x, если его нет
         formula = re.sub(r'(\d)x', r'\1*x', formula)

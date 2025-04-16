@@ -16,10 +16,11 @@ def get_main_keyboard() -> ReplyKeyboardMarkup:
         keyboard=[
             [
                 KeyboardButton(text="📙 Физика"),
-                KeyboardButton(text="📕 Математика")
+                KeyboardButton(text="📕 Математика"),
+                KeyboardButton(text="📗 Химия")
             ],
             [
-                KeyboardButton(text="📗 Химия")
+                KeyboardButton(text="📚 Конспект")
             ],
             [   
                 KeyboardButton(text="🤖 ChatGPT o1-pro")

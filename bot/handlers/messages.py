@@ -27,6 +27,7 @@ router = Router()
 # ID канала, на который нужно проверить подписку
 CHANNEL_ID = os.getenv("CHANNEL_ID")
 
+# Main Menu
 @router.message(F.text == "📝 Информация")
 async def information_button_handler(message: Message):
     try:
@@ -105,8 +106,30 @@ async def chemistry_button_handler(message: Message, state: FSMContext):
         # logger.error(f"Ошибка: {str(e)}")
         print(str(e))
         reply_markup=get_main_keyboard()
-        
 
+
+
+@router.message(F.text == "📚 Конспект")
+async def math_button_handler(message: Message, state: FSMContext):
+    try:
+        await state.set_state(Form.abstract_submenu)
+        text = os.getenv("Abstract_choose_text")
+        sent_message = await message.answer(text, reply_markup=get_abstract_submenu_keyboard())
+        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await message.delete()
+    except Exception as e:
+        print(str(e))
+        reply_markup=get_main_keyboard()
+
+
+#Abstract menu
+
+
+
+
+
+
+# Math menu
 @router.message(F.text == "🧮 Решить задачу")
 async def solve_math_handler(message: Message, state: FSMContext):
     try:
@@ -135,6 +158,9 @@ async def plot_function_handler(message: Message, state: FSMContext):
 
 
 
+
+
+# Solution menu
 @router.message(F.text == "❓ Вопрос по задаче")
 async def question_button_handler(message: Message, state: FSMContext):
     try:
@@ -207,6 +233,11 @@ async def next_question_button_handler(message: Message, state: FSMContext):
         await message.answer("Произошла ошибка при обработке запроса", reply_markup=get_main_keyboard())
 
 
+
+
+
+
+# Requests
 @router.message(F.photo)
 async def photo_handler(message: Message, state: FSMContext):
     """Обработчик для фотографий"""
