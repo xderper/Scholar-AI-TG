@@ -256,6 +256,9 @@ async def photo_handler(message: Message, state: FSMContext):
 async def other_message_handler(message: Message, state: FSMContext):
     """Обработчик для всех остальных текстовых сообщений"""
     try:
+        # Отправляем сообщение о ожидании
+        wait_message = await message.answer(os.getenv("Wait_text"))
+        
         # Получаем данные из состояния
         state_data = await state.get_data()
         section = state_data.get('section')
@@ -270,8 +273,38 @@ async def other_message_handler(message: Message, state: FSMContext):
             subject=section,
             solution=solution
         )
+        
+        # Удаляем сообщение об ожидании
         await message.bot.delete_message(message.chat.id, wait_message.message_id)
-        await message.answer(response, parse_mode="HTML", reply_markup=get_next_question_keyboard())
+        
+        # Проверяем тип ответа
+        if isinstance(response, tuple) and len(response) == 2:
+            # Это график
+            image_buffer, caption = response
+            # Создаем временный файл для сохранения изображения
+            with tempfile.NamedTemporaryFile(suffix='.png', delete=False) as temp_file:
+                try:
+                    # Записываем содержимое буфера во временный файл
+                    image_buffer.seek(0)
+                    temp_file.write(image_buffer.read())
+                    temp_file.close()  # Закрываем файл перед использованием
+                    
+                    # Создаем FSInputFile из временного файла
+                    image = FSInputFile(temp_file.name)
+                    
+                    # Отправляем изображение с подписью
+                    await message.answer_photo(
+                        photo=image,
+                        caption=caption,
+                        reply_markup=get_next_question_keyboard()
+                    )
+                finally:
+                    # Удаляем временный файл после использования
+                    if os.path.exists(temp_file.name):
+                        os.unlink(temp_file.name)
+        else:
+            # Это текстовый ответ
+            await message.answer(response, parse_mode="HTML", reply_markup=get_next_question_keyboard())
 
     except Exception as e:
         logger.error(f"Ошибка при обработке сообщения: {str(e)}")
