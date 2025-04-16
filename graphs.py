@@ -14,9 +14,9 @@ class Graphs:
         if (section == "mathematics" and solution == "graph"):
             self.formula = self.formula_utils.get_formula(self.request)
             self.clean_formula()
-            self.draw_graph()
+            self.draw_graph_math()
 
-    def draw_graph(self):
+    def draw_graph_math(self):
         try:
             # Очищаем текущий график
             plt.clf()
@@ -151,27 +151,3 @@ class Graphs:
         formula = formula.strip()
         self.formula = formula
         return formula
-
-    def get_formula(self):
-        """Извлекает чистую формулу из объяснения нейросети"""
-        try:
-            # Используем класс Requests для получения ответа от ChatGPT
-            requests = Requests()
-            response = requests._get_response(
-                prompt=self.request,
-            )
-            
-            # Теперь нужно извлечь формулу из ответа
-            # Отправляем второй запрос для извлечения чистой формулы
-            formula_request = "Convert this mathematical expression to a clean formula, return only formula without y =: " + response
-            
-            formula = requests.main(
-                request=formula_request,
-            )
-            
-            self.formula = formula
-            return formula
-            
-        except Exception as e:
-            print(f"Error in get_formula: {e}")
-            self.formula = "y = x"  # устанавливаем простейшую формулу в случае ошибки

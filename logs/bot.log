@@ -1,0 +1,30 @@
+2025-04-16 14:53:23 - bot - INFO - Бот запущен
+2025-04-16 14:54:17 - bot - INFO - Бот запущен
+2025-04-16 14:55:22 - bot - INFO - Бот запущен
+2025-04-16 14:55:27 - bot - INFO - Бот запущен
+2025-04-16 14:55:33 - bot - INFO - Бот запущен
+2025-04-16 14:55:38 - bot - INFO - Бот запущен
+2025-04-16 14:55:41 - bot - INFO - Бот запущен
+2025-04-16 14:55:44 - bot - INFO - Бот запущен
+2025-04-16 14:56:44 - bot - INFO - Бот запущен
+2025-04-16 14:56:55 - bot - INFO - Бот запущен
+2025-04-16 14:57:17 - bot - INFO - Бот запущен
+2025-04-16 14:57:31 - bot - INFO - Бот запущен
+2025-04-16 14:57:47 - bot - INFO - Бот запущен
+2025-04-16 15:03:31 - bot - INFO - Бот запущен
+2025-04-16 15:03:34 - bot - INFO - Бот запущен
+2025-04-16 15:03:52 - bot - INFO - Бот запущен
+2025-04-16 15:04:59 - bot - INFO - Бот запущен
+2025-04-16 15:05:13 - bot - INFO - Бот запущен
+2025-04-16 15:06:58 - bot.handlers.messages - ERROR - Ошибка при обработке сообщения: name 'wait_message' is not defined
+2025-04-16 15:07:09 - bot - INFO - Бот запущен
+2025-04-16 15:09:01 - bot - INFO - Бот запущен
+2025-04-16 15:09:28 - bot - INFO - Бот запущен
+2025-04-16 15:09:34 - bot - INFO - Бот запущен
+2025-04-16 15:09:44 - bot.handlers.messages - ERROR - Ошибка при обработке сообщения: 1 validation error for SendMessage
+text
+  Input should be a valid string [type=string_type, input_value=(<_io.BytesIO object at 0... функции: 1 / x'), input_type=tuple]
+    For further information visit https://errors.pydantic.dev/2.5/v/string_type
+2025-04-16 15:10:06 - bot - INFO - Бот запущен
+2025-04-16 15:10:24 - bot - INFO - Бот запущен
+2025-04-16 15:10:36 - bot - INFO - Бот запущен

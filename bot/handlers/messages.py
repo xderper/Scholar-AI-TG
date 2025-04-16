@@ -27,59 +27,6 @@ router = Router()
 # ID канала, на который нужно проверить подписку
 CHANNEL_ID = os.getenv("CHANNEL_ID")
 
-async def send_response(message: Message, response: Union[str, Tuple[BinaryIO, str]], keyboard=None):
-    """
-    Отправляет ответ пользователю, учитывая тип ответа (текст или график)
-    
-    Args:
-        message (Message): Сообщение от пользователя
-        response (Union[str, Tuple[BinaryIO, str]]): Ответ для отправки
-        keyboard: Опциональная клавиатура для добавления к сообщению
-    """
-    temp_file = None
-    try:
-        if isinstance(response, tuple) and len(response) == 2:
-            # Это график
-            image_buffer, caption = response
-            
-            # Создаем временный файл для сохранения изображения
-            temp_file = tempfile.NamedTemporaryFile(suffix='.png', delete=False)
-            try:
-                # Записываем содержимое буфера во временный файл
-                image_buffer.seek(0)
-                temp_file.write(image_buffer.read())
-                temp_file.close()  # Закрываем файл перед использованием
-                
-                # Создаем FSInputFile из временного файла
-                image = FSInputFile(temp_file.name)
-                
-                # Отправляем изображение с подписью
-                await message.answer_photo(
-                    photo=image,
-                    caption=caption,
-                    reply_markup=keyboard
-                )
-            finally:
-                # Удаляем временный файл после использования
-                if os.path.exists(temp_file.name):
-                    try:
-                        os.unlink(temp_file.name)
-                    except Exception as e:
-                        logger.error(f"Ошибка при удалении временного файла: {str(e)}")
-        else:
-            # Это текстовый ответ
-            await message.answer(str(response), reply_markup=keyboard)
-            
-    except Exception as e:
-        logger.error(f"Ошибка при отправке ответа: {str(e)}")
-        await message.answer(f"Произошла ошибка при отправке ответа: {str(e)}", reply_markup=keyboard)
-        # Пытаемся удалить временный файл в случае ошибки
-        if temp_file and os.path.exists(temp_file.name):
-            try:
-                os.unlink(temp_file.name)
-            except Exception as del_e:
-                logger.error(f"Ошибка при удалении временного файла после ошибки: {str(del_e)}")
-
 @router.message(F.text == "📝 Информация")
 async def information_button_handler(message: Message):
     try:
@@ -114,7 +61,6 @@ async def chatgpt_button_handler(message: Message, state: FSMContext):
         await message.bot.delete_message(message.chat.id, message.message_id - 1)
         await message.delete()
     except Exception as e:
-        # logger.error(f"Ошибка: {str(e)}")
         print(str(e))
         reply_markup=get_main_keyboard()
 
@@ -268,11 +214,11 @@ async def photo_handler(message: Message, state: FSMContext):
         await message.bot.delete_message(message.chat.id, message.message_id - 1)
         # await message.delete()
         wait_message = await message.answer(os.getenv("Wait_text"))
-
         await message.bot.send_chat_action(
             chat_id=message.chat.id,
             action="typing"
         )
+        
         current_state = await state.get_state()
         state_data = await state.get_data()
 
@@ -315,6 +261,9 @@ async def other_message_handler(message: Message, state: FSMContext):
         section = state_data.get('section')
         solution = state_data.get('solution')
 
+        # Отправляем сообщение о ожидании
+        wait_message = await message.answer(os.getenv("Wait_text"))
+
         # Создаем экземпляр класса Requests
         requests = Requests()
         
@@ -324,13 +273,36 @@ async def other_message_handler(message: Message, state: FSMContext):
             subject=section,
             solution=solution
         )
+        await message.bot.delete_message(message.chat.id, wait_message.message_id)
         
-        # Отправляем ответ с использованием общей функции
-        await send_response(
-            message=message,
-            response=response,
-            keyboard=get_next_question_keyboard()
-        )
+        # Проверяем тип ответа
+        if isinstance(response, tuple) and len(response) == 2:
+            # Это график
+            image_buffer, caption = response
+            # Создаем временный файл для сохранения изображения
+            with tempfile.NamedTemporaryFile(suffix='.png', delete=False) as temp_file:
+                try:
+                    # Записываем содержимое буфера во временный файл
+                    image_buffer.seek(0)
+                    temp_file.write(image_buffer.read())
+                    temp_file.close()  # Закрываем файл перед использованием
+                    
+                    # Создаем FSInputFile из временного файла
+                    image = FSInputFile(temp_file.name)
+                    
+                    # Отправляем изображение с подписью
+                    await message.answer_photo(
+                        photo=image,
+                        caption=caption,
+                        reply_markup=get_next_question_keyboard()
+                    )
+                finally:
+                    # Удаляем временный файл после использования
+                    if os.path.exists(temp_file.name):
+                        os.unlink(temp_file.name)
+        else:
+            # Это текстовый ответ
+            await message.answer(response, parse_mode="HTML", reply_markup=get_next_question_keyboard())
 
     except Exception as e:
         logger.error(f"Ошибка при обработке сообщения: {str(e)}")
