@@ -25,7 +25,6 @@ class Requests:
         
         openai.api_key = self.api_key
         self.client = openai.OpenAI()
-        
         self.format = Format()
     
     def _get_response(self, prompt, image_data=None):
@@ -40,7 +39,7 @@ class Requests:
             str: Ответ от модели
         """
         try:
-            logger.info(f"Отправка запроса к OpenAI. Длина запроса: {len(prompt)} символов")
+            # logger.info(f"Отправка запроса к OpenAI. Длина запроса: {len(prompt) символов")
             
             messages = [{"role": "user", "content": prompt}]
             
@@ -84,7 +83,7 @@ class Requests:
                 tool_choice="auto" if image_data else None
             )
             
-            logger.info(f"Получен ответ от OpenAI. Длина ответа: {len(response.choices[0].message.content)} символов")
+            # logger.info(f"Получен ответ от OpenAI. Длина ответа: {len(response.choices[0].message.content)} символов")
             return response.choices[0].message.content
             
         except Exception as e:
@@ -128,6 +127,8 @@ class Requests:
                 query = os.getenv("")
             elif subject == 'question':
                 query = str(solution) + os.getenv("Question_query")
+            elif subject == 'abstract':
+                query = os.getenv("Abstract_query")
             else:
                 return "Неподдерживаемый предмет"
 

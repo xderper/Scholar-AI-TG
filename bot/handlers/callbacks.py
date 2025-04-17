@@ -18,7 +18,24 @@ async def check_subscription_callback(callback: CallbackQuery, state: FSMContext
     try:
         is_subscribed = await check_subscription(callback.from_user.id, callback.bot)
         if is_subscribed:
-            await callback.message.answer(os.getenv("Start_text").format(user_name=callback.from_user.first_name), reply_markup=get_main_keyboard())
+            guide_text = """🎓 Добро пожаловать в учебного помощника! 
+
+📚 Я помогу вам с:
+• 📕 Математикой
+• 📙 Физикой
+• 📗 Химией
+• 📝 Конспектами
+• 🤖 ChatGPT o1-pro
+
+💡 Как пользоваться:
+1. Выберите нужный предмет
+2. Задайте свой вопрос
+3. Получите подробный ответ
+
+📌 Для начала работы выберите нужный предмет в меню снизу 
+(откройте его, нажав на кнопку рядом со скрепкой 🧷. Или рядом со смайликом 🙂 , если вы работаете на компьютере)!"""
+            
+            await callback.message.answer(guide_text, reply_markup=get_main_keyboard())
             await callback.message.delete()
         else:
             await callback.message.answer(

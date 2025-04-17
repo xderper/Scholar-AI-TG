@@ -16,10 +16,11 @@ def get_main_keyboard() -> ReplyKeyboardMarkup:
         keyboard=[
             [
                 KeyboardButton(text="📙 Физика"),
-                KeyboardButton(text="📕 Математика")
+                KeyboardButton(text="📕 Математика"),
+                KeyboardButton(text="📗 Химия")
             ],
             [
-                KeyboardButton(text="📗 Химия")
+                KeyboardButton(text="📚 Конспект")
             ],
             [   
                 KeyboardButton(text="🤖 ChatGPT o1-pro")
@@ -48,13 +49,4 @@ def get_next_question_keyboard():
         input_field_placeholder="Выберите действие..."
 
     )   
-
-def get_math_submenu_keyboard():
-    buttons = [
-        [KeyboardButton(text="🧮 Решить задачу")],
-        [KeyboardButton(text="📊 Построить график функции")],
-        [KeyboardButton(text="🔙 Назад")]
-    ]
-    keyboard = ReplyKeyboardMarkup(keyboard=buttons, resize_keyboard=True)
-    return keyboard
 

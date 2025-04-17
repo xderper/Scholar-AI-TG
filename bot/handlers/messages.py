@@ -27,6 +27,7 @@ router = Router()
 # ID канала, на который нужно проверить подписку
 CHANNEL_ID = os.getenv("CHANNEL_ID")
 
+# Main Menu
 @router.message(F.text == "📝 Информация")
 async def information_button_handler(message: Message):
     try:
@@ -87,10 +88,24 @@ async def math_button_handler(message: Message, state: FSMContext):
         await message.bot.delete_message(message.chat.id, message.message_id - 1)
         await message.delete()
     except Exception as e:
-
         print(str(e))
         reply_markup=get_main_keyboard()
 
+@router.message(F.text == "🔙 Назад", StateFilter(Form.math_submenu))
+async def back_from_math_handler(message: Message, state: FSMContext):
+    try:
+        # Получаем имя пользователя
+        user_name = message.from_user.first_name or "друг"
+        # Формируем приветственное сообщение
+        start_text = os.getenv("Start_text").format(user_name=user_name)
+        # Возвращаемся к главному меню
+        await state.set_state(None)
+        await message.answer(start_text, reply_markup=get_main_keyboard())
+        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await message.delete()
+    except Exception as e:
+        print(str(e))
+        reply_markup=get_main_keyboard()
 
 @router.message(F.text == "📗 Химия")
 async def chemistry_button_handler(message: Message, state: FSMContext):
@@ -105,15 +120,29 @@ async def chemistry_button_handler(message: Message, state: FSMContext):
         # logger.error(f"Ошибка: {str(e)}")
         print(str(e))
         reply_markup=get_main_keyboard()
-        
 
+@router.message(F.text == "📚 Конспект")
+async def abstract_button_handler(message: Message, state: FSMContext):
+    try:
+        await state.set_state(Form.section)
+        await state.update_data(section="abstract")
+        text = os.getenv("Abstract_text")
+        await message.answer(text, reply_markup=get_main_keyboard())
+        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await message.delete()
+    except Exception as e:
+        print(str(e))
+        reply_markup=get_main_keyboard()
+
+
+# Math menu
 @router.message(F.text == "🧮 Решить задачу")
 async def solve_math_handler(message: Message, state: FSMContext):
     try:
         text = os.getenv("Mathematic_answer_text")
         await state.set_state(Form.section)
         await state.update_data(section="mathematics")
-        await message.answer(text)
+        await message.answer(text, reply_markup=get_main_keyboard())
         await message.bot.delete_message(message.chat.id, message.message_id - 1)
         await message.delete()
     except Exception as e:
@@ -125,16 +154,15 @@ async def plot_function_handler(message: Message, state: FSMContext):
     try:
         text = os.getenv("Math_graph_text")
         await state.set_state(Form.section)
-        await state.update_data(section="mathematics", solution="graph")
-        await message.answer(text)
+        await state.update_data(section="mathematics", solution="graph", is_graph_mode=True)
+        await message.answer(text, reply_markup=get_main_keyboard())
         await message.bot.delete_message(message.chat.id, message.message_id - 1)
         await message.delete()
     except Exception as e:
         print(str(e))
         reply_markup=get_main_keyboard()
 
-
-
+# Solution menu
 @router.message(F.text == "❓ Вопрос по задаче")
 async def question_button_handler(message: Message, state: FSMContext):
     try:
@@ -162,7 +190,6 @@ async def question_button_handler(message: Message, state: FSMContext):
     except Exception as e:
         logger.error(f"Ошибка в обработчике вопроса: {str(e)}")
         await message.answer("Произошла ошибка при обработке запроса", reply_markup=get_main_keyboard())
-
 
 @router.message(F.text == "➡️ Следующая задача")
 async def next_question_button_handler(message: Message, state: FSMContext):
@@ -206,7 +233,7 @@ async def next_question_button_handler(message: Message, state: FSMContext):
         logger.error(f"Ошибка в обработчике следующей задачи: {str(e)}")
         await message.answer("Произошла ошибка при обработке запроса", reply_markup=get_main_keyboard())
 
-
+# Requests
 @router.message(F.photo)
 async def photo_handler(message: Message, state: FSMContext):
     """Обработчик для фотографий"""
@@ -214,6 +241,8 @@ async def photo_handler(message: Message, state: FSMContext):
         await message.bot.delete_message(message.chat.id, message.message_id - 1)
         # await message.delete()
         wait_message = await message.answer(os.getenv("Wait_text"))
+        
+        # Start typing status after wait message
         await message.bot.send_chat_action(
             chat_id=message.chat.id,
             action="typing"
@@ -251,6 +280,7 @@ async def photo_handler(message: Message, state: FSMContext):
         # logger.error(f"Ошибка: {str(e)}")
         print(str(e))
         reply_markup=get_main_keyboard()
+
 #gpt обработка
 @router.message(StateFilter(Form.section))
 async def other_message_handler(message: Message, state: FSMContext):
@@ -263,6 +293,11 @@ async def other_message_handler(message: Message, state: FSMContext):
         state_data = await state.get_data()
         section = state_data.get('section')
         solution = state_data.get('solution')
+        
+        await message.bot.send_chat_action(
+                chat_id=message.chat.id,
+                action="typing"
+        )
 
         # Создаем экземпляр класса Requests
         requests = Requests()
@@ -281,6 +316,7 @@ async def other_message_handler(message: Message, state: FSMContext):
         if isinstance(response, tuple) and len(response) == 2:
             # Это график
             image_buffer, caption = response
+            
             # Создаем временный файл для сохранения изображения
             with tempfile.NamedTemporaryFile(suffix='.png', delete=False) as temp_file:
                 try:
@@ -298,6 +334,9 @@ async def other_message_handler(message: Message, state: FSMContext):
                         caption=caption,
                         reply_markup=get_next_question_keyboard()
                     )
+                    
+                    # Сбрасываем флаг после отправки графика
+                    await state.update_data(is_graph_mode=False)
                 finally:
                     # Удаляем временный файл после использования
                     if os.path.exists(temp_file.name):
@@ -305,10 +344,13 @@ async def other_message_handler(message: Message, state: FSMContext):
         else:
             # Это текстовый ответ
             await message.answer(response, parse_mode="HTML", reply_markup=get_next_question_keyboard())
+            # Сбрасываем флаг если это не график
+            await state.update_data(is_graph_mode=False)
 
     except Exception as e:
         logger.error(f"Ошибка при обработке сообщения: {str(e)}")
         await message.answer(
-            f"Произошла ошибка при обработке запроса: {str(e)}",
+            "Произошла ошибка при обработке запроса. Пожалуйста, попробуйте еще раз.",
             reply_markup=get_next_question_keyboard()
         )
+        await state.update_data(is_graph_mode=False)
