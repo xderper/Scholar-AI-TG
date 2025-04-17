@@ -64,7 +64,9 @@ class Format:
             str: Отформатированный текст для Telegram   
         """
         try:
-
+            # Check if text is None and handle accordingly
+            if text is None:
+                return "Не удалось получить ответ от сервера. Пожалуйста, попробуйте еще раз."
 
             # # Базовая очистка
             # text = text.removeprefix("Ответ: ")

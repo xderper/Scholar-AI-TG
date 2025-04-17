@@ -50,28 +50,3 @@ def get_next_question_keyboard():
 
     )   
 
-def get_math_submenu_keyboard():
-    buttons = [
-        [KeyboardButton(text="🧮 Решить задачу")],
-        [KeyboardButton(text="📊 Построить график функции")],
-        [KeyboardButton(text="🔙 Назад")]
-    ]
-    keyboard = ReplyKeyboardMarkup(keyboard=buttons, resize_keyboard=True)
-    return keyboard
-"""
-def get_guide_keyboard() -> ReplyKeyboardMarkup:
-    #Создает и возвращает клавиатуру с кнопкой помощи
-    keyboard = ReplyKeyboardMarkup(
-        keyboard=[
-            [
-                KeyboardButton(text="❓ Как пользоваться ботом")
-            ],
-            [
-                KeyboardButton(text="📝 Информация")
-            ]
-        ],
-        resize_keyboard=True,
-        input_field_placeholder="Выберите действие..."
-    )
-    return keyboard
-"""

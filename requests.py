@@ -25,7 +25,6 @@ class Requests:
         
         openai.api_key = self.api_key
         self.client = openai.OpenAI()
-        
         self.format = Format()
     
     def _get_response(self, prompt, image_data=None):
@@ -40,7 +39,7 @@ class Requests:
             str: Ответ от модели
         """
         try:
-            logger.info(f"Отправка запроса к OpenAI. Длина запроса: {len(prompt)} символов")
+            # logger.info(f"Отправка запроса к OpenAI. Длина запроса: {len(prompt) символов")
             
             messages = [{"role": "user", "content": prompt}]
             
@@ -84,7 +83,7 @@ class Requests:
                 tool_choice="auto" if image_data else None
             )
             
-            logger.info(f"Получен ответ от OpenAI. Длина ответа: {len(response.choices[0].message.content)} символов")
+            # logger.info(f"Получен ответ от OpenAI. Длина ответа: {len(response.choices[0].message.content)} символов")
             return response.choices[0].message.content
             
         except Exception as e:
@@ -128,6 +127,8 @@ class Requests:
                 query = os.getenv("")
             elif subject == 'question':
                 query = str(solution) + os.getenv("Question_query")
+            elif subject == 'abstract':
+                query = os.getenv("Abstract_query")
             else:
                 return "Неподдерживаемый предмет"
 
@@ -146,73 +147,6 @@ class Requests:
         except Exception as e:
             logger.error(f"Ошибка при обработке запроса: {str(e)}")
             return f"Произошла ошибка при обработке запроса: {str(e)}"
-
-    async def send_abstract_request(self, image_base64: str) -> Dict[str, Any]:
-        """
-        Отправляет запрос на обработку изображения для создания конспекта
-        
-        Args:
-            image_base64 (str): Изображение в формате base64
-            
-        Returns:
-            Dict[str, Any]: Словарь с результатом обработки
-        """
-        try:
-            # Формируем запрос для OpenAI
-            prompt = """Проанализируй текст на изображении и создай краткий, но информативный конспект. Удели особое внимание следующим аспектам:
-                Структура конспекта:
-                Главная тема – выдели жирным или цветом (если поддерживается), чтобы сразу бросалась в глаза.
-                Ключевые разделы – разбей на логичные темы с подзаголовками.
-                Важные детали – маркированные или нумерованные списки для удобства.
-                Выводы/заключение – кратко подведи итог.
-                Требования к оформлению:
-                Четкие абзацы – каждый блок информации отделен пустой строкой.
-                Акценты – жирный шрифт (например, для терминов или главных мыслей).
-                Эстетика – используй символы (✦, →, • и т.д.) для визуального разделения.
-                Пример оформления:
-                ✦ Главная тема: [сформулируй основную идею текста]
-                → Основные разделы:
-                • [Тема 1] – [краткое описание].
-                • [Тема 2] – [краткое описание].
-                → Ключевые выводы: [1-2 предложения].
-                Сделай конспект максимально удобным для восприятия!"""
-            
-            # Формируем сообщение с изображением
-            messages = [
-                {
-                    "role": "user",
-                    "content": [
-                        {
-                            "type": "text",
-                            "text": prompt
-                        },
-                        {
-                            "type": "image_url",
-                            "image_url": {
-                                "url": f"data:image/jpeg;base64,{image_base64}"
-                            }
-                        }
-                    ]
-                }
-            ]
-            
-            # Отправляем запрос к OpenAI
-            response = self.client.chat.completions.create(
-                model="gpt-4o",  # Используем актуальную модель
-                messages=messages,
-                max_tokens=1000,
-                temperature=0.2
-            )
-            
-            if response and response.choices:
-                return {
-                    'summary': response.choices[0].message.content
-                }
-            return None
-            
-        except Exception as e:
-            logger.error(f"Ошибка при обработке изображения для конспекта: {str(e)}")
-            return None
 
     # Загрузка переменных окружения
     # Сначала загружаем общие настройки
