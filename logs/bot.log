@@ -79,3 +79,23 @@ text
 2025-04-16 17:56:42 - bot - INFO - Бот запущен
 2025-04-16 19:41:52 - bot - INFO - Бот запущен
 2025-04-16 19:56:05 - bot - INFO - Бот запущен
+2025-04-17 16:41:20 - bot - INFO - Бот запущен
+2025-04-17 16:42:17 - bot - INFO - Бот остановлен
+2025-04-17 16:42:22 - bot - INFO - Бот запущен
+2025-04-17 16:46:15 - bot - INFO - Бот остановлен
+2025-04-17 16:48:57 - bot - INFO - Бот запущен
+2025-04-17 16:49:22 - bot - INFO - Бот остановлен
+2025-04-17 16:50:36 - bot - INFO - Бот запущен
+2025-04-17 16:50:57 - bot - INFO - Бот остановлен
+2025-04-17 16:53:01 - bot - INFO - Бот запущен
+2025-04-17 16:58:33 - bot - INFO - Бот остановлен
+2025-04-17 17:00:13 - bot - INFO - Бот запущен
+2025-04-17 17:02:06 - bot - INFO - Бот остановлен
+2025-04-17 17:02:13 - bot - INFO - Бот запущен
+2025-04-17 17:02:49 - bot.handlers.messages - ERROR - Ошибка при обработке сообщения: Telegram server says - Bad Request: can't parse entities: Unsupported start tag "string" at byte offset 363
+2025-04-17 17:04:27 - bot.handlers.messages - ERROR - Ошибка при обработке сообщения: Telegram server says - Bad Request: can't parse entities: Unsupported start tag "string" at byte offset 367
+2025-04-17 17:05:19 - bot.handlers.messages - ERROR - Ошибка при обработке сообщения: Telegram server says - Bad Request: can't parse entities: Unsupported start tag "string" at byte offset 353
+2025-04-17 17:05:41 - bot - INFO - Бот остановлен
+2025-04-17 17:05:48 - bot - INFO - Бот запущен
+2025-04-17 17:06:02 - bot.handlers.messages - ERROR - Ошибка при обработке сообщения: Telegram server says - Bad Request: can't parse entities: Can't find end tag corresponding to start tag "a"
+2025-04-17 17:06:45 - bot - INFO - Бот остановлен

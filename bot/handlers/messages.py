@@ -148,7 +148,7 @@ async def plot_function_handler(message: Message, state: FSMContext):
     try:
         text = os.getenv("Math_graph_text")
         await state.set_state(Form.section)
-        await state.update_data(section="mathematics", solution="graph")
+        await state.update_data(section="mathematics", solution="graph", is_graph_mode=True)
         await message.answer(text)
         await message.bot.delete_message(message.chat.id, message.message_id - 1)
         await message.delete()
@@ -245,6 +245,8 @@ async def photo_handler(message: Message, state: FSMContext):
         await message.bot.delete_message(message.chat.id, message.message_id - 1)
         # await message.delete()
         wait_message = await message.answer(os.getenv("Wait_text"))
+        
+        # Start typing status after wait message
         await message.bot.send_chat_action(
             chat_id=message.chat.id,
             action="typing"
@@ -282,6 +284,7 @@ async def photo_handler(message: Message, state: FSMContext):
         # logger.error(f"Ошибка: {str(e)}")
         print(str(e))
         reply_markup=get_main_keyboard()
+
 #gpt обработка
 @router.message(StateFilter(Form.section))
 async def other_message_handler(message: Message, state: FSMContext):
@@ -294,13 +297,36 @@ async def other_message_handler(message: Message, state: FSMContext):
         state_data = await state.get_data()
         section = state_data.get('section')
         solution = state_data.get('solution')
+        is_graph_mode = state_data.get('is_graph_mode', False)
+
+        # Если режим графика активен, показываем статус отправки фото
+        if is_graph_mode:
+            await message.bot.send_chat_action(
+                chat_id=message.chat.id,
+                action="upload_photo"
+            )
+        else:
+            # Иначе показываем статус печати
+            await message.bot.send_chat_action(
+                chat_id=message.chat.id,
+                action="typing"
+            )
+
+        # Предварительная обработка математического выражения
+        if section == "mathematics" and not is_graph_mode:
+            # Заменяем знак равенства на минус для правильного решения уравнения
+            request_text = message.text.replace("=", "-(").rstrip(")") + ")"
+            # Убираем лишние пробелы
+            request_text = request_text.replace(" ", "")
+        else:
+            request_text = message.text
 
         # Создаем экземпляр класса Requests
         requests = Requests()
         
         # Получаем ответ от модели
         response = requests.main(
-            request=message.text,
+            request=request_text,
             subject=section,
             solution=solution
         )
@@ -312,6 +338,7 @@ async def other_message_handler(message: Message, state: FSMContext):
         if isinstance(response, tuple) and len(response) == 2:
             # Это график
             image_buffer, caption = response
+            
             # Создаем временный файл для сохранения изображения
             with tempfile.NamedTemporaryFile(suffix='.png', delete=False) as temp_file:
                 try:
@@ -329,6 +356,9 @@ async def other_message_handler(message: Message, state: FSMContext):
                         caption=caption,
                         reply_markup=get_next_question_keyboard()
                     )
+                    
+                    # Сбрасываем флаг после отправки графика
+                    await state.update_data(is_graph_mode=False)
                 finally:
                     # Удаляем временный файл после использования
                     if os.path.exists(temp_file.name):
@@ -336,10 +366,13 @@ async def other_message_handler(message: Message, state: FSMContext):
         else:
             # Это текстовый ответ
             await message.answer(response, parse_mode="HTML", reply_markup=get_next_question_keyboard())
+            # Сбрасываем флаг если это не график
+            await state.update_data(is_graph_mode=False)
 
     except Exception as e:
         logger.error(f"Ошибка при обработке сообщения: {str(e)}")
         await message.answer(
-            f"Произошла ошибка при обработке запроса: {str(e)}",
+            "Произошла ошибка при обработке запроса. Пожалуйста, попробуйте еще раз.",
             reply_markup=get_next_question_keyboard()
         )
+        await state.update_data(is_graph_mode=False)
