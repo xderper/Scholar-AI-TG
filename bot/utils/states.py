@@ -6,4 +6,5 @@ class Form(StatesGroup):
     solution= State()
     math_submenu= State()
     abstract_submenu=State()
+    abstract_photo=State()
 

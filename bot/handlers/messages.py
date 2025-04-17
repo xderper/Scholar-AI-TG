@@ -88,10 +88,24 @@ async def math_button_handler(message: Message, state: FSMContext):
         await message.bot.delete_message(message.chat.id, message.message_id - 1)
         await message.delete()
     except Exception as e:
-
         print(str(e))
         reply_markup=get_main_keyboard()
 
+@router.message(F.text == "🔙 Назад", StateFilter(Form.math_submenu))
+async def back_from_math_handler(message: Message, state: FSMContext):
+    try:
+        # Получаем имя пользователя
+        user_name = message.from_user.first_name or "друг"
+        # Формируем приветственное сообщение
+        start_text = os.getenv("Start_text").format(user_name=user_name)
+        # Возвращаемся к главному меню
+        await state.set_state(None)
+        await message.answer(start_text, reply_markup=get_main_keyboard())
+        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await message.delete()
+    except Exception as e:
+        print(str(e))
+        reply_markup=get_main_keyboard()
 
 @router.message(F.text == "📗 Химия")
 async def chemistry_button_handler(message: Message, state: FSMContext):
@@ -107,27 +121,52 @@ async def chemistry_button_handler(message: Message, state: FSMContext):
         print(str(e))
         reply_markup=get_main_keyboard()
 
-
-
 @router.message(F.text == "📚 Конспект")
-async def math_button_handler(message: Message, state: FSMContext):
+async def abstract_button_handler(message: Message, state: FSMContext):
     try:
-        await state.set_state(Form.abstract_submenu)
-        text = os.getenv("Abstract_choose_text")
-        sent_message = await message.answer(text, reply_markup=get_abstract_submenu_keyboard())
+        await state.set_state(Form.abstract_photo)
+        text = "Пожалуйста, отправьте фото текста, который нужно конспектировать ✍"
+        await message.answer(text, reply_markup=get_main_keyboard())
         await message.bot.delete_message(message.chat.id, message.message_id - 1)
         await message.delete()
     except Exception as e:
         print(str(e))
         reply_markup=get_main_keyboard()
 
-
-#Abstract menu
-
-
-
-
-
+@router.message(F.photo, StateFilter(Form.abstract_photo))
+async def abstract_photo_handler(message: Message, state: FSMContext):
+    try:
+        await message.bot.send_chat_action(
+            chat_id=message.chat.id,
+            action="typing"
+        )
+        #id фото (сообщение, с которым работаешь)
+        photo = message.photo[-1]
+        file_id = photo.file_id
+        # путь
+        file = await message.bot.get_file(file_id)
+        file_path = file.file_path
+        # скачивание фотки
+        photo_bytes = await message.bot.download_file(file_path)
+        # конвертируешь в бэйз64
+        photo_base64 = base64.b64encode(photo_bytes.read()).decode('utf-8')
+        # отсылаешь к апишке
+        requests = Requests()
+        response = await requests.send_abstract_request(photo_base64)
+        
+        if response and 'summary' in response:
+            await message.answer(response['summary'], reply_markup=get_main_keyboard())
+        else:
+            await message.answer("Извините, не удалось обработать изображение 🫤. Пожалуйста, попробуйте еще раз.", reply_markup=get_main_keyboard())
+        
+        await state.set_state(None)
+        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await message.delete()
+        
+    except Exception as e:
+        print(f"Error in abstract photo handler: {str(e)}")
+        await message.answer("Произошла ошибка при обработке изображения. Пожалуйста, попробуйте еще раз.", reply_markup=get_main_keyboard())
+        await state.set_state(None)
 
 # Math menu
 @router.message(F.text == "🧮 Решить задачу")
@@ -136,7 +175,7 @@ async def solve_math_handler(message: Message, state: FSMContext):
         text = os.getenv("Mathematic_answer_text")
         await state.set_state(Form.section)
         await state.update_data(section="mathematics")
-        await message.answer(text)
+        await message.answer(text, reply_markup=get_main_keyboard())
         await message.bot.delete_message(message.chat.id, message.message_id - 1)
         await message.delete()
     except Exception as e:
@@ -149,16 +188,12 @@ async def plot_function_handler(message: Message, state: FSMContext):
         text = os.getenv("Math_graph_text")
         await state.set_state(Form.section)
         await state.update_data(section="mathematics", solution="graph", is_graph_mode=True)
-        await message.answer(text)
+        await message.answer(text, reply_markup=get_main_keyboard())
         await message.bot.delete_message(message.chat.id, message.message_id - 1)
         await message.delete()
     except Exception as e:
         print(str(e))
         reply_markup=get_main_keyboard()
-
-
-
-
 
 # Solution menu
 @router.message(F.text == "❓ Вопрос по задаче")
@@ -188,7 +223,6 @@ async def question_button_handler(message: Message, state: FSMContext):
     except Exception as e:
         logger.error(f"Ошибка в обработчике вопроса: {str(e)}")
         await message.answer("Произошла ошибка при обработке запроса", reply_markup=get_main_keyboard())
-
 
 @router.message(F.text == "➡️ Следующая задача")
 async def next_question_button_handler(message: Message, state: FSMContext):
@@ -231,11 +265,6 @@ async def next_question_button_handler(message: Message, state: FSMContext):
     except Exception as e:
         logger.error(f"Ошибка в обработчике следующей задачи: {str(e)}")
         await message.answer("Произошла ошибка при обработке запроса", reply_markup=get_main_keyboard())
-
-
-
-
-
 
 # Requests
 @router.message(F.photo)
@@ -318,6 +347,8 @@ async def other_message_handler(message: Message, state: FSMContext):
             request_text = message.text.replace("=", "-(").rstrip(")") + ")"
             # Убираем лишние пробелы
             request_text = request_text.replace(" ", "")
+            # Добавляем инструкцию отвечать на русском
+            request_text = f"Реши задачу на русском языке: {request_text}"
         else:
             request_text = message.text
 
@@ -376,3 +407,29 @@ async def other_message_handler(message: Message, state: FSMContext):
             reply_markup=get_next_question_keyboard()
         )
         await state.update_data(is_graph_mode=False)
+
+@router.message(F.text == "❓ Как пользоваться ботом")
+async def guide_button_handler(message: Message):
+    try:
+        guide_text = """🎓 Добро пожаловать в учебного помощника! 
+
+📚 Я помогу вам с:
+• 📕 Математикой
+• 📙 Физикой
+• 📗 Химией
+• 📝 Конспектами
+• 🤖 ChatGPT o1-pro
+
+💡 Как пользоваться:
+1. Выберите нужный предмет
+2. Задайте свой вопрос
+3. Получите подробный ответ
+
+📌 Для начала работы выберите нужный предмет в меню!"""
+        
+        await message.answer(guide_text, reply_markup=get_main_keyboard())
+        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await message.delete()
+    except Exception as e:
+        print(str(e))
+        await message.answer("Произошла ошибка. Попробуйте позже.", reply_markup=get_main_keyboard())
