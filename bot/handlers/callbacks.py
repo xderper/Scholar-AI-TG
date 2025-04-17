@@ -32,7 +32,8 @@ async def check_subscription_callback(callback: CallbackQuery, state: FSMContext
 2. Задайте свой вопрос
 3. Получите подробный ответ
 
-📌 Для начала работы выберите нужный предмет в меню!"""
+📌 Для начала работы выберите нужный предмет в меню снизу 
+(откройте его, нажав на кнопку рядом со скрепкой 🧷. Или рядом со смайликом 🙂 , если вы работаете на компьютере)!"""
             
             await callback.message.answer(guide_text, reply_markup=get_main_keyboard())
             await callback.message.delete()
