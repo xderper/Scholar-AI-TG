@@ -18,32 +18,17 @@ async def check_subscription_callback(callback: CallbackQuery, state: FSMContext
     try:
         is_subscribed = await check_subscription(callback.from_user.id, callback.bot)
         if is_subscribed:
-            guide_text = """🎓 Добро пожаловать в учебного помощника! 
-
-📚 Я помогу вам с:
-• 📕 Математикой
-• 📙 Физикой
-• 📗 Химией
-• 📝 Конспектами
-• 🤖 ChatGPT o1-pro
-
-💡 Как пользоваться:
-1. Выберите нужный предмет
-2. Задайте свой вопрос
-3. Получите подробный ответ
-
-📌 Для начала работы выберите нужный предмет в меню снизу 
-(откройте его, нажав на кнопку рядом со скрепкой 🧷. Или рядом со смайликом 🙂 , если вы работаете на компьютере)!"""
-            
-            await callback.message.answer(guide_text, reply_markup=get_main_keyboard())
+            text = os.getenv("Start_text")
+            await callback.message.answer(text, reply_markup=get_main_keyboard(), parse_mode="HTML")
             await callback.message.delete()
         else:
             await callback.message.answer(
                 os.getenv("Subscribe_text"),
-                reply_markup=get_subscription_keyboard()
+                reply_markup=get_subscription_keyboard(),
+                parse_mode="HTML"
             )
     except Exception as e:
-        print(f"Error checking subscription: {str(e)}")
+        logger.error(f"Error in callbacks: {str(e)}")
         await callback.message.answer(
             "Произошла ошибка при проверке подписки. Попробуйте позже.",
             reply_markup=get_subscription_keyboard()

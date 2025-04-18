@@ -2,6 +2,8 @@ import openai
 import os
 import logging
 import re
+import numpy as np
+import matplotlib.pyplot as plt
 
 class FormulaUtils:
     def __init__(self):
@@ -106,3 +108,108 @@ class FormulaUtils:
         except Exception as e:
             self.logger.error(f"Error in _get_response: {e}")
             raise 
+            
+    def plot_function(self, formula, x_min=-10, x_max=10, points=1000, plot_modulus=False):
+        """
+        Строит график функции на основе заданной формулы
+        
+        Args:
+            formula (str): Формула функции в виде строки
+            x_min (float): Минимальное значение x
+            x_max (float): Максимальное значение x
+            points (int): Количество точек для построения
+            plot_modulus (bool): Построить график с модулем функции
+            
+        Returns:
+            tuple: (figure, axes) объекты matplotlib
+        """
+        try:
+            # Создаем массив значений x
+            x = np.linspace(x_min, x_max, points)
+            
+            # Заменяем математические функции на numpy эквиваленты
+            formula_np = self._convert_to_numpy(formula)
+            
+            # Безопасное вычисление значений функции
+            y = self._safe_eval(formula_np, x)
+            
+            # Создаем график
+            fig, ax = plt.subplots(figsize=(10, 6))
+            
+            # Построение обычного графика
+            ax.plot(x, y, label='f(x)')
+            
+            # Если требуется график с модулем, добавляем его
+            if plot_modulus:
+                ax.plot(x, np.abs(y), 'r--', label='|f(x)|')
+            
+            # Настройка графика
+            ax.axhline(y=0, color='k', linestyle='-', alpha=0.3)
+            ax.axvline(x=0, color='k', linestyle='-', alpha=0.3)
+            ax.grid(True, alpha=0.3)
+            ax.set_xlabel('x')
+            ax.set_ylabel('y')
+            ax.set_title(f'График функции: {formula}')
+            ax.legend()
+            
+            return fig, ax
+            
+        except Exception as e:
+            self.logger.error(f"Error plotting function: {e}")
+            # Создаем пустой график в случае ошибки
+            fig, ax = plt.subplots(figsize=(10, 6))
+            ax.text(0.5, 0.5, f'Ошибка построения графика: {str(e)}', 
+                    horizontalalignment='center', verticalalignment='center')
+            return fig, ax
+    
+    def _convert_to_numpy(self, formula):
+        """Преобразует математическую формулу для работы с numpy"""
+        # Замена стандартных функций на numpy эквиваленты
+        replacements = {
+            'sin': 'np.sin',
+            'cos': 'np.cos',
+            'tan': 'np.tan',
+            'cot': '1/np.tan',
+            'asin': 'np.arcsin',
+            'acos': 'np.arccos',
+            'atan': 'np.arctan',
+            'acot': 'np.pi/2 - np.arctan',
+            'log': 'np.log',
+            'log10': 'np.log10',
+            'sqrt': 'np.sqrt',
+            'pi': 'np.pi',
+            'e': 'np.e',
+            '**': '**',
+            'abs': 'np.abs'
+        }
+        
+        for old, new in replacements.items():
+            # Убедимся, что заменяем только целые слова, а не части слов
+            formula = re.sub(r'\b' + old + r'\b', new, formula)
+            
+        return formula
+    
+    def _safe_eval(self, formula_np, x):
+        """Безопасное вычисление значений функции"""
+        try:
+            # Создаем локальный namespace с numpy и x
+            namespace = {'np': np, 'x': x}
+            # Вычисляем значения y
+            y = eval(formula_np, {"__builtins__": {}}, namespace)
+            
+            # Заменяем бесконечные значения на NaN для лучшей визуализации
+            y = np.where(np.isinf(y), np.nan, y)
+            return y
+            
+        except Exception as e:
+            self.logger.error(f"Error evaluating formula: {e}")
+            raise
+    
+    def save_plot(self, fig, filename='function_plot.png', dpi=300):
+        """Сохраняет график в файл"""
+        try:
+            fig.savefig(filename, dpi=dpi, bbox_inches='tight')
+            return True
+        except Exception as e:
+            self.logger.error(f"Error saving plot: {e}")
+            return False 

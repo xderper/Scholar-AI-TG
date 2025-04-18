@@ -64,12 +64,10 @@ class Format:
             str: Отформатированный текст для Telegram   
         """
         try:
+            start_text = text
             # Check if text is None and handle accordingly
             if text is None:
                 return "Не удалось получить ответ от сервера. Пожалуйста, попробуйте еще раз."
-
-            # # Базовая очистка
-            # text = text.removeprefix("Ответ: ")
             
             # # Замена LaTeX команд
             text = text.replace("\\text", "")
@@ -162,11 +160,11 @@ class Format:
             text = text.replace("}", "")
             text = text.replace("_", "")
 
-
             return text
             
         except Exception as e:
             # Улучшенное сообщение об ошибке с информацией о конкретной проблеме
             import traceback
             error_info = traceback.format_exc()
-            return f"Ошибка форматирования: {str(e)}\nПодробности:\n{error_info[:200]}...\n\nИсходный текст:\n{text}"
+            logger.error(f"Error in format_response_for_telegram: {str(e)}")
+            return start_text

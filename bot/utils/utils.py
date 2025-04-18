@@ -8,5 +8,5 @@ async def check_subscription(user_id: int, bot):
         member = await bot.get_chat_member(CHANNEL_ID, user_id)
         return member.status in ['member', 'administrator', 'creator']
     except Exception as e:
-        print(f"Ошибка при проверке подписки: {str(e)}")
+        logger.error(f"Error in utils: {str(e)}")
         return False
