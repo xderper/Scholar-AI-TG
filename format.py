@@ -100,6 +100,11 @@ class Format:
             # Замена математических символов
             text = text.replace("\\times", "×")
             text = text.replace("\\cdot", "·")
+            text = text.replace("\\left", "")
+            text = text.replace("\\right", "")
+            text = text.replace("\\frac", "")
+            text = text.replace("\\dfrac", "")
+            text = text.replace("\\tfrac", "")
             text = text.replace("\\circ", "°")
             text = text.replace("\\approx", "≈")
             text = text.replace("\\geq", "≥")
@@ -159,6 +164,25 @@ class Format:
             text = text.replace("{", "")
             text = text.replace("}", "")
             text = text.replace("_", "")
+
+            # Замена векторных обозначений
+            text = text.replace("\\overrightarrow", "⃗")
+            text = text.replace("overrightarrow", "⃗")
+            text = text.replace("\\vec", "⃗")
+            text = text.replace("vec", "⃗")
+
+            # Замена матричных обозначений
+            text = text.replace("\\beginvmatrix", "│")
+            text = text.replace("beginvmatrix", "│")
+            text = text.replace("\\endvmatrix", "│")
+            text = text.replace("endvmatrix", "│")
+            text = text.replace("&", " ")
+            text = text.replace("\\quad", " ")
+            text = text.replace("quad", " ")
+            
+            # Замена стрелок
+            text = text.replace("\\Rightarrow", "⇒")
+            text = text.replace("Rightarrow", "⇒")
 
             return text
             
