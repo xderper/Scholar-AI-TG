@@ -276,7 +276,7 @@ async def other_message_handler(message: Message, state: FSMContext):
     """Обработчик для всех остальных текстовых сообщений"""
     try:
         # Отправляем сообщение о ожидании
-        wait_message = await message.answer(os.getenv("Wait_text"))
+        wait_message = await message.answer(os.getenv("Wait_text"), parse_mode="HTML")
         
         # Получаем данные из состояния
         state_data = await state.get_data()
