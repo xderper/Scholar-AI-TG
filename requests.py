@@ -104,6 +104,9 @@ class Requests:
             Union[str, Tuple[BinaryIO, str]]: Отформатированный ответ для Telegram или кортеж (изображение, подпись)
         """
         try:
+
+
+            print(subject, solution)
             # Получаем соответствующий запрос для выбранного предмета из переменных окружения
             if subject == 'physics':
                 query = os.getenv("Physic_query")   
@@ -121,10 +124,10 @@ class Requests:
                     except Exception as e:
                         logger.error(f"Ошибка при построении графика: {e}")
                         return f"Не удалось построить график: {str(e)}"
-                else:
+                elif solution == None:
                     query = os.getenv("Mathematics_query")
             elif subject == 'chatgpt':
-                query = os.getenv("")
+                query = ""
             elif subject == 'question':
                 query = str(solution) + os.getenv("Question_query")
             elif subject == 'abstract':
