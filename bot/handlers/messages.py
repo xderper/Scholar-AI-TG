@@ -357,8 +357,11 @@ async def photo_handler(message: Message, state: FSMContext):
         if os.path.exists(temp_file_path):
             os.remove(temp_file_path)
 
+        # Используем caption из сообщения, если он есть
+        text_content = message.caption or ""
+
         response = Requests().main(
-            request=user_text,
+            request=text_content,
             subject=section,
             photo=image_data,
             audio=None,
@@ -375,7 +378,7 @@ async def photo_handler(message: Message, state: FSMContext):
             "Произошла ошибка при обработке запроса. Пожалуйста, попробуйте еще раз.",
             reply_markup=get_next_question_keyboard()
         )
-        
+
 
 @router.message()
 async def fallback_message_handler(message: Message, state: FSMContext):

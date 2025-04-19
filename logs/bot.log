@@ -360,3 +360,15 @@ aiogram.utils.token.TokenValidationError: Token is invalid! It must be 'str' typ
 2025-04-20 00:40:46 - bot - INFO - Бот запущен
 2025-04-20 00:40:51 - bot - INFO - Бот запущен
 2025-04-20 00:41:24 - bot - INFO - Бот запущен
+2025-04-20 00:46:27 - bot - INFO - Бот запущен
+2025-04-20 00:46:49 - bot.handlers.messages - ERROR - Error in photo handler: name 'user_text' is not defined
+Traceback (most recent call last):
+  File "C:\Users\artem\YandexDisk\IT\school ai\11\bot\handlers\messages.py", line 361, in photo_handler
+    request=user_text,
+            ^^^^^^^^^
+NameError: name 'user_text' is not defined
+2025-04-20 00:47:21 - bot - INFO - Бот запущен
+2025-04-20 00:47:24 - bot.handlers.messages - ERROR - Error in messages: cannot access local variable 'text' where it is not associated with a value
+2025-04-20 00:49:22 - bot - INFO - Бот запущен
+2025-04-20 00:49:49 - bot - INFO - Бот запущен
+2025-04-20 00:50:07 - bot - INFO - Бот запущен
