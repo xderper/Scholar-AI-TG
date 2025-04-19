@@ -142,7 +142,7 @@ async def plot_function_handler(message: Message, state: FSMContext):
     try:
         text = os.getenv("Math_graph_text")
         await state.set_state(Form.section)
-        await state.update_data(section="mathematics", solution="graph", is_graph_mode=True)
+        await state.update_data(section="mathematics", solution="graph")
         await message.answer(text, reply_markup=get_main_keyboard(), parse_mode="HTML")
         await message.bot.delete_message(message.chat.id, message.message_id - 1)
         await message.delete()
@@ -160,6 +160,11 @@ async def question_button_handler(message: Message, state: FSMContext):
         solution_text = None
         if message.reply_to_message:
             solution_text = message.reply_to_message.text
+        else:
+            # Получаем последнее сообщение в чате
+            messages = await message.chat.get_messages(limit=2)
+            if len(messages) > 1:
+                solution_text = messages[1].text
             
         await state.update_data(section="question", solution=solution_text)
         
@@ -168,8 +173,6 @@ async def question_button_handler(message: Message, state: FSMContext):
         
         # Затем удаляем старые сообщения
         try:
-            # if message.message_id > 1:  # Проверяем, есть ли предыдущее сообщение
-            #     await message.bot.delete_message(message.chat.id, message.message_id - 1)
             await message.delete()
         except Exception as delete_error:
             logger.error(f"Ошибка при удалении сообщений: {str(delete_error)}")
@@ -201,26 +204,20 @@ async def next_question_button_handler(message: Message, state: FSMContext):
         await state.set_state(Form.section)
         await state.update_data(section=next_section)
         await message.answer(text, reply_markup=get_main_keyboard(), parse_mode="HTML")
-        
-        # Удаляем сообщения только после успешной отправки нового
-        try:
-            # await message.bot.delete_message(message.chat.id, message.message_id - 1)
-            await message.delete()
-        except Exception as delete_error:
-            logger.error(f"Ошибка при удалении сообщений: {str(delete_error)}")
+        await message.delete()
             
     except Exception as e:
         logger.error(f"Error in messages: {str(e)}")
         await message.answer("Произошла ошибка при обработке запроса", reply_markup=get_main_keyboard())
 
 
-
-@router.message(F.audio)
-async def audio_handler(message: Message, state: FSMContext):
-    """Обработчик для аудио сообщений"""
+# Создаем общий обработчик для аудио и голосовых сообщений
+@router.message(F.voice | F.audio)
+async def audio_voice_handler(message: Message, state: FSMContext):
+    """Общий обработчик для аудио и голосовых сообщений"""
     try:
         await message.bot.delete_message(message.chat.id, message.message_id - 1)
-        wait_message = await message.answer("Обрабатываю аудио файл...", parse_mode="HTML")
+        wait_message = await message.answer(os.getenv("Wait_text"), parse_mode="HTML")
         
         # Start typing status after wait message
         await message.bot.send_chat_action(
@@ -240,74 +237,68 @@ async def audio_handler(message: Message, state: FSMContext):
         section = state_data.get('section', 'chatgpt')
         solution = state_data.get('solution')
 
-        # Скачиваем аудиофайл
-        file = await message.bot.get_file(message.audio.file_id)
-        file_path = file.file_path
-        temp_file_path = os.path.join("temp", f"temp_{message.audio.file_id}.ogg")
+        # Определяем тип сообщения и скачиваем файл
+        if message.voice:
+            # Это голосовое сообщение
+            file = await message.bot.get_file(message.voice.file_id)
+            file_path = file.file_path
+            temp_file_path = os.path.join("temp", f"temp_{message.voice.file_id}.oga")
+            file_type = "голосовое сообщение"
+        else:
+            # Это аудио файл
+            file = await message.bot.get_file(message.audio.file_id)
+            file_path = file.file_path
+            temp_file_path = os.path.join("temp", f"temp_{message.audio.file_id}.ogg")
+            file_type = "аудио файл"
+        
+        # Скачиваем файл
         os.makedirs(os.path.dirname(temp_file_path), exist_ok=True)
         await message.bot.download_file(file_path, destination=temp_file_path)
 
-        # Получаем заголовок аудио или дефолтный текст
+        # Получаем подпись к сообщению, если есть
         caption = message.caption or ""
         
-        # Отправляем на транскрипцию только если установлен OpenAI ключ API
-        if os.getenv("OPENAI_API_KEY"):
-            try:
-                # Создаем клиент OpenAI для транскрипции
-                client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        # Создаем экземпляр Requests
+        requests_client = Requests()
+        
+        # Получаем транскрипцию аудио
+        transcript = requests_client.main(audio=temp_file_path)
+        
+        # Если транскрипция успешна и это строка
+        if transcript and isinstance(transcript, str) and len(transcript.strip()) > 0:
+            # Показываем пользователю результаты транскрипции
+            await message.bot.delete_message(message.chat.id, wait_message.message_id)
+            wait_message = await message.answer(
+                f"Текст из {file_type}: <i>{transcript}</i>\n\nФормирую ответ...",
+                parse_mode="HTML"
+            )
+            
+            # Объединяем подпись и транскрипцию
+            if caption:
+                user_text = f"{caption}\n\n{transcript}"
+            else:
+                user_text = transcript
                 
-                # Открываем файл для отправки в Whisper API
-                with open(temp_file_path, "rb") as audio_file:
-                    # Используем модель whisper для транскрипции
-                    transcript_response = client.audio.transcriptions.create(
-                        model="whisper-1", 
-                        file=audio_file
-                    )
-                
-                # Получаем текст транскрипции
-                transcript_text = transcript_response.text
-                
-                if transcript_text and len(transcript_text.strip()) > 0:
-                    # Если транскрипция успешна и нет подписи, используем транскрипцию
-                    if not caption:
-                        user_text = transcript_text
-                    else:
-                        # Если есть подпись, добавляем транскрипцию к ней
-                        user_text = f"{caption}\n\nТранскрипция аудио: {transcript_text}"
-                    
-                    logger.info(f"Аудио файл успешно транскрибирован: {transcript_text[:50]}...")
-                    
-                    # Отправим пользователю текст транскрипции
-                    await message.bot.delete_message(message.chat.id, wait_message.message_id)
-                    wait_message = await message.answer(
-                        f"Текст из аудио: \n<i>{transcript_text}</i>\n\nФормирую ответ...", 
-                        parse_mode="HTML"
-                    )
-                else:
-                    # Если транскрипция не удалась, используем подпись или общий текст
-                    user_text = caption if caption else "Проанализируй это аудио"
-                    logger.warning("Аудио файл не удалось транскрибировать - текст пустой")
-            except Exception as transcribe_error:
-                # Если произошла ошибка при транскрипции
-                logger.error(f"Ошибка при транскрипции аудио: {str(transcribe_error)}", exc_info=True)
-                user_text = caption if caption else "Помоги с моим вопросом"
+            # Отправляем запрос модели
+            response = requests_client.main(
+                request=user_text,
+                subject=section,
+                solution=solution
+            )
         else:
-            # Если API ключ не установлен
-            logger.warning("OPENAI_API_KEY не установлен - транскрипция невозможна")
-            user_text = caption if caption else "Помоги с моим вопросом"
+            # Если транскрипция не удалась, используем только подпись или сообщаем об ошибке
+            if caption:
+                response = requests_client.main(
+                    request=caption,
+                    subject=section,
+                    solution=solution
+                )
+            else:
+                response = f"Не удалось обработать {file_type}. Пожалуйста, добавьте текстовое описание или отправьте текстовый запрос."
 
         # Удаляем временный файл после использования
         if os.path.exists(temp_file_path):
             os.remove(temp_file_path)
-            
-        # Получаем ответ от модели (только с текстом, без аудио)
-        response = Requests().main(
-            request=user_text,
-            subject=section,
-            photo=None,
-            audio=None,
-            solution=solution
-        )
         
         await message.bot.delete_message(message.chat.id, wait_message.message_id)
         
@@ -317,109 +308,9 @@ async def audio_handler(message: Message, state: FSMContext):
             await message.answer(response, parse_mode="HTML", reply_markup=get_main_keyboard())
             
     except Exception as e:
-        logger.error(f"Error in audio handler: {str(e)}", exc_info=True)
+        logger.error(f"Error in audio/voice handler: {str(e)}", exc_info=True)
         await message.answer(
-            "Произошла ошибка при обработке аудио файла. Пожалуйста, попробуйте текстовый запрос.",
-            reply_markup=get_next_question_keyboard()
-        )
-
-@router.message(F.voice)
-async def voice_handler(message: Message, state: FSMContext):
-    """Обработчик для голосовых сообщений"""
-    try:
-        await message.bot.delete_message(message.chat.id, message.message_id - 1)
-        wait_message = await message.answer("Обрабатываю голосовое сообщение...", parse_mode="HTML")
-        
-        # Start typing status after wait message
-        await message.bot.send_chat_action(
-            chat_id=message.chat.id,
-            action="typing"
-        )
-        
-        current_state = await state.get_state()
-        state_data = await state.get_data()
-
-        # Если нет состояния, устанавливаем состояние chatgpt
-        if not current_state:
-            await state.set_state(Form.section)
-            await state.update_data(section="chatgpt")
-            state_data = await state.get_data()
-
-        section = state_data.get('section', 'chatgpt')
-        solution = state_data.get('solution')
-
-        # Скачиваем голосовое сообщение
-        file = await message.bot.get_file(message.voice.file_id)
-        file_path = file.file_path
-        temp_file_path = os.path.join("temp", f"temp_{message.voice.file_id}.oga")
-        os.makedirs(os.path.dirname(temp_file_path), exist_ok=True)
-        await message.bot.download_file(file_path, destination=temp_file_path)
-
-        # Отправляем на транскрипцию только если установлен OpenAI ключ API
-        if os.getenv("OPENAI_API_KEY"):
-            try:
-                # Создаем клиент OpenAI для транскрипции
-                client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-                
-                # Открываем файл для отправки в Whisper API
-                with open(temp_file_path, "rb") as audio_file:
-                    # Используем модель whisper для транскрипции
-                    transcript_response = client.audio.transcriptions.create(
-                        model="whisper-1", 
-                        file=audio_file
-                    )
-                
-                # Получаем текст транскрипции
-                transcript_text = transcript_response.text
-                
-                if transcript_text and len(transcript_text.strip()) > 0:
-                    # Если транскрипция успешна, используем её как текст запроса
-                    user_text = transcript_text
-                    logger.info(f"Голосовое сообщение успешно транскрибировано: {user_text[:50]}...")
-                    
-                    # Отправим пользователю текст транскрипции
-                    await message.bot.delete_message(message.chat.id, wait_message.message_id)
-                    wait_message = await message.answer(
-                        f"Ваше голосовое сообщение: \n<i>{user_text}</i>\n\nФормирую ответ...", 
-                        parse_mode="HTML"
-                    )
-                else:
-                    # Если транскрипция не удалась, используем общий текст
-                    user_text = "Помоги с моим вопросом"
-                    logger.warning("Голосовое сообщение не удалось транскрибировать - текст пустой")
-            except Exception as transcribe_error:
-                # Если произошла ошибка при транскрипции
-                logger.error(f"Ошибка при транскрипции: {str(transcribe_error)}", exc_info=True)
-                user_text = "Помоги с моим вопросом"
-        else:
-            # Если API ключ не установлен
-            logger.warning("OPENAI_API_KEY не установлен - транскрипция невозможна")
-            user_text = "Помоги с моим вопросом"
-
-        # Удаляем временный файл после использования
-        if os.path.exists(temp_file_path):
-            os.remove(temp_file_path)
-            
-        # Получаем ответ от модели (только с текстом, без аудио)
-        response = Requests().main(
-            request=user_text,
-            subject=section,
-            photo=None,
-            audio=None,
-            solution=solution
-        )
-        
-        await message.bot.delete_message(message.chat.id, wait_message.message_id)
-        
-        if section == "mathematics" or section == "physics" or section == "chemistry":
-            await message.answer(response, parse_mode="HTML", reply_markup=get_next_question_keyboard())
-        else:
-            await message.answer(response, parse_mode="HTML", reply_markup=get_main_keyboard())
-            
-    except Exception as e:
-        logger.error(f"Error in voice handler: {str(e)}", exc_info=True)
-        await message.answer(
-            "Произошла ошибка при обработке голосового сообщения. Пожалуйста, попробуйте текстовый запрос.",
+            "Произошла ошибка при обработке аудио. Пожалуйста, попробуйте текстовый запрос.",
             reply_markup=get_next_question_keyboard()
         )
 
@@ -466,33 +357,11 @@ async def photo_handler(message: Message, state: FSMContext):
         if os.path.exists(temp_file_path):
             os.remove(temp_file_path)
 
-        # Переменная для аудио-данных
-        audio_data = None
-        
-        # Проверяем наличие аудио в сообщении (для будущей совместимости с media groups)
-        if hasattr(message, 'audio') and message.audio:
-            # Скачиваем аудиофайл 
-            audio_file = await message.bot.get_file(message.audio.file_id)
-            audio_file_path = audio_file.file_path
-            audio_temp_path = os.path.join("temp", f"temp_{message.audio.file_id}.ogg") 
-            await message.bot.download_file(audio_file_path, destination=audio_temp_path)
-            
-            # Конвертируем аудио в base64
-            with open(audio_temp_path, "rb") as audio_file:
-                audio_data = f"data:audio/ogg;base64,{base64.b64encode(audio_file.read()).decode('utf-8')}"
-                
-            # Удаляем временный аудио-файл
-            if os.path.exists(audio_temp_path):
-                os.remove(audio_temp_path)
-
-        # Используем подпись к фото или пустую строку, если её нет
-        user_text = message.caption or ""
-            
         response = Requests().main(
             request=user_text,
             subject=section,
             photo=image_data,
-            audio=audio_data,
+            audio=None,
             solution=solution
         )
         await message.bot.delete_message(message.chat.id, wait_message.message_id)
@@ -506,85 +375,7 @@ async def photo_handler(message: Message, state: FSMContext):
             "Произошла ошибка при обработке запроса. Пожалуйста, попробуйте еще раз.",
             reply_markup=get_next_question_keyboard()
         )
-
-
-#gpt обработка
-@router.message(StateFilter(Form.section))
-async def other_message_handler(message: Message, state: FSMContext):
-    """Обработчик для всех остальных текстовых сообщений"""
-    try:
-        # Отправляем сообщение о ожидании
-        wait_message = await message.answer(os.getenv("Wait_text"), parse_mode="HTML")
         
-        # Получаем данные из состояния
-        state_data = await state.get_data()
-        section = state_data.get('section')
-        solution = state_data.get('solution')
-        
-        await message.bot.send_chat_action(
-                chat_id=message.chat.id,
-                action="typing"
-        )
-
-        # Создаем экземпляр класса Requests
-        requests = Requests()
-        
-        # Получаем ответ от модели
-        response = requests.main(
-            request=message.text,
-            subject=section,
-            photo=None,
-            audio=None,
-            solution=solution
-        )
-        
-        # Удаляем сообщение об ожидании
-        await message.bot.delete_message(message.chat.id, wait_message.message_id)
-        
-        # Проверяем тип ответа
-        if isinstance(response, tuple) and len(response) == 2:
-            # Это график
-            image_buffer, caption = response
-            
-            # Создаем временный файл для сохранения изображения
-            with tempfile.NamedTemporaryFile(suffix='.png', delete=False) as temp_file:
-                try:
-                    # Записываем содержимое буфера во временный файл
-                    image_buffer.seek(0)
-                    temp_file.write(image_buffer.read())
-                    temp_file.close()  # Закрываем файл перед использованием
-                    
-                    # Создаем FSInputFile из временного файла
-                    image = FSInputFile(temp_file.name)
-                    
-                    # Отправляем изображение с подписью
-                    await message.answer_photo(
-                        photo=image,
-                        caption=caption,
-                        reply_markup=get_next_question_keyboard()
-                    )
-                    
-                    # Сбрасываем флаг после отправки графика
-                    await state.update_data(is_graph_mode=False)
-                finally:
-                    # Удаляем временный файл после использования
-                    if os.path.exists(temp_file.name):
-                        os.unlink(temp_file.name)
-        else:
-            # Это текстовый ответ
-            if section == "mathematics" or section == "physics" or section == "chemistry":
-                await message.answer(response, parse_mode="HTML", reply_markup=get_next_question_keyboard())
-            else:
-                await message.answer(response, parse_mode="HTML", reply_markup=get_main_keyboard())
-            # Сбрасываем флаг если это не график
-            await state.update_data(is_graph_mode=False)
-
-    except Exception as e:
-        logger.error(f"Error in messages: {str(e)}")
-        await message.answer(
-            "Произошла ошибка при обработке запроса. Пожалуйста, попробуйте еще раз.",
-            reply_markup=get_next_question_keyboard()
-        )
 
 @router.message()
 async def fallback_message_handler(message: Message, state: FSMContext):

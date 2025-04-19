@@ -27,6 +27,46 @@ class Requests:
         self.client = openai.OpenAI()
         self.format = Format()
     
+    def _transcribe_audio(self, audio_file_path: str) -> str:
+        """
+        Транскрибирует аудио файл с помощью OpenAI Whisper API
+        
+        Args:
+            audio_file_path (str): Путь к аудио файлу
+            
+        Returns:
+            str: Транскрипция аудио или пустая строка в случае ошибки
+        """
+        try:
+            logger.info(f"Отправка аудио на транскрипцию: {audio_file_path}")
+            
+            # Проверяем существование файла
+            if not os.path.exists(audio_file_path):
+                logger.error(f"Аудио файл не найден: {audio_file_path}")
+                return ""
+                
+            # Открываем файл для отправки в Whisper API
+            with open(audio_file_path, "rb") as audio_file:
+                # Используем модель whisper для транскрипции
+                transcript_response = self.client.audio.transcriptions.create(
+                    model="whisper-1", 
+                    file=audio_file
+                )
+            
+            # Получаем текст транскрипции
+            transcript_text = transcript_response.text
+            
+            if transcript_text and len(transcript_text.strip()) > 0:
+                logger.info(f"Аудио успешно транскрибировано: {transcript_text[:100]}...")
+                return transcript_text
+            else:
+                logger.warning("Аудио файл транскрибирован, но текст пустой")
+                return ""
+                
+        except Exception as e:
+            logger.error(f"Ошибка при транскрипции аудио: {str(e)}", exc_info=True)
+            return ""
+    
     def _get_response(self, prompt, image_data=None, audio_data=None):
         """
         Отправляет запрос к OpenAI API
@@ -94,7 +134,7 @@ class Requests:
                 return self._get_response(prompt, image_data=image_data)
             raise
     
-    def main(self, request: str, subject: str, photo=None, audio=None, solution: str = None) -> Union[str, Tuple[BinaryIO, str]]:
+    def main(self, request: str = None, subject: str = None, photo=None, audio=None, solution: str = None) -> Union[str, Tuple[BinaryIO, str]]:
         """
         Основной метод для обработки запросов по различным предметам
         
@@ -102,16 +142,41 @@ class Requests:
             request (str): Запрос пользователя
             subject (str): Предмет (physics, chemistry, math)
             photo: Данные изображения в формате base64 или None
-            audio: Данные аудио в формате base64 или None
+            audio: Путь к аудио файлу или данные аудио в формате base64
             solution (str): Тип решения (например, "graph" для построения графика)
             
         Returns:
             Union[str, Tuple[BinaryIO, str]]: Отформатированный ответ для Telegram или кортеж (изображение, подпись)
         """
         try:
+            # Сначала проверяем, не является ли это запросом только с аудио 
+            # для транскрипции без других параметров
+            if audio and not subject and not photo and not request:
+                # Это запрос только на транскрипцию аудио
+                transcript = self._transcribe_audio(audio)
+                if transcript:
+                    return transcript
+                else:
+                    return "Не удалось расшифровать аудиозапись. Пожалуйста, убедитесь, что запись содержит речь на понятном языке."
+            
+            # Если есть аудио и это файл, то сначала транскрибируем его
+            if audio and isinstance(audio, str) and os.path.exists(audio):
+                transcript = self._transcribe_audio(audio)
+                if transcript:
+                    # Если это первый запрос и транскрипция получена, возвращаем ее напрямую
+                    if not request:
+                        return transcript
+                    # Если есть запрос, добавляем транскрипцию к запросу
+                    request = f"{request}\n\nТранскрипция аудио: {transcript}"
+                    logger.info(f"Добавлена транскрипция аудио к запросу: {transcript[:50]}...")
+            
             # Проверка на пустой запрос
             if not request:
                 request = "Помоги мне с этим заданием."
+                
+            # Если предмет не указан, используем chatgpt по умолчанию
+            if not subject:
+                subject = 'chatgpt'
                 
             has_media = photo is not None or audio is not None
             logger.info(f"Обработка запроса. Предмет: {subject}, Решение: {solution}, Фото: {'Да' if photo else 'Нет'}, Аудио: {'Да' if audio else 'Нет'}")
@@ -145,15 +210,11 @@ class Requests:
             else:
                 return "Неподдерживаемый предмет"
 
-            # Если есть аудио данные, добавим специальный текст для лучшей обработки
-            if audio and not request:
-                request = "Вот аудиозапись. Пожалуйста, проанализируй её содержание и ответь на вопросы в ней."
-
-            prompt = f"{query}\n{request}"
+            prompt = f"{query}\n{request}" if query else request
             # Получаем ответ от модели
             logger.info(f"Финальный запрос: {prompt[:100]}...")
             
-            # Временное решение: игнорируем аудио, пока API не поддерживает его напрямую
+            # Отправляем запрос только с изображением, аудио уже обработано отдельно
             response = self._get_response(prompt, image_data=photo, audio_data=None)
             
             # Форматируем ответ для Telegram, преобразуя LaTeX и другие специальные символы

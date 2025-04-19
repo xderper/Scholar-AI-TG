@@ -346,3 +346,17 @@ aiogram.utils.token.TokenValidationError: Token is invalid! It must be 'str' typ
 2025-04-20 00:23:52 - bot - INFO - Бот запущен
 2025-04-20 00:24:37 - bot.handlers.messages - INFO - Голосовое сообщение успешно транскрибировано: Метоз — это непрямое деление клетки, наиболее расп...
 2025-04-20 00:26:00 - bot - INFO - Бот запущен
+2025-04-20 00:34:34 - bot - INFO - Бот запущен
+2025-04-20 00:34:36 - bot.handlers.messages - ERROR - Error in messages: Telegram server says - Bad Request: message to delete not found
+2025-04-20 00:35:07 - bot - INFO - Бот запущен
+2025-04-20 00:35:49 - bot - INFO - Бот запущен
+2025-04-20 00:36:17 - bot - INFO - Бот запущен
+2025-04-20 00:36:20 - bot - INFO - Бот запущен
+2025-04-20 00:37:26 - bot - INFO - Бот запущен
+2025-04-20 00:37:31 - bot - INFO - Бот запущен
+2025-04-20 00:37:36 - bot - INFO - Бот запущен
+2025-04-20 00:38:22 - bot - INFO - Бот запущен
+2025-04-20 00:39:11 - bot - INFO - Бот запущен
+2025-04-20 00:40:46 - bot - INFO - Бот запущен
+2025-04-20 00:40:51 - bot - INFO - Бот запущен
+2025-04-20 00:41:24 - bot - INFO - Бот запущен
