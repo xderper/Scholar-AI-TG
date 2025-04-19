@@ -193,13 +193,6 @@ async def next_question_button_handler(message: Message, state: FSMContext):
         elif current_section == 'chemistry':
             text = os.getenv("Chemistry_answer_text") or "Задайте свой вопрос по химии"
             next_section = 'chemistry'
-        elif current_section == 'chatgpt':
-            text = os.getenv("ChatGPT_answer_text") or "Задайте свой вопрос"
-            next_section = 'chatgpt'
-        else:
-            text = os.getenv("ChatGPT_answer_text") or "Задайте свой вопрос"
-            next_section = 'chatgpt'
-            
         # Проверяем, что text не None перед отправкой
         if not text:
             text = "Пожалуйста, задайте свой вопрос"
@@ -269,7 +262,10 @@ async def photo_handler(message: Message, state: FSMContext):
             solution=state_data.get('solution')
         )
         await message.bot.delete_message(message.chat.id, wait_message.message_id)
-        await message.answer(response, parse_mode="HTML", reply_markup=get_next_question_keyboard())
+        if state_data.get('section', 'chatgpt') == "mathematics" or state_data.get('section', 'chatgpt') == "physics" or state_data.get('section', 'chatgpt') == "chemistry":
+            await message.answer(response, parse_mode="HTML", reply_markup=get_next_question_keyboard())
+        else:
+                await message.answer(response, parse_mode="HTML", reply_markup=get_main_keyboard())
     except Exception as e:
         logger.error(f"Error in photo handler: {str(e)}", exc_info=True)
         await message.answer(
@@ -340,7 +336,10 @@ async def other_message_handler(message: Message, state: FSMContext):
                         os.unlink(temp_file.name)
         else:
             # Это текстовый ответ
-            await message.answer(response, parse_mode="HTML", reply_markup=get_next_question_keyboard())
+            if section == "mathematics" or section == "physics" or section == "chemistry":
+                await message.answer(response, parse_mode="HTML", reply_markup=get_next_question_keyboard())
+            else:
+                await message.answer(response, parse_mode="HTML", reply_markup=get_main_keyboard())
             # Сбрасываем флаг если это не график
             await state.update_data(is_graph_mode=False)
 
@@ -351,83 +350,3 @@ async def other_message_handler(message: Message, state: FSMContext):
             reply_markup=get_next_question_keyboard()
         )
 
-# Add this at the end of the file, after all other handlers
-@router.message()
-async def fallback_message_handler(message: Message, state: FSMContext):
-    """Обработчик для всех остальных сообщений, которые не обработаны другими хэндлерами"""
-    try:
-        # Проверяем текущее состояние
-        current_state = await state.get_state()
-        
-        # Если состояние не установлено, устанавливаем его на chatgpt
-        if not current_state:
-            await state.set_state(Form.section)
-            await state.update_data(section="chatgpt")
-            
-            # Отправляем сообщение о том, что бот готов обрабатывать запросы
-            wait_message = await message.answer(
-                "Я готов помочь! Обрабатываю ваш запрос...", 
-                parse_mode="HTML"
-            )
-        else:
-            wait_message = await message.answer(os.getenv("Wait_text"), parse_mode="HTML")
-            
-        await message.bot.send_chat_action(
-                chat_id=message.chat.id,
-                action="typing"
-        )
-        
-        # Получаем данные из состояния
-        state_data = await state.get_data()
-        section = state_data.get('section', 'chatgpt')  # По умолчанию используем chatgpt
-        solution = state_data.get('solution')
-        
-        # Создаем экземпляр класса Requests
-        requests = Requests()
-        
-        # Получаем ответ от модели
-        response = requests.main(
-            request=message.text,
-            subject=section,
-            solution=solution
-        )
-        
-        # Удаляем сообщение об ожидании
-        await message.bot.delete_message(message.chat.id, wait_message.message_id)
-        
-        # Проверяем тип ответа
-        if isinstance(response, tuple) and len(response) == 2:
-            # Это график
-            image_buffer, caption = response
-            
-            # Создаем временный файл для сохранения изображения
-            with tempfile.NamedTemporaryFile(suffix='.png', delete=False) as temp_file:
-                try:
-                    # Записываем содержимое буфера во временный файл
-                    image_buffer.seek(0)
-                    temp_file.write(image_buffer.read())
-                    temp_file.close()  # Закрываем файл перед использованием
-                    
-                    # Создаем FSInputFile из временного файла
-                    image = FSInputFile(temp_file.name)
-                    
-                    # Отправляем изображение с подписью
-                    await message.answer_photo(
-                        photo=image,
-                        caption=caption,
-                        reply_markup=get_next_question_keyboard()
-                    )
-                finally:
-                    # Удаляем временный файл после использования
-                    if os.path.exists(temp_file.name):
-                        os.unlink(temp_file.name)
-        else:
-            # Это текстовый ответ
-            await message.answer(response, parse_mode="HTML", reply_markup=get_next_question_keyboard())
-            
-    except Exception as e:
-        logger.error(f"Error in fallback handler: {str(e)}", exc_info=True)
-        await message.answer(
-            "Произошла ошибка при обработке запроса. Пожалуйста, попробуйте еще раз.",
-            reply_markup=get_main_keyboard()
-        )
