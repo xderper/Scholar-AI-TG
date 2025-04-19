@@ -1,4 +1,6 @@
 import re
+import html
+
 class Format:
 
     def replace_subscript(self, text):
@@ -53,6 +55,19 @@ class Format:
         pattern = r'\{\{(.*?)\}\}'
         return re.sub(pattern, subscript, text)
 
+    def safe_html_code(self, code_content):
+        """
+        Безопасно обрабатывает содержимое блока кода, экранируя HTML-теги
+        
+        Args:
+            code_content (str): Содержимое блока кода
+            
+        Returns:
+            str: Безопасное содержимое с экранированными HTML-тегами
+        """
+        # Экранируем HTML-теги, заменяя < на &lt; и > на &gt;
+        return html.escape(code_content)
+
     def format_response_for_telegram(self, text):
         """
         Форматирует текст для лучшего отображения в Telegram
@@ -74,8 +89,26 @@ class Format:
             text = text.replace("\\textbf", "")
             text = text.replace("\\textit", "")
             
-
-
+            # Форматирование ### заголовков в жирный шрифт
+            text = re.sub(r'###\s*(.*?)($|\n)', r'<b>\1</b>\2', text)
+            
+            # Замена блоков кода с тройными обратными кавычками на HTML теги
+            # С экранированием HTML-тегов внутри кода
+            
+            # Функция для обработки и экранирования кода
+            def replace_code_block(match):
+                lang = match.group(1) if len(match.groups()) > 1 else ""
+                code = match.group(2) if len(match.groups()) > 1 else match.group(1)
+                # Экранируем HTML в коде
+                safe_code = self.safe_html_code(code)
+                return f"<pre><code>{safe_code}</code></pre>"
+            
+            # Блоки кода с указанием языка
+            text = re.sub(r'```([a-zA-Z0-9]*)\n(.*?)\n```', replace_code_block, text, flags=re.DOTALL)
+            # Блоки кода без указания языка
+            text = re.sub(r'```\n(.*?)\n```', replace_code_block, text, flags=re.DOTALL)
+            # Однострочные блоки кода
+            text = re.sub(r'```(.*?)```', replace_code_block, text, flags=re.DOTALL)
             
             text = text.replace("\\sqrt", "√")
             text = text.replace("\\theta", "θ")
@@ -110,6 +143,7 @@ class Format:
             text = text.replace("\\geq", "≥")
             text = text.replace("\\leq", "≤")
             text = text.replace("\\neq", "≠")
+
             
             # Physics notation
             text = text.replace('⇒', '⇒')

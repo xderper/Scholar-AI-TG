@@ -254,20 +254,28 @@ async def photo_handler(message: Message, state: FSMContext):
         if os.path.exists(temp_file_path):
             os.remove(temp_file_path)
 
+        # Используем подпись к фото или пустую строку, если её нет
+        user_text = message.caption or ""
+        
+        # Если нет текста и нет состояния, устанавливаем состояние chatgpt
+        if not current_state:
+            await state.set_state(Form.section)
+            await state.update_data(section="chatgpt")
+            
         response = Requests().main(
-            request=image_data,
-            subject=state_data.get('section'),
-            photo=True,
+            request=user_text,
+            subject=state_data.get('section', 'chatgpt'),
+            photo=image_data,
             solution=state_data.get('solution')
         )
         await message.bot.delete_message(message.chat.id, wait_message.message_id)
         await message.answer(response, parse_mode="HTML", reply_markup=get_next_question_keyboard())
     except Exception as e:
+        logger.error(f"Error in photo handler: {str(e)}", exc_info=True)
         await message.answer(
             "Произошла ошибка при обработке запроса. Пожалуйста, попробуйте еще раз.",
             reply_markup=get_next_question_keyboard()
         )
-        logger.error(f"Error in messages: {str(e)}")
 
 
 #gpt обработка
@@ -341,4 +349,85 @@ async def other_message_handler(message: Message, state: FSMContext):
         await message.answer(
             "Произошла ошибка при обработке запроса. Пожалуйста, попробуйте еще раз.",
             reply_markup=get_next_question_keyboard()
+        )
+
+# Add this at the end of the file, after all other handlers
+@router.message()
+async def fallback_message_handler(message: Message, state: FSMContext):
+    """Обработчик для всех остальных сообщений, которые не обработаны другими хэндлерами"""
+    try:
+        # Проверяем текущее состояние
+        current_state = await state.get_state()
+        
+        # Если состояние не установлено, устанавливаем его на chatgpt
+        if not current_state:
+            await state.set_state(Form.section)
+            await state.update_data(section="chatgpt")
+            
+            # Отправляем сообщение о том, что бот готов обрабатывать запросы
+            wait_message = await message.answer(
+                "Я готов помочь! Обрабатываю ваш запрос...", 
+                parse_mode="HTML"
+            )
+        else:
+            wait_message = await message.answer(os.getenv("Wait_text"), parse_mode="HTML")
+            
+        await message.bot.send_chat_action(
+                chat_id=message.chat.id,
+                action="typing"
+        )
+        
+        # Получаем данные из состояния
+        state_data = await state.get_data()
+        section = state_data.get('section', 'chatgpt')  # По умолчанию используем chatgpt
+        solution = state_data.get('solution')
+        
+        # Создаем экземпляр класса Requests
+        requests = Requests()
+        
+        # Получаем ответ от модели
+        response = requests.main(
+            request=message.text,
+            subject=section,
+            solution=solution
+        )
+        
+        # Удаляем сообщение об ожидании
+        await message.bot.delete_message(message.chat.id, wait_message.message_id)
+        
+        # Проверяем тип ответа
+        if isinstance(response, tuple) and len(response) == 2:
+            # Это график
+            image_buffer, caption = response
+            
+            # Создаем временный файл для сохранения изображения
+            with tempfile.NamedTemporaryFile(suffix='.png', delete=False) as temp_file:
+                try:
+                    # Записываем содержимое буфера во временный файл
+                    image_buffer.seek(0)
+                    temp_file.write(image_buffer.read())
+                    temp_file.close()  # Закрываем файл перед использованием
+                    
+                    # Создаем FSInputFile из временного файла
+                    image = FSInputFile(temp_file.name)
+                    
+                    # Отправляем изображение с подписью
+                    await message.answer_photo(
+                        photo=image,
+                        caption=caption,
+                        reply_markup=get_next_question_keyboard()
+                    )
+                finally:
+                    # Удаляем временный файл после использования
+                    if os.path.exists(temp_file.name):
+                        os.unlink(temp_file.name)
+        else:
+            # Это текстовый ответ
+            await message.answer(response, parse_mode="HTML", reply_markup=get_next_question_keyboard())
+            
+    except Exception as e:
+        logger.error(f"Error in fallback handler: {str(e)}", exc_info=True)
+        await message.answer(
+            "Произошла ошибка при обработке запроса. Пожалуйста, попробуйте еще раз.",
+            reply_markup=get_main_keyboard()
         )
