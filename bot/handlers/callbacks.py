@@ -4,8 +4,10 @@ from aiogram.fsm.context import FSMContext
 from bot.keyboards.reply import get_main_keyboard
 from bot.keyboards.inline import get_subscription_keyboard
 import os
+
 from bot.utils.utils import check_subscription
 from dotenv import load_dotenv
+
 
 # Загружаем переменные окружения
 load_dotenv()
@@ -21,15 +23,15 @@ async def check_subscription_callback(callback: CallbackQuery, state: FSMContext
             text = os.getenv("Start_text")
             await callback.message.answer(text, reply_markup=get_main_keyboard(), parse_mode="HTML")
             await callback.message.delete()
+            # await callback.answer("Подписка подтверждена!")
         else:
+            subscribe_text = os.getenv("Subscribe_text")
             await callback.message.answer(
-                os.getenv("Subscribe_text"),
+                subscribe_text,
                 reply_markup=get_subscription_keyboard(),
                 parse_mode="HTML"
             )
+            # await callback.answer("Подписка не найдена. Пожалуйста, подпишитесь на канал.")
     except Exception as e:
-        logger.error(f"Error in callbacks: {str(e)}")
-        await callback.message.answer(
-            "Произошла ошибка при проверке подписки. Попробуйте позже.",
-            reply_markup=get_subscription_keyboard()
-        )
+        print(f"Ошибка при проверке подписки: {str(e)}")
+        await callback.answer("Произошла ошибка при проверке подписки.")

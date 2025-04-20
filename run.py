@@ -7,6 +7,7 @@ from aiogram.fsm.storage.memory import MemoryStorage
 from bot.config.config import BOT_TOKEN
 from bot.utils.logger import setup_logger
 from bot.handlers import commands, messages, callbacks
+from bot.middlewares.subscription import SubscriptionMiddleware
 
 # Настройка логгера
 logger = setup_logger(name="bot", level=logging.INFO)
@@ -17,6 +18,11 @@ async def main():
     bot = Bot(token=BOT_TOKEN)
     storage = MemoryStorage()
     dp = Dispatcher(storage=storage)
+    
+    # Регистрация middleware для всех типов обновлений
+    dp.message.middleware(SubscriptionMiddleware())
+    dp.callback_query.middleware(SubscriptionMiddleware())
+    dp.edited_message.middleware(SubscriptionMiddleware())
     
     # Регистрация роутеров
     dp.include_router(commands.router)

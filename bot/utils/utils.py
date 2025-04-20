@@ -1,12 +1,32 @@
+from aiogram import Router
+from aiogram.types import Message, CallbackQuery
+from aiogram.fsm.context import FSMContext
+from bot.keyboards.reply import get_main_keyboard
+from bot.keyboards.inline import get_subscription_keyboard
 import os
-async def check_subscription(user_id: int, bot):
-    """Проверка подписки пользователя на канал"""
+
+
+async def check_subscription(user_id: int, bot) -> bool:
+    """
+    Проверяет подписку пользователя на канал.
+    
+    Args:
+        user_id (int): ID пользователя для проверки
+        bot: Экземпляр бота для выполнения запроса
+        
+    Returns:
+        bool: True если пользователь подписан, False если нет
+    """
     try:
-        CHANNEL_ID = os.getenv("CHANNEL_ID")
-        if not CHANNEL_ID:
+        # Получаем ID канала из переменных окружения
+
+        channel_id = os.getenv("CHANNEL_ID")
+        member = await bot.get_chat_member(chat_id=channel_id, user_id=user_id)
+        if member.status in ['member', 'administrator', 'creator']:
+            return True
+        else:
             return False
-        member = await bot.get_chat_member(CHANNEL_ID, user_id)
-        return member.status in ['member', 'administrator', 'creator']
+
     except Exception as e:
-        logger.error(f"Error in utils: {str(e)}")
+        print(e)
         return False
