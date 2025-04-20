@@ -33,7 +33,8 @@ async def cmd_help(message: Message):
         if not await check_subscription(message.from_user.id, message.bot):
             await message.answer(
                 os.getenv("Subscribe_text"),
-                reply_markup=get_subscription_keyboard()
+                reply_markup=get_subscription_keyboard(),
+                parse_mode="HTML"
             )
             return
         await message.answer(os.getenv("Help_text"), reply_markup=get_main_keyboard(), parse_mode="HTML")
