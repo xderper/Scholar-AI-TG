@@ -49,4 +49,9 @@ def get_next_question_keyboard():
         input_field_placeholder="Выберите действие..."
 
     )   
-
+def get_abstract_keyboard() -> ReplyKeyboardMarkup:
+    """Создает клавиатуру для раздела конспектов"""
+    keyboard = [
+        [KeyboardButton(text="➡️ Далее к задачам")],
+    ]
+    return ReplyKeyboardMarkup(keyboard=keyboard, resize_keyboard=True)

@@ -7,7 +7,7 @@ import os
 import logging
 from dotenv import load_dotenv
 
-from bot.keyboards.reply import get_main_keyboard, get_next_question_keyboard, get_math_submenu_keyboard
+from bot.keyboards.reply import get_main_keyboard, get_next_question_keyboard, get_math_submenu_keyboard, get_abstract_keyboard
 from bot.utils.states import Form
 from requests import Requests
 import base64
@@ -181,7 +181,7 @@ async def question_button_handler(message: Message, state: FSMContext):
         logger.error(f"Error in messages: {str(e)}")
         await message.answer("Произошла ошибка при обработке запроса", reply_markup=get_main_keyboard())
 
-@router.message(F.text == "➡️ Следующая задача")
+@router.message(F.text.in_(["➡️ Следующая задача", "➡️ Далее к задачам"]))
 async def next_question_button_handler(message: Message, state: FSMContext):
     try:
         state_data = await state.get_data()
@@ -197,6 +197,12 @@ async def next_question_button_handler(message: Message, state: FSMContext):
         elif current_section == 'chemistry':
             text = os.getenv("Chemistry_answer_text") or "Задайте свой вопрос по химии"
             next_section = 'chemistry'
+        elif current_section == 'abstract':
+            # Для раздела конспектов возвращаемся к главному меню
+            await state.set_state(None)
+            await message.answer("Выберите раздел:", reply_markup=get_main_keyboard())
+            await message.delete()
+            return
         # Проверяем, что text не None перед отправкой
         if not text:
             text = "Пожалуйста, задайте свой вопрос"
@@ -318,7 +324,14 @@ async def audio_voice_handler(message: Message, state: FSMContext):
 async def photo_handler(message: Message, state: FSMContext):
     """Обработчик для фотографий"""
     try:
-        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        # Не удаляем сообщение, если это фото
+        try:
+            # Получаем предыдущее сообщение
+            prev_message = await message.chat.get_messages(limit=2)
+            if len(prev_message) > 1 and not prev_message[1].photo:
+                await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        except Exception as e:
+            logger.error(f"Ошибка при поиске и удалении сообщения {str(e)}")
         wait_message = await message.answer(os.getenv("Wait_text"), parse_mode="HTML")
         
         # Start typing status after wait message
@@ -370,6 +383,8 @@ async def photo_handler(message: Message, state: FSMContext):
         await message.bot.delete_message(message.chat.id, wait_message.message_id)
         if section == "mathematics" or section == "physics" or section == "chemistry":
             await message.answer(response, parse_mode="HTML", reply_markup=get_next_question_keyboard())
+        elif section == "abstract":
+            await message.answer(response, parse_mode="HTML", reply_markup=get_abstract_keyboard())
         else:
             await message.answer(response, parse_mode="HTML", reply_markup=get_main_keyboard())
     except Exception as e:
@@ -453,7 +468,10 @@ async def fallback_message_handler(message: Message, state: FSMContext):
                         os.unlink(temp_file.name)
         else:
             # Это текстовый ответ
-            if section == "mathematics" or section == "physics" or section == "chemistry":
+            if section in ["mathematics", "physics", "chemistry"]:
+                # Обновляем состояние для отображения клавиатуры следующего вопроса
+                await state.set_state(Form.section)
+                await state.update_data(section=section)
                 await message.answer(response, parse_mode="HTML", reply_markup=get_next_question_keyboard())
             else:
                 await message.answer(response, parse_mode="HTML", reply_markup=get_main_keyboard())

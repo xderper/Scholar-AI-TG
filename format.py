@@ -217,7 +217,14 @@ class Format:
             # Замена стрелок
             text = text.replace("\\Rightarrow", "⇒")
             text = text.replace("Rightarrow", "⇒")
-
+           # Замена математических множеств и символов
+            text = text.replace("\\mathbb{Z}", "ℤ")
+            text = text.replace("\\mathbb{R}", "ℝ")
+            text = text.replace("\\mathbb{N}", "ℕ")
+            text = text.replace("\\mathbb{Q}", "ℚ")
+            text = text.replace("\\in", "∈")
+            text = text.replace("\\pi", "π")
+            text = text.replace("\\sum", "∑")
             return text
             
         except Exception as e:
