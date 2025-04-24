@@ -190,6 +190,14 @@ async def question_button_handler(message: Message, state: FSMContext):
 @router.message(F.text.in_(["➡️ Следующая задача", "➡️ Далее к задачам"]))
 async def next_question_button_handler(message: Message, state: FSMContext):
     try:
+        # Проверяем, существует ли состояние
+        current_state = await state.get_state()
+        if not current_state:
+            # Если состояния нет, возвращаем пользователя в главное меню
+            feedback_message = await message.answer("📚 Был ли вам полезен данный ответ?", reply_markup=get_feedback_keyboard())
+            await message.delete()
+            return
+
         state_data = await state.get_data()
         current_section = state_data.get('section')  # получаем текущую секцию из state_data
         
@@ -197,12 +205,27 @@ async def next_question_button_handler(message: Message, state: FSMContext):
         if current_section == 'physics':
             text = os.getenv("Physic_answer_text") or "Задайте свой вопрос по физике"
             next_section = 'physics'
+            # Добавляем обратную связь для физики
+            await state.clear()  # Полностью очищаем состояние
+            feedback_message = await message.answer("📕 Был ли вам полезен данный ответ?", reply_markup=get_feedback_keyboard())
+            await message.delete()
+            return
         elif current_section == 'mathematics':
             text = os.getenv("Mathematic_answer_text") or "Задайте свой вопрос по математике"
             next_section = 'mathematics'
+            # Добавляем обратную связь для математики
+            await state.clear()  # Полностью очищаем состояние
+            feedback_message = await message.answer("📊 Был ли вам полезен данный ответ?", reply_markup=get_feedback_keyboard())
+            await message.delete()
+            return
         elif current_section == 'chemistry':
             text = os.getenv("Chemistry_answer_text") or "Задайте свой вопрос по химии"
             next_section = 'chemistry'
+            # Добавляем обратную связь для химии
+            await state.clear()  # Полностью очищаем состояние
+            feedback_message = await message.answer("🧪 Был ли вам полезен данный ответ?", reply_markup=get_feedback_keyboard())
+            await message.delete()
+            return
         elif current_section == 'abstract':
             # Для раздела конспектов сбрасываем все состояния и показываем меню обратной связи
             await state.clear()  # Полностью очищаем состояние

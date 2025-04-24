@@ -543,3 +543,193 @@ NameError: name 'FEEDBACK_USER_ID_2' is not defined
 2025-04-24 18:54:16,346 - aiogram.dispatcher - INFO - Polling stopped
 2025-04-24 18:54:16,590 - aiogram.dispatcher - INFO - Polling stopped for bot @testbotsco_bot id=7270921212 - 'testbotsco'
 2025-04-24 18:54:16,591 - bot - INFO - Бот остановлен
+2025-04-24 19:02:04,339 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID: 7282535243
+2025-04-24 19:02:04,339 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID_2: 7858370854
+2025-04-24 19:02:06,001 - bot - INFO - Бот запущен
+2025-04-24 19:02:06,002 - aiogram.dispatcher - INFO - Start polling
+2025-04-24 19:02:06,195 - aiogram.dispatcher - INFO - Run polling for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 19:02:11,045 - aiogram.event - INFO - Update id=738720924 is handled. Duration 625 ms by bot id=7270921212
+2025-04-24 19:02:12,192 - aiogram.event - INFO - Update id=738720925 is handled. Duration 547 ms by bot id=7270921212
+2025-04-24 19:02:13,762 - aiogram.event - INFO - Update id=738720926 is handled. Duration 827 ms by bot id=7270921212
+2025-04-24 19:02:23,884 - requests - INFO - Обработка запроса. Предмет: mathematics, Решение: None, Фото: Нет, Аудио: Нет
+2025-04-24 19:02:23,884 - requests - INFO - Финальный запрос: Представь, что ты опытный и квалифицированный преподаватель математики, и тебе нужно решить задачу. ...
+2025-04-24 19:02:23,884 - requests - INFO - Отправка запроса к OpenAI. Текст: Представь, что ты опытный и квалифицированный преп...
+2025-04-24 19:02:27,080 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 19:02:27,083 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 548 символов
+2025-04-24 19:02:27,337 - aiogram.event - INFO - Update id=738720927 is handled. Duration 3780 ms by bot id=7270921212
+2025-04-24 19:02:43,454 - aiogram.event - INFO - Update id=738720928 is handled. Duration 343 ms by bot id=7270921212
+2025-04-24 19:02:46,023 - bot.handlers.messages - ERROR - Error in messages: cannot access local variable 'text' where it is not associated with a value
+2025-04-24 19:02:46,190 - aiogram.event - INFO - Update id=738720929 is handled. Duration 219 ms by bot id=7270921212
+2025-04-24 19:03:35,419 - bot.keyboards.inline - INFO - Нажата кнопка 'нет' в меню обратной связи
+2025-04-24 19:03:35,419 - bot.keyboards.inline - INFO - Предыдущие состояния сброшены
+2025-04-24 19:03:35,420 - bot.keyboards.inline - INFO - Установлено состояние feedback_message и секция feedback
+2025-04-24 19:03:35,929 - bot.keyboards.inline - INFO - Запрос на отзыв отправлен пользователю
+2025-04-24 19:03:35,930 - aiogram.event - INFO - Update id=738720930 is handled. Duration 688 ms by bot id=7270921212
+2025-04-24 19:03:39,043 - bot.keyboards.inline - INFO - Получено сообщение обратной связи: то
+2025-04-24 19:03:39,044 - bot.keyboards.inline - INFO - Текущее состояние: {'section': 'feedback'}
+2025-04-24 19:03:39,045 - bot.keyboards.inline - INFO - Попытка отправить сообщение пользователю с ID: 7282535243
+2025-04-24 19:03:39,045 - bot.keyboards.inline - INFO - Попытка отправить сообщение пользователю с ID: 7858370854
+2025-04-24 19:03:39,046 - bot.keyboards.inline - INFO - Преобразованное ID пользователя: 7282535243
+2025-04-24 19:03:39,047 - bot.keyboards.inline - INFO - Преобразованное ID пользователя: 7858370854
+2025-04-24 19:03:39,239 - bot.keyboards.inline - INFO - Чат найден: id=7282535243 type='private' title=None username='StSindJ' first_name='drkshdw' last_name=None is_forum=None photo=None active_usernames=['StSindJ'] emoji_status_custom_emoji_id=None emoji_status_expiration_date=None bio=None has_private_forwards=None has_restricted_voice_and_video_messages=None join_to_send_messages=None join_by_request=None description=None invite_link=None pinned_message=None permissions=None slow_mode_delay=None message_auto_delete_time=None has_aggressive_anti_spam_enabled=None has_hidden_members=None has_protected_content=None sticker_set_name=None can_set_sticker_set=None linked_chat_id=None location=None can_send_gift=True accepted_gift_types={'unlimited_gifts': True, 'limited_gifts': True, 'unique_gifts': True, 'premium_subscription': True} max_reaction_count=11 accent_color_id=4
+2025-04-24 19:03:39,433 - bot.keyboards.inline - INFO - Сообщение успешно отправлено в первый чат
+2025-04-24 19:03:39,633 - bot.keyboards.inline - INFO - Чат найден: id=7858370854 type='private' title=None username='d1rective' first_name=')' last_name=None is_forum=None photo=ChatPhoto(small_file_id='AQADAgAE9TEb26NBSAAIAgADJjll1AEAAxYInRWuZzueNgQ', small_file_unique_id='AQAE9TEb26NBSAAB', big_file_id='AQADAgAE9TEb26NBSAAIAwADJjll1AEAAxYInRWuZzueNgQ', big_file_unique_id='AQAE9TEb26NBSAE') active_usernames=['d1rective'] emoji_status_custom_emoji_id=None emoji_status_expiration_date=None bio='Web FullStack (Next Js + Nest Js + MongoDB)' has_private_forwards=None has_restricted_voice_and_video_messages=None join_to_send_messages=None join_by_request=None description=None invite_link=None pinned_message=None permissions=None slow_mode_delay=None message_auto_delete_time=None has_aggressive_anti_spam_enabled=None has_hidden_members=None has_protected_content=None sticker_set_name=None can_set_sticker_set=None linked_chat_id=None location=None can_send_gift=True accepted_gift_types={'unlimited_gifts': True, 'limited_gifts': True, 'unique_gifts': True, 'premium_subscription': True} max_reaction_count=11 accent_color_id=5
+2025-04-24 19:03:39,805 - bot.keyboards.inline - INFO - Сообщение успешно отправлено во второй чат
+2025-04-24 19:03:39,937 - bot.keyboards.inline - INFO - Состояние сброшено
+2025-04-24 19:03:39,938 - aiogram.event - INFO - Update id=738720931 is handled. Duration 953 ms by bot id=7270921212
+2025-04-24 19:05:16,900 - aiogram.dispatcher - INFO - Polling stopped
+2025-04-24 19:05:17,164 - aiogram.dispatcher - INFO - Polling stopped for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 19:05:17,165 - bot - INFO - Бот остановлен
+2025-04-24 19:05:21,151 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID: 7282535243
+2025-04-24 19:05:21,152 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID_2: 7858370854
+2025-04-24 19:05:22,764 - bot - INFO - Бот запущен
+2025-04-24 19:05:22,764 - aiogram.dispatcher - INFO - Start polling
+2025-04-24 19:05:22,962 - aiogram.dispatcher - INFO - Run polling for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 19:05:28,741 - aiogram.event - INFO - Update id=738720932 is handled. Duration 515 ms by bot id=7270921212
+2025-04-24 19:05:29,926 - aiogram.event - INFO - Update id=738720933 is handled. Duration 500 ms by bot id=7270921212
+2025-04-24 19:05:35,678 - requests - INFO - Обработка запроса. Предмет: mathematics, Решение: None, Фото: Нет, Аудио: Нет
+2025-04-24 19:05:35,678 - requests - INFO - Финальный запрос: Представь, что ты опытный и квалифицированный преподаватель математики, и тебе нужно решить задачу. ...
+2025-04-24 19:05:35,678 - requests - INFO - Отправка запроса к OpenAI. Текст: Представь, что ты опытный и квалифицированный преп...
+2025-04-24 19:05:39,414 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 19:05:39,421 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 561 символов
+2025-04-24 19:05:39,612 - aiogram.event - INFO - Update id=738720934 is handled. Duration 4202 ms by bot id=7270921212
+2025-04-24 19:05:42,145 - aiogram.event - INFO - Update id=738720935 is handled. Duration 359 ms by bot id=7270921212
+2025-04-24 19:05:43,341 - aiogram.event - INFO - Update id=738720936 is handled. Duration 343 ms by bot id=7270921212
+2025-04-24 19:06:45,363 - aiogram.dispatcher - INFO - Polling stopped
+2025-04-24 19:06:45,621 - aiogram.dispatcher - INFO - Polling stopped for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 19:06:45,622 - bot - INFO - Бот остановлен
+2025-04-24 19:06:48,916 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID: 7282535243
+2025-04-24 19:06:48,917 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID_2: 7858370854
+2025-04-24 19:06:50,407 - bot - INFO - Бот запущен
+2025-04-24 19:06:50,408 - aiogram.dispatcher - INFO - Start polling
+2025-04-24 19:06:50,602 - aiogram.dispatcher - INFO - Run polling for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 19:06:56,362 - aiogram.event - INFO - Update id=738720937 is handled. Duration 438 ms by bot id=7270921212
+2025-04-24 19:06:59,356 - requests - INFO - Обработка запроса. Предмет: chatgpt, Решение: None, Фото: Нет, Аудио: Нет
+2025-04-24 19:06:59,356 - requests - INFO - Финальный запрос: x=64+3-x
+найди x...
+2025-04-24 19:06:59,357 - requests - INFO - Отправка запроса к OpenAI. Текст: x=64+3-x
+найди x...
+2025-04-24 19:07:04,358 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 19:07:04,360 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 389 символов
+2025-04-24 19:07:04,537 - aiogram.event - INFO - Update id=738720938 is handled. Duration 5453 ms by bot id=7270921212
+2025-04-24 19:07:11,974 - aiogram.event - INFO - Update id=738720939 is handled. Duration 422 ms by bot id=7270921212
+2025-04-24 19:07:12,990 - aiogram.event - INFO - Update id=738720940 is handled. Duration 265 ms by bot id=7270921212
+2025-04-24 19:07:15,974 - requests - INFO - Обработка запроса. Предмет: mathematics, Решение: None, Фото: Нет, Аудио: Нет
+2025-04-24 19:07:15,975 - requests - INFO - Финальный запрос: Представь, что ты опытный и квалифицированный преподаватель математики, и тебе нужно решить задачу. ...
+2025-04-24 19:07:15,975 - requests - INFO - Отправка запроса к OpenAI. Текст: Представь, что ты опытный и квалифицированный преп...
+2025-04-24 19:07:20,680 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 19:07:20,682 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 519 символов
+2025-04-24 19:07:20,856 - aiogram.event - INFO - Update id=738720941 is handled. Duration 5202 ms by bot id=7270921212
+2025-04-24 19:07:25,190 - aiogram.event - INFO - Update id=738720942 is handled. Duration 188 ms by bot id=7270921212
+2025-04-24 19:07:26,640 - aiogram.event - INFO - Update id=738720943 is handled. Duration 219 ms by bot id=7270921212
+2025-04-24 19:07:27,982 - aiogram.event - INFO - Update id=738720944 is handled. Duration 202 ms by bot id=7270921212
+2025-04-24 19:08:11,325 - aiogram.event - INFO - Update id=738720945 is handled. Duration 468 ms by bot id=7270921212
+2025-04-24 19:08:17,992 - aiogram.dispatcher - INFO - Polling stopped
+2025-04-24 19:08:18,257 - aiogram.dispatcher - INFO - Polling stopped for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 19:08:18,259 - bot - INFO - Бот остановлен
+2025-04-24 19:12:27,667 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID: 7282535243
+2025-04-24 19:12:27,667 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID_2: 7858370854
+2025-04-24 19:12:29,268 - bot - INFO - Бот запущен
+2025-04-24 19:12:29,269 - aiogram.dispatcher - INFO - Start polling
+2025-04-24 19:12:29,465 - aiogram.dispatcher - INFO - Run polling for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 19:12:41,423 - aiogram.event - INFO - Update id=738720946 is handled. Duration 764 ms by bot id=7270921212
+2025-04-24 19:12:42,667 - aiogram.event - INFO - Update id=738720947 is handled. Duration 514 ms by bot id=7270921212
+2025-04-24 19:12:46,211 - requests - INFO - Обработка запроса. Предмет: mathematics, Решение: None, Фото: Нет, Аудио: Нет
+2025-04-24 19:12:46,211 - requests - INFO - Финальный запрос: Представь, что ты опытный и квалифицированный преподаватель математики, и тебе нужно решить задачу. ...
+2025-04-24 19:12:46,211 - requests - INFO - Отправка запроса к OpenAI. Текст: Представь, что ты опытный и квалифицированный преп...
+2025-04-24 19:12:49,517 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 19:12:49,520 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 564 символов
+2025-04-24 19:12:49,702 - aiogram.event - INFO - Update id=738720948 is handled. Duration 3750 ms by bot id=7270921212
+2025-04-24 19:12:52,282 - aiogram.event - INFO - Update id=738720949 is handled. Duration 188 ms by bot id=7270921212
+2025-04-24 19:12:54,236 - aiogram.event - INFO - Update id=738720950 is handled. Duration 188 ms by bot id=7270921212
+2025-04-24 19:12:55,436 - aiogram.event - INFO - Update id=738720951 is handled. Duration 313 ms by bot id=7270921212
+2025-04-24 19:13:24,885 - aiogram.dispatcher - INFO - Polling stopped
+2025-04-24 19:13:25,150 - aiogram.dispatcher - INFO - Polling stopped for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 19:13:25,151 - bot - INFO - Бот остановлен
+2025-04-24 19:13:28,869 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID: 7282535243
+2025-04-24 19:13:28,870 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID_2: 7858370854
+2025-04-24 19:13:30,529 - bot - INFO - Бот запущен
+2025-04-24 19:13:30,530 - aiogram.dispatcher - INFO - Start polling
+2025-04-24 19:13:30,710 - aiogram.dispatcher - INFO - Run polling for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 19:13:31,735 - aiogram.event - INFO - Update id=738720952 is handled. Duration 390 ms by bot id=7270921212
+2025-04-24 19:13:32,714 - aiogram.event - INFO - Update id=738720953 is handled. Duration 297 ms by bot id=7270921212
+2025-04-24 19:13:50,347 - requests - INFO - Обработка запроса. Предмет: mathematics, Решение: None, Фото: Нет, Аудио: Нет
+2025-04-24 19:13:50,347 - requests - INFO - Финальный запрос: Представь, что ты опытный и квалифицированный преподаватель математики, и тебе нужно решить задачу. ...
+2025-04-24 19:13:50,348 - requests - INFO - Отправка запроса к OpenAI. Текст: Представь, что ты опытный и квалифицированный преп...
+2025-04-24 19:13:53,722 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 19:13:53,725 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 539 символов
+2025-04-24 19:13:53,912 - aiogram.event - INFO - Update id=738720954 is handled. Duration 3954 ms by bot id=7270921212
+2025-04-24 19:13:56,110 - bot.handlers.messages - ERROR - Error in messages: 'Chat' object has no attribute 'get_messages'
+2025-04-24 19:13:56,313 - aiogram.event - INFO - Update id=738720955 is handled. Duration 265 ms by bot id=7270921212
+2025-04-24 19:13:58,442 - requests - INFO - Обработка запроса. Предмет: question, Решение: None, Фото: Нет, Аудио: Нет
+2025-04-24 19:13:58,442 - requests - INFO - Финальный запрос: это решение задачи, у меня вопрос, ответь на него: 
+''...
+2025-04-24 19:13:58,443 - requests - INFO - Отправка запроса к OpenAI. Текст: это решение задачи, у меня вопрос, ответь на него:...
+2025-04-24 19:13:59,092 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 19:13:59,093 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 53 символов
+2025-04-24 19:13:59,398 - aiogram.event - INFO - Update id=738720956 is handled. Duration 1296 ms by bot id=7270921212
+2025-04-24 19:14:07,203 - requests - INFO - Обработка запроса. Предмет: question, Решение: None, Фото: Нет, Аудио: Нет
+2025-04-24 19:14:07,203 - requests - INFO - Финальный запрос: это решение задачи, у меня вопрос, ответь на него: 
+как ты нашел x...
+2025-04-24 19:14:07,204 - requests - INFO - Отправка запроса к OpenAI. Текст: это решение задачи, у меня вопрос, ответь на него:...
+2025-04-24 19:14:09,724 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 19:14:09,731 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 223 символов
+2025-04-24 19:14:09,915 - aiogram.event - INFO - Update id=738720957 is handled. Duration 3155 ms by bot id=7270921212
+2025-04-24 19:14:15,464 - aiogram.event - INFO - Update id=738720958 is handled. Duration 406 ms by bot id=7270921212
+2025-04-24 19:14:16,801 - aiogram.event - INFO - Update id=738720959 is handled. Duration 561 ms by bot id=7270921212
+2025-04-24 19:14:23,586 - requests - INFO - Обработка запроса. Предмет: mathematics, Решение: None, Фото: Нет, Аудио: Нет
+2025-04-24 19:14:23,587 - requests - INFO - Финальный запрос: Представь, что ты опытный и квалифицированный преподаватель математики, и тебе нужно решить задачу. ...
+2025-04-24 19:14:23,587 - requests - INFO - Отправка запроса к OpenAI. Текст: Представь, что ты опытный и квалифицированный преп...
+2025-04-24 19:14:26,421 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 19:14:26,424 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 543 символов
+2025-04-24 19:14:26,608 - aiogram.event - INFO - Update id=738720960 is handled. Duration 3515 ms by bot id=7270921212
+2025-04-24 19:14:28,595 - aiogram.event - INFO - Update id=738720961 is handled. Duration 219 ms by bot id=7270921212
+2025-04-24 19:14:29,609 - aiogram.event - INFO - Update id=738720962 is handled. Duration 313 ms by bot id=7270921212
+2025-04-24 19:15:54,337 - aiogram.dispatcher - INFO - Polling stopped
+2025-04-24 19:15:54,595 - aiogram.dispatcher - INFO - Polling stopped for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 19:15:54,597 - bot - INFO - Бот остановлен
+2025-04-24 19:17:05,565 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID: 7282535243
+2025-04-24 19:17:05,566 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID_2: 7858370854
+2025-04-24 19:17:07,218 - bot - INFO - Бот запущен
+2025-04-24 19:17:07,219 - aiogram.dispatcher - INFO - Start polling
+2025-04-24 19:17:07,434 - aiogram.dispatcher - INFO - Run polling for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 19:17:10,097 - aiogram.event - INFO - Update id=738720963 is handled. Duration 422 ms by bot id=7270921212
+2025-04-24 19:17:11,281 - aiogram.event - INFO - Update id=738720964 is handled. Duration 360 ms by bot id=7270921212
+2025-04-24 19:17:17,045 - requests - INFO - Обработка запроса. Предмет: mathematics, Решение: None, Фото: Нет, Аудио: Нет
+2025-04-24 19:17:17,046 - requests - INFO - Финальный запрос: Представь, что ты опытный и квалифицированный преподаватель математики, и тебе нужно решить задачу. ...
+2025-04-24 19:17:17,046 - requests - INFO - Отправка запроса к OpenAI. Текст: Представь, что ты опытный и квалифицированный преп...
+2025-04-24 19:17:19,851 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 19:17:19,853 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 572 символов
+2025-04-24 19:17:20,067 - aiogram.event - INFO - Update id=738720965 is handled. Duration 3312 ms by bot id=7270921212
+2025-04-24 19:18:04,036 - aiogram.event - INFO - Update id=738720966 is handled. Duration 312 ms by bot id=7270921212
+2025-04-24 19:18:09,605 - aiogram.event - INFO - Update id=738720967 is handled. Duration 313 ms by bot id=7270921212
+2025-04-24 19:19:17,833 - aiogram.event - INFO - Update id=738720968 is handled. Duration 405 ms by bot id=7270921212
+2025-04-24 19:19:19,298 - aiogram.event - INFO - Update id=738720969 is handled. Duration 750 ms by bot id=7270921212
+2025-04-24 19:19:23,531 - requests - INFO - Обработка запроса. Предмет: mathematics, Решение: None, Фото: Нет, Аудио: Нет
+2025-04-24 19:19:23,531 - requests - INFO - Финальный запрос: Представь, что ты опытный и квалифицированный преподаватель математики, и тебе нужно решить задачу. ...
+2025-04-24 19:19:23,532 - requests - INFO - Отправка запроса к OpenAI. Текст: Представь, что ты опытный и квалифицированный преп...
+2025-04-24 19:19:28,093 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 19:19:28,106 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 538 символов
+2025-04-24 19:19:28,289 - aiogram.event - INFO - Update id=738720970 is handled. Duration 5030 ms by bot id=7270921212
+2025-04-24 19:19:32,207 - aiogram.event - INFO - Update id=738720971 is handled. Duration 217 ms by bot id=7270921212
+2025-04-24 19:19:33,101 - bot.keyboards.inline - INFO - Нажата кнопка 'нет' в меню обратной связи
+2025-04-24 19:19:33,102 - bot.keyboards.inline - INFO - Предыдущие состояния сброшены
+2025-04-24 19:19:33,102 - bot.keyboards.inline - INFO - Установлено состояние feedback_message и секция feedback
+2025-04-24 19:19:33,317 - bot.keyboards.inline - INFO - Запрос на отзыв отправлен пользователю
+2025-04-24 19:19:33,318 - aiogram.event - INFO - Update id=738720972 is handled. Duration 280 ms by bot id=7270921212
+2025-04-24 19:19:36,884 - bot.keyboards.inline - INFO - Получено сообщение обратной связи: все норм
+2025-04-24 19:19:36,885 - bot.keyboards.inline - INFO - Текущее состояние: {'section': 'feedback'}
+2025-04-24 19:19:36,886 - bot.keyboards.inline - INFO - Попытка отправить сообщение пользователю с ID: 7282535243
+2025-04-24 19:19:36,887 - bot.keyboards.inline - INFO - Попытка отправить сообщение пользователю с ID: 7858370854
+2025-04-24 19:19:36,887 - bot.keyboards.inline - INFO - Преобразованное ID пользователя: 7282535243
+2025-04-24 19:19:36,888 - bot.keyboards.inline - INFO - Преобразованное ID пользователя: 7858370854
+2025-04-24 19:19:37,069 - bot.keyboards.inline - INFO - Чат найден: id=7282535243 type='private' title=None username='StSindJ' first_name='drkshdw' last_name=None is_forum=None photo=None active_usernames=['StSindJ'] emoji_status_custom_emoji_id=None emoji_status_expiration_date=None bio=None has_private_forwards=None has_restricted_voice_and_video_messages=None join_to_send_messages=None join_by_request=None description=None invite_link=None pinned_message=None permissions=None slow_mode_delay=None message_auto_delete_time=None has_aggressive_anti_spam_enabled=None has_hidden_members=None has_protected_content=None sticker_set_name=None can_set_sticker_set=None linked_chat_id=None location=None can_send_gift=True accepted_gift_types={'unlimited_gifts': True, 'limited_gifts': True, 'unique_gifts': True, 'premium_subscription': True} max_reaction_count=11 accent_color_id=4
+2025-04-24 19:19:37,231 - bot.keyboards.inline - INFO - Сообщение успешно отправлено в первый чат
+2025-04-24 19:19:37,383 - bot.keyboards.inline - INFO - Чат найден: id=7858370854 type='private' title=None username='d1rective' first_name=')' last_name=None is_forum=None photo=ChatPhoto(small_file_id='AQADAgAE9TEb26NBSAAIAgADJjll1AEAAxYInRWuZzueNgQ', small_file_unique_id='AQAE9TEb26NBSAAB', big_file_id='AQADAgAE9TEb26NBSAAIAwADJjll1AEAAxYInRWuZzueNgQ', big_file_unique_id='AQAE9TEb26NBSAE') active_usernames=['d1rective'] emoji_status_custom_emoji_id=None emoji_status_expiration_date=None bio='Web FullStack (Next Js + Nest Js + MongoDB)' has_private_forwards=None has_restricted_voice_and_video_messages=None join_to_send_messages=None join_by_request=None description=None invite_link=None pinned_message=None permissions=None slow_mode_delay=None message_auto_delete_time=None has_aggressive_anti_spam_enabled=None has_hidden_members=None has_protected_content=None sticker_set_name=None can_set_sticker_set=None linked_chat_id=None location=None can_send_gift=True accepted_gift_types={'unlimited_gifts': True, 'limited_gifts': True, 'unique_gifts': True, 'premium_subscription': True} max_reaction_count=11 accent_color_id=5
+2025-04-24 19:19:37,589 - bot.keyboards.inline - INFO - Сообщение успешно отправлено во второй чат
+2025-04-24 19:19:37,806 - bot.keyboards.inline - INFO - Состояние сброшено
+2025-04-24 19:19:37,807 - aiogram.event - INFO - Update id=738720973 is handled. Duration 985 ms by bot id=7270921212
+2025-04-24 19:19:41,125 - aiogram.event - INFO - Update id=738720974 is handled. Duration 468 ms by bot id=7270921212
+2025-04-24 19:21:00,286 - aiogram.dispatcher - INFO - Polling stopped
+2025-04-24 19:21:00,549 - aiogram.dispatcher - INFO - Polling stopped for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 19:21:00,551 - bot - INFO - Бот остановлен

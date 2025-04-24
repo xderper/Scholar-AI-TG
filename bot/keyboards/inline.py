@@ -69,7 +69,9 @@ def get_subscription_keyboard():
 
 @router.callback_query(F.data == "feedback_yes")
 async def positive_feedback_handler(callback: CallbackQuery):
-    await callback.message.edit_text("📚 Спасибо за отзыв!")
+    await callback.message.edit_text("""📚 Спасибо за отзыв! Расскажите о нас друзьям! \n\n👉Наш сайт:  https://aischolar.ru/\n\n
+👉ТГК:  https://t.me/neurals_etc \n\n
+👉Сам бот:  @AIScholarbot""")
     await callback.message.answer("📚 Выберите раздел:", reply_markup=get_main_keyboard())
     await callback.answer()
 
@@ -136,7 +138,7 @@ async def feedback_message_handler(message: Message, state: FSMContext):
                     logger.info(f"Чат найден: {chat}")
                     await message.bot.send_message(
                         chat_id=user_id,
-                        text=f"Обратная связь от пользователя {message.from_user.username or message.from_user.first_name}:\n\n{message.text}"
+                        text=f"Обратная связь от пользователя: \n\n{message.from_user.username or message.from_user.first_name}:\n\n{message.text}"
                     )
                     logger.info("Сообщение успешно отправлено в первый чат")
                 except Exception as chat_error:
@@ -149,7 +151,7 @@ async def feedback_message_handler(message: Message, state: FSMContext):
                     logger.info(f"Чат найден: {chat_2}")
                     await message.bot.send_message(
                         chat_id=user_id_2,
-                        text=f"Обратная связь от пользователя {message.from_user.username or message.from_user.first_name}:\n\n{message.text}"
+                        text=f"Обратная связь от пользователя: \n\n{message.from_user.username or message.from_user.first_name}:\n\n{message.text}"
                     )
                     logger.info("Сообщение успешно отправлено во второй чат")
                 except Exception as chat_error:
