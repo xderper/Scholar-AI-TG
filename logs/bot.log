@@ -461,3 +461,508 @@ NameError: name 'user_text' is not defined
 2025-04-20 14:37:34 - bot - INFO - Бот запущен
 2025-04-20 14:37:44 - bot - INFO - Бот запущен
 2025-04-20 14:38:27 - bot - INFO - Бот запущен
+2025-04-22 21:04:12 - bot - INFO - Бот запущен
+2025-04-22 21:04:53 - bot.handlers.messages - ERROR - Error in messages: cannot access local variable 'text' where it is not associated with a value
+2025-04-22 21:05:17 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-22 21:05:17 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-22 21:05:55 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-22 21:05:56 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-22 21:06:03 - bot - INFO - Бот остановлен
+2025-04-22 21:06:08 - bot - INFO - Бот запущен
+2025-04-22 21:06:12 - bot.handlers.messages - ERROR - Error in messages: cannot access local variable 'text' where it is not associated with a value
+2025-04-22 21:06:20 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-22 21:06:20 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-22 21:13:25 - bot - INFO - Бот остановлен
+2025-04-24 16:27:56 - bot - INFO - Бот запущен
+2025-04-24 16:28:08 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 16:28:08 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 16:32:31 - bot - INFO - Бот остановлен
+2025-04-24 16:32:36 - bot - INFO - Бот запущен
+2025-04-24 16:32:40 - bot.handlers.messages - ERROR - Error in messages: cannot access local variable 'text' where it is not associated with a value
+2025-04-24 16:35:58 - bot - INFO - Бот остановлен
+2025-04-24 16:39:05 - bot - INFO - Бот запущен
+2025-04-24 16:39:08 - bot.handlers.messages - ERROR - Error in messages: cannot access local variable 'text' where it is not associated with a value
+2025-04-24 16:46:53 - bot - INFO - Бот остановлен
+2025-04-24 16:46:59 - bot - INFO - Бот запущен
+2025-04-24 16:47:12 - bot.handlers.messages - ERROR - Error in messages: cannot access local variable 'text' where it is not associated with a value
+2025-04-24 16:50:30 - bot - INFO - Бот остановлен
+2025-04-24 16:50:44 - bot - INFO - Бот запущен
+2025-04-24 16:52:39 - bot - INFO - Бот остановлен
+2025-04-24 16:55:17 - bot - INFO - Бот запущен
+2025-04-24 16:55:36 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 16:55:36 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 16:56:18 - bot - INFO - Бот остановлен
+2025-04-24 17:02:15 - bot - INFO - Бот запущен
+2025-04-24 17:02:18 - bot.handlers.messages - ERROR - Error in messages: cannot access local variable 'text' where it is not associated with a value
+2025-04-24 17:02:27 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:02:27 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:03:10 - bot - INFO - Бот остановлен
+2025-04-24 17:04:00 - bot - INFO - Бот запущен
+2025-04-24 17:04:07 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:04:07 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:04:50 - bot - INFO - Бот остановлен
+2025-04-24 17:11:35 - bot - INFO - Бот запущен
+2025-04-24 17:11:38 - bot.handlers.messages - ERROR - Error in messages: cannot access local variable 'text' where it is not associated with a value
+2025-04-24 17:11:45 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:11:45 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:12:09 - bot.handlers.messages - ERROR - Error in messages: name 'get_feedback_keyboard' is not defined
+2025-04-24 17:13:24 - bot - INFO - Бот остановлен
+2025-04-24 17:13:29 - bot - INFO - Бот запущен
+2025-04-24 17:13:38 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:13:38 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:17:15 - bot - INFO - Бот остановлен
+2025-04-24 17:19:10 - bot - INFO - Бот запущен
+2025-04-24 17:19:26 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:19:26 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:22:32 - bot - INFO - Бот остановлен
+2025-04-24 17:22:36 - bot - INFO - Бот запущен
+2025-04-24 17:22:51 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:22:51 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:23:31 - bot - INFO - Бот остановлен
+2025-04-24 17:24:45 - bot - INFO - Бот запущен
+2025-04-24 17:24:54 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:24:54 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:25:40 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:25:40 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:26:47 - bot - INFO - Бот остановлен
+2025-04-24 17:27:51 - bot - INFO - Бот запущен
+2025-04-24 17:28:04 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:28:04 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:28:58 - bot - INFO - Бот остановлен
+2025-04-24 17:34:14 - bot - INFO - Бот запущен
+2025-04-24 17:34:27 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:34:27 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:35:14 - bot.handlers.messages - ERROR - Error in photo handler: 
+Traceback (most recent call last):
+  File "D:\it\scolar\5\bot\handlers\messages.py", line 363, in photo_handler
+    await message.bot.download_file(file_path, destination=temp_file_path)
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 374, in download_file
+    await self.__download_file(destination=destination, stream=stream)
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 323, in __download_file
+    async for chunk in stream:
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\aiohttp.py", line 200, in stream_content
+    async for chunk in resp.content.iter_chunked(chunk_size):
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiohttp\streams.py", line 50, in __anext__
+    rv = await self.read_func()
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiohttp\streams.py", line 393, in read
+    await self._wait("read")
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiohttp\streams.py", line 311, in _wait
+    with self._timer:
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiohttp\helpers.py", line 735, in __exit__
+    raise asyncio.TimeoutError from None
+TimeoutError
+2025-04-24 17:37:04 - bot - INFO - Бот остановлен
+2025-04-24 17:37:10 - bot - INFO - Бот запущен
+2025-04-24 17:37:40 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:37:40 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:39:51 - bot - INFO - Бот остановлен
+2025-04-24 17:43:25 - bot - INFO - Бот запущен
+2025-04-24 17:43:37 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:43:38 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:44:06 - bot - INFO - Бот остановлен
+2025-04-24 17:44:20 - bot - INFO - Бот запущен
+2025-04-24 17:44:22 - bot.handlers.messages - ERROR - Error in messages: cannot access local variable 'text' where it is not associated with a value
+2025-04-24 17:44:30 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:44:30 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:48:59 - bot - INFO - Бот остановлен
+2025-04-24 17:49:04 - bot - INFO - Бот запущен
+2025-04-24 17:49:25 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:49:25 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:49:53 - bot - INFO - Бот остановлен
+2025-04-24 17:50:12 - bot - INFO - Бот запущен
+2025-04-24 17:50:13 - bot.handlers.messages - ERROR - Error in messages: cannot access local variable 'text' where it is not associated with a value
+2025-04-24 17:50:22 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:50:22 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:51:39 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:51:39 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 17:52:19 - bot - INFO - Бот остановлен
+2025-04-24 17:57:08 - bot - INFO - Бот запущен
+2025-04-24 18:00:36 - bot - INFO - Бот остановлен
+2025-04-24 18:01:03 - bot - INFO - Бот запущен
+2025-04-24 18:01:23 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:01:24 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:02:34 - bot - INFO - Бот остановлен
+2025-04-24 18:04:47 - bot - INFO - Бот запущен
+2025-04-24 18:04:59 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:04:59 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:06:06 - bot - INFO - Бот остановлен
+2025-04-24 18:07:45 - bot - INFO - Бот запущен
+2025-04-24 18:07:59 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:07:59 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:08:51 - bot - INFO - Бот остановлен
+2025-04-24 18:09:29 - bot - INFO - Бот запущен
+2025-04-24 18:09:45 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:09:45 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:10:41 - bot - INFO - Бот остановлен
+2025-04-24 18:13:43 - bot - INFO - Бот запущен
+2025-04-24 18:13:51 - bot.handlers.messages - ERROR - Error in messages: cannot access local variable 'text' where it is not associated with a value
+2025-04-24 18:14:09 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:14:09 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:15:16 - bot - INFO - Бот остановлен
+2025-04-24 18:15:35 - bot - INFO - Бот запущен
+2025-04-24 18:15:37 - bot.handlers.messages - ERROR - Error in messages: cannot access local variable 'text' where it is not associated with a value
+2025-04-24 18:15:43 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:15:43 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:16:49 - bot - INFO - Бот остановлен
+2025-04-24 18:18:44 - bot - INFO - Бот запущен
+2025-04-24 18:19:14 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:19:14 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:20:11 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:20:11 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:23:10 - bot - INFO - Бот остановлен
+2025-04-24 18:23:15 - bot - INFO - Р‘РѕС‚ Р·Р°РїСѓС‰РµРЅ
+2025-04-24 18:23:28 - bot.handlers.messages - ERROR - Error in messages: cannot access local variable 'text' where it is not associated with a value
+2025-04-24 18:23:35 - bot.handlers.messages - ERROR - РћС€РёР±РєР° РїСЂРё РїРѕРёСЃРєРµ Рё СѓРґР°Р»РµРЅРёРё СЃРѕРѕР±С‰РµРЅРёСЏ 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:23:35 - bot.handlers.messages - ERROR - РћС€РёР±РєР° РїСЂРё РїРѕРёСЃРєРµ Рё СѓРґР°Р»РµРЅРёРё СЃРѕРѕР±С‰РµРЅРёСЏ 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:24:29 - bot.keyboards.inline - INFO - РќР°Р¶Р°С‚Р° РєРЅРѕРїРєР° 'РЅРµС‚' РІ РјРµРЅСЋ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё
+2025-04-24 18:24:29 - bot.keyboards.inline - INFO - РџСЂРµРґС‹РґСѓС‰РёРµ СЃРѕСЃС‚РѕСЏРЅРёСЏ СЃР±СЂРѕС€РµРЅС‹
+2025-04-24 18:24:29 - bot.keyboards.inline - INFO - РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ СЃРѕСЃС‚РѕСЏРЅРёРµ feedback_message Рё СЃРµРєС†РёСЏ feedback
+2025-04-24 18:24:30 - bot.keyboards.inline - INFO - Р—Р°РїСЂРѕСЃ РЅР° РѕС‚Р·С‹РІ РѕС‚РїСЂР°РІР»РµРЅ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ
+2025-04-24 18:26:05 - bot - INFO - Р‘РѕС‚ РѕСЃС‚Р°РЅРѕРІР»РµРЅ
+2025-04-24 18:26:10 - bot - ERROR - РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°: Router is already attached to <Router '0x15e920daa90'>
+Traceback (most recent call last):
+  File "D:\it\scolar\5\run.py", line 43, in <module>
+    asyncio.run(main())
+  File "C:\Users\spsnekit\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\spsnekit\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\spsnekit\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 650, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\run.py", line 32, in main
+    dp.include_router(inline_router)
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\dispatcher\router.py", line 218, in include_router
+    router.parent_router = self
+    ^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\dispatcher\router.py", line 181, in parent_router
+    raise RuntimeError(f"Router is already attached to {self._parent_router!r}")
+RuntimeError: Router is already attached to <Router '0x15e920daa90'>
+2025-04-24 18:27:10 - bot - INFO - Р‘РѕС‚ Р·Р°РїСѓС‰РµРЅ
+2025-04-24 18:27:14 - bot.handlers.messages - ERROR - Error in messages: cannot access local variable 'text' where it is not associated with a value
+2025-04-24 18:27:21 - bot.handlers.messages - ERROR - РћС€РёР±РєР° РїСЂРё РїРѕРёСЃРєРµ Рё СѓРґР°Р»РµРЅРёРё СЃРѕРѕР±С‰РµРЅРёСЏ 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:27:21 - bot.handlers.messages - ERROR - РћС€РёР±РєР° РїСЂРё РїРѕРёСЃРєРµ Рё СѓРґР°Р»РµРЅРёРё СЃРѕРѕР±С‰РµРЅРёСЏ 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:27:49 - bot.keyboards.inline - INFO - РќР°Р¶Р°С‚Р° РєРЅРѕРїРєР° 'РЅРµС‚' РІ РјРµРЅСЋ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё
+2025-04-24 18:27:49 - bot.keyboards.inline - INFO - РџСЂРµРґС‹РґСѓС‰РёРµ СЃРѕСЃС‚РѕСЏРЅРёСЏ СЃР±СЂРѕС€РµРЅС‹
+2025-04-24 18:27:49 - bot.keyboards.inline - INFO - РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ СЃРѕСЃС‚РѕСЏРЅРёРµ feedback_message Рё СЃРµРєС†РёСЏ feedback
+2025-04-24 18:27:49 - bot.keyboards.inline - INFO - Р—Р°РїСЂРѕСЃ РЅР° РѕС‚Р·С‹РІ РѕС‚РїСЂР°РІР»РµРЅ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ
+2025-04-24 18:31:01 - bot - INFO - Р‘РѕС‚ РѕСЃС‚Р°РЅРѕРІР»РµРЅ
+2025-04-24 18:31:06 - bot - INFO - Р‘РѕС‚ Р·Р°РїСѓС‰РµРЅ
+2025-04-24 18:31:13 - bot.handlers.messages - ERROR - Error in messages: cannot access local variable 'text' where it is not associated with a value
+2025-04-24 18:31:28 - bot.handlers.messages - ERROR - РћС€РёР±РєР° РїСЂРё РїРѕРёСЃРєРµ Рё СѓРґР°Р»РµРЅРёРё СЃРѕРѕР±С‰РµРЅРёСЏ 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:31:28 - bot.handlers.messages - ERROR - РћС€РёР±РєР° РїСЂРё РїРѕРёСЃРєРµ Рё СѓРґР°Р»РµРЅРёРё СЃРѕРѕР±С‰РµРЅРёСЏ 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:31:57 - bot.keyboards.inline - INFO - РќР°Р¶Р°С‚Р° РєРЅРѕРїРєР° 'РЅРµС‚' РІ РјРµРЅСЋ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё
+2025-04-24 18:31:57 - bot.keyboards.inline - INFO - РџСЂРµРґС‹РґСѓС‰РёРµ СЃРѕСЃС‚РѕСЏРЅРёСЏ СЃР±СЂРѕС€РµРЅС‹
+2025-04-24 18:31:57 - bot.keyboards.inline - INFO - РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ СЃРѕСЃС‚РѕСЏРЅРёРµ feedback_message Рё СЃРµРєС†РёСЏ feedback
+2025-04-24 18:31:58 - bot.keyboards.inline - INFO - Р—Р°РїСЂРѕСЃ РЅР° РѕС‚Р·С‹РІ РѕС‚РїСЂР°РІР»РµРЅ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ
+2025-04-24 18:32:04 - bot.keyboards.inline - INFO - РџРѕР»СѓС‡РµРЅРѕ СЃРѕРѕР±С‰РµРЅРёРµ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё: РЅРµРµС‚
+2025-04-24 18:32:04 - bot.keyboards.inline - INFO - РўРµРєСѓС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ: {'section': 'feedback'}
+2025-04-24 18:32:04 - bot.keyboards.inline - INFO - РџРѕРїС‹С‚РєР° РѕС‚РїСЂР°РІРёС‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ СЃ ID: 7282535243
+2025-04-24 18:32:04 - bot.keyboards.inline - ERROR - РћС€РёР±РєР° РїСЂРё РѕС‚РїСЂР°РІРєРµ СЃРѕРѕР±С‰РµРЅРёСЏ: Telegram server says - Bad Request: chat not found
+2025-04-24 18:32:04 - bot.keyboards.inline - ERROR - РћС€РёР±РєР° РїСЂРё РѕР±СЂР°Р±РѕС‚РєРµ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё: Telegram server says - Bad Request: chat not found
+Traceback (most recent call last):
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 137, in feedback_message_handler
+    raise send_error
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 126, in feedback_message_handler
+    await message.bot.send_message(
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 2718, in send_message
+    return await self(call, request_timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 432, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 257, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\aiohttp.py", line 179, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: chat not found
+2025-04-24 18:32:24 - bot.keyboards.inline - INFO - РџРѕР»СѓС‡РµРЅРѕ СЃРѕРѕР±С‰РµРЅРёРµ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё: рџ“љ РљРѕРЅСЃРїРµРєС‚
+2025-04-24 18:32:24 - bot.keyboards.inline - INFO - РўРµРєСѓС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ: {'section': 'feedback'}
+2025-04-24 18:32:24 - bot.keyboards.inline - INFO - РџРѕРїС‹С‚РєР° РѕС‚РїСЂР°РІРёС‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ СЃ ID: 7282535243
+2025-04-24 18:32:24 - bot.keyboards.inline - ERROR - РћС€РёР±РєР° РїСЂРё РѕС‚РїСЂР°РІРєРµ СЃРѕРѕР±С‰РµРЅРёСЏ: Telegram server says - Bad Request: chat not found
+2025-04-24 18:32:24 - bot.keyboards.inline - ERROR - РћС€РёР±РєР° РїСЂРё РѕР±СЂР°Р±РѕС‚РєРµ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё: Telegram server says - Bad Request: chat not found
+Traceback (most recent call last):
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 137, in feedback_message_handler
+    raise send_error
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 126, in feedback_message_handler
+    await message.bot.send_message(
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 2718, in send_message
+    return await self(call, request_timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 432, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 257, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\aiohttp.py", line 179, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: chat not found
+2025-04-24 18:32:30 - bot.keyboards.inline - INFO - РџРѕР»СѓС‡РµРЅРѕ СЃРѕРѕР±С‰РµРЅРёРµ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё: None
+2025-04-24 18:32:30 - bot.keyboards.inline - INFO - РўРµРєСѓС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ: {'section': 'feedback'}
+2025-04-24 18:32:30 - bot.keyboards.inline - INFO - РџРѕРїС‹С‚РєР° РѕС‚РїСЂР°РІРёС‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ СЃ ID: 7282535243
+2025-04-24 18:32:31 - bot.keyboards.inline - ERROR - РћС€РёР±РєР° РїСЂРё РѕС‚РїСЂР°РІРєРµ СЃРѕРѕР±С‰РµРЅРёСЏ: Telegram server says - Bad Request: chat not found
+2025-04-24 18:32:31 - bot.keyboards.inline - ERROR - РћС€РёР±РєР° РїСЂРё РѕР±СЂР°Р±РѕС‚РєРµ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё: Telegram server says - Bad Request: chat not found
+Traceback (most recent call last):
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 137, in feedback_message_handler
+    raise send_error
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 126, in feedback_message_handler
+    await message.bot.send_message(
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 2718, in send_message
+    return await self(call, request_timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 432, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 257, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\aiohttp.py", line 179, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: chat not found
+2025-04-24 18:32:31 - bot.keyboards.inline - INFO - РџРѕР»СѓС‡РµРЅРѕ СЃРѕРѕР±С‰РµРЅРёРµ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё: None
+2025-04-24 18:32:31 - bot.keyboards.inline - INFO - РўРµРєСѓС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ: {'section': 'feedback'}
+2025-04-24 18:32:31 - bot.keyboards.inline - INFO - РџРѕРїС‹С‚РєР° РѕС‚РїСЂР°РІРёС‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ СЃ ID: 7282535243
+2025-04-24 18:32:31 - bot.keyboards.inline - ERROR - РћС€РёР±РєР° РїСЂРё РѕС‚РїСЂР°РІРєРµ СЃРѕРѕР±С‰РµРЅРёСЏ: Telegram server says - Bad Request: chat not found
+2025-04-24 18:32:31 - bot.keyboards.inline - ERROR - РћС€РёР±РєР° РїСЂРё РѕР±СЂР°Р±РѕС‚РєРµ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё: Telegram server says - Bad Request: chat not found
+Traceback (most recent call last):
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 137, in feedback_message_handler
+    raise send_error
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 126, in feedback_message_handler
+    await message.bot.send_message(
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 2718, in send_message
+    return await self(call, request_timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 432, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 257, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\aiohttp.py", line 179, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: chat not found
+2025-04-24 18:32:34 - bot.keyboards.inline - INFO - РџРѕР»СѓС‡РµРЅРѕ СЃРѕРѕР±С‰РµРЅРёРµ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё: рџ“љ РљРѕРЅСЃРїРµРєС‚
+2025-04-24 18:32:34 - bot.keyboards.inline - INFO - РўРµРєСѓС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ: {'section': 'feedback'}
+2025-04-24 18:32:34 - bot.keyboards.inline - INFO - РџРѕРїС‹С‚РєР° РѕС‚РїСЂР°РІРёС‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ СЃ ID: 7282535243
+2025-04-24 18:32:34 - bot.keyboards.inline - ERROR - РћС€РёР±РєР° РїСЂРё РѕС‚РїСЂР°РІРєРµ СЃРѕРѕР±С‰РµРЅРёСЏ: Telegram server says - Bad Request: chat not found
+2025-04-24 18:32:34 - bot.keyboards.inline - ERROR - РћС€РёР±РєР° РїСЂРё РѕР±СЂР°Р±РѕС‚РєРµ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё: Telegram server says - Bad Request: chat not found
+Traceback (most recent call last):
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 137, in feedback_message_handler
+    raise send_error
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 126, in feedback_message_handler
+    await message.bot.send_message(
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 2718, in send_message
+    return await self(call, request_timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 432, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 257, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\aiohttp.py", line 179, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: chat not found
+2025-04-24 18:32:36 - bot.keyboards.inline - INFO - РџРѕР»СѓС‡РµРЅРѕ СЃРѕРѕР±С‰РµРЅРёРµ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё: рџ“љ РљРѕРЅСЃРїРµРєС‚
+2025-04-24 18:32:36 - bot.keyboards.inline - INFO - РўРµРєСѓС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ: {'section': 'feedback'}
+2025-04-24 18:32:36 - bot.keyboards.inline - INFO - РџРѕРїС‹С‚РєР° РѕС‚РїСЂР°РІРёС‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ СЃ ID: 7282535243
+2025-04-24 18:32:36 - bot.keyboards.inline - ERROR - РћС€РёР±РєР° РїСЂРё РѕС‚РїСЂР°РІРєРµ СЃРѕРѕР±С‰РµРЅРёСЏ: Telegram server says - Bad Request: chat not found
+2025-04-24 18:32:36 - bot.keyboards.inline - ERROR - РћС€РёР±РєР° РїСЂРё РѕР±СЂР°Р±РѕС‚РєРµ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё: Telegram server says - Bad Request: chat not found
+Traceback (most recent call last):
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 137, in feedback_message_handler
+    raise send_error
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 126, in feedback_message_handler
+    await message.bot.send_message(
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 2718, in send_message
+    return await self(call, request_timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 432, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 257, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\aiohttp.py", line 179, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: chat not found
+2025-04-24 18:32:46 - bot - INFO - Р‘РѕС‚ РѕСЃС‚Р°РЅРѕРІР»РµРЅ
+2025-04-24 18:32:51 - bot - INFO - Р‘РѕС‚ Р·Р°РїСѓС‰РµРЅ
+2025-04-24 18:33:59 - bot.handlers.messages - ERROR - РћС€РёР±РєР° РїСЂРё РїРѕРёСЃРєРµ Рё СѓРґР°Р»РµРЅРёРё СЃРѕРѕР±С‰РµРЅРёСЏ 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:33:59 - bot.handlers.messages - ERROR - РћС€РёР±РєР° РїСЂРё РїРѕРёСЃРєРµ Рё СѓРґР°Р»РµРЅРёРё СЃРѕРѕР±С‰РµРЅРёСЏ 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:34:31 - bot.keyboards.inline - INFO - РќР°Р¶Р°С‚Р° РєРЅРѕРїРєР° 'РЅРµС‚' РІ РјРµРЅСЋ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё
+2025-04-24 18:34:31 - bot.keyboards.inline - INFO - РџСЂРµРґС‹РґСѓС‰РёРµ СЃРѕСЃС‚РѕСЏРЅРёСЏ СЃР±СЂРѕС€РµРЅС‹
+2025-04-24 18:34:31 - bot.keyboards.inline - INFO - РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ СЃРѕСЃС‚РѕСЏРЅРёРµ feedback_message Рё СЃРµРєС†РёСЏ feedback
+2025-04-24 18:34:31 - bot.keyboards.inline - INFO - Р—Р°РїСЂРѕСЃ РЅР° РѕС‚Р·С‹РІ РѕС‚РїСЂР°РІР»РµРЅ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ
+2025-04-24 18:34:35 - bot.keyboards.inline - INFO - РџРѕР»СѓС‡РµРЅРѕ СЃРѕРѕР±С‰РµРЅРёРµ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё: РЅРµС‚
+2025-04-24 18:34:35 - bot.keyboards.inline - INFO - РўРµРєСѓС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ: {'section': 'feedback'}
+2025-04-24 18:34:35 - bot.keyboards.inline - INFO - РџРѕРїС‹С‚РєР° РѕС‚РїСЂР°РІРёС‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ СЃ ID: 7282535243
+2025-04-24 18:34:36 - bot.keyboards.inline - ERROR - РћС€РёР±РєР° РїСЂРё РѕС‚РїСЂР°РІРєРµ СЃРѕРѕР±С‰РµРЅРёСЏ: Telegram server says - Bad Request: chat not found
+2025-04-24 18:34:36 - bot.keyboards.inline - ERROR - РћС€РёР±РєР° РїСЂРё РѕР±СЂР°Р±РѕС‚РєРµ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё: Telegram server says - Bad Request: chat not found
+Traceback (most recent call last):
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 137, in feedback_message_handler
+    raise send_error
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 126, in feedback_message_handler
+    await message.bot.send_message(
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 2718, in send_message
+    return await self(call, request_timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 432, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 257, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\aiohttp.py", line 179, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: chat not found
+2025-04-24 18:37:34 - bot - INFO - Р‘РѕС‚ РѕСЃС‚Р°РЅРѕРІР»РµРЅ
+2025-04-24 18:37:39 - bot - INFO - Р‘РѕС‚ Р·Р°РїСѓС‰РµРЅ
+2025-04-24 18:37:41 - bot.handlers.messages - ERROR - Error in messages: Telegram server says - Bad Request: message to delete not found
+2025-04-24 18:37:49 - bot.handlers.messages - ERROR - РћС€РёР±РєР° РїСЂРё РїРѕРёСЃРєРµ Рё СѓРґР°Р»РµРЅРёРё СЃРѕРѕР±С‰РµРЅРёСЏ 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:37:49 - bot.handlers.messages - ERROR - РћС€РёР±РєР° РїСЂРё РїРѕРёСЃРєРµ Рё СѓРґР°Р»РµРЅРёРё СЃРѕРѕР±С‰РµРЅРёСЏ 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:39:15 - bot.keyboards.inline - INFO - РќР°Р¶Р°С‚Р° РєРЅРѕРїРєР° 'РЅРµС‚' РІ РјРµРЅСЋ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё
+2025-04-24 18:39:15 - bot.keyboards.inline - INFO - РџСЂРµРґС‹РґСѓС‰РёРµ СЃРѕСЃС‚РѕСЏРЅРёСЏ СЃР±СЂРѕС€РµРЅС‹
+2025-04-24 18:39:15 - bot.keyboards.inline - INFO - РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ СЃРѕСЃС‚РѕСЏРЅРёРµ feedback_message Рё СЃРµРєС†РёСЏ feedback
+2025-04-24 18:39:16 - bot.keyboards.inline - INFO - Р—Р°РїСЂРѕСЃ РЅР° РѕС‚Р·С‹РІ РѕС‚РїСЂР°РІР»РµРЅ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ
+2025-04-24 18:39:21 - bot.keyboards.inline - INFO - РџРѕР»СѓС‡РµРЅРѕ СЃРѕРѕР±С‰РµРЅРёРµ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё: РЅРµС‚
+2025-04-24 18:39:21 - bot.keyboards.inline - INFO - РўРµРєСѓС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ: {'section': 'feedback'}
+2025-04-24 18:39:21 - bot.keyboards.inline - INFO - РџРѕРїС‹С‚РєР° РѕС‚РїСЂР°РІРёС‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ СЃ ID: 7282535243
+2025-04-24 18:39:21 - bot.keyboards.inline - INFO - РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРЅРѕРµ ID РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ: 7282535243
+2025-04-24 18:39:21 - bot.keyboards.inline - INFO - Р§Р°С‚ РЅР°Р№РґРµРЅ: id=7282535243 type='private' title=None username='StSindJ' first_name='drkshdw' last_name=None is_forum=None photo=None active_usernames=['StSindJ'] emoji_status_custom_emoji_id=None emoji_status_expiration_date=None bio=None has_private_forwards=None has_restricted_voice_and_video_messages=None join_to_send_messages=None join_by_request=None description=None invite_link=None pinned_message=None permissions=None slow_mode_delay=None message_auto_delete_time=None has_aggressive_anti_spam_enabled=None has_hidden_members=None has_protected_content=None sticker_set_name=None can_set_sticker_set=None linked_chat_id=None location=None can_send_gift=True accepted_gift_types={'unlimited_gifts': True, 'limited_gifts': True, 'unique_gifts': True, 'premium_subscription': True} max_reaction_count=11 accent_color_id=4
+2025-04-24 18:39:21 - bot.keyboards.inline - INFO - РЎРѕРѕР±С‰РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РѕС‚РїСЂР°РІР»РµРЅРѕ
+2025-04-24 18:39:21 - bot.keyboards.inline - INFO - РЎРѕСЃС‚РѕСЏРЅРёРµ СЃР±СЂРѕС€РµРЅРѕ
+2025-04-24 18:43:05 - bot.handlers.messages - ERROR - Error in messages: Telegram server says - Bad Request: message to delete not found
+2025-04-24 18:43:16 - bot.handlers.messages - ERROR - РћС€РёР±РєР° РїСЂРё РїРѕРёСЃРєРµ Рё СѓРґР°Р»РµРЅРёРё СЃРѕРѕР±С‰РµРЅРёСЏ 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:43:16 - bot.handlers.messages - ERROR - РћС€РёР±РєР° РїСЂРё РїРѕРёСЃРєРµ Рё СѓРґР°Р»РµРЅРёРё СЃРѕРѕР±С‰РµРЅРёСЏ 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:43:40 - bot.keyboards.inline - INFO - РќР°Р¶Р°С‚Р° РєРЅРѕРїРєР° 'РЅРµС‚' РІ РјРµРЅСЋ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё
+2025-04-24 18:43:40 - bot.keyboards.inline - INFO - РџСЂРµРґС‹РґСѓС‰РёРµ СЃРѕСЃС‚РѕСЏРЅРёСЏ СЃР±СЂРѕС€РµРЅС‹
+2025-04-24 18:43:40 - bot.keyboards.inline - INFO - РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ СЃРѕСЃС‚РѕСЏРЅРёРµ feedback_message Рё СЃРµРєС†РёСЏ feedback
+2025-04-24 18:43:40 - bot.keyboards.inline - INFO - Р—Р°РїСЂРѕСЃ РЅР° РѕС‚Р·С‹РІ РѕС‚РїСЂР°РІР»РµРЅ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ
+2025-04-24 18:43:44 - bot.keyboards.inline - INFO - РџРѕР»СѓС‡РµРЅРѕ СЃРѕРѕР±С‰РµРЅРёРµ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё: РђСЂС‚РµРј Р»РѕС€РѕРє
+2025-04-24 18:43:44 - bot.keyboards.inline - INFO - РўРµРєСѓС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ: {'section': 'feedback'}
+2025-04-24 18:43:44 - bot.keyboards.inline - INFO - РџРѕРїС‹С‚РєР° РѕС‚РїСЂР°РІРёС‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ СЃ ID: 7282535243
+2025-04-24 18:43:44 - bot.keyboards.inline - INFO - РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРЅРѕРµ ID РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ: 7282535243
+2025-04-24 18:43:44 - bot.keyboards.inline - INFO - Р§Р°С‚ РЅР°Р№РґРµРЅ: id=7282535243 type='private' title=None username='StSindJ' first_name='drkshdw' last_name=None is_forum=None photo=None active_usernames=['StSindJ'] emoji_status_custom_emoji_id=None emoji_status_expiration_date=None bio=None has_private_forwards=None has_restricted_voice_and_video_messages=None join_to_send_messages=None join_by_request=None description=None invite_link=None pinned_message=None permissions=None slow_mode_delay=None message_auto_delete_time=None has_aggressive_anti_spam_enabled=None has_hidden_members=None has_protected_content=None sticker_set_name=None can_set_sticker_set=None linked_chat_id=None location=None can_send_gift=True accepted_gift_types={'unlimited_gifts': True, 'limited_gifts': True, 'unique_gifts': True, 'premium_subscription': True} max_reaction_count=11 accent_color_id=4
+2025-04-24 18:43:44 - bot.keyboards.inline - INFO - РЎРѕРѕР±С‰РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РѕС‚РїСЂР°РІР»РµРЅРѕ
+2025-04-24 18:43:44 - bot.keyboards.inline - INFO - РЎРѕСЃС‚РѕСЏРЅРёРµ СЃР±СЂРѕС€РµРЅРѕ
+2025-04-24 18:47:55 - bot - INFO - Р‘РѕС‚ РѕСЃС‚Р°РЅРѕРІР»РµРЅ
+2025-04-24 18:49:38 - bot - INFO - Р‘РѕС‚ Р·Р°РїСѓС‰РµРЅ
+2025-04-24 18:49:48 - bot.handlers.messages - ERROR - Error in messages: Telegram server says - Bad Request: message to delete not found
+2025-04-24 18:49:57 - bot.handlers.messages - ERROR - РћС€РёР±РєР° РїСЂРё РїРѕРёСЃРєРµ Рё СѓРґР°Р»РµРЅРёРё СЃРѕРѕР±С‰РµРЅРёСЏ 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:49:57 - bot.handlers.messages - ERROR - РћС€РёР±РєР° РїСЂРё РїРѕРёСЃРєРµ Рё СѓРґР°Р»РµРЅРёРё СЃРѕРѕР±С‰РµРЅРёСЏ 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:51:18 - bot.keyboards.inline - INFO - РќР°Р¶Р°С‚Р° РєРЅРѕРїРєР° 'РЅРµС‚' РІ РјРµРЅСЋ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё
+2025-04-24 18:51:18 - bot.keyboards.inline - INFO - РџСЂРµРґС‹РґСѓС‰РёРµ СЃРѕСЃС‚РѕСЏРЅРёСЏ СЃР±СЂРѕС€РµРЅС‹
+2025-04-24 18:51:18 - bot.keyboards.inline - INFO - РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ СЃРѕСЃС‚РѕСЏРЅРёРµ feedback_message Рё СЃРµРєС†РёСЏ feedback
+2025-04-24 18:51:18 - bot.keyboards.inline - INFO - Р—Р°РїСЂРѕСЃ РЅР° РѕС‚Р·С‹РІ РѕС‚РїСЂР°РІР»РµРЅ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ
+2025-04-24 18:51:32 - bot.keyboards.inline - INFO - РџРѕР»СѓС‡РµРЅРѕ СЃРѕРѕР±С‰РµРЅРёРµ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё: С‚РµСЃС‚РёРј
+2025-04-24 18:51:32 - bot.keyboards.inline - INFO - РўРµРєСѓС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ: {'section': 'feedback'}
+2025-04-24 18:51:32 - bot.keyboards.inline - ERROR - РћС€РёР±РєР° РїСЂРё РѕР±СЂР°Р±РѕС‚РєРµ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё: name 'FEEDBACK_USER_ID_2' is not defined
+Traceback (most recent call last):
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 121, in feedback_message_handler
+    if FEEDBACK_USER_ID and FEEDBACK_USER_ID_2:
+                            ^^^^^^^^^^^^^^^^^^
+NameError: name 'FEEDBACK_USER_ID_2' is not defined
+2025-04-24 18:53:07 - bot - INFO - Р‘РѕС‚ РѕСЃС‚Р°РЅРѕРІР»РµРЅ
+2025-04-24 18:53:12 - bot - INFO - Р‘РѕС‚ Р·Р°РїСѓС‰РµРЅ
+2025-04-24 18:53:34 - bot.handlers.messages - ERROR - РћС€РёР±РєР° РїСЂРё РїРѕРёСЃРєРµ Рё СѓРґР°Р»РµРЅРёРё СЃРѕРѕР±С‰РµРЅРёСЏ 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:53:34 - bot.handlers.messages - ERROR - РћС€РёР±РєР° РїСЂРё РїРѕРёСЃРєРµ Рё СѓРґР°Р»РµРЅРёРё СЃРѕРѕР±С‰РµРЅРёСЏ 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:54:00 - bot.keyboards.inline - INFO - РќР°Р¶Р°С‚Р° РєРЅРѕРїРєР° 'РЅРµС‚' РІ РјРµРЅСЋ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё
+2025-04-24 18:54:00 - bot.keyboards.inline - INFO - РџСЂРµРґС‹РґСѓС‰РёРµ СЃРѕСЃС‚РѕСЏРЅРёСЏ СЃР±СЂРѕС€РµРЅС‹
+2025-04-24 18:54:00 - bot.keyboards.inline - INFO - РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ СЃРѕСЃС‚РѕСЏРЅРёРµ feedback_message Рё СЃРµРєС†РёСЏ feedback
+2025-04-24 18:54:00 - bot.keyboards.inline - INFO - Р—Р°РїСЂРѕСЃ РЅР° РѕС‚Р·С‹РІ РѕС‚РїСЂР°РІР»РµРЅ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ
+2025-04-24 18:54:02 - bot.keyboards.inline - INFO - РџРѕР»СѓС‡РµРЅРѕ СЃРѕРѕР±С‰РµРЅРёРµ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё: Р°Р»Рѕ
+2025-04-24 18:54:02 - bot.keyboards.inline - INFO - РўРµРєСѓС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ: {'section': 'feedback'}
+2025-04-24 18:54:02 - bot.keyboards.inline - INFO - РџРѕРїС‹С‚РєР° РѕС‚РїСЂР°РІРёС‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ СЃ ID: 7282535243
+2025-04-24 18:54:02 - bot.keyboards.inline - INFO - РџРѕРїС‹С‚РєР° РѕС‚РїСЂР°РІРёС‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ СЃ ID: 7858370854
+2025-04-24 18:54:02 - bot.keyboards.inline - INFO - РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРЅРѕРµ ID РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ: 7282535243
+2025-04-24 18:54:02 - bot.keyboards.inline - INFO - РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРЅРѕРµ ID РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ: 7858370854
+2025-04-24 18:54:02 - bot.keyboards.inline - INFO - Р§Р°С‚ РЅР°Р№РґРµРЅ: id=7282535243 type='private' title=None username='StSindJ' first_name='drkshdw' last_name=None is_forum=None photo=None active_usernames=['StSindJ'] emoji_status_custom_emoji_id=None emoji_status_expiration_date=None bio=None has_private_forwards=None has_restricted_voice_and_video_messages=None join_to_send_messages=None join_by_request=None description=None invite_link=None pinned_message=None permissions=None slow_mode_delay=None message_auto_delete_time=None has_aggressive_anti_spam_enabled=None has_hidden_members=None has_protected_content=None sticker_set_name=None can_set_sticker_set=None linked_chat_id=None location=None can_send_gift=True accepted_gift_types={'unlimited_gifts': True, 'limited_gifts': True, 'unique_gifts': True, 'premium_subscription': True} max_reaction_count=11 accent_color_id=4
+2025-04-24 18:54:02 - bot.keyboards.inline - INFO - РЎРѕРѕР±С‰РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РѕС‚РїСЂР°РІР»РµРЅРѕ РІ РїРµСЂРІС‹Р№ С‡Р°С‚
+2025-04-24 18:54:02 - bot.keyboards.inline - INFO - Р§Р°С‚ РЅР°Р№РґРµРЅ: id=7858370854 type='private' title=None username='d1rective' first_name=')' last_name=None is_forum=None photo=ChatPhoto(small_file_id='AQADAgAE9TEb26NBSAAIAgADJjll1AEAAxYInRWuZzueNgQ', small_file_unique_id='AQAE9TEb26NBSAAB', big_file_id='AQADAgAE9TEb26NBSAAIAwADJjll1AEAAxYInRWuZzueNgQ', big_file_unique_id='AQAE9TEb26NBSAE') active_usernames=['d1rective'] emoji_status_custom_emoji_id=None emoji_status_expiration_date=None bio='Web FullStack (Next Js + Nest Js + MongoDB)' has_private_forwards=None has_restricted_voice_and_video_messages=None join_to_send_messages=None join_by_request=None description=None invite_link=None pinned_message=None permissions=None slow_mode_delay=None message_auto_delete_time=None has_aggressive_anti_spam_enabled=None has_hidden_members=None has_protected_content=None sticker_set_name=None can_set_sticker_set=None linked_chat_id=None location=None can_send_gift=True accepted_gift_types={'unlimited_gifts': True, 'limited_gifts': True, 'unique_gifts': True, 'premium_subscription': True} max_reaction_count=11 accent_color_id=5
+2025-04-24 18:54:02 - bot.keyboards.inline - INFO - РЎРѕРѕР±С‰РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РѕС‚РїСЂР°РІР»РµРЅРѕ РІРѕ РІС‚РѕСЂРѕР№ С‡Р°С‚
+2025-04-24 18:54:03 - bot.keyboards.inline - INFO - РЎРѕСЃС‚РѕСЏРЅРёРµ СЃР±СЂРѕС€РµРЅРѕ
+2025-04-24 18:54:16 - bot - INFO - Р‘РѕС‚ РѕСЃС‚Р°РЅРѕРІР»РµРЅ
+2025-04-24 19:02:06 - bot - INFO - Р‘РѕС‚ Р·Р°РїСѓС‰РµРЅ
+2025-04-24 19:02:46 - bot.handlers.messages - ERROR - Error in messages: cannot access local variable 'text' where it is not associated with a value
+2025-04-24 19:03:35 - bot.keyboards.inline - INFO - РќР°Р¶Р°С‚Р° РєРЅРѕРїРєР° 'РЅРµС‚' РІ РјРµРЅСЋ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё
+2025-04-24 19:03:35 - bot.keyboards.inline - INFO - РџСЂРµРґС‹РґСѓС‰РёРµ СЃРѕСЃС‚РѕСЏРЅРёСЏ СЃР±СЂРѕС€РµРЅС‹
+2025-04-24 19:03:35 - bot.keyboards.inline - INFO - РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ СЃРѕСЃС‚РѕСЏРЅРёРµ feedback_message Рё СЃРµРєС†РёСЏ feedback
+2025-04-24 19:03:35 - bot.keyboards.inline - INFO - Р—Р°РїСЂРѕСЃ РЅР° РѕС‚Р·С‹РІ РѕС‚РїСЂР°РІР»РµРЅ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ
+2025-04-24 19:03:39 - bot.keyboards.inline - INFO - РџРѕР»СѓС‡РµРЅРѕ СЃРѕРѕР±С‰РµРЅРёРµ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё: С‚Рѕ
+2025-04-24 19:03:39 - bot.keyboards.inline - INFO - РўРµРєСѓС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ: {'section': 'feedback'}
+2025-04-24 19:03:39 - bot.keyboards.inline - INFO - РџРѕРїС‹С‚РєР° РѕС‚РїСЂР°РІРёС‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ СЃ ID: 7282535243
+2025-04-24 19:03:39 - bot.keyboards.inline - INFO - РџРѕРїС‹С‚РєР° РѕС‚РїСЂР°РІРёС‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ СЃ ID: 7858370854
+2025-04-24 19:03:39 - bot.keyboards.inline - INFO - РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРЅРѕРµ ID РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ: 7282535243
+2025-04-24 19:03:39 - bot.keyboards.inline - INFO - РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРЅРѕРµ ID РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ: 7858370854
+2025-04-24 19:03:39 - bot.keyboards.inline - INFO - Р§Р°С‚ РЅР°Р№РґРµРЅ: id=7282535243 type='private' title=None username='StSindJ' first_name='drkshdw' last_name=None is_forum=None photo=None active_usernames=['StSindJ'] emoji_status_custom_emoji_id=None emoji_status_expiration_date=None bio=None has_private_forwards=None has_restricted_voice_and_video_messages=None join_to_send_messages=None join_by_request=None description=None invite_link=None pinned_message=None permissions=None slow_mode_delay=None message_auto_delete_time=None has_aggressive_anti_spam_enabled=None has_hidden_members=None has_protected_content=None sticker_set_name=None can_set_sticker_set=None linked_chat_id=None location=None can_send_gift=True accepted_gift_types={'unlimited_gifts': True, 'limited_gifts': True, 'unique_gifts': True, 'premium_subscription': True} max_reaction_count=11 accent_color_id=4
+2025-04-24 19:03:39 - bot.keyboards.inline - INFO - РЎРѕРѕР±С‰РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РѕС‚РїСЂР°РІР»РµРЅРѕ РІ РїРµСЂРІС‹Р№ С‡Р°С‚
+2025-04-24 19:03:39 - bot.keyboards.inline - INFO - Р§Р°С‚ РЅР°Р№РґРµРЅ: id=7858370854 type='private' title=None username='d1rective' first_name=')' last_name=None is_forum=None photo=ChatPhoto(small_file_id='AQADAgAE9TEb26NBSAAIAgADJjll1AEAAxYInRWuZzueNgQ', small_file_unique_id='AQAE9TEb26NBSAAB', big_file_id='AQADAgAE9TEb26NBSAAIAwADJjll1AEAAxYInRWuZzueNgQ', big_file_unique_id='AQAE9TEb26NBSAE') active_usernames=['d1rective'] emoji_status_custom_emoji_id=None emoji_status_expiration_date=None bio='Web FullStack (Next Js + Nest Js + MongoDB)' has_private_forwards=None has_restricted_voice_and_video_messages=None join_to_send_messages=None join_by_request=None description=None invite_link=None pinned_message=None permissions=None slow_mode_delay=None message_auto_delete_time=None has_aggressive_anti_spam_enabled=None has_hidden_members=None has_protected_content=None sticker_set_name=None can_set_sticker_set=None linked_chat_id=None location=None can_send_gift=True accepted_gift_types={'unlimited_gifts': True, 'limited_gifts': True, 'unique_gifts': True, 'premium_subscription': True} max_reaction_count=11 accent_color_id=5
+2025-04-24 19:03:39 - bot.keyboards.inline - INFO - РЎРѕРѕР±С‰РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РѕС‚РїСЂР°РІР»РµРЅРѕ РІРѕ РІС‚РѕСЂРѕР№ С‡Р°С‚
+2025-04-24 19:03:39 - bot.keyboards.inline - INFO - РЎРѕСЃС‚РѕСЏРЅРёРµ СЃР±СЂРѕС€РµРЅРѕ
+2025-04-24 19:05:17 - bot - INFO - Р‘РѕС‚ РѕСЃС‚Р°РЅРѕРІР»РµРЅ
+2025-04-24 19:05:22 - bot - INFO - Р‘РѕС‚ Р·Р°РїСѓС‰РµРЅ
+2025-04-24 19:06:45 - bot - INFO - Р‘РѕС‚ РѕСЃС‚Р°РЅРѕРІР»РµРЅ
+2025-04-24 19:06:50 - bot - INFO - Р‘РѕС‚ Р·Р°РїСѓС‰РµРЅ
+2025-04-24 19:08:18 - bot - INFO - Р‘РѕС‚ РѕСЃС‚Р°РЅРѕРІР»РµРЅ
+2025-04-24 19:12:29 - bot - INFO - Р‘РѕС‚ Р·Р°РїСѓС‰РµРЅ
+2025-04-24 19:13:25 - bot - INFO - Р‘РѕС‚ РѕСЃС‚Р°РЅРѕРІР»РµРЅ
+2025-04-24 19:13:30 - bot - INFO - Р‘РѕС‚ Р·Р°РїСѓС‰РµРЅ
+2025-04-24 19:13:56 - bot.handlers.messages - ERROR - Error in messages: 'Chat' object has no attribute 'get_messages'
+2025-04-24 19:15:54 - bot - INFO - Р‘РѕС‚ РѕСЃС‚Р°РЅРѕРІР»РµРЅ
+2025-04-24 19:17:07 - bot - INFO - Р‘РѕС‚ Р·Р°РїСѓС‰РµРЅ
+2025-04-24 19:19:33 - bot.keyboards.inline - INFO - РќР°Р¶Р°С‚Р° РєРЅРѕРїРєР° 'РЅРµС‚' РІ РјРµРЅСЋ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё
+2025-04-24 19:19:33 - bot.keyboards.inline - INFO - РџСЂРµРґС‹РґСѓС‰РёРµ СЃРѕСЃС‚РѕСЏРЅРёСЏ СЃР±СЂРѕС€РµРЅС‹
+2025-04-24 19:19:33 - bot.keyboards.inline - INFO - РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ СЃРѕСЃС‚РѕСЏРЅРёРµ feedback_message Рё СЃРµРєС†РёСЏ feedback
+2025-04-24 19:19:33 - bot.keyboards.inline - INFO - Р—Р°РїСЂРѕСЃ РЅР° РѕС‚Р·С‹РІ РѕС‚РїСЂР°РІР»РµРЅ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ
+2025-04-24 19:19:36 - bot.keyboards.inline - INFO - РџРѕР»СѓС‡РµРЅРѕ СЃРѕРѕР±С‰РµРЅРёРµ РѕР±СЂР°С‚РЅРѕР№ СЃРІСЏР·Рё: РІСЃРµ РЅРѕСЂРј
+2025-04-24 19:19:36 - bot.keyboards.inline - INFO - РўРµРєСѓС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ: {'section': 'feedback'}
+2025-04-24 19:19:36 - bot.keyboards.inline - INFO - РџРѕРїС‹С‚РєР° РѕС‚РїСЂР°РІРёС‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ СЃ ID: 7282535243
+2025-04-24 19:19:36 - bot.keyboards.inline - INFO - РџРѕРїС‹С‚РєР° РѕС‚РїСЂР°РІРёС‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ СЃ ID: 7858370854
+2025-04-24 19:19:36 - bot.keyboards.inline - INFO - РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРЅРѕРµ ID РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ: 7282535243
+2025-04-24 19:19:36 - bot.keyboards.inline - INFO - РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРЅРѕРµ ID РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ: 7858370854
+2025-04-24 19:19:37 - bot.keyboards.inline - INFO - Р§Р°С‚ РЅР°Р№РґРµРЅ: id=7282535243 type='private' title=None username='StSindJ' first_name='drkshdw' last_name=None is_forum=None photo=None active_usernames=['StSindJ'] emoji_status_custom_emoji_id=None emoji_status_expiration_date=None bio=None has_private_forwards=None has_restricted_voice_and_video_messages=None join_to_send_messages=None join_by_request=None description=None invite_link=None pinned_message=None permissions=None slow_mode_delay=None message_auto_delete_time=None has_aggressive_anti_spam_enabled=None has_hidden_members=None has_protected_content=None sticker_set_name=None can_set_sticker_set=None linked_chat_id=None location=None can_send_gift=True accepted_gift_types={'unlimited_gifts': True, 'limited_gifts': True, 'unique_gifts': True, 'premium_subscription': True} max_reaction_count=11 accent_color_id=4
+2025-04-24 19:19:37 - bot.keyboards.inline - INFO - РЎРѕРѕР±С‰РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РѕС‚РїСЂР°РІР»РµРЅРѕ РІ РїРµСЂРІС‹Р№ С‡Р°С‚
+2025-04-24 19:19:37 - bot.keyboards.inline - INFO - Р§Р°С‚ РЅР°Р№РґРµРЅ: id=7858370854 type='private' title=None username='d1rective' first_name=')' last_name=None is_forum=None photo=ChatPhoto(small_file_id='AQADAgAE9TEb26NBSAAIAgADJjll1AEAAxYInRWuZzueNgQ', small_file_unique_id='AQAE9TEb26NBSAAB', big_file_id='AQADAgAE9TEb26NBSAAIAwADJjll1AEAAxYInRWuZzueNgQ', big_file_unique_id='AQAE9TEb26NBSAE') active_usernames=['d1rective'] emoji_status_custom_emoji_id=None emoji_status_expiration_date=None bio='Web FullStack (Next Js + Nest Js + MongoDB)' has_private_forwards=None has_restricted_voice_and_video_messages=None join_to_send_messages=None join_by_request=None description=None invite_link=None pinned_message=None permissions=None slow_mode_delay=None message_auto_delete_time=None has_aggressive_anti_spam_enabled=None has_hidden_members=None has_protected_content=None sticker_set_name=None can_set_sticker_set=None linked_chat_id=None location=None can_send_gift=True accepted_gift_types={'unlimited_gifts': True, 'limited_gifts': True, 'unique_gifts': True, 'premium_subscription': True} max_reaction_count=11 accent_color_id=5
+2025-04-24 19:19:37 - bot.keyboards.inline - INFO - РЎРѕРѕР±С‰РµРЅРёРµ СѓСЃРїРµС€РЅРѕ РѕС‚РїСЂР°РІР»РµРЅРѕ РІРѕ РІС‚РѕСЂРѕР№ С‡Р°С‚
+2025-04-24 19:19:37 - bot.keyboards.inline - INFO - РЎРѕСЃС‚РѕСЏРЅРёРµ СЃР±СЂРѕС€РµРЅРѕ
+2025-04-24 19:21:00 - bot - INFO - Р‘РѕС‚ РѕСЃС‚Р°РЅРѕРІР»РµРЅ
+2025-04-24 19:31:20 - bot - INFO - Р‘РѕС‚ Р·Р°РїСѓС‰РµРЅ
+2025-04-24 19:32:47 - bot - INFO - Р‘РѕС‚ РѕСЃС‚Р°РЅРѕРІР»РµРЅ
+2025-04-24 19:32:52 - bot - INFO - Р‘РѕС‚ Р·Р°РїСѓС‰РµРЅ
+2025-04-24 19:34:24 - bot - INFO - Р‘РѕС‚ РѕСЃС‚Р°РЅРѕРІР»РµРЅ
+2025-04-24 19:34:29 - bot - INFO - Р‘РѕС‚ Р·Р°РїСѓС‰РµРЅ
+2025-04-24 19:36:04 - bot - INFO - Р‘РѕС‚ РѕСЃС‚Р°РЅРѕРІР»РµРЅ
+2025-04-24 19:36:09 - bot - INFO - Р‘РѕС‚ Р·Р°РїСѓС‰РµРЅ
+2025-04-24 19:46:57 - bot - INFO - Р‘РѕС‚ РѕСЃС‚Р°РЅРѕРІР»РµРЅ
+2025-04-24 19:52:29 - bot - INFO - Р‘РѕС‚ Р·Р°РїСѓС‰РµРЅ
+2025-04-24 19:53:18 - bot - INFO - Р‘РѕС‚ РѕСЃС‚Р°РЅРѕРІР»РµРЅ
+2025-04-24 19:53:22 - bot - INFO - Р‘РѕС‚ Р·Р°РїСѓС‰РµРЅ
+2025-04-24 19:54:25 - bot - INFO - Р‘РѕС‚ РѕСЃС‚Р°РЅРѕРІР»РµРЅ
+2025-04-24 19:54:34 - bot - INFO - Р‘РѕС‚ Р·Р°РїСѓС‰РµРЅ
+2025-04-24 19:56:09 - bot - INFO - Р‘РѕС‚ РѕСЃС‚Р°РЅРѕРІР»РµРЅ

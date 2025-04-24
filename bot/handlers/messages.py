@@ -1,5 +1,5 @@
 from aiogram import Router, F
-from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, FSInputFile
+from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, FSInputFile, ReplyKeyboardRemove
 from aiogram.fsm.context import FSMContext
 from aiogram.filters import StateFilter
 from aiogram.types import FSInputFile
@@ -7,7 +7,8 @@ import os
 import logging
 from dotenv import load_dotenv
 
-from bot.keyboards.reply import get_main_keyboard, get_next_question_keyboard, get_math_submenu_keyboard
+from bot.keyboards.reply import get_main_keyboard, get_next_question_keyboard, get_math_submenu_keyboard, get_abstract_keyboard
+from bot.keyboards.inline import get_feedback_keyboard
 from bot.utils.states import Form
 from requests import Requests
 import base64
@@ -161,10 +162,15 @@ async def question_button_handler(message: Message, state: FSMContext):
         if message.reply_to_message:
             solution_text = message.reply_to_message.text
         else:
-            # Получаем последнее сообщение в чате
-            messages = await message.chat.get_messages(limit=2)
-            if len(messages) > 1:
-                solution_text = messages[1].text
+            try:
+                            # Получаем последнее сообщение в чате
+                messages = await message.chat.get_messages(limit=2)
+                if len(messages) > 1:
+                    solution_text = messages[1].text
+            # Если нет reply_to_message, просто продолжаем без текста решения
+            except Exception as e:
+                logger.error(f"Error in messages: {str(e)}")
+                solution_text = None
             
         await state.update_data(section="question", solution=solution_text)
         
@@ -181,9 +187,17 @@ async def question_button_handler(message: Message, state: FSMContext):
         logger.error(f"Error in messages: {str(e)}")
         await message.answer("Произошла ошибка при обработке запроса", reply_markup=get_main_keyboard())
 
-@router.message(F.text == "➡️ Следующая задача")
+@router.message(F.text.in_(["➡️ Следующая задача", "➡️ Далее к задачам"]))
 async def next_question_button_handler(message: Message, state: FSMContext):
     try:
+        # Проверяем, существует ли состояние
+        current_state = await state.get_state()
+        if not current_state:
+            # Если состояния нет, возвращаем пользователя в главное меню
+            feedback_message = await message.answer("📚 Был ли вам полезен данный ответ?", reply_markup=get_feedback_keyboard())
+            await message.delete()
+            return
+
         state_data = await state.get_data()
         current_section = state_data.get('section')  # получаем текущую секцию из state_data
         
@@ -191,12 +205,33 @@ async def next_question_button_handler(message: Message, state: FSMContext):
         if current_section == 'physics':
             text = os.getenv("Physic_answer_text") or "Задайте свой вопрос по физике"
             next_section = 'physics'
+            # Добавляем обратную связь для физики
+            await state.clear()  # Полностью очищаем состояние
+            feedback_message = await message.answer("📕 Был ли вам полезен данный ответ?", reply_markup=get_feedback_keyboard())
+            await message.delete()
+            return
         elif current_section == 'mathematics':
             text = os.getenv("Mathematic_answer_text") or "Задайте свой вопрос по математике"
             next_section = 'mathematics'
+            # Добавляем обратную связь для математики
+            await state.clear()  # Полностью очищаем состояние
+            feedback_message = await message.answer("📊 Был ли вам полезен данный ответ?", reply_markup=get_feedback_keyboard())
+            await message.delete()
+            return
         elif current_section == 'chemistry':
             text = os.getenv("Chemistry_answer_text") or "Задайте свой вопрос по химии"
             next_section = 'chemistry'
+            # Добавляем обратную связь для химии
+            await state.clear()  # Полностью очищаем состояние
+            feedback_message = await message.answer("🧪 Был ли вам полезен данный ответ?", reply_markup=get_feedback_keyboard())
+            await message.delete()
+            return
+        elif current_section == 'abstract':
+            # Для раздела конспектов сбрасываем все состояния и показываем меню обратной связи
+            await state.clear()  # Полностью очищаем состояние
+            feedback_message = await message.answer("📚 Был ли вам полезен данный ответ?", reply_markup=get_feedback_keyboard())
+            await message.delete()
+            return
         # Проверяем, что text не None перед отправкой
         if not text:
             text = "Пожалуйста, задайте свой вопрос"
@@ -286,7 +321,7 @@ async def audio_voice_handler(message: Message, state: FSMContext):
                 solution=solution
             )
         else:
-            # Если транскрипция не удалась, используем только подпись или сообщаем об ошибке
+            
             if caption:
                 response = requests_client.main(
                     request=caption,
@@ -318,7 +353,14 @@ async def audio_voice_handler(message: Message, state: FSMContext):
 async def photo_handler(message: Message, state: FSMContext):
     """Обработчик для фотографий"""
     try:
-        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        # Не удаляем сообщение, если это фото
+        try:
+            # Получаем предыдущее сообщение
+            prev_message = await message.chat.get_messages(limit=2)
+            if len(prev_message) > 1 and not prev_message[1].photo:
+                await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        except Exception as e:
+            logger.error(f"Ошибка при поиске и удалении сообщения {str(e)}")
         wait_message = await message.answer(os.getenv("Wait_text"), parse_mode="HTML")
         
         # Start typing status after wait message
@@ -370,6 +412,8 @@ async def photo_handler(message: Message, state: FSMContext):
         await message.bot.delete_message(message.chat.id, wait_message.message_id)
         if section == "mathematics" or section == "physics" or section == "chemistry":
             await message.answer(response, parse_mode="HTML", reply_markup=get_next_question_keyboard())
+        elif section == "abstract":
+            await message.answer(response, parse_mode="HTML", reply_markup=get_abstract_keyboard())
         else:
             await message.answer(response, parse_mode="HTML", reply_markup=get_main_keyboard())
     except Exception as e:
@@ -387,6 +431,10 @@ async def fallback_message_handler(message: Message, state: FSMContext):
         # Проверяем текущее состояние
         current_state = await state.get_state()
         
+        # Если состояние feedback_message, пропускаем обработку
+        if current_state == Form.feedback_message:
+            return
+            
         # Если состояние не установлено, устанавливаем его на chatgpt
         if not current_state:
             await state.set_state(Form.section)
@@ -453,7 +501,10 @@ async def fallback_message_handler(message: Message, state: FSMContext):
                         os.unlink(temp_file.name)
         else:
             # Это текстовый ответ
-            if section == "mathematics" or section == "physics" or section == "chemistry":
+            if section in ["mathematics", "physics", "chemistry"]:
+                # Обновляем состояние для отображения клавиатуры следующего вопроса
+                await state.set_state(Form.section)
+                await state.update_data(section=section)
                 await message.answer(response, parse_mode="HTML", reply_markup=get_next_question_keyboard())
             else:
                 await message.answer(response, parse_mode="HTML", reply_markup=get_main_keyboard())

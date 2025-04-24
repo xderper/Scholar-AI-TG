@@ -39,7 +39,8 @@ def setup_logger(name="bot", level=logging.INFO):
     file_handler = RotatingFileHandler(
         os.path.join(logs_dir, f"{name}.log"),
         maxBytes=10*1024*1024,
-        backupCount=5
+        backupCount=5,
+        encoding='utf-8'  # Добавляем поддержку кириллицы
     )
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)

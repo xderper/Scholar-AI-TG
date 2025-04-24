@@ -135,18 +135,62 @@ class Format:
             text = text.replace("\\cdot", "·")
             text = text.replace("\\left", "")
             text = text.replace("\\right", "")
-            text = text.replace("\\frac", "")
-            text = text.replace("\\dfrac", "")
-            text = text.replace("\\tfrac", "")
             text = text.replace("\\circ", "°")
             text = text.replace("\\approx", "≈")
             text = text.replace("\\geq", "≥")
             text = text.replace("\\leq", "≤")
             text = text.replace("\\neq", "≠")
-
+            
+            # Обработка дробей
+            def process_fraction(match):
+                numerator = match.group(1)
+                denominator = match.group(2)
+                return f"{numerator} ÷ {denominator}"
+            
+            # Обработка LaTeX дробей
+            text = re.sub(r'\\frac\{([^\}]+)\}\{([^\}]+)\}', process_fraction, text)
+            text = re.sub(r'\\dfrac\{([^\}]+)\}\{([^\}]+)\}', process_fraction, text)
+            text = re.sub(r'\\tfrac\{([^\}]+)\}\{([^\}]+)\}', process_fraction, text)
+            
+            # Общие правила форматирования математических формул
+            # Сначала обрабатываем специальные математические символы
+            text = text.replace("pm", "±")  # Плюс-минус
+            text = text.replace("mp", "∓")  
+            text = text.replace("cdot", "·")  # Точка умножения
+            text = text.replace("times", "×")  # Крестик умножения
+            text = text.replace("div", "÷")  # Знак деления
+            text = text.replace("sqrt", "√")  # Корень квадратный
+            
+            # Затем обрабатываем обычные операторы
+            text = text.replace("/", "÷")  # Замена обычного слеша на знак деления
+            text = text.replace("*", "×")  # Замена звездочки на знак умножения
+            
+            # Остальные математические символы
+            text = text.replace("infty", "∞")  # Бесконечность
+            text = text.replace("propto", "∝")  # Пропорционально
+            text = text.replace("partial", "∂")  # Частная производная
+            text = text.replace("nabla", "∇")  # Набла
+            text = text.replace("exists", "∃")  # Существует
+            text = text.replace("forall", "∀")  # Для всех
+            text = text.replace("notin", "∉")  # Не принадлежит
+            text = text.replace("subset", "⊂")  # Подмножество
+            text = text.replace("supset", "⊃")  # Надмножество
+            text = text.replace("cup", "∪")  # Объединение
+            text = text.replace("cap", "∩")  # Пересечение
+            text = text.replace("emptyset", "∅")  # Пустое множество
+            text = text.replace("angle", "∠")  # Угол
+            text = text.replace("perp", "⊥")  # Перпендикулярно
+            text = text.replace("parallel", "∥")  # Параллельно
+            text = text.replace("therefore", "∴")  # Следовательно
+            text = text.replace("because", "∵")  # Потому что
             
             # Physics notation
             text = text.replace('⇒', '⇒')
+            # Формула дискриминанта
+            text = text.replace("x = -b ± √b² - 4ac2a", "x = (-b ± √(b² - 4ac))/(2a)")
+            text = text.replace("x = -b pm √b² - 4ac2a", "x = (-b ± √(b² - 4ac))/(2a)")
+            text = text.replace("ratic equation", "quadratic equation")
+            text = text.replace("ratic formula", "quadratic formula")
             
             # Замена LaTeX-блоков на HTML код-блоки
             text = text.replace("\\[", "<pre><code>")
@@ -217,7 +261,14 @@ class Format:
             # Замена стрелок
             text = text.replace("\\Rightarrow", "⇒")
             text = text.replace("Rightarrow", "⇒")
-
+           # Замена математических множеств и символов
+            text = text.replace("\\mathbb{Z}", "ℤ")
+            text = text.replace("\\mathbb{R}", "ℝ")
+            text = text.replace("\\mathbb{N}", "ℕ")
+            text = text.replace("\\mathbb{Q}", "ℚ")
+            text = text.replace("\\in", "∈")
+            text = text.replace("\\pi", "π")
+            text = text.replace("\\sum", "∑")
             return text
             
         except Exception as e:
