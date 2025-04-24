@@ -733,3 +733,150 @@ NameError: name 'FEEDBACK_USER_ID_2' is not defined
 2025-04-24 19:21:00,286 - aiogram.dispatcher - INFO - Polling stopped
 2025-04-24 19:21:00,549 - aiogram.dispatcher - INFO - Polling stopped for bot @testbotsco_bot id=7270921212 - 'testbotsco'
 2025-04-24 19:21:00,551 - bot - INFO - Бот остановлен
+2025-04-24 19:29:25,011 - dotenv.main - WARNING - Python-dotenv could not parse statement starting at line 77
+2025-04-24 19:29:25,012 - dotenv.main - WARNING - Python-dotenv could not parse statement starting at line 78
+2025-04-24 19:29:25,013 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID: 7282535243
+2025-04-24 19:29:25,014 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID_2: 7858370854
+2025-04-24 19:31:18,485 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID: 7282535243
+2025-04-24 19:31:18,486 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID_2: 7858370854
+2025-04-24 19:31:20,061 - bot - INFO - Бот запущен
+2025-04-24 19:31:20,061 - aiogram.dispatcher - INFO - Start polling
+2025-04-24 19:31:20,255 - aiogram.dispatcher - INFO - Run polling for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 19:31:25,369 - aiogram.event - INFO - Update id=738720975 is handled. Duration 422 ms by bot id=7270921212
+2025-04-24 19:31:31,201 - requests - INFO - Обработка запроса. Предмет: mathematics, Решение: None, Фото: Нет, Аудио: Нет
+2025-04-24 19:31:31,201 - requests - INFO - Финальный запрос: Представь, что ты опытный и квалифицированный преподаватель математики, и тебе нужно решить задачу. ...
+2025-04-24 19:31:31,202 - requests - INFO - Отправка запроса к OpenAI. Текст: Представь, что ты опытный и квалифицированный преп...
+2025-04-24 19:31:37,260 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 19:31:37,263 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 561 символов
+2025-04-24 19:31:39,162 - aiogram.event - INFO - Update id=738720976 is handled. Duration 8250 ms by bot id=7270921212
+2025-04-24 19:31:41,673 - aiogram.event - INFO - Update id=738720977 is handled. Duration 202 ms by bot id=7270921212
+2025-04-24 19:31:43,022 - aiogram.event - INFO - Update id=738720978 is handled. Duration 329 ms by bot id=7270921212
+2025-04-24 19:32:47,498 - aiogram.dispatcher - INFO - Polling stopped
+2025-04-24 19:32:47,752 - aiogram.dispatcher - INFO - Polling stopped for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 19:32:47,753 - bot - INFO - Бот остановлен
+2025-04-24 19:32:51,176 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID: 7282535243
+2025-04-24 19:32:51,177 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID_2: 7858370854
+2025-04-24 19:32:52,727 - bot - INFO - Бот запущен
+2025-04-24 19:32:52,728 - aiogram.dispatcher - INFO - Start polling
+2025-04-24 19:32:52,905 - aiogram.dispatcher - INFO - Run polling for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 19:32:55,090 - aiogram.event - INFO - Update id=738720979 is handled. Duration 422 ms by bot id=7270921212
+2025-04-24 19:32:56,686 - aiogram.event - INFO - Update id=738720980 is handled. Duration 312 ms by bot id=7270921212
+2025-04-24 19:32:59,435 - requests - INFO - Обработка запроса. Предмет: mathematics, Решение: None, Фото: Нет, Аудио: Нет
+2025-04-24 19:32:59,436 - requests - INFO - Финальный запрос: Представь, что ты опытный и квалифицированный преподаватель математики, и тебе нужно решить задачу. ...
+2025-04-24 19:32:59,436 - requests - INFO - Отправка запроса к OpenAI. Текст: Представь, что ты опытный и квалифицированный преп...
+2025-04-24 19:33:02,810 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 19:33:02,823 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 547 символов
+2025-04-24 19:33:03,015 - aiogram.event - INFO - Update id=738720981 is handled. Duration 3844 ms by bot id=7270921212
+2025-04-24 19:33:05,087 - aiogram.event - INFO - Update id=738720982 is handled. Duration 219 ms by bot id=7270921212
+2025-04-24 19:33:06,440 - aiogram.event - INFO - Update id=738720983 is handled. Duration 343 ms by bot id=7270921212
+2025-04-24 19:34:24,722 - aiogram.dispatcher - INFO - Polling stopped
+2025-04-24 19:34:24,988 - aiogram.dispatcher - INFO - Polling stopped for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 19:34:24,989 - bot - INFO - Бот остановлен
+2025-04-24 19:34:27,950 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID: 7282535243
+2025-04-24 19:34:27,951 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID_2: 7858370854
+2025-04-24 19:34:29,666 - bot - INFO - Бот запущен
+2025-04-24 19:34:29,666 - aiogram.dispatcher - INFO - Start polling
+2025-04-24 19:34:29,852 - aiogram.dispatcher - INFO - Run polling for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 19:34:33,079 - aiogram.event - INFO - Update id=738720984 is handled. Duration 420 ms by bot id=7270921212
+2025-04-24 19:34:34,010 - aiogram.event - INFO - Update id=738720985 is handled. Duration 313 ms by bot id=7270921212
+2025-04-24 19:34:36,406 - requests - INFO - Обработка запроса. Предмет: mathematics, Решение: None, Фото: Нет, Аудио: Нет
+2025-04-24 19:34:36,406 - requests - INFO - Финальный запрос: Представь, что ты опытный и квалифицированный преподаватель математики, и тебе нужно решить задачу. ...
+2025-04-24 19:34:36,407 - requests - INFO - Отправка запроса к OpenAI. Текст: Представь, что ты опытный и квалифицированный преп...
+2025-04-24 19:34:39,161 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 19:34:39,165 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 554 символов
+2025-04-24 19:34:39,339 - aiogram.event - INFO - Update id=738720986 is handled. Duration 3203 ms by bot id=7270921212
+2025-04-24 19:34:40,927 - aiogram.event - INFO - Update id=738720987 is handled. Duration 234 ms by bot id=7270921212
+2025-04-24 19:34:42,208 - aiogram.event - INFO - Update id=738720988 is handled. Duration 295 ms by bot id=7270921212
+2025-04-24 19:36:03,908 - aiogram.dispatcher - INFO - Polling stopped
+2025-04-24 19:36:04,174 - aiogram.dispatcher - INFO - Polling stopped for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 19:36:04,176 - bot - INFO - Бот остановлен
+2025-04-24 19:36:07,535 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID: 7282535243
+2025-04-24 19:36:07,536 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID_2: 7858370854
+2025-04-24 19:36:09,257 - bot - INFO - Бот запущен
+2025-04-24 19:36:09,257 - aiogram.dispatcher - INFO - Start polling
+2025-04-24 19:36:09,456 - aiogram.dispatcher - INFO - Run polling for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 19:36:11,622 - aiogram.event - INFO - Update id=738720989 is handled. Duration 437 ms by bot id=7270921212
+2025-04-24 19:36:12,452 - aiogram.event - INFO - Update id=738720990 is handled. Duration 295 ms by bot id=7270921212
+2025-04-24 19:36:13,695 - aiogram.event - INFO - Update id=738720991 is handled. Duration 311 ms by bot id=7270921212
+2025-04-24 19:36:21,385 - requests - INFO - Обработка запроса. Предмет: mathematics, Решение: None, Фото: Нет, Аудио: Нет
+2025-04-24 19:36:21,386 - requests - INFO - Финальный запрос: Представь, что ты опытный и квалифицированный преподаватель математики, и тебе нужно решить задачу. ...
+2025-04-24 19:36:21,386 - requests - INFO - Отправка запроса к OpenAI. Текст: Представь, что ты опытный и квалифицированный преп...
+2025-04-24 19:36:23,970 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 19:36:23,977 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 555 символов
+2025-04-24 19:36:24,169 - aiogram.event - INFO - Update id=738720992 is handled. Duration 3061 ms by bot id=7270921212
+2025-04-24 19:36:25,853 - aiogram.event - INFO - Update id=738720993 is handled. Duration 265 ms by bot id=7270921212
+2025-04-24 19:36:27,093 - aiogram.event - INFO - Update id=738720994 is handled. Duration 359 ms by bot id=7270921212
+2025-04-24 19:36:30,232 - aiogram.event - INFO - Update id=738720995 is handled. Duration 703 ms by bot id=7270921212
+2025-04-24 19:36:31,834 - aiogram.event - INFO - Update id=738720996 is handled. Duration 311 ms by bot id=7270921212
+2025-04-24 19:36:35,565 - requests - INFO - Обработка запроса. Предмет: mathematics, Решение: None, Фото: Нет, Аудио: Нет
+2025-04-24 19:36:35,565 - requests - INFO - Финальный запрос: Представь, что ты опытный и квалифицированный преподаватель математики, и тебе нужно решить задачу. ...
+2025-04-24 19:36:35,565 - requests - INFO - Отправка запроса к OpenAI. Текст: Представь, что ты опытный и квалифицированный преп...
+2025-04-24 19:36:39,006 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 19:36:39,009 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 542 символов
+2025-04-24 19:36:39,181 - aiogram.event - INFO - Update id=738720997 is handled. Duration 3890 ms by bot id=7270921212
+2025-04-24 19:46:11,382 - aiogram.event - INFO - Update id=738720998 is handled. Duration 563 ms by bot id=7270921212
+2025-04-24 19:46:12,848 - aiogram.event - INFO - Update id=738720999 is handled. Duration 516 ms by bot id=7270921212
+2025-04-24 19:46:15,549 - aiogram.event - INFO - Update id=738721000 is handled. Duration 609 ms by bot id=7270921212
+2025-04-24 19:46:26,576 - aiogram.event - INFO - Update id=738721001 is handled. Duration 295 ms by bot id=7270921212
+2025-04-24 19:46:27,841 - aiogram.event - INFO - Update id=738721002 is handled. Duration 687 ms by bot id=7270921212
+2025-04-24 19:46:31,144 - requests - INFO - Обработка запроса. Предмет: mathematics, Решение: None, Фото: Нет, Аудио: Нет
+2025-04-24 19:46:31,145 - requests - INFO - Финальный запрос: Представь, что ты опытный и квалифицированный преподаватель математики, и тебе нужно решить задачу. ...
+2025-04-24 19:46:31,145 - requests - INFO - Отправка запроса к OpenAI. Текст: Представь, что ты опытный и квалифицированный преп...
+2025-04-24 19:46:37,153 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 19:46:37,162 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 548 символов
+2025-04-24 19:46:37,528 - aiogram.event - INFO - Update id=738721003 is handled. Duration 6656 ms by bot id=7270921212
+2025-04-24 19:46:48,822 - aiogram.event - INFO - Update id=738721004 is handled. Duration 405 ms by bot id=7270921212
+2025-04-24 19:46:49,859 - aiogram.event - INFO - Update id=738721005 is handled. Duration 297 ms by bot id=7270921212
+2025-04-24 19:46:56,823 - aiogram.dispatcher - INFO - Polling stopped
+2025-04-24 19:46:57,086 - aiogram.dispatcher - INFO - Polling stopped for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 19:46:57,088 - bot - INFO - Бот остановлен
+2025-04-24 19:52:26,734 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID: 7282535243
+2025-04-24 19:52:26,735 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID_2: 7858370854
+2025-04-24 19:52:29,461 - bot - INFO - Бот запущен
+2025-04-24 19:52:29,461 - aiogram.dispatcher - INFO - Start polling
+2025-04-24 19:52:29,649 - aiogram.dispatcher - INFO - Run polling for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 19:52:34,187 - aiogram.event - INFO - Update id=738721006 is handled. Duration 405 ms by bot id=7270921212
+2025-04-24 19:52:37,099 - requests - INFO - Обработка запроса. Предмет: chatgpt, Решение: None, Фото: Нет, Аудио: Нет
+2025-04-24 19:52:37,099 - requests - INFO - Финальный запрос: x=64+3-x
+найди x...
+2025-04-24 19:52:37,100 - requests - INFO - Отправка запроса к OpenAI. Текст: x=64+3-x
+найди x...
+2025-04-24 19:52:40,529 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 19:52:40,532 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 389 символов
+2025-04-24 19:52:40,807 - aiogram.event - INFO - Update id=738721007 is handled. Duration 4093 ms by bot id=7270921212
+2025-04-24 19:53:17,952 - aiogram.dispatcher - INFO - Polling stopped
+2025-04-24 19:53:18,204 - aiogram.dispatcher - INFO - Polling stopped for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 19:53:18,205 - bot - INFO - Бот остановлен
+2025-04-24 19:53:21,219 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID: 7282535243
+2025-04-24 19:53:21,219 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID_2: 7858370854
+2025-04-24 19:53:22,973 - bot - INFO - Бот запущен
+2025-04-24 19:53:22,974 - aiogram.dispatcher - INFO - Start polling
+2025-04-24 19:53:23,171 - aiogram.dispatcher - INFO - Run polling for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 19:53:24,450 - aiogram.event - INFO - Update id=738721008 is handled. Duration 514 ms by bot id=7270921212
+2025-04-24 19:53:27,016 - requests - INFO - Обработка запроса. Предмет: chatgpt, Решение: None, Фото: Нет, Аудио: Нет
+2025-04-24 19:53:27,016 - requests - INFO - Финальный запрос: x=64+3-x
+найди x...
+2025-04-24 19:53:27,017 - requests - INFO - Отправка запроса к OpenAI. Текст: x=64+3-x
+найди x...
+2025-04-24 19:53:29,851 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 19:53:29,859 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 389 символов
+2025-04-24 19:53:30,063 - aiogram.event - INFO - Update id=738721009 is handled. Duration 3312 ms by bot id=7270921212
+2025-04-24 19:54:25,309 - aiogram.dispatcher - INFO - Polling stopped
+2025-04-24 19:54:25,565 - aiogram.dispatcher - INFO - Polling stopped for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 19:54:25,567 - bot - INFO - Бот остановлен
+2025-04-24 19:54:32,669 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID: 7282535243
+2025-04-24 19:54:32,670 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID_2: 7858370854
+2025-04-24 19:54:34,247 - bot - INFO - Бот запущен
+2025-04-24 19:54:34,249 - aiogram.dispatcher - INFO - Start polling
+2025-04-24 19:54:34,429 - aiogram.dispatcher - INFO - Run polling for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 19:54:43,124 - aiogram.event - INFO - Update id=738721010 is handled. Duration 468 ms by bot id=7270921212
+2025-04-24 19:54:44,140 - aiogram.event - INFO - Update id=738721011 is handled. Duration 390 ms by bot id=7270921212
+2025-04-24 19:54:46,312 - requests - INFO - Обработка запроса. Предмет: mathematics, Решение: None, Фото: Нет, Аудио: Нет
+2025-04-24 19:54:46,313 - requests - INFO - Финальный запрос: Представь, что ты опытный и квалифицированный преподаватель математики, и тебе нужно решить задачу. ...
+2025-04-24 19:54:46,314 - requests - INFO - Отправка запроса к OpenAI. Текст: Представь, что ты опытный и квалифицированный преп...
+2025-04-24 19:54:50,189 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 19:54:50,204 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 548 символов
+2025-04-24 19:54:50,416 - aiogram.event - INFO - Update id=738721012 is handled. Duration 4469 ms by bot id=7270921212
+2025-04-24 19:56:09,474 - aiogram.dispatcher - INFO - Polling stopped
+2025-04-24 19:56:09,737 - aiogram.dispatcher - INFO - Polling stopped for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 19:56:09,739 - bot - INFO - Бот остановлен

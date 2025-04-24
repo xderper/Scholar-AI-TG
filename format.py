@@ -135,22 +135,37 @@ class Format:
             text = text.replace("\\cdot", "·")
             text = text.replace("\\left", "")
             text = text.replace("\\right", "")
-            text = text.replace("\\frac", "")
-            text = text.replace("\\dfrac", "")
-            text = text.replace("\\tfrac", "")
             text = text.replace("\\circ", "°")
             text = text.replace("\\approx", "≈")
             text = text.replace("\\geq", "≥")
             text = text.replace("\\leq", "≤")
             text = text.replace("\\neq", "≠")
             
+            # Обработка дробей
+            def process_fraction(match):
+                numerator = match.group(1)
+                denominator = match.group(2)
+                return f"{numerator} ÷ {denominator}"
+            
+            # Обработка LaTeX дробей
+            text = re.sub(r'\\frac\{([^\}]+)\}\{([^\}]+)\}', process_fraction, text)
+            text = re.sub(r'\\dfrac\{([^\}]+)\}\{([^\}]+)\}', process_fraction, text)
+            text = re.sub(r'\\tfrac\{([^\}]+)\}\{([^\}]+)\}', process_fraction, text)
+            
             # Общие правила форматирования математических формул
+            # Сначала обрабатываем специальные математические символы
             text = text.replace("pm", "±")  # Плюс-минус
-            text = text.replace("mp", "∓")  # Минус-плюс
+            text = text.replace("mp", "∓")  
             text = text.replace("cdot", "·")  # Точка умножения
             text = text.replace("times", "×")  # Крестик умножения
             text = text.replace("div", "÷")  # Знак деления
             text = text.replace("sqrt", "√")  # Корень квадратный
+            
+            # Затем обрабатываем обычные операторы
+            text = text.replace("/", "÷")  # Замена обычного слеша на знак деления
+            text = text.replace("*", "×")  # Замена звездочки на знак умножения
+            
+            # Остальные математические символы
             text = text.replace("infty", "∞")  # Бесконечность
             text = text.replace("propto", "∝")  # Пропорционально
             text = text.replace("partial", "∂")  # Частная производная
