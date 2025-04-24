@@ -143,7 +143,7 @@ async def feedback_message_handler(message: Message, state: FSMContext):
                     logger.error(f"Ошибка при отправке в первый чат: {str(chat_error)}")
                     # Продолжаем выполнение даже если не удалось отправить в первый чат
                 
-                # Проверяем, что бот может отправить сообщение во второй чат
+                
                 try:
                     chat_2 = await message.bot.get_chat(user_id_2)
                     logger.info(f"Чат найден: {chat_2}")
@@ -154,7 +154,7 @@ async def feedback_message_handler(message: Message, state: FSMContext):
                     logger.info("Сообщение успешно отправлено во второй чат")
                 except Exception as chat_error:
                     logger.error(f"Ошибка при отправке во второй чат: {str(chat_error)}")
-                    # Продолжаем выполнение даже если не удалось отправить во второй чат
+                    
                 
             except ValueError:
                 logger.error(f"FEEDBACK_USER_ID не является числом: {FEEDBACK_USER_ID} или {FEEDBACK_USER_ID_2}")
@@ -169,7 +169,7 @@ async def feedback_message_handler(message: Message, state: FSMContext):
         # Отправляем благодарность пользователю
         await message.answer("Спасибо за обратную связь! 😊", reply_markup=get_main_keyboard())
         
-        # Сбрасываем состояние
+        # Сбрасываем
         await state.clear()
         logger.info("Состояние сброшено")
     except Exception as e:

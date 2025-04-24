@@ -298,7 +298,7 @@ async def audio_voice_handler(message: Message, state: FSMContext):
                 solution=solution
             )
         else:
-            # Если транскрипция не удалась, используем только подпись или сообщаем об ошибке
+            
             if caption:
                 response = requests_client.main(
                     request=caption,
