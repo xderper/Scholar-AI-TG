@@ -143,10 +143,39 @@ class Format:
             text = text.replace("\\geq", "≥")
             text = text.replace("\\leq", "≤")
             text = text.replace("\\neq", "≠")
-
+            
+            # Общие правила форматирования математических формул
+            text = text.replace("pm", "±")  # Плюс-минус
+            text = text.replace("mp", "∓")  # Минус-плюс
+            text = text.replace("cdot", "·")  # Точка умножения
+            text = text.replace("times", "×")  # Крестик умножения
+            text = text.replace("div", "÷")  # Знак деления
+            text = text.replace("sqrt", "√")  # Корень квадратный
+            text = text.replace("infty", "∞")  # Бесконечность
+            text = text.replace("propto", "∝")  # Пропорционально
+            text = text.replace("partial", "∂")  # Частная производная
+            text = text.replace("nabla", "∇")  # Набла
+            text = text.replace("exists", "∃")  # Существует
+            text = text.replace("forall", "∀")  # Для всех
+            text = text.replace("notin", "∉")  # Не принадлежит
+            text = text.replace("subset", "⊂")  # Подмножество
+            text = text.replace("supset", "⊃")  # Надмножество
+            text = text.replace("cup", "∪")  # Объединение
+            text = text.replace("cap", "∩")  # Пересечение
+            text = text.replace("emptyset", "∅")  # Пустое множество
+            text = text.replace("angle", "∠")  # Угол
+            text = text.replace("perp", "⊥")  # Перпендикулярно
+            text = text.replace("parallel", "∥")  # Параллельно
+            text = text.replace("therefore", "∴")  # Следовательно
+            text = text.replace("because", "∵")  # Потому что
             
             # Physics notation
             text = text.replace('⇒', '⇒')
+            # Формула дискриминанта
+            text = text.replace("x = -b ± √b² - 4ac2a", "x = (-b ± √(b² - 4ac))/(2a)")
+            text = text.replace("x = -b pm √b² - 4ac2a", "x = (-b ± √(b² - 4ac))/(2a)")
+            text = text.replace("ratic equation", "quadratic equation")
+            text = text.replace("ratic formula", "quadratic formula")
             
             # Замена LaTeX-блоков на HTML код-блоки
             text = text.replace("\\[", "<pre><code>")

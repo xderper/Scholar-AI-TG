@@ -8,6 +8,7 @@ from bot.config.config import BOT_TOKEN
 from bot.utils.logger import setup_logger
 from bot.handlers import commands, messages, callbacks
 from bot.middlewares.subscription import SubscriptionMiddleware
+from bot.keyboards.inline import router as inline_router
 
 # Настройка логгера
 logger = setup_logger(name="bot", level=logging.INFO)
@@ -27,6 +28,7 @@ async def main():
     # Регистрация роутеров
     dp.include_router(commands.router)
     dp.include_router(callbacks.router)
+    dp.include_router(inline_router)
     dp.include_router(messages.router)
     
     # Вывод сообщения о запуске бота

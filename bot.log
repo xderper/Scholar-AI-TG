@@ -1,0 +1,545 @@
+2025-04-24 18:23:13,991 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID: 7282535243
+2025-04-24 18:23:15,643 - bot - INFO - Бот запущен
+2025-04-24 18:23:15,643 - aiogram.dispatcher - INFO - Start polling
+2025-04-24 18:23:15,832 - aiogram.dispatcher - INFO - Run polling for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 18:23:28,040 - bot.handlers.messages - ERROR - Error in messages: cannot access local variable 'text' where it is not associated with a value
+2025-04-24 18:23:28,194 - aiogram.event - INFO - Update id=738720856 is handled. Duration 359 ms by bot id=7270921212
+2025-04-24 18:23:29,436 - aiogram.event - INFO - Update id=738720857 is handled. Duration 375 ms by bot id=7270921212
+2025-04-24 18:23:35,531 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:23:35,652 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:23:36,181 - requests - INFO - Обработка запроса. Предмет: abstract, Решение: None, Фото: Да, Аудио: Нет
+2025-04-24 18:23:36,182 - requests - INFO - Финальный запрос: Создай краткий, но информативный конспект из текста на изображении. Структура:
+\
+                • Г...
+2025-04-24 18:23:36,182 - requests - INFO - Отправка запроса к OpenAI. Текст: Создай краткий, но информативный конспект из текст...
+2025-04-24 18:23:36,182 - requests - INFO - Добавлено изображение к запросу
+2025-04-24 18:23:48,492 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 18:23:48,494 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 762 символов
+2025-04-24 18:23:48,555 - requests - INFO - Обработка запроса. Предмет: abstract, Решение: None, Фото: Да, Аудио: Нет
+2025-04-24 18:23:48,555 - requests - INFO - Финальный запрос: Создай краткий, но информативный конспект из текста на изображении. Структура:
+\
+                • Г...
+2025-04-24 18:23:48,556 - requests - INFO - Отправка запроса к OpenAI. Текст: Создай краткий, но информативный конспект из текст...
+2025-04-24 18:23:48,556 - requests - INFO - Добавлено изображение к запросу
+2025-04-24 18:23:59,078 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 18:23:59,080 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 719 символов
+2025-04-24 18:23:59,214 - aiogram.event - INFO - Update id=738720858 is handled. Duration 23750 ms by bot id=7270921212
+2025-04-24 18:23:59,265 - aiogram.event - INFO - Update id=738720859 is handled. Duration 23797 ms by bot id=7270921212
+2025-04-24 18:24:21,532 - aiogram.event - INFO - Update id=738720860 is handled. Duration 515 ms by bot id=7270921212
+2025-04-24 18:24:29,817 - bot.keyboards.inline - INFO - Нажата кнопка 'нет' в меню обратной связи
+2025-04-24 18:24:29,817 - bot.keyboards.inline - INFO - Предыдущие состояния сброшены
+2025-04-24 18:24:29,818 - bot.keyboards.inline - INFO - Установлено состояние feedback_message и секция feedback
+2025-04-24 18:24:30,101 - bot.keyboards.inline - INFO - Запрос на отзыв отправлен пользователю
+2025-04-24 18:24:30,102 - aiogram.event - INFO - Update id=738720861 is handled. Duration 343 ms by bot id=7270921212
+2025-04-24 18:24:42,653 - aiogram.event - INFO - Update id=738720862 is handled. Duration 63 ms by bot id=7270921212
+2025-04-24 18:24:50,852 - aiogram.event - INFO - Update id=738720863 is handled. Duration 63 ms by bot id=7270921212
+2025-04-24 18:24:51,085 - aiogram.event - INFO - Update id=738720864 is handled. Duration 61 ms by bot id=7270921212
+2025-04-24 18:24:51,179 - aiogram.event - INFO - Update id=738720865 is handled. Duration 63 ms by bot id=7270921212
+2025-04-24 18:24:51,377 - aiogram.event - INFO - Update id=738720866 is handled. Duration 61 ms by bot id=7270921212
+2025-04-24 18:24:51,441 - aiogram.event - INFO - Update id=738720867 is handled. Duration 63 ms by bot id=7270921212
+2025-04-24 18:24:51,533 - aiogram.event - INFO - Update id=738720868 is handled. Duration 63 ms by bot id=7270921212
+2025-04-24 18:26:05,647 - aiogram.dispatcher - INFO - Polling stopped
+2025-04-24 18:26:05,902 - aiogram.dispatcher - INFO - Polling stopped for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 18:26:05,904 - bot - INFO - Бот остановлен
+2025-04-24 18:26:09,185 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID: 7282535243
+2025-04-24 18:26:10,741 - bot - ERROR - Произошла ошибка: Router is already attached to <Router '0x15e920daa90'>
+Traceback (most recent call last):
+  File "D:\it\scolar\5\run.py", line 43, in <module>
+    asyncio.run(main())
+  File "C:\Users\spsnekit\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\spsnekit\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\spsnekit\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 650, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\run.py", line 32, in main
+    dp.include_router(inline_router)
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\dispatcher\router.py", line 218, in include_router
+    router.parent_router = self
+    ^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\dispatcher\router.py", line 181, in parent_router
+    raise RuntimeError(f"Router is already attached to {self._parent_router!r}")
+RuntimeError: Router is already attached to <Router '0x15e920daa90'>
+2025-04-24 18:27:08,571 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID: 7282535243
+2025-04-24 18:27:10,187 - bot - INFO - Бот запущен
+2025-04-24 18:27:10,187 - aiogram.dispatcher - INFO - Start polling
+2025-04-24 18:27:10,383 - aiogram.dispatcher - INFO - Run polling for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 18:27:14,160 - bot.handlers.messages - ERROR - Error in messages: cannot access local variable 'text' where it is not associated with a value
+2025-04-24 18:27:14,274 - aiogram.event - INFO - Update id=738720869 is handled. Duration 297 ms by bot id=7270921212
+2025-04-24 18:27:15,499 - aiogram.event - INFO - Update id=738720870 is handled. Duration 343 ms by bot id=7270921212
+2025-04-24 18:27:21,122 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:27:21,242 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:27:21,864 - requests - INFO - Обработка запроса. Предмет: abstract, Решение: None, Фото: Да, Аудио: Нет
+2025-04-24 18:27:21,865 - requests - INFO - Финальный запрос: Создай краткий, но информативный конспект из текста на изображении. Структура:
+\
+                • Г...
+2025-04-24 18:27:21,865 - requests - INFO - Отправка запроса к OpenAI. Текст: Создай краткий, но информативный конспект из текст...
+2025-04-24 18:27:21,865 - requests - INFO - Добавлено изображение к запросу
+2025-04-24 18:27:25,619 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 18:27:25,622 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 36 символов
+2025-04-24 18:27:25,680 - requests - INFO - Обработка запроса. Предмет: abstract, Решение: None, Фото: Да, Аудио: Нет
+2025-04-24 18:27:25,681 - requests - INFO - Финальный запрос: Создай краткий, но информативный конспект из текста на изображении. Структура:
+\
+                • Г...
+2025-04-24 18:27:25,681 - requests - INFO - Отправка запроса к OpenAI. Текст: Создай краткий, но информативный конспект из текст...
+2025-04-24 18:27:25,681 - requests - INFO - Добавлено изображение к запросу
+2025-04-24 18:27:37,201 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 18:27:37,203 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 793 символов
+2025-04-24 18:27:37,286 - aiogram.event - INFO - Update id=738720872 is handled. Duration 16218 ms by bot id=7270921212
+2025-04-24 18:27:37,349 - aiogram.event - INFO - Update id=738720871 is handled. Duration 16280 ms by bot id=7270921212
+2025-04-24 18:27:41,089 - aiogram.event - INFO - Update id=738720873 is handled. Duration 234 ms by bot id=7270921212
+2025-04-24 18:27:49,502 - bot.keyboards.inline - INFO - Нажата кнопка 'нет' в меню обратной связи
+2025-04-24 18:27:49,503 - bot.keyboards.inline - INFO - Предыдущие состояния сброшены
+2025-04-24 18:27:49,503 - bot.keyboards.inline - INFO - Установлено состояние feedback_message и секция feedback
+2025-04-24 18:27:49,738 - bot.keyboards.inline - INFO - Запрос на отзыв отправлен пользователю
+2025-04-24 18:27:49,739 - aiogram.event - INFO - Update id=738720874 is handled. Duration 281 ms by bot id=7270921212
+2025-04-24 18:28:00,438 - aiogram.event - INFO - Update id=738720875 is handled. Duration 63 ms by bot id=7270921212
+2025-04-24 18:31:00,964 - aiogram.dispatcher - INFO - Polling stopped
+2025-04-24 18:31:01,219 - aiogram.dispatcher - INFO - Polling stopped for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 18:31:01,220 - bot - INFO - Бот остановлен
+2025-04-24 18:31:04,896 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID: 7282535243
+2025-04-24 18:31:06,527 - bot - INFO - Бот запущен
+2025-04-24 18:31:06,528 - aiogram.dispatcher - INFO - Start polling
+2025-04-24 18:31:06,726 - aiogram.dispatcher - INFO - Run polling for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 18:31:13,458 - bot.handlers.messages - ERROR - Error in messages: cannot access local variable 'text' where it is not associated with a value
+2025-04-24 18:31:13,549 - aiogram.event - INFO - Update id=738720876 is handled. Duration 264 ms by bot id=7270921212
+2025-04-24 18:31:21,371 - aiogram.event - INFO - Update id=738720877 is handled. Duration 281 ms by bot id=7270921212
+2025-04-24 18:31:28,722 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:31:28,837 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:31:29,263 - requests - INFO - Обработка запроса. Предмет: abstract, Решение: None, Фото: Да, Аудио: Нет
+2025-04-24 18:31:29,263 - requests - INFO - Финальный запрос: Создай краткий, но информативный конспект из текста на изображении. Структура:
+\
+                • Г...
+2025-04-24 18:31:29,264 - requests - INFO - Отправка запроса к OpenAI. Текст: Создай краткий, но информативный конспект из текст...
+2025-04-24 18:31:29,264 - requests - INFO - Добавлено изображение к запросу
+2025-04-24 18:31:37,708 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 18:31:37,711 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 700 символов
+2025-04-24 18:31:37,770 - requests - INFO - Обработка запроса. Предмет: abstract, Решение: None, Фото: Да, Аудио: Нет
+2025-04-24 18:31:37,770 - requests - INFO - Финальный запрос: Создай краткий, но информативный конспект из текста на изображении. Структура:
+\
+                • Г...
+2025-04-24 18:31:37,771 - requests - INFO - Отправка запроса к OpenAI. Текст: Создай краткий, но информативный конспект из текст...
+2025-04-24 18:31:37,771 - requests - INFO - Добавлено изображение к запросу
+2025-04-24 18:31:49,649 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 18:31:49,650 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 776 символов
+2025-04-24 18:31:49,863 - aiogram.event - INFO - Update id=738720878 is handled. Duration 21202 ms by bot id=7270921212
+2025-04-24 18:31:49,950 - aiogram.event - INFO - Update id=738720879 is handled. Duration 21296 ms by bot id=7270921212
+2025-04-24 18:31:54,532 - aiogram.event - INFO - Update id=738720880 is handled. Duration 218 ms by bot id=7270921212
+2025-04-24 18:31:57,709 - bot.keyboards.inline - INFO - Нажата кнопка 'нет' в меню обратной связи
+2025-04-24 18:31:57,710 - bot.keyboards.inline - INFO - Предыдущие состояния сброшены
+2025-04-24 18:31:57,711 - bot.keyboards.inline - INFO - Установлено состояние feedback_message и секция feedback
+2025-04-24 18:31:58,211 - bot.keyboards.inline - INFO - Запрос на отзыв отправлен пользователю
+2025-04-24 18:31:58,211 - aiogram.event - INFO - Update id=738720881 is handled. Duration 561 ms by bot id=7270921212
+2025-04-24 18:32:04,048 - bot.keyboards.inline - INFO - Получено сообщение обратной связи: неет
+2025-04-24 18:32:04,049 - bot.keyboards.inline - INFO - Текущее состояние: {'section': 'feedback'}
+2025-04-24 18:32:04,049 - bot.keyboards.inline - INFO - Попытка отправить сообщение пользователю с ID: 7282535243
+2025-04-24 18:32:04,178 - bot.keyboards.inline - ERROR - Ошибка при отправке сообщения: Telegram server says - Bad Request: chat not found
+2025-04-24 18:32:04,179 - bot.keyboards.inline - ERROR - Ошибка при обработке обратной связи: Telegram server says - Bad Request: chat not found
+Traceback (most recent call last):
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 137, in feedback_message_handler
+    raise send_error
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 126, in feedback_message_handler
+    await message.bot.send_message(
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 2718, in send_message
+    return await self(call, request_timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 432, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 257, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\aiohttp.py", line 179, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: chat not found
+2025-04-24 18:32:04,283 - aiogram.event - INFO - Update id=738720882 is handled. Duration 297 ms by bot id=7270921212
+2025-04-24 18:32:24,352 - bot.keyboards.inline - INFO - Получено сообщение обратной связи: 📚 Конспект
+2025-04-24 18:32:24,353 - bot.keyboards.inline - INFO - Текущее состояние: {'section': 'feedback'}
+2025-04-24 18:32:24,354 - bot.keyboards.inline - INFO - Попытка отправить сообщение пользователю с ID: 7282535243
+2025-04-24 18:32:24,481 - bot.keyboards.inline - ERROR - Ошибка при отправке сообщения: Telegram server says - Bad Request: chat not found
+2025-04-24 18:32:24,481 - bot.keyboards.inline - ERROR - Ошибка при обработке обратной связи: Telegram server says - Bad Request: chat not found
+Traceback (most recent call last):
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 137, in feedback_message_handler
+    raise send_error
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 126, in feedback_message_handler
+    await message.bot.send_message(
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 2718, in send_message
+    return await self(call, request_timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 432, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 257, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\aiohttp.py", line 179, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: chat not found
+2025-04-24 18:32:24,599 - aiogram.event - INFO - Update id=738720883 is handled. Duration 405 ms by bot id=7270921212
+2025-04-24 18:32:30,962 - bot.keyboards.inline - INFO - Получено сообщение обратной связи: None
+2025-04-24 18:32:30,963 - bot.keyboards.inline - INFO - Текущее состояние: {'section': 'feedback'}
+2025-04-24 18:32:30,964 - bot.keyboards.inline - INFO - Попытка отправить сообщение пользователю с ID: 7282535243
+2025-04-24 18:32:31,037 - bot.keyboards.inline - ERROR - Ошибка при отправке сообщения: Telegram server says - Bad Request: chat not found
+2025-04-24 18:32:31,038 - bot.keyboards.inline - ERROR - Ошибка при обработке обратной связи: Telegram server says - Bad Request: chat not found
+Traceback (most recent call last):
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 137, in feedback_message_handler
+    raise send_error
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 126, in feedback_message_handler
+    await message.bot.send_message(
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 2718, in send_message
+    return await self(call, request_timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 432, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 257, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\aiohttp.py", line 179, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: chat not found
+2025-04-24 18:32:31,070 - bot.keyboards.inline - INFO - Получено сообщение обратной связи: None
+2025-04-24 18:32:31,071 - bot.keyboards.inline - INFO - Текущее состояние: {'section': 'feedback'}
+2025-04-24 18:32:31,071 - bot.keyboards.inline - INFO - Попытка отправить сообщение пользователю с ID: 7282535243
+2025-04-24 18:32:31,132 - aiogram.event - INFO - Update id=738720884 is handled. Duration 250 ms by bot id=7270921212
+2025-04-24 18:32:31,142 - bot.keyboards.inline - ERROR - Ошибка при отправке сообщения: Telegram server says - Bad Request: chat not found
+2025-04-24 18:32:31,143 - bot.keyboards.inline - ERROR - Ошибка при обработке обратной связи: Telegram server says - Bad Request: chat not found
+Traceback (most recent call last):
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 137, in feedback_message_handler
+    raise send_error
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 126, in feedback_message_handler
+    await message.bot.send_message(
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 2718, in send_message
+    return await self(call, request_timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 432, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 257, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\aiohttp.py", line 179, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: chat not found
+2025-04-24 18:32:31,235 - aiogram.event - INFO - Update id=738720885 is handled. Duration 343 ms by bot id=7270921212
+2025-04-24 18:32:34,755 - bot.keyboards.inline - INFO - Получено сообщение обратной связи: 📚 Конспект
+2025-04-24 18:32:34,756 - bot.keyboards.inline - INFO - Текущее состояние: {'section': 'feedback'}
+2025-04-24 18:32:34,756 - bot.keyboards.inline - INFO - Попытка отправить сообщение пользователю с ID: 7282535243
+2025-04-24 18:32:34,833 - bot.keyboards.inline - ERROR - Ошибка при отправке сообщения: Telegram server says - Bad Request: chat not found
+2025-04-24 18:32:34,834 - bot.keyboards.inline - ERROR - Ошибка при обработке обратной связи: Telegram server says - Bad Request: chat not found
+Traceback (most recent call last):
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 137, in feedback_message_handler
+    raise send_error
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 126, in feedback_message_handler
+    await message.bot.send_message(
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 2718, in send_message
+    return await self(call, request_timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 432, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 257, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\aiohttp.py", line 179, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: chat not found
+2025-04-24 18:32:34,925 - aiogram.event - INFO - Update id=738720886 is handled. Duration 218 ms by bot id=7270921212
+2025-04-24 18:32:36,113 - bot.keyboards.inline - INFO - Получено сообщение обратной связи: 📚 Конспект
+2025-04-24 18:32:36,114 - bot.keyboards.inline - INFO - Текущее состояние: {'section': 'feedback'}
+2025-04-24 18:32:36,114 - bot.keyboards.inline - INFO - Попытка отправить сообщение пользователю с ID: 7282535243
+2025-04-24 18:32:36,195 - bot.keyboards.inline - ERROR - Ошибка при отправке сообщения: Telegram server says - Bad Request: chat not found
+2025-04-24 18:32:36,196 - bot.keyboards.inline - ERROR - Ошибка при обработке обратной связи: Telegram server says - Bad Request: chat not found
+Traceback (most recent call last):
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 137, in feedback_message_handler
+    raise send_error
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 126, in feedback_message_handler
+    await message.bot.send_message(
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 2718, in send_message
+    return await self(call, request_timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 432, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 257, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\aiohttp.py", line 179, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: chat not found
+2025-04-24 18:32:36,289 - aiogram.event - INFO - Update id=738720887 is handled. Duration 250 ms by bot id=7270921212
+2025-04-24 18:32:46,318 - aiogram.dispatcher - INFO - Polling stopped
+2025-04-24 18:32:46,588 - aiogram.dispatcher - INFO - Polling stopped for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 18:32:46,590 - bot - INFO - Бот остановлен
+2025-04-24 18:32:50,321 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID: 7282535243
+2025-04-24 18:32:51,889 - bot - INFO - Бот запущен
+2025-04-24 18:32:51,890 - aiogram.dispatcher - INFO - Start polling
+2025-04-24 18:32:52,075 - aiogram.dispatcher - INFO - Run polling for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 18:33:51,790 - aiogram.event - INFO - Update id=738720888 is handled. Duration 452 ms by bot id=7270921212
+2025-04-24 18:33:59,786 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:33:59,890 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:34:00,486 - requests - INFO - Обработка запроса. Предмет: abstract, Решение: None, Фото: Да, Аудио: Нет
+2025-04-24 18:34:00,486 - requests - INFO - Финальный запрос: Создай краткий, но информативный конспект из текста на изображении. Структура:
+\
+                • Г...
+2025-04-24 18:34:00,486 - requests - INFO - Отправка запроса к OpenAI. Текст: Создай краткий, но информативный конспект из текст...
+2025-04-24 18:34:00,487 - requests - INFO - Добавлено изображение к запросу
+2025-04-24 18:34:12,638 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 18:34:12,641 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 1020 символов
+2025-04-24 18:34:12,703 - requests - INFO - Обработка запроса. Предмет: abstract, Решение: None, Фото: Да, Аудио: Нет
+2025-04-24 18:34:12,703 - requests - INFO - Финальный запрос: Создай краткий, но информативный конспект из текста на изображении. Структура:
+\
+                • Г...
+2025-04-24 18:34:12,704 - requests - INFO - Отправка запроса к OpenAI. Текст: Создай краткий, но информативный конспект из текст...
+2025-04-24 18:34:12,704 - requests - INFO - Добавлено изображение к запросу
+2025-04-24 18:34:24,444 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 18:34:24,446 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 919 символов
+2025-04-24 18:34:24,550 - aiogram.event - INFO - Update id=738720889 is handled. Duration 24875 ms by bot id=7270921212
+2025-04-24 18:34:24,609 - aiogram.event - INFO - Update id=738720890 is handled. Duration 24938 ms by bot id=7270921212
+2025-04-24 18:34:29,347 - aiogram.event - INFO - Update id=738720891 is handled. Duration 202 ms by bot id=7270921212
+2025-04-24 18:34:31,571 - bot.keyboards.inline - INFO - Нажата кнопка 'нет' в меню обратной связи
+2025-04-24 18:34:31,572 - bot.keyboards.inline - INFO - Предыдущие состояния сброшены
+2025-04-24 18:34:31,573 - bot.keyboards.inline - INFO - Установлено состояние feedback_message и секция feedback
+2025-04-24 18:34:31,769 - bot.keyboards.inline - INFO - Запрос на отзыв отправлен пользователю
+2025-04-24 18:34:31,770 - aiogram.event - INFO - Update id=738720892 is handled. Duration 250 ms by bot id=7270921212
+2025-04-24 18:34:35,997 - bot.keyboards.inline - INFO - Получено сообщение обратной связи: нет
+2025-04-24 18:34:35,998 - bot.keyboards.inline - INFO - Текущее состояние: {'section': 'feedback'}
+2025-04-24 18:34:35,999 - bot.keyboards.inline - INFO - Попытка отправить сообщение пользователю с ID: 7282535243
+2025-04-24 18:34:36,116 - bot.keyboards.inline - ERROR - Ошибка при отправке сообщения: Telegram server says - Bad Request: chat not found
+2025-04-24 18:34:36,118 - bot.keyboards.inline - ERROR - Ошибка при обработке обратной связи: Telegram server says - Bad Request: chat not found
+Traceback (most recent call last):
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 137, in feedback_message_handler
+    raise send_error
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 126, in feedback_message_handler
+    await message.bot.send_message(
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 2718, in send_message
+    return await self(call, request_timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\bot.py", line 432, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 257, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\aiohttp.py", line 179, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "D:\it\scolar\5\myenv\Lib\site-packages\aiogram\client\session\base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: chat not found
+2025-04-24 18:34:36,203 - aiogram.event - INFO - Update id=738720893 is handled. Duration 264 ms by bot id=7270921212
+2025-04-24 18:36:07,121 - aiogram.event - INFO - Update id=738720894 is handled. Duration 297 ms by bot id=7270921212
+2025-04-24 18:36:13,336 - aiogram.event - INFO - Update id=738720895 is handled. Duration 390 ms by bot id=7270921212
+2025-04-24 18:37:18,922 - requests - INFO - Обработка запроса. Предмет: chatgpt, Решение: None, Фото: Нет, Аудио: Нет
+2025-04-24 18:37:18,923 - requests - INFO - Финальный запрос: Помоги мне с этим заданием....
+2025-04-24 18:37:18,923 - requests - INFO - Отправка запроса к OpenAI. Текст: Помоги мне с этим заданием....
+2025-04-24 18:37:20,262 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 18:37:20,264 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 56 символов
+2025-04-24 18:37:20,418 - aiogram.event - INFO - Update id=738720896 is handled. Duration 1983 ms by bot id=7270921212
+2025-04-24 18:37:34,184 - aiogram.dispatcher - INFO - Polling stopped
+2025-04-24 18:37:34,436 - aiogram.dispatcher - INFO - Polling stopped for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 18:37:34,437 - bot - INFO - Бот остановлен
+2025-04-24 18:37:37,603 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID: 7282535243
+2025-04-24 18:37:39,229 - bot - INFO - Бот запущен
+2025-04-24 18:37:39,230 - aiogram.dispatcher - INFO - Start polling
+2025-04-24 18:37:39,412 - aiogram.dispatcher - INFO - Run polling for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 18:37:41,428 - bot.handlers.messages - ERROR - Error in messages: Telegram server says - Bad Request: message to delete not found
+2025-04-24 18:37:41,429 - aiogram.event - INFO - Update id=738720897 is handled. Duration 360 ms by bot id=7270921212
+2025-04-24 18:37:49,115 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:37:49,238 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:37:49,702 - requests - INFO - Обработка запроса. Предмет: abstract, Решение: None, Фото: Да, Аудио: Нет
+2025-04-24 18:37:49,702 - requests - INFO - Финальный запрос: Создай краткий, но информативный конспект из текста на изображении. Структура:
+\
+                • Г...
+2025-04-24 18:37:49,702 - requests - INFO - Отправка запроса к OpenAI. Текст: Создай краткий, но информативный конспект из текст...
+2025-04-24 18:37:49,703 - requests - INFO - Добавлено изображение к запросу
+2025-04-24 18:37:57,849 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 18:37:57,852 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 877 символов
+2025-04-24 18:37:57,911 - requests - INFO - Обработка запроса. Предмет: abstract, Решение: None, Фото: Да, Аудио: Нет
+2025-04-24 18:37:57,912 - requests - INFO - Финальный запрос: Создай краткий, но информативный конспект из текста на изображении. Структура:
+\
+                • Г...
+2025-04-24 18:37:57,912 - requests - INFO - Отправка запроса к OpenAI. Текст: Создай краткий, но информативный конспект из текст...
+2025-04-24 18:37:57,912 - requests - INFO - Добавлено изображение к запросу
+2025-04-24 18:38:06,604 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 18:38:06,607 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 750 символов
+2025-04-24 18:38:06,742 - aiogram.event - INFO - Update id=738720898 is handled. Duration 17703 ms by bot id=7270921212
+2025-04-24 18:38:06,961 - aiogram.event - INFO - Update id=738720899 is handled. Duration 17922 ms by bot id=7270921212
+2025-04-24 18:39:05,837 - aiogram.event - INFO - Update id=738720900 is handled. Duration 343 ms by bot id=7270921212
+2025-04-24 18:39:15,915 - bot.keyboards.inline - INFO - Нажата кнопка 'нет' в меню обратной связи
+2025-04-24 18:39:15,916 - bot.keyboards.inline - INFO - Предыдущие состояния сброшены
+2025-04-24 18:39:15,917 - bot.keyboards.inline - INFO - Установлено состояние feedback_message и секция feedback
+2025-04-24 18:39:16,137 - bot.keyboards.inline - INFO - Запрос на отзыв отправлен пользователю
+2025-04-24 18:39:16,138 - aiogram.event - INFO - Update id=738720901 is handled. Duration 281 ms by bot id=7270921212
+2025-04-24 18:39:21,002 - bot.keyboards.inline - INFO - Получено сообщение обратной связи: нет
+2025-04-24 18:39:21,003 - bot.keyboards.inline - INFO - Текущее состояние: {'section': 'feedback'}
+2025-04-24 18:39:21,003 - bot.keyboards.inline - INFO - Попытка отправить сообщение пользователю с ID: 7282535243
+2025-04-24 18:39:21,004 - bot.keyboards.inline - INFO - Преобразованное ID пользователя: 7282535243
+2025-04-24 18:39:21,175 - bot.keyboards.inline - INFO - Чат найден: id=7282535243 type='private' title=None username='StSindJ' first_name='drkshdw' last_name=None is_forum=None photo=None active_usernames=['StSindJ'] emoji_status_custom_emoji_id=None emoji_status_expiration_date=None bio=None has_private_forwards=None has_restricted_voice_and_video_messages=None join_to_send_messages=None join_by_request=None description=None invite_link=None pinned_message=None permissions=None slow_mode_delay=None message_auto_delete_time=None has_aggressive_anti_spam_enabled=None has_hidden_members=None has_protected_content=None sticker_set_name=None can_set_sticker_set=None linked_chat_id=None location=None can_send_gift=True accepted_gift_types={'unlimited_gifts': True, 'limited_gifts': True, 'unique_gifts': True, 'premium_subscription': True} max_reaction_count=11 accent_color_id=4
+2025-04-24 18:39:21,318 - bot.keyboards.inline - INFO - Сообщение успешно отправлено
+2025-04-24 18:39:21,466 - bot.keyboards.inline - INFO - Состояние сброшено
+2025-04-24 18:39:21,466 - aiogram.event - INFO - Update id=738720902 is handled. Duration 515 ms by bot id=7270921212
+2025-04-24 18:42:41,309 - requests - INFO - Обработка запроса. Предмет: chatgpt, Решение: None, Фото: Нет, Аудио: Нет
+2025-04-24 18:42:41,310 - requests - INFO - Финальный запрос: Помоги мне с этим заданием....
+2025-04-24 18:42:41,310 - requests - INFO - Отправка запроса к OpenAI. Текст: Помоги мне с этим заданием....
+2025-04-24 18:42:43,248 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 18:42:43,251 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 116 символов
+2025-04-24 18:42:43,448 - aiogram.event - INFO - Update id=738720903 is handled. Duration 2625 ms by bot id=7270921212
+2025-04-24 18:43:05,033 - bot.handlers.messages - ERROR - Error in messages: Telegram server says - Bad Request: message to delete not found
+2025-04-24 18:43:05,033 - aiogram.event - INFO - Update id=738720904 is handled. Duration 313 ms by bot id=7270921212
+2025-04-24 18:43:16,617 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:43:16,720 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:43:17,161 - requests - INFO - Обработка запроса. Предмет: abstract, Решение: None, Фото: Да, Аудио: Нет
+2025-04-24 18:43:17,161 - requests - INFO - Финальный запрос: Создай краткий, но информативный конспект из текста на изображении. Структура:
+\
+                • Г...
+2025-04-24 18:43:17,162 - requests - INFO - Отправка запроса к OpenAI. Текст: Создай краткий, но информативный конспект из текст...
+2025-04-24 18:43:17,162 - requests - INFO - Добавлено изображение к запросу
+2025-04-24 18:43:27,196 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 18:43:27,198 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 790 символов
+2025-04-24 18:43:27,381 - aiogram.event - INFO - Update id=738720905 is handled. Duration 10844 ms by bot id=7270921212
+2025-04-24 18:43:27,470 - requests - INFO - Обработка запроса. Предмет: abstract, Решение: None, Фото: Да, Аудио: Нет
+2025-04-24 18:43:27,470 - requests - INFO - Финальный запрос: Создай краткий, но информативный конспект из текста на изображении. Структура:
+\
+                • Г...
+2025-04-24 18:43:27,471 - requests - INFO - Отправка запроса к OpenAI. Текст: Создай краткий, но информативный конспект из текст...
+2025-04-24 18:43:27,471 - requests - INFO - Добавлено изображение к запросу
+2025-04-24 18:43:36,582 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 18:43:36,584 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 620 символов
+2025-04-24 18:43:36,984 - aiogram.event - INFO - Update id=738720906 is handled. Duration 20438 ms by bot id=7270921212
+2025-04-24 18:43:38,808 - aiogram.event - INFO - Update id=738720907 is handled. Duration 235 ms by bot id=7270921212
+2025-04-24 18:43:40,218 - bot.keyboards.inline - INFO - Нажата кнопка 'нет' в меню обратной связи
+2025-04-24 18:43:40,218 - bot.keyboards.inline - INFO - Предыдущие состояния сброшены
+2025-04-24 18:43:40,219 - bot.keyboards.inline - INFO - Установлено состояние feedback_message и секция feedback
+2025-04-24 18:43:40,435 - bot.keyboards.inline - INFO - Запрос на отзыв отправлен пользователю
+2025-04-24 18:43:40,435 - aiogram.event - INFO - Update id=738720908 is handled. Duration 281 ms by bot id=7270921212
+2025-04-24 18:43:44,392 - bot.keyboards.inline - INFO - Получено сообщение обратной связи: Артем лошок
+2025-04-24 18:43:44,393 - bot.keyboards.inline - INFO - Текущее состояние: {'section': 'feedback'}
+2025-04-24 18:43:44,394 - bot.keyboards.inline - INFO - Попытка отправить сообщение пользователю с ID: 7282535243
+2025-04-24 18:43:44,395 - bot.keyboards.inline - INFO - Преобразованное ID пользователя: 7282535243
+2025-04-24 18:43:44,481 - bot.keyboards.inline - INFO - Чат найден: id=7282535243 type='private' title=None username='StSindJ' first_name='drkshdw' last_name=None is_forum=None photo=None active_usernames=['StSindJ'] emoji_status_custom_emoji_id=None emoji_status_expiration_date=None bio=None has_private_forwards=None has_restricted_voice_and_video_messages=None join_to_send_messages=None join_by_request=None description=None invite_link=None pinned_message=None permissions=None slow_mode_delay=None message_auto_delete_time=None has_aggressive_anti_spam_enabled=None has_hidden_members=None has_protected_content=None sticker_set_name=None can_set_sticker_set=None linked_chat_id=None location=None can_send_gift=True accepted_gift_types={'unlimited_gifts': True, 'limited_gifts': True, 'unique_gifts': True, 'premium_subscription': True} max_reaction_count=11 accent_color_id=4
+2025-04-24 18:43:44,563 - bot.keyboards.inline - INFO - Сообщение успешно отправлено
+2025-04-24 18:43:44,646 - bot.keyboards.inline - INFO - Состояние сброшено
+2025-04-24 18:43:44,647 - aiogram.event - INFO - Update id=738720909 is handled. Duration 313 ms by bot id=7270921212
+2025-04-24 18:43:59,865 - requests - INFO - Обработка запроса. Предмет: chatgpt, Решение: None, Фото: Нет, Аудио: Нет
+2025-04-24 18:43:59,866 - requests - INFO - Финальный запрос: во, видал?...
+2025-04-24 18:43:59,866 - requests - INFO - Отправка запроса к OpenAI. Текст: во, видал?...
+2025-04-24 18:44:01,122 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 18:44:01,123 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 80 символов
+2025-04-24 18:44:01,307 - aiogram.event - INFO - Update id=738720910 is handled. Duration 1735 ms by bot id=7270921212
+2025-04-24 18:47:55,514 - aiogram.dispatcher - INFO - Polling stopped
+2025-04-24 18:47:55,766 - aiogram.dispatcher - INFO - Polling stopped for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 18:47:55,768 - bot - INFO - Бот остановлен
+2025-04-24 18:49:37,174 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID: 7282535243
+2025-04-24 18:49:38,718 - bot - INFO - Бот запущен
+2025-04-24 18:49:38,719 - aiogram.dispatcher - INFO - Start polling
+2025-04-24 18:49:38,912 - aiogram.dispatcher - INFO - Run polling for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 18:49:48,922 - bot.handlers.messages - ERROR - Error in messages: Telegram server says - Bad Request: message to delete not found
+2025-04-24 18:49:48,923 - aiogram.event - INFO - Update id=738720911 is handled. Duration 358 ms by bot id=7270921212
+2025-04-24 18:49:57,660 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:49:57,778 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:49:58,227 - requests - INFO - Обработка запроса. Предмет: abstract, Решение: None, Фото: Да, Аудио: Нет
+2025-04-24 18:49:58,227 - requests - INFO - Финальный запрос: Создай краткий, но информативный конспект из текста на изображении. Структура:
+\
+                • Г...
+2025-04-24 18:49:58,228 - requests - INFO - Отправка запроса к OpenAI. Текст: Создай краткий, но информативный конспект из текст...
+2025-04-24 18:49:58,228 - requests - INFO - Добавлено изображение к запросу
+2025-04-24 18:50:09,962 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 18:50:09,964 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 931 символов
+2025-04-24 18:50:10,023 - requests - INFO - Обработка запроса. Предмет: abstract, Решение: None, Фото: Да, Аудио: Нет
+2025-04-24 18:50:10,023 - requests - INFO - Финальный запрос: Создай краткий, но информативный конспект из текста на изображении. Структура:
+\
+                • Г...
+2025-04-24 18:50:10,024 - requests - INFO - Отправка запроса к OpenAI. Текст: Создай краткий, но информативный конспект из текст...
+2025-04-24 18:50:10,024 - requests - INFO - Добавлено изображение к запросу
+2025-04-24 18:50:20,129 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 18:50:20,131 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 765 символов
+2025-04-24 18:50:20,295 - aiogram.event - INFO - Update id=738720912 is handled. Duration 22718 ms by bot id=7270921212
+2025-04-24 18:50:20,318 - aiogram.event - INFO - Update id=738720913 is handled. Duration 22735 ms by bot id=7270921212
+2025-04-24 18:51:04,183 - aiogram.event - INFO - Update id=738720914 is handled. Duration 360 ms by bot id=7270921212
+2025-04-24 18:51:17,400 - aiogram.event - INFO - Update id=738720915 is handled. Duration 218 ms by bot id=7270921212
+2025-04-24 18:51:18,112 - bot.keyboards.inline - INFO - Нажата кнопка 'нет' в меню обратной связи
+2025-04-24 18:51:18,112 - bot.keyboards.inline - INFO - Предыдущие состояния сброшены
+2025-04-24 18:51:18,113 - bot.keyboards.inline - INFO - Установлено состояние feedback_message и секция feedback
+2025-04-24 18:51:18,332 - bot.keyboards.inline - INFO - Запрос на отзыв отправлен пользователю
+2025-04-24 18:51:18,333 - aiogram.event - INFO - Update id=738720916 is handled. Duration 264 ms by bot id=7270921212
+2025-04-24 18:51:32,336 - bot.keyboards.inline - INFO - Получено сообщение обратной связи: тестим
+2025-04-24 18:51:32,337 - bot.keyboards.inline - INFO - Текущее состояние: {'section': 'feedback'}
+2025-04-24 18:51:32,338 - bot.keyboards.inline - ERROR - Ошибка при обработке обратной связи: name 'FEEDBACK_USER_ID_2' is not defined
+Traceback (most recent call last):
+  File "D:\it\scolar\5\bot\keyboards\inline.py", line 121, in feedback_message_handler
+    if FEEDBACK_USER_ID and FEEDBACK_USER_ID_2:
+                            ^^^^^^^^^^^^^^^^^^
+NameError: name 'FEEDBACK_USER_ID_2' is not defined
+2025-04-24 18:51:32,429 - aiogram.event - INFO - Update id=738720917 is handled. Duration 156 ms by bot id=7270921212
+2025-04-24 18:53:07,309 - aiogram.dispatcher - INFO - Polling stopped
+2025-04-24 18:53:07,576 - aiogram.dispatcher - INFO - Polling stopped for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 18:53:07,578 - bot - INFO - Бот остановлен
+2025-04-24 18:53:11,180 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID: 7282535243
+2025-04-24 18:53:11,181 - bot.keyboards.inline - INFO - FEEDBACK_USER_ID_2: 7858370854
+2025-04-24 18:53:12,925 - bot - INFO - Бот запущен
+2025-04-24 18:53:12,926 - aiogram.dispatcher - INFO - Start polling
+2025-04-24 18:53:13,107 - aiogram.dispatcher - INFO - Run polling for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 18:53:17,274 - aiogram.event - INFO - Update id=738720918 is handled. Duration 813 ms by bot id=7270921212
+2025-04-24 18:53:34,004 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:53:34,007 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-24 18:53:34,558 - requests - INFO - Обработка запроса. Предмет: abstract, Решение: None, Фото: Да, Аудио: Нет
+2025-04-24 18:53:34,558 - requests - INFO - Финальный запрос: Создай краткий, но информативный конспект из текста на изображении. Структура:
+\
+                • Г...
+2025-04-24 18:53:34,559 - requests - INFO - Отправка запроса к OpenAI. Текст: Создай краткий, но информативный конспект из текст...
+2025-04-24 18:53:34,559 - requests - INFO - Добавлено изображение к запросу
+2025-04-24 18:53:45,784 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 18:53:45,787 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 729 символов
+2025-04-24 18:53:45,861 - requests - INFO - Обработка запроса. Предмет: abstract, Решение: None, Фото: Да, Аудио: Нет
+2025-04-24 18:53:45,862 - requests - INFO - Финальный запрос: Создай краткий, но информативный конспект из текста на изображении. Структура:
+\
+                • Г...
+2025-04-24 18:53:45,862 - requests - INFO - Отправка запроса к OpenAI. Текст: Создай краткий, но информативный конспект из текст...
+2025-04-24 18:53:45,863 - requests - INFO - Добавлено изображение к запросу
+2025-04-24 18:53:56,566 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-24 18:53:56,568 - requests - INFO - Получен ответ от OpenAI. Длина ответа: 817 символов
+2025-04-24 18:53:56,660 - aiogram.event - INFO - Update id=738720919 is handled. Duration 22828 ms by bot id=7270921212
+2025-04-24 18:53:56,732 - aiogram.event - INFO - Update id=738720920 is handled. Duration 22906 ms by bot id=7270921212
+2025-04-24 18:53:59,400 - aiogram.event - INFO - Update id=738720921 is handled. Duration 250 ms by bot id=7270921212
+2025-04-24 18:54:00,616 - bot.keyboards.inline - INFO - Нажата кнопка 'нет' в меню обратной связи
+2025-04-24 18:54:00,617 - bot.keyboards.inline - INFO - Предыдущие состояния сброшены
+2025-04-24 18:54:00,617 - bot.keyboards.inline - INFO - Установлено состояние feedback_message и секция feedback
+2025-04-24 18:54:00,833 - bot.keyboards.inline - INFO - Запрос на отзыв отправлен пользователю
+2025-04-24 18:54:00,834 - aiogram.event - INFO - Update id=738720922 is handled. Duration 281 ms by bot id=7270921212
+2025-04-24 18:54:02,629 - bot.keyboards.inline - INFO - Получено сообщение обратной связи: ало
+2025-04-24 18:54:02,630 - bot.keyboards.inline - INFO - Текущее состояние: {'section': 'feedback'}
+2025-04-24 18:54:02,630 - bot.keyboards.inline - INFO - Попытка отправить сообщение пользователю с ID: 7282535243
+2025-04-24 18:54:02,631 - bot.keyboards.inline - INFO - Попытка отправить сообщение пользователю с ID: 7858370854
+2025-04-24 18:54:02,632 - bot.keyboards.inline - INFO - Преобразованное ID пользователя: 7282535243
+2025-04-24 18:54:02,633 - bot.keyboards.inline - INFO - Преобразованное ID пользователя: 7858370854
+2025-04-24 18:54:02,729 - bot.keyboards.inline - INFO - Чат найден: id=7282535243 type='private' title=None username='StSindJ' first_name='drkshdw' last_name=None is_forum=None photo=None active_usernames=['StSindJ'] emoji_status_custom_emoji_id=None emoji_status_expiration_date=None bio=None has_private_forwards=None has_restricted_voice_and_video_messages=None join_to_send_messages=None join_by_request=None description=None invite_link=None pinned_message=None permissions=None slow_mode_delay=None message_auto_delete_time=None has_aggressive_anti_spam_enabled=None has_hidden_members=None has_protected_content=None sticker_set_name=None can_set_sticker_set=None linked_chat_id=None location=None can_send_gift=True accepted_gift_types={'unlimited_gifts': True, 'limited_gifts': True, 'unique_gifts': True, 'premium_subscription': True} max_reaction_count=11 accent_color_id=4
+2025-04-24 18:54:02,819 - bot.keyboards.inline - INFO - Сообщение успешно отправлено в первый чат
+2025-04-24 18:54:02,897 - bot.keyboards.inline - INFO - Чат найден: id=7858370854 type='private' title=None username='d1rective' first_name=')' last_name=None is_forum=None photo=ChatPhoto(small_file_id='AQADAgAE9TEb26NBSAAIAgADJjll1AEAAxYInRWuZzueNgQ', small_file_unique_id='AQAE9TEb26NBSAAB', big_file_id='AQADAgAE9TEb26NBSAAIAwADJjll1AEAAxYInRWuZzueNgQ', big_file_unique_id='AQAE9TEb26NBSAE') active_usernames=['d1rective'] emoji_status_custom_emoji_id=None emoji_status_expiration_date=None bio='Web FullStack (Next Js + Nest Js + MongoDB)' has_private_forwards=None has_restricted_voice_and_video_messages=None join_to_send_messages=None join_by_request=None description=None invite_link=None pinned_message=None permissions=None slow_mode_delay=None message_auto_delete_time=None has_aggressive_anti_spam_enabled=None has_hidden_members=None has_protected_content=None sticker_set_name=None can_set_sticker_set=None linked_chat_id=None location=None can_send_gift=True accepted_gift_types={'unlimited_gifts': True, 'limited_gifts': True, 'unique_gifts': True, 'premium_subscription': True} max_reaction_count=11 accent_color_id=5
+2025-04-24 18:54:02,986 - bot.keyboards.inline - INFO - Сообщение успешно отправлено во второй чат
+2025-04-24 18:54:03,075 - bot.keyboards.inline - INFO - Состояние сброшено
+2025-04-24 18:54:03,076 - aiogram.event - INFO - Update id=738720923 is handled. Duration 500 ms by bot id=7270921212
+2025-04-24 18:54:16,346 - aiogram.dispatcher - INFO - Polling stopped
+2025-04-24 18:54:16,590 - aiogram.dispatcher - INFO - Polling stopped for bot @testbotsco_bot id=7270921212 - 'testbotsco'
+2025-04-24 18:54:16,591 - bot - INFO - Бот остановлен

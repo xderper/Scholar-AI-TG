@@ -1,5 +1,5 @@
 from aiogram import Router, F
-from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, FSInputFile
+from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, FSInputFile, ReplyKeyboardRemove
 from aiogram.fsm.context import FSMContext
 from aiogram.filters import StateFilter
 from aiogram.types import FSInputFile
@@ -8,6 +8,7 @@ import logging
 from dotenv import load_dotenv
 
 from bot.keyboards.reply import get_main_keyboard, get_next_question_keyboard, get_math_submenu_keyboard, get_abstract_keyboard
+from bot.keyboards.inline import get_feedback_keyboard
 from bot.utils.states import Form
 from requests import Requests
 import base64
@@ -161,10 +162,15 @@ async def question_button_handler(message: Message, state: FSMContext):
         if message.reply_to_message:
             solution_text = message.reply_to_message.text
         else:
-            # Получаем последнее сообщение в чате
-            messages = await message.chat.get_messages(limit=2)
-            if len(messages) > 1:
-                solution_text = messages[1].text
+            try:
+                            # Получаем последнее сообщение в чате
+                messages = await message.chat.get_messages(limit=2)
+                if len(messages) > 1:
+                    solution_text = messages[1].text
+            # Если нет reply_to_message, просто продолжаем без текста решения
+            except Exception as e:
+                logger.error(f"Error in messages: {str(e)}")
+                solution_text = None
             
         await state.update_data(section="question", solution=solution_text)
         
@@ -198,9 +204,9 @@ async def next_question_button_handler(message: Message, state: FSMContext):
             text = os.getenv("Chemistry_answer_text") or "Задайте свой вопрос по химии"
             next_section = 'chemistry'
         elif current_section == 'abstract':
-            # Для раздела конспектов возвращаемся к главному меню
-            await state.set_state(None)
-            await message.answer("Выберите раздел:", reply_markup=get_main_keyboard())
+            # Для раздела конспектов сбрасываем все состояния и показываем меню обратной связи
+            await state.clear()  # Полностью очищаем состояние
+            feedback_message = await message.answer("📚 Был ли вам полезен данный ответ?", reply_markup=get_feedback_keyboard())
             await message.delete()
             return
         # Проверяем, что text не None перед отправкой
@@ -402,6 +408,10 @@ async def fallback_message_handler(message: Message, state: FSMContext):
         # Проверяем текущее состояние
         current_state = await state.get_state()
         
+        # Если состояние feedback_message, пропускаем обработку
+        if current_state == Form.feedback_message:
+            return
+            
         # Если состояние не установлено, устанавливаем его на chatgpt
         if not current_state:
             await state.set_state(Form.section)

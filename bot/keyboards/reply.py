@@ -1,4 +1,4 @@
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, InlineKeyboardButton
 
 def get_math_submenu_keyboard():
     buttons = [
@@ -55,3 +55,4 @@ def get_abstract_keyboard() -> ReplyKeyboardMarkup:
         [KeyboardButton(text="➡️ Далее к задачам")],
     ]
     return ReplyKeyboardMarkup(keyboard=keyboard, resize_keyboard=True)
+
