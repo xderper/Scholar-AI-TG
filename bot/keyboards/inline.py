@@ -2,32 +2,22 @@ import logging
 import sys
 import os
 from dotenv import load_dotenv
+import asyncio
 
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from aiogram import Router, F
 from aiogram.types import CallbackQuery
 from aiogram.fsm.context import FSMContext
+from aiogram.exceptions import TelegramRetryAfter, TelegramMigrateToChat
 
 from bot.keyboards.reply import get_main_keyboard
 from bot.utils.states import Form
-
-# Настройка логирования с поддержкой кириллицы
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('bot.log', encoding='utf-8'),
-        logging.StreamHandler(sys.stdout)
-    ]
-)
-logger = logging.getLogger(__name__)
 
 # Загружаем переменные окружения с указанием кодировки UTF-8
 load_dotenv(encoding='utf-8')
 
 # Получаем ID пользователя для отзывов
-FEEDBACK_USER_ID = os.getenv("FEEDBACK_USER_ID")
-FEEDBACK_USER_ID_2 = os.getenv("FEEDBACK_USER_ID_2")
+FEEDBACK_GROUP_ID = os.getenv("FEEDBACK_GROUP_ID").replace('\\n', '\n')  # ID супергруппы для отзывов)
 
 # Получаем URL и тексты из переменных окружения
 WEBSITE_URL = os.getenv("WEBSITE_URL")
@@ -48,9 +38,6 @@ BUTTON_CONTINUE = os.getenv("BUTTON_CONTINUE")
 BUTTON_OPEN_LINK = os.getenv("BUTTON_OPEN_LINK")
 BUTTON_CHANNEL_NAME = os.getenv("BUTTON_CHANNEL_NAME")
 BUTTON_CHECK_SUBSCRIPTION = os.getenv("BUTTON_CHECK_SUBSCRIPTION")
-
-logger.info(f"FEEDBACK_USER_ID: {FEEDBACK_USER_ID}")
-logger.info(f"FEEDBACK_USER_ID_2: {FEEDBACK_USER_ID_2}")
 
 # Создаем роутер
 router = Router()
@@ -117,7 +104,6 @@ async def negative_feedback_handler(callback: CallbackQuery, state: FSMContext):
         await callback.message.answer(NEGATIVE_FEEDBACK_PROMPT)
         await callback.answer()
     except Exception as e:
-        logger.error(f"Ошибка при обработке отрицательной обратной связи: {str(e)}", exc_info=True)
         await callback.answer("Произошла ошибка. Пожалуйста, попробуйте еще раз.")
 
 @router.callback_query(F.data == "feedback_continue")
@@ -125,6 +111,10 @@ async def continue_handler(callback: CallbackQuery):
     await callback.message.delete()
     await callback.message.answer(CHOOSE_SECTION_TEXT, reply_markup=get_main_keyboard())
     await callback.answer()
+
+def format_feedback_message(username: str, text: str) -> str:
+    """Форматирует сообщение с отзывом"""
+    return f"📝 Отзыв от пользователя: \n{username}\n\n{text}"
 
 @router.message(Form.feedback_message)
 async def feedback_message_handler(message: Message, state: FSMContext):
@@ -137,40 +127,59 @@ async def feedback_message_handler(message: Message, state: FSMContext):
             await state.clear()
             return
             
-        # Пересылаем сообщение пользователю по ID
-        if FEEDBACK_USER_ID and FEEDBACK_USER_ID_2:
-            try:
-                # Проверяем, что ID являются числами
-                user_id = int(FEEDBACK_USER_ID)
-                user_id_2 = int(FEEDBACK_USER_ID_2)
+        # Проверяем доступность чата
+        try:
+            chat = await message.bot.get_chat(FEEDBACK_GROUP_ID)
+            
+            # Проверяем, что бот является администратором
+            chat_member = await message.bot.get_chat_member(FEEDBACK_GROUP_ID, message.bot.id)
+            if not chat_member.status in ['administrator', 'creator']:
+                await message.answer(
+                    "❌ Ошибка: бот не имеет прав администратора в группе. Пожалуйста, сообщите администратору.",
+                    reply_markup=get_main_keyboard()
+                )
+                await state.clear()
+                return
                 
-                # Проверяем, что бот может отправить сообщение в первый чат
-                try:
-                    chat = await message.bot.get_chat(user_id)
-                    await message.bot.send_message(
-                        chat_id=user_id,
-                        text=f"Обратная связь от пользователя: \n\n{message.from_user.username or message.from_user.first_name}:\n\n{message.text}"
-                    )
-                except Exception as chat_error:
-                    logger.error(f"Ошибка при отправке в первый чат: {str(chat_error)}")
-                
-                try:
-                    chat_2 = await message.bot.get_chat(user_id_2)
-                    await message.bot.send_message(
-                        chat_id=user_id_2,
-                        text=f"Обратная связь от пользователя: \n\n{message.from_user.username or message.from_user.first_name}:\n\n{message.text}"
-                    )
-                except Exception as chat_error:
-                    logger.error(f"Ошибка при отправке во второй чат: {str(chat_error)}")
-                    
-            except ValueError:
-                logger.error(f"FEEDBACK_USER_ID не является числом: {FEEDBACK_USER_ID} или {FEEDBACK_USER_ID_2}")
-            except Exception as send_error:
-                logger.error(f"Ошибка при отправке сообщения: {str(send_error)}")
-                raise send_error
-        else:
-            logger.error("FEEDBACK_USER_ID не установлен в переменных окружения")
-            await message.answer(FEEDBACK_ERROR_TEXT, reply_markup=get_main_keyboard())
+        except Exception:
+            await message.answer(
+                "❌ Ошибка: бот не может отправить отзыв. Пожалуйста, сообщите администратору.",
+                reply_markup=get_main_keyboard()
+            )
+            await state.clear()
+            return
+            
+        # Форматируем сообщение
+        feedback_text = format_feedback_message(
+            message.from_user.username or message.from_user.first_name,
+            message.text
+        )
+            
+        # Отправляем сообщение в супергруппу
+        try:
+            await message.bot.send_message(
+                chat_id=FEEDBACK_GROUP_ID,
+                text=feedback_text
+            )
+        except TelegramRetryAfter as e:
+            # Ждем указанное время и пробуем снова
+            await asyncio.sleep(e.retry_after)
+            await message.bot.send_message(
+                chat_id=FEEDBACK_GROUP_ID,
+                text=feedback_text
+            )
+        except TelegramMigrateToChat as e:
+            # Если группа обновлена до супергруппы, используем новый ID
+            await message.bot.send_message(
+                chat_id=e.migrate_to_chat_id,
+                text=feedback_text
+            )
+        except Exception:
+            await message.answer(
+                "❌ Ошибка при отправке отзыва. Пожалуйста, попробуйте позже.",
+                reply_markup=get_main_keyboard()
+            )
+            await state.clear()
             return
         
         # Отправляем благодарность пользователю
@@ -178,6 +187,6 @@ async def feedback_message_handler(message: Message, state: FSMContext):
         
         # Сбрасываем состояние
         await state.clear()
-    except Exception as e:
-        logger.error(f"Ошибка при обработке обратной связи: {str(e)}", exc_info=True)
+    except Exception:
         await message.answer(FEEDBACK_ERROR_TEXT, reply_markup=get_main_keyboard())
+        await state.clear()
