@@ -114,7 +114,7 @@ async def continue_handler(callback: CallbackQuery):
 
 def format_feedback_message(username: str, text: str) -> str:
     """Форматирует сообщение с отзывом"""
-    return f"📝 Отзыв от пользователя: \n{username}\n\n{text}"
+    return f"📝 Отзыв от пользователя: \n\n{username}\n\n{text}"
 
 @router.message(Form.feedback_message)
 async def feedback_message_handler(message: Message, state: FSMContext):
