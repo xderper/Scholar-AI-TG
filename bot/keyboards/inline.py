@@ -1,17 +1,9 @@
 import logging
-import sys
 import os
 from dotenv import load_dotenv
-import asyncio
-
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram import Router, F
-from aiogram.types import CallbackQuery
-from aiogram.fsm.context import FSMContext
-from aiogram.exceptions import TelegramRetryAfter, TelegramMigrateToChat
 
-from bot.keyboards.reply import get_main_keyboard
-from bot.utils.states import Form
 
 # Настройка логирования
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -20,51 +12,17 @@ logger = logging.getLogger(__name__)
 # Загружаем переменные окружения с указанием кодировки UTF-8
 load_dotenv(encoding='utf-8')
 
-# Получаем ID пользователя для отзывов
-FEEDBACK_GROUP_ID = os.getenv("FEEDBACK_GROUP_ID").replace('\\n', '\n')  # ID супергруппы для отзывов)
-
-# Получаем URL и тексты из переменных окружения
-WEBSITE_URL = os.getenv("WEBSITE_URL")
-TELEGRAM_CHANNEL_URL = os.getenv("TELEGRAM_CHANNEL_URL")
-BOT_USERNAME = os.getenv("BOT_USERNAME")
-
-# Тексты сообщений
-POSITIVE_FEEDBACK_TEXT = os.getenv("POSITIVE_FEEDBACK_TEXT").replace('\\n', '\n')
-NEGATIVE_FEEDBACK_PROMPT = os.getenv("NEGATIVE_FEEDBACK_PROMPT").replace('\\n', '\n')
-FEEDBACK_SUCCESS_TEXT = os.getenv("FEEDBACK_SUCCESS_TEXT").replace('\\n', '\n')
-FEEDBACK_ERROR_TEXT = os.getenv("FEEDBACK_ERROR_TEXT").replace('\\n', '\n')
-CHOOSE_SECTION_TEXT = os.getenv("CHOOSE_SECTION_TEXT").replace('\\n', '\n')
-
-# Тексты кнопок
-BUTTON_YES = os.getenv("BUTTON_YES")
-BUTTON_NO = os.getenv("BUTTON_NO")
-BUTTON_CONTINUE = os.getenv("BUTTON_CONTINUE")
-BUTTON_OPEN_LINK = os.getenv("BUTTON_OPEN_LINK")
-BUTTON_CHANNEL_NAME = os.getenv("BUTTON_CHANNEL_NAME")
-BUTTON_CHECK_SUBSCRIPTION = os.getenv("BUTTON_CHECK_SUBSCRIPTION")
 
 # Создаем роутер
 router = Router()
-
-# Инлайн-клавиатура с URL-кнопкой
-def get_url_keyboard(url: str, text: str = BUTTON_OPEN_LINK) -> InlineKeyboardMarkup:
-    """Создает и возвращает инлайн-клавиатуру с URL-кнопкой"""
-    keyboard = InlineKeyboardMarkup(
-        inline_keyboard=[
-            [
-                InlineKeyboardButton(text=text, url=url)
-            ]
-        ]
-    )
-    return keyboard
 
 def get_feedback_keyboard() -> InlineKeyboardMarkup:
     """Создает inline клавиатуру для обратной связи"""
     keyboard = [
         [
-            InlineKeyboardButton(text=BUTTON_YES, callback_data="feedback_yes"),
-            InlineKeyboardButton(text=BUTTON_NO, callback_data="feedback_no"),
-            InlineKeyboardButton(text=BUTTON_CONTINUE, callback_data="feedback_continue")
+            InlineKeyboardButton(text=os.getenv("BUTTON_YES"), callback_data="feedback_yes"),
+            InlineKeyboardButton(text=os.getenv("BUTTON_NO"), callback_data="feedback_no"),
+            InlineKeyboardButton(text="❓ Вопрос", callback_data="question_help")
         ]
     ]
     return InlineKeyboardMarkup(inline_keyboard=keyboard)
@@ -73,255 +31,13 @@ def get_subscription_keyboard():
     return InlineKeyboardMarkup(
         inline_keyboard=[
             [
-                InlineKeyboardButton(text=BUTTON_CHANNEL_NAME, url=TELEGRAM_CHANNEL_URL)
+                InlineKeyboardButton(text=os.getenv("BUTTON_CHANNEL_NAME"), url=os.getenv("TELEGRAM_CHANNEL_URL"))
             ],
             [
-                InlineKeyboardButton(text=BUTTON_CHECK_SUBSCRIPTION, callback_data="check_subscription")
+                InlineKeyboardButton(text=os.getenv("BUTTON_CHECK_SUBSCRIPTION"), callback_data="check_subscription")
             ]
         ]
     )   
 
-def get_next_question_keyboard() -> InlineKeyboardMarkup:
-    """Создает inline клавиатуру для навигации по задачам"""
-    keyboard = [
-        [
-            InlineKeyboardButton(text="❓ Вопрос по задаче", callback_data="question_help"),
-            InlineKeyboardButton(text="➡️ Следующая задача", callback_data="next_question")
-        ]
-    ]
-    return InlineKeyboardMarkup(inline_keyboard=keyboard)
 
 
-
-@router.callback_query(F.data == "feedback_yes")
-async def positive_feedback_handler(callback: CallbackQuery):
-    await callback.message.edit_text(POSITIVE_FEEDBACK_TEXT.format(
-        website_url=WEBSITE_URL,
-        channel_url=TELEGRAM_CHANNEL_URL,
-        bot_username=BOT_USERNAME
-    ))
-    await callback.message.answer(CHOOSE_SECTION_TEXT, reply_markup=get_main_keyboard())
-    await callback.answer()
-
-@router.callback_query(F.data == "feedback_no")
-async def negative_feedback_handler(callback: CallbackQuery, state: FSMContext):
-    try:
-        # Сбрасываем все предыдущие состояния
-        await state.clear()
-        
-        # Устанавливаем состояние для сбора обратной связи
-        await state.set_state(Form.feedback_message)
-        # Устанавливаем секцию отзыва
-        await state.update_data(section="feedback")
-        
-        # Удаляем предыдущее сообщение с кнопками
-        await callback.message.delete()
-        # Запрашиваем у пользователя подробности
-        await callback.message.answer(NEGATIVE_FEEDBACK_PROMPT)
-        await callback.answer()
-    except Exception as e:
-        await callback.answer("Произошла ошибка. Пожалуйста, попробуйте еще раз.")
-
-@router.callback_query(F.data == "feedback_continue")
-async def continue_handler(callback: CallbackQuery):
-    await callback.message.delete()
-    await callback.message.answer(CHOOSE_SECTION_TEXT, reply_markup=get_main_keyboard())
-    await callback.answer()
-
-def format_feedback_message(username: str, text: str) -> str:
-    """Форматирует сообщение с отзывом"""
-    return f"📝 Отзыв от пользователя: \n\n{username}\n\n{text}"
-
-@router.message(Form.feedback_message)
-async def feedback_message_handler(message: Message, state: FSMContext):
-    try:
-        # Проверяем, что это действительно отзыв
-        state_data = await state.get_data()
-        
-        if state_data.get('section') != 'feedback':
-            # Если это не отзыв, возвращаемся к обычной обработке
-            await state.clear()
-            return
-            
-        # Проверяем доступность чата
-        try:
-            chat = await message.bot.get_chat(FEEDBACK_GROUP_ID)
-            
-            # Проверяем, что бот является администратором
-            chat_member = await message.bot.get_chat_member(FEEDBACK_GROUP_ID, message.bot.id)
-            if not chat_member.status in ['administrator', 'creator']:
-                await message.answer(
-                    "❌ Ошибка: бот не имеет прав администратора в группе. Пожалуйста, сообщите администратору.",
-                    reply_markup=get_main_keyboard()
-                )
-                await state.clear()
-                return
-                
-        except Exception:
-            await message.answer(
-                "❌ Ошибка: бот не может отправить отзыв. Пожалуйста, сообщите администратору.",
-                reply_markup=get_main_keyboard()
-            )
-            await state.clear()
-            return
-            
-        # Форматируем сообщение
-        feedback_text = format_feedback_message(
-            message.from_user.username or message.from_user.first_name,
-            message.text
-        )
-            
-        # Отправляем сообщение в супергруппу
-        try:
-            await message.bot.send_message(
-                chat_id=FEEDBACK_GROUP_ID,
-                text=feedback_text
-            )
-        except TelegramRetryAfter as e:
-            # Ждем указанное время и пробуем снова
-            await asyncio.sleep(e.retry_after)
-            await message.bot.send_message(
-                chat_id=FEEDBACK_GROUP_ID,
-                text=feedback_text
-            )
-        except TelegramMigrateToChat as e:
-            # Если группа обновлена до супергруппы, используем новый ID
-            await message.bot.send_message(
-                chat_id=e.migrate_to_chat_id,
-                text=feedback_text
-            )
-        except Exception:
-            await message.answer(
-                "❌ Ошибка при отправке отзыва. Пожалуйста, попробуйте позже.",
-                reply_markup=get_main_keyboard()
-            )
-            await state.clear()
-            return
-        
-        # Отправляем благодарность пользователю
-        await message.answer(FEEDBACK_SUCCESS_TEXT, reply_markup=get_main_keyboard())
-        
-        # Сбрасываем состояние
-        await state.clear()
-    except Exception:
-        await message.answer(FEEDBACK_ERROR_TEXT, reply_markup=get_main_keyboard())
-        await state.clear()
-
-@router.callback_query(F.data == "question_help")
-async def question_help_handler(callback: CallbackQuery, state: FSMContext):
-    try:
-        text = os.getenv("Question_answer_text")
-        await state.set_state(Form.section)
-        
-        # Получаем предыдущее сообщение через callback.message
-        solution_text = callback.message.text
-        
-        await state.update_data(section="question", solution=solution_text)
-        
-        # Сначала отправляем новое сообщение
-        new_message = await callback.message.answer(text, reply_markup=get_main_keyboard(), parse_mode="HTML")
-        
-        # Затем удаляем старые сообщения
-        try:
-            await delete_message_with_delay(callback.message.bot, callback.message.chat.id, callback.message.message_id)
-        except Exception as delete_error:
-            logger.error(f"Ошибка при удалении сообщений: {str(delete_error)}")
-            
-        await callback.answer()
-            
-    except Exception as e:
-        logger.error(f"Error in messages: {str(e)}")
-        await callback.message.answer("Произошла ошибка при обработке запроса", reply_markup=get_main_keyboard())
-        await callback.answer()
-
-@router.callback_query(F.data == "next_question")
-async def next_question_handler(callback: CallbackQuery, state: FSMContext):
-    try:
-        # Удаляем inline клавиатуру из текущего сообщения
-        await callback.message.edit_reply_markup(reply_markup=None)
-        
-        # Проверяем, существует ли состояние
-        current_state = await state.get_state()
-        if not current_state:
-            # Если состояния нет, возвращаем пользователя в главное меню
-            feedback_message = await callback.message.answer("📚 Был ли вам полезен данный ответ?", reply_markup=get_feedback_keyboard())
-            await callback.answer()
-            return
-
-        state_data = await state.get_data()
-        current_section = state_data.get('section')  # получаем текущую секцию из state_data
-        
-        # Добавляем проверку на None для текста из переменных окружения
-        if current_section == 'physics':
-            text = os.getenv("Physic_answer_text") or "Задайте свой вопрос по физике"
-            next_section = 'physics'
-            # Добавляем обратную связь для физики
-            await state.clear()  # Полностью очищаем состояние
-            
-            # Устанавливаем состояние для сохранения клавиатуры
-            await state.set_state(Form.keep_keyboard)
-            
-            feedback_message = await callback.message.answer("📕 Был ли вам полезен данный ответ?", reply_markup=get_feedback_keyboard())
-            await callback.answer()
-            return
-
-        elif current_section == 'mathematics':
-            text = os.getenv("Mathematic_answer_text") or "Задайте свой вопрос по математике"
-            next_section = 'mathematics'
-            # Добавляем обратную связь для математики
-            await state.clear()  # Полностью очищаем состояние
-            
-            # Устанавливаем состояние для сохранения клавиатуры
-            await state.set_state(Form.keep_keyboard)
-            
-            feedback_message = await callback.message.answer("📊 Был ли вам полезен данный ответ?", reply_markup=get_feedback_keyboard())
-            await callback.answer()
-            return
-            
-        elif current_section == 'chemistry':
-            text = os.getenv("Chemistry_answer_text") or "Задайте свой вопрос по химии"
-            next_section = 'chemistry'
-            # Добавляем обратную связь для химии
-            await state.clear()  # Полностью очищаем состояние
-            
-            # Устанавливаем состояние для сохранения клавиатуры
-            await state.set_state(Form.keep_keyboard)
-            
-            feedback_message = await callback.message.answer("🧪 Был ли вам полезен данный ответ?", reply_markup=get_feedback_keyboard())
-            await callback.answer()
-            return
-
-        elif current_section == 'abstract':
-            # Для раздела конспектов сбрасываем все состояния и показываем меню обратной связи
-            await state.clear()  # Полностью очищаем состояние
-            
-            # Устанавливаем состояние для сохранения клавиатуры
-            await state.set_state(Form.keep_keyboard)
-            
-            feedback_message = await callback.message.answer("📚 Был ли вам полезен данный ответ?", reply_markup=get_feedback_keyboard())
-            await callback.answer()
-            return
-
-        # Проверяем, что text не None перед отправкой
-        if not text:
-            text = "Пожалуйста, задайте свой вопрос"
-            
-        await state.set_state(Form.section)
-        await state.update_data(section=next_section)
-        await callback.message.answer(text, reply_markup=get_main_keyboard(), parse_mode="HTML")
-        await callback.answer()
-            
-    except Exception as e:
-        logger.error(f"Error in messages: {str(e)}")
-        await callback.answer()
-
-
-async def delete_message_with_delay(bot, chat_id, message_id, delay=2):
-    """Удаляет сообщение с задержкой"""
-    try:
-        logger.info(f"Пытаемся удалить сообщение {message_id} в чате {chat_id}")
-        await asyncio.sleep(delay)
-        await bot.delete_message(chat_id, message_id)
-        logger.info(f"Сообщение {message_id} успешно удалено")
-    except Exception as e:
-        logger.error(f"Ошибка при удалении сообщения: {str(e)}")

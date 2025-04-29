@@ -186,6 +186,7 @@ class Format:
             text = text.replace("si∓", "simp")
             # Physics notation
             text = text.replace('⇒', '⇒')
+            text = text.replace('×', '')
             # Формула дискриминанта
             text = text.replace("x = -b ± √b² - 4ac2a", "x = (-b ± √(b² - 4ac))/(2a)")
             text = text.replace("x = -b pm √b² - 4ac2a", "x = (-b ± √(b² - 4ac))/(2a)")
