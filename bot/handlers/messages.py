@@ -7,14 +7,15 @@ import os
 import logging
 from dotenv import load_dotenv
 
-from bot.keyboards.reply import get_main_keyboard, get_next_question_keyboard, get_math_submenu_keyboard, get_abstract_keyboard
-from bot.keyboards.inline import get_feedback_keyboard
+from bot.keyboards.reply import get_main_keyboard, get_math_submenu_keyboard, get_abstract_keyboard
+from bot.keyboards.inline import get_feedback_keyboard, get_next_question_keyboard
 from bot.utils.states import Form
 from requests import Requests
 import base64
 from typing import Union, Tuple, BinaryIO
 import tempfile
 import openai
+import asyncio
 
 # Настройка логирования
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -35,7 +36,7 @@ async def information_button_handler(message: Message):
     try:
         text = os.getenv("Information_text")
         await message.answer(text, reply_markup=get_main_keyboard(), parse_mode="HTML")
-        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await delete_message_with_delay(message.bot, message.chat.id, message.message_id - 1)
         await message.delete()
     except Exception as e:
         logger.error(f"Error in messages: {str(e)}")
@@ -45,7 +46,7 @@ async def help_button_handler(message: Message):
     try:
         text = os.getenv("Help_text")
         await message.answer(text, reply_markup=get_main_keyboard(), parse_mode="HTML")
-        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await delete_message_with_delay(message.bot, message.chat.id, message.message_id - 1)
         await message.delete()
     except Exception as e:
         logger.error(f"Error in messages: {str(e)}")
@@ -57,7 +58,7 @@ async def chatgpt_button_handler(message: Message, state: FSMContext):
         await state.set_state(Form.section)
         await state.update_data(section="chatgpt")
         await message.answer(text, reply_markup=get_main_keyboard(), parse_mode="HTML")
-        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await delete_message_with_delay(message.bot, message.chat.id, message.message_id - 1)
         await message.delete()
     except Exception as e:
         logger.error(f"Error in messages: {str(e)}")
@@ -69,7 +70,7 @@ async def physics_button_handler(message: Message, state: FSMContext):
         await state.set_state(Form.section)
         await state.update_data(section="physics")
         await message.answer(text, reply_markup=get_main_keyboard(), parse_mode="HTML")
-        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await delete_message_with_delay(message.bot, message.chat.id, message.message_id - 1)
         await message.delete()
     except Exception as e:
         logger.error(f"Error in messages: {str(e)}")
@@ -80,7 +81,7 @@ async def math_button_handler(message: Message, state: FSMContext):
         await state.set_state(Form.math_submenu)
         text = os.getenv("Math_choose_text")
         sent_message = await message.answer(text, reply_markup=get_math_submenu_keyboard(), parse_mode="HTML")
-        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await delete_message_with_delay(message.bot, message.chat.id, message.message_id - 1)
         await message.delete()
     except Exception as e:
         logger.error(f"Error in messages: {str(e)}")
@@ -95,7 +96,7 @@ async def back_from_math_handler(message: Message, state: FSMContext):
         # Возвращаемся к главному меню
         await state.set_state(None)
         await message.answer(start_text, reply_markup=get_main_keyboard(), parse_mode="HTML")
-        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await delete_message_with_delay(message.bot, message.chat.id, message.message_id - 1)
         await message.delete()
     except Exception as e:
         logger.error(f"Error in messages: {str(e)}")
@@ -107,7 +108,7 @@ async def chemistry_button_handler(message: Message, state: FSMContext):
         await state.set_state(Form.section)
         await state.update_data(section="chemistry")
         await message.answer(text, reply_markup=get_main_keyboard(), parse_mode="HTML")
-        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await delete_message_with_delay(message.bot, message.chat.id, message.message_id - 1)
         await message.delete()
     except Exception as e:
         logger.error(f"Error in messages: {str(e)}")
@@ -119,7 +120,7 @@ async def abstract_button_handler(message: Message, state: FSMContext):
         await state.update_data(section="abstract")
         text = os.getenv("Abstract_text")
         await message.answer(text, reply_markup=get_main_keyboard(), parse_mode="HTML")
-        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await delete_message_with_delay(message.bot, message.chat.id, message.message_id - 1)
         await message.delete()
     except Exception as e:
         logger.error(f"Error in messages: {str(e)}")
@@ -133,7 +134,7 @@ async def solve_math_handler(message: Message, state: FSMContext):
         await state.set_state(Form.section)
         await state.update_data(section="mathematics")
         await message.answer(text, reply_markup=get_main_keyboard(), parse_mode="HTML")
-        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await delete_message_with_delay(message.bot, message.chat.id, message.message_id - 1)
         await message.delete()
     except Exception as e:
         logger.error(f"Error in messages: {str(e)}")
@@ -145,106 +146,10 @@ async def plot_function_handler(message: Message, state: FSMContext):
         await state.set_state(Form.section)
         await state.update_data(section="mathematics", solution="graph")
         await message.answer(text, reply_markup=get_main_keyboard(), parse_mode="HTML")
-        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await delete_message_with_delay(message.bot, message.chat.id, message.message_id - 1)
         await message.delete()
     except Exception as e:
         logger.error(f"Error in messages: {str(e)}")
-
-# Solution menu
-@router.message(F.text == "❓ Вопрос по задаче")
-async def question_button_handler(message: Message, state: FSMContext):
-    try:
-        text = os.getenv("Question_answer_text")
-        await state.set_state(Form.section)
-        
-        # Получаем предыдущее сообщение через message.reply_to_message
-        solution_text = None
-        if message.reply_to_message:
-            solution_text = message.reply_to_message.text
-        else:
-            try:
-                            # Получаем последнее сообщение в чате
-                messages = await message.chat.get_messages(limit=2)
-                if len(messages) > 1:
-                    solution_text = messages[1].text
-            # Если нет reply_to_message, просто продолжаем без текста решения
-            except Exception as e:
-                logger.error(f"Error in messages: {str(e)}")
-                solution_text = None
-            
-        await state.update_data(section="question", solution=solution_text)
-        
-        # Сначала отправляем новое сообщение
-        new_message = await message.answer(text, reply_markup=get_main_keyboard(), parse_mode="HTML")
-        
-        # Затем удаляем старые сообщения
-        try:
-            await message.delete()
-        except Exception as delete_error:
-            logger.error(f"Ошибка при удалении сообщений: {str(delete_error)}")
-            
-    except Exception as e:
-        logger.error(f"Error in messages: {str(e)}")
-        await message.answer("Произошла ошибка при обработке запроса", reply_markup=get_main_keyboard())
-
-@router.message(F.text.in_(["➡️ Следующая задача", "➡️ Далее к задачам"]))
-async def next_question_button_handler(message: Message, state: FSMContext):
-    try:
-        # Проверяем, существует ли состояние
-        current_state = await state.get_state()
-        if not current_state:
-            # Если состояния нет, возвращаем пользователя в главное меню
-            feedback_message = await message.answer("📚 Был ли вам полезен данный ответ?", reply_markup=get_feedback_keyboard())
-            await message.delete()
-            return
-
-        state_data = await state.get_data()
-        current_section = state_data.get('section')  # получаем текущую секцию из state_data
-        
-        # Добавляем проверку на None для текста из переменных окружения
-        if current_section == 'physics':
-            text = os.getenv("Physic_answer_text") or "Задайте свой вопрос по физике"
-            next_section = 'physics'
-            # Добавляем обратную связь для физики
-            await state.clear()  # Полностью очищаем состояние
-            feedback_message = await message.answer("📕 Был ли вам полезен данный ответ?", reply_markup=get_feedback_keyboard())
-            await message.delete()
-            return
-        elif current_section == 'mathematics':
-            text = os.getenv("Mathematic_answer_text") or "Задайте свой вопрос по математике"
-            next_section = 'mathematics'
-            # Добавляем обратную связь для математики
-            await state.clear()  # Полностью очищаем состояние
-            feedback_message = await message.answer("📊 Был ли вам полезен данный ответ?", reply_markup=get_feedback_keyboard())
-            await message.delete()
-            return
-        elif current_section == 'chemistry':
-            text = os.getenv("Chemistry_answer_text") or "Задайте свой вопрос по химии"
-            next_section = 'chemistry'
-            # Добавляем обратную связь для химии
-            await state.clear()  # Полностью очищаем состояние
-            feedback_message = await message.answer("🧪 Был ли вам полезен данный ответ?", reply_markup=get_feedback_keyboard())
-            await message.delete()
-            return
-        elif current_section == 'abstract':
-            # Для раздела конспектов сбрасываем все состояния и показываем меню обратной связи
-            await state.clear()  # Полностью очищаем состояние
-            feedback_message = await message.answer("📚 Был ли вам полезен данный ответ?", reply_markup=get_feedback_keyboard())
-            await message.delete()
-            return
-        # Проверяем, что text не None перед отправкой
-        if not text:
-            text = "Пожалуйста, задайте свой вопрос"
-            
-        await state.set_state(Form.section)
-        await state.update_data(section=next_section)
-        await message.answer(text, reply_markup=get_main_keyboard(), parse_mode="HTML")
-        await message.delete()
-            
-    except Exception as e:
-        logger.error(f"Error in messages: {str(e)}")
-        await message.answer("Произошла ошибка при обработке запроса", reply_markup=get_main_keyboard())
-
 
 # Создаем общий обработчик для аудио и голосовых сообщений
 @router.message(F.voice | F.audio)
@@ -423,6 +328,21 @@ async def photo_handler(message: Message, state: FSMContext):
             reply_markup=get_next_question_keyboard()
         )
 
+@router.message(F.text == "➡️ Далее к задачам")
+async def next_to_tasks_handler(message: Message, state: FSMContext):
+    try:
+        # Сразу удаляем сообщение пользователя
+        try:
+            await message.delete()
+        except Exception as delete_error:
+            logger.error(f"Error deleting user message: {str(delete_error)}")
+
+        # Отправляем сообщение с просьбой оставить отзыв
+        feedback_message = await message.answer("📚 Был ли вам полезен данный ответ?", reply_markup=get_feedback_keyboard())
+            
+    except Exception as e:
+        logger.error(f"Error in messages: {str(e)}")
+        await message.answer("Произошла ошибка при обработке запроса", reply_markup=get_main_keyboard())
 
 @router.message()
 async def fallback_message_handler(message: Message, state: FSMContext):
@@ -515,4 +435,14 @@ async def fallback_message_handler(message: Message, state: FSMContext):
             "Произошла ошибка при обработке запроса. Пожалуйста, попробуйте еще раз.",
             reply_markup=get_main_keyboard()
         )
+
+async def delete_message_with_delay(bot, chat_id, message_id, delay=2):
+    """Удаляет сообщение с задержкой и обработкой ошибок"""
+    try:
+        logger.info(f"Пытаемся удалить сообщение {message_id} в чате {chat_id}")
+        await asyncio.sleep(delay)  # Увеличиваем задержку до 2 секунд
+        await bot.delete_message(chat_id, message_id)
+        logger.info(f"Сообщение {message_id} успешно удалено")
+    except Exception as e:
+        logger.error(f"Не удалось удалить сообщение {message_id} в чате {chat_id}: {e}")
 

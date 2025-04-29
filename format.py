@@ -183,7 +183,7 @@ class Format:
             text = text.replace("parallel", "∥")  # Параллельно
             text = text.replace("therefore", "∴")  # Следовательно
             text = text.replace("because", "∵")  # Потому что
-            
+            text = text.replace("si∓", "simp")
             # Physics notation
             text = text.replace('⇒', '⇒')
             # Формула дискриминанта

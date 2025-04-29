@@ -2463,3 +2463,212 @@ aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: chat 
 2025-04-28 17:30:38 - bot - INFO - Бот остановлен
 2025-04-28 17:32:13 - bot - INFO - Бот запущен
 2025-04-28 17:32:58 - bot - INFO - Бот остановлен
+2025-04-28 18:33:53 - bot - INFO - Бот запущен
+2025-04-28 18:34:10 - bot.handlers.messages - ERROR - Error in messages: Message.answer() missing 1 required positional argument: 'text'
+2025-04-28 18:34:50 - bot.handlers.messages - ERROR - Error in messages: Message.answer() missing 1 required positional argument: 'text'
+2025-04-28 18:35:09 - bot.handlers.messages - ERROR - Error in messages: Message.answer() missing 1 required positional argument: 'text'
+2025-04-28 18:35:26 - bot - INFO - Бот остановлен
+2025-04-28 18:35:35 - bot - INFO - Бот запущен
+2025-04-28 18:35:51 - bot.handlers.messages - ERROR - Error in messages: Telegram server says - Bad Request: text must be non-empty
+2025-04-28 18:36:33 - bot - INFO - Бот остановлен
+2025-04-28 18:37:11 - bot - INFO - Бот запущен
+2025-04-28 18:37:21 - bot.handlers.messages - ERROR - Ошибка: Telegram server says - Bad Request: text must be non-empty
+2025-04-28 18:37:53 - bot - INFO - Бот остановлен
+2025-04-28 18:37:58 - bot - INFO - Бот запущен
+2025-04-28 18:38:09 - bot.handlers.messages - ERROR - Error in messages: Telegram server says - Bad Request: text must be non-empty
+2025-04-28 18:39:17 - bot - INFO - Бот остановлен
+2025-04-28 18:39:27 - bot - INFO - Бот запущен
+2025-04-28 18:39:47 - bot.handlers.messages - ERROR - Error in messages: Telegram server says - Bad Request: text must be non-empty
+2025-04-28 18:41:04 - bot - INFO - Бот остановлен
+2025-04-28 18:42:08 - bot - INFO - Бот запущен
+2025-04-28 18:44:00 - bot - INFO - Бот остановлен
+2025-04-28 18:44:04 - bot - INFO - Бот запущен
+2025-04-28 18:45:54 - bot - INFO - Бот остановлен
+2025-04-28 18:45:59 - bot - INFO - Бот запущен
+2025-04-28 18:49:05 - bot - INFO - Бот остановлен
+2025-04-28 18:51:21 - bot - INFO - Бот запущен
+2025-04-28 18:51:34 - bot.handlers.messages - ERROR - Error deleting message: Telegram server says - Bad Request: message to delete not found
+2025-04-28 18:52:52 - bot - INFO - Бот остановлен
+2025-04-28 18:52:56 - bot - INFO - Бот запущен
+2025-04-28 18:53:10 - bot.handlers.messages - ERROR - Error in messages: Telegram server says - Bad Request: message text is empty
+2025-04-28 18:53:54 - bot - INFO - Бот остановлен
+2025-04-28 18:53:58 - bot - INFO - Бот запущен
+2025-04-28 18:54:00 - bot.handlers.messages - ERROR - Error in messages: Telegram server says - Bad Request: text must be non-empty
+2025-04-28 18:54:26 - bot.handlers.messages - ERROR - Error in messages: Telegram server says - Bad Request: text must be non-empty
+2025-04-28 18:59:05 - bot - INFO - Бот остановлен
+2025-04-28 18:59:10 - bot - INFO - Бот запущен
+2025-04-28 18:59:13 - bot.handlers.messages - ERROR - Error in messages: Telegram server says - Bad Request: message text is empty
+2025-04-28 18:59:33 - bot.handlers.messages - ERROR - Error in messages: Telegram server says - Bad Request: message text is empty
+2025-04-28 19:05:09 - bot - INFO - Бот остановлен
+2025-04-28 19:05:15 - bot - INFO - Бот запущен
+2025-04-28 19:05:22 - bot.handlers.messages - ERROR - Error in messages: Telegram server says - Bad Request: text must be non-empty
+2025-04-28 19:05:33 - bot.handlers.messages - ERROR - Error in messages: Telegram server says - Bad Request: text must be non-empty
+2025-04-28 19:06:17 - bot - INFO - Бот остановлен
+2025-04-28 19:06:52 - bot - INFO - Бот запущен
+2025-04-28 19:07:49 - bot.handlers.messages - ERROR - Error in messages: Telegram server says - Bad Request: text must be non-empty
+2025-04-28 19:07:57 - bot - INFO - Бот остановлен
+2025-04-28 19:10:04 - bot - INFO - Бот запущен
+2025-04-28 19:10:25 - bot.handlers.messages - ERROR - Error in messages: Telegram server says - Bad Request: text must be non-empty
+2025-04-28 19:11:19 - bot - INFO - Бот остановлен
+2025-04-28 20:31:35 - bot - INFO - Бот запущен
+2025-04-28 20:31:39 - bot.handlers.messages - ERROR - Error in messages: 1 validation error for EditMessageReplyMarkup
+reply_markup
+  Input should be a valid dictionary or instance of InlineKeyboardMarkup [type=model_type, input_value=ReplyKeyboardMarkup(keybo...е...', selective=None), input_type=ReplyKeyboardMarkup]
+    For further information visit https://errors.pydantic.dev/2.5/v/model_type
+2025-04-28 20:31:52 - bot.handlers.messages - ERROR - Error in messages: 1 validation error for EditMessageReplyMarkup
+reply_markup
+  Input should be a valid dictionary or instance of InlineKeyboardMarkup [type=model_type, input_value=ReplyKeyboardMarkup(keybo...е...', selective=None), input_type=ReplyKeyboardMarkup]
+    For further information visit https://errors.pydantic.dev/2.5/v/model_type
+2025-04-28 20:34:19 - bot - INFO - Бот остановлен
+2025-04-29 17:11:24 - bot - INFO - Бот запущен
+2025-04-29 17:12:57 - bot - INFO - Бот остановлен
+2025-04-29 17:13:01 - bot - INFO - Бот запущен
+2025-04-29 17:13:13 - bot.handlers.messages - ERROR - Error in messages: Telegram server says - Bad Request: message to delete not found
+2025-04-29 17:13:33 - bot.handlers.messages - ERROR - Error in messages: Telegram server says - Bad Request: message to delete not found
+2025-04-29 17:19:09 - bot - INFO - Бот остановлен
+2025-04-29 17:19:14 - bot - INFO - Бот запущен
+2025-04-29 17:19:29 - bot.handlers.messages - ERROR - Не удалось удалить сообщение: Telegram server says - Bad Request: message to delete not found
+2025-04-29 17:21:07 - bot - INFO - Бот остановлен
+2025-04-29 17:21:12 - bot - INFO - Бот запущен
+2025-04-29 17:22:35 - bot - INFO - Бот остановлен
+2025-04-29 17:24:43 - bot - INFO - Бот запущен
+2025-04-29 17:24:56 - bot.handlers.messages - ERROR - Не удалось удалить сообщение: Telegram server says - Bad Request: message to delete not found
+2025-04-29 17:25:33 - bot - INFO - Бот остановлен
+2025-04-29 17:25:38 - bot - INFO - Бот запущен
+2025-04-29 17:26:13 - bot - INFO - Бот остановлен
+2025-04-29 17:27:58 - bot - INFO - Бот запущен
+2025-04-29 17:29:46 - bot - INFO - Бот остановлен
+2025-04-29 17:29:51 - bot - INFO - Бот запущен
+2025-04-29 17:30:01 - bot.handlers.messages - ERROR - Не удалось удалить сообщение: Telegram server says - Bad Request: message to delete not found
+2025-04-29 17:34:56 - bot - INFO - Бот остановлен
+2025-04-29 17:35:58 - bot - INFO - Бот запущен
+2025-04-29 17:36:15 - bot.handlers.messages - ERROR - Не удалось удалить сообщение: Telegram server says - Bad Request: message to delete not found
+2025-04-29 17:36:20 - bot - INFO - Бот остановлен
+2025-04-29 17:40:14 - bot - INFO - Бот запущен
+2025-04-29 17:40:14 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5012 в чате 7282535243
+2025-04-29 17:40:15 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5014 в чате 7282535243
+2025-04-29 17:40:17 - bot.handlers.messages - INFO - Сообщение 5012 успешно удалено
+2025-04-29 17:40:17 - bot.handlers.messages - INFO - Сообщение 5014 успешно удалено
+2025-04-29 17:40:24 - bot.handlers.messages - INFO - Отправлено сообщение с ID: 5021
+2025-04-29 17:40:26 - bot.handlers.messages - INFO - Пытаемся удалить сообщение с ID: 5021
+2025-04-29 17:40:26 - bot.handlers.messages - INFO - Сообщение успешно удалено
+2025-04-29 17:44:01 - bot - INFO - Бот остановлен
+2025-04-29 17:44:06 - bot - INFO - Бот запущен
+2025-04-29 17:44:11 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5023 в чате 7282535243
+2025-04-29 17:44:12 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5025 в чате 7282535243
+2025-04-29 17:44:13 - bot.handlers.messages - INFO - Сообщение 5023 успешно удалено
+2025-04-29 17:44:14 - bot.handlers.messages - INFO - Сообщение 5025 успешно удалено
+2025-04-29 17:44:20 - bot.handlers.messages - INFO - Отправлено сообщение с ID: 5032
+2025-04-29 17:44:20 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5032 в чате 7282535243
+2025-04-29 17:44:22 - bot.handlers.messages - INFO - Сообщение 5032 успешно удалено
+2025-04-29 17:56:49 - bot - INFO - Бот остановлен
+2025-04-29 18:01:03 - bot - INFO - Бот запущен
+2025-04-29 18:01:09 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5034 в чате 7282535243
+2025-04-29 18:01:10 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5036 в чате 7282535243
+2025-04-29 18:01:11 - bot.handlers.messages - INFO - Сообщение 5034 успешно удалено
+2025-04-29 18:01:12 - bot.handlers.messages - INFO - Сообщение 5036 успешно удалено
+2025-04-29 18:01:21 - bot.handlers.messages - INFO - Отправлено сообщение с ID: 5043
+2025-04-29 18:01:21 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5043 в чате 7282535243
+2025-04-29 18:01:23 - bot.handlers.messages - INFO - Сообщение 5043 успешно удалено
+2025-04-29 18:01:34 - bot - INFO - Бот остановлен
+2025-04-29 18:01:39 - bot - INFO - Бот запущен
+2025-04-29 18:01:43 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5045 в чате 7282535243
+2025-04-29 18:01:45 - bot.handlers.messages - INFO - Сообщение 5045 успешно удалено
+2025-04-29 18:01:46 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5047 в чате 7282535243
+2025-04-29 18:01:48 - bot.handlers.messages - INFO - Сообщение 5047 успешно удалено
+2025-04-29 18:02:02 - bot.handlers.messages - INFO - Отправлено сообщение с ID: 5054
+2025-04-29 18:02:02 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5054 в чате 7282535243
+2025-04-29 18:02:04 - bot.handlers.messages - INFO - Сообщение 5054 успешно удалено
+2025-04-29 18:02:07 - bot - INFO - Бот остановлен
+2025-04-29 18:02:11 - bot - INFO - Бот запущен
+2025-04-29 18:02:13 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5056 в чате 7282535243
+2025-04-29 18:02:15 - bot.handlers.messages - INFO - Сообщение 5056 успешно удалено
+2025-04-29 18:02:16 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5058 в чате 7282535243
+2025-04-29 18:02:18 - bot.handlers.messages - INFO - Сообщение 5058 успешно удалено
+2025-04-29 18:02:30 - bot.handlers.messages - INFO - Отправлено сообщение с ID: 5065
+2025-04-29 18:02:30 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5065 в чате 7282535243
+2025-04-29 18:02:32 - bot.handlers.messages - INFO - Сообщение 5065 успешно удалено
+2025-04-29 18:02:46 - bot - INFO - Бот остановлен
+2025-04-29 18:04:00 - bot - INFO - Бот запущен
+2025-04-29 18:04:07 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5067 в чате 7282535243
+2025-04-29 18:04:08 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5069 в чате 7282535243
+2025-04-29 18:04:09 - bot.handlers.messages - INFO - Сообщение 5067 успешно удалено
+2025-04-29 18:04:10 - bot.handlers.messages - INFO - Сообщение 5069 успешно удалено
+2025-04-29 18:04:16 - bot.handlers.messages - INFO - Отправлено сообщение с ID: 5076
+2025-04-29 18:04:16 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5076 в чате 7282535243
+2025-04-29 18:04:18 - bot.handlers.messages - INFO - Сообщение 5076 успешно удалено
+2025-04-29 18:32:09 - bot - INFO - Бот остановлен
+2025-04-29 18:33:42 - bot - INFO - Бот запущен
+2025-04-29 18:33:45 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5078 в чате 7282535243
+2025-04-29 18:33:46 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5080 в чате 7282535243
+2025-04-29 18:33:47 - bot.handlers.messages - INFO - Сообщение 5078 успешно удалено
+2025-04-29 18:33:48 - bot.handlers.messages - INFO - Сообщение 5080 успешно удалено
+2025-04-29 18:33:56 - bot.handlers.messages - INFO - Отправлено сообщение с ID: 5087
+2025-04-29 18:33:56 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5087 в чате 7282535243
+2025-04-29 18:33:58 - bot.handlers.messages - INFO - Сообщение 5087 успешно удалено
+2025-04-29 19:15:19 - bot - INFO - Бот остановлен
+2025-04-29 19:22:06 - bot - INFO - Бот запущен
+2025-04-29 19:22:28 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5088 в чате 1593283977
+2025-04-29 19:22:31 - bot.handlers.messages - ERROR - Не удалось удалить сообщение 5088 в чате 1593283977: Telegram server says - Bad Request: message to delete not found
+2025-04-29 19:22:52 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-29 19:22:52 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-29 19:23:45 - bot - INFO - Бот остановлен
+2025-04-29 19:26:01 - bot - INFO - Бот запущен
+2025-04-29 19:26:05 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5099 в чате 1593283977
+2025-04-29 19:26:06 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5101 в чате 1593283977
+2025-04-29 19:26:07 - bot.handlers.messages - INFO - Сообщение 5099 успешно удалено
+2025-04-29 19:26:08 - bot.handlers.messages - INFO - Сообщение 5101 успешно удалено
+2025-04-29 19:26:59 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5109 в чате 1593283977
+2025-04-29 19:27:02 - bot.handlers.messages - INFO - Сообщение 5109 успешно удалено
+2025-04-29 19:28:26 - bot - INFO - Бот остановлен
+2025-04-29 19:30:19 - bot - INFO - Бот запущен
+2025-04-29 19:30:32 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5114 в чате 1593283977
+2025-04-29 19:30:33 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5116 в чате 1593283977
+2025-04-29 19:30:34 - bot.handlers.messages - INFO - Сообщение 5114 успешно удалено
+2025-04-29 19:30:39 - bot.handlers.messages - INFO - Сообщение 5116 успешно удалено
+2025-04-29 19:32:08 - bot - INFO - Бот остановлен
+2025-04-29 19:32:24 - bot - INFO - Бот запущен
+2025-04-29 19:32:49 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5122 в чате 1593283977
+2025-04-29 19:32:50 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5124 в чате 1593283977
+2025-04-29 19:32:51 - bot.handlers.messages - INFO - Сообщение 5122 успешно удалено
+2025-04-29 19:32:52 - bot.handlers.messages - INFO - Сообщение 5124 успешно удалено
+2025-04-29 19:32:59 - bot.keyboards.inline - INFO - Отправлено сообщение с ID: 5130
+2025-04-29 19:32:59 - bot.keyboards.inline - INFO - Пытаемся удалить сообщение 5130 в чате 1593283977
+2025-04-29 19:33:01 - bot.keyboards.inline - INFO - Сообщение 5130 успешно удалено
+2025-04-29 19:33:07 - bot - INFO - Бот остановлен
+2025-04-29 19:33:59 - bot - INFO - Бот запущен
+2025-04-29 19:34:03 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5132 в чате 1593283977
+2025-04-29 19:34:04 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5134 в чате 1593283977
+2025-04-29 19:34:05 - bot.handlers.messages - INFO - Сообщение 5132 успешно удалено
+2025-04-29 19:34:06 - bot.handlers.messages - INFO - Сообщение 5134 успешно удалено
+2025-04-29 19:34:28 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5141 в чате 1593283977
+2025-04-29 19:34:30 - bot.handlers.messages - INFO - Сообщение 5141 успешно удалено
+2025-04-29 19:34:50 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-29 19:34:50 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-29 19:35:50 - bot - INFO - Бот остановлен
+2025-04-29 19:35:55 - bot - INFO - Бот запущен
+2025-04-29 19:35:56 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5152 в чате 1593283977
+2025-04-29 19:35:58 - bot.handlers.messages - INFO - Сообщение 5152 успешно удалено
+2025-04-29 19:36:47 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5157 в чате 1593283977
+2025-04-29 19:36:48 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5159 в чате 1593283977
+2025-04-29 19:36:49 - bot.handlers.messages - INFO - Сообщение 5157 успешно удалено
+2025-04-29 19:36:50 - bot.handlers.messages - INFO - Сообщение 5159 успешно удалено
+2025-04-29 19:37:05 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5166 в чате 1593283977
+2025-04-29 19:37:06 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5168 в чате 1593283977
+2025-04-29 19:37:07 - bot.handlers.messages - INFO - Сообщение 5166 успешно удалено
+2025-04-29 19:37:08 - bot.handlers.messages - INFO - Сообщение 5168 успешно удалено
+2025-04-29 19:37:26 - bot - INFO - Бот остановлен
+2025-04-29 19:41:14 - bot - INFO - Бот запущен
+2025-04-29 19:41:15 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5175 в чате 1593283977
+2025-04-29 19:41:17 - bot.handlers.messages - INFO - Сообщение 5175 успешно удалено
+2025-04-29 19:41:32 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-29 19:41:32 - bot.handlers.messages - ERROR - Ошибка при поиске и удалении сообщения 'Chat' object has no attribute 'get_messages'
+2025-04-29 19:42:47 - bot - INFO - Бот остановлен
+2025-04-29 19:43:05 - bot - INFO - Бот запущен
+2025-04-29 19:43:05 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5186 в чате 1593283977
+2025-04-29 19:43:07 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5188 в чате 1593283977
+2025-04-29 19:43:07 - bot.handlers.messages - INFO - Сообщение 5186 успешно удалено
+2025-04-29 19:43:09 - bot.handlers.messages - INFO - Сообщение 5188 успешно удалено
+2025-04-29 19:44:18 - bot.handlers.messages - INFO - Пытаемся удалить сообщение 5195 в чате 1593283977
+2025-04-29 19:44:20 - bot.handlers.messages - INFO - Сообщение 5195 успешно удалено
+2025-04-29 19:44:43 - bot - INFO - Бот остановлен

@@ -31,28 +31,15 @@ def get_main_keyboard() -> ReplyKeyboardMarkup:
             ]
         ],
         resize_keyboard=True,
+        one_time_keyboard=False,  # Клавиатура будет закреплена
         input_field_placeholder="Выберите действие..."
     )
     return keyboard
 
-def get_next_question_keyboard():
-    return ReplyKeyboardMarkup(
-        keyboard=[
-            [
-                KeyboardButton(text="❓ Вопрос по задаче")
-            ],
-            [
-                KeyboardButton(text="➡️ Следующая задача")
-            ]
-        ],
-        resize_keyboard=True,
-        input_field_placeholder="Выберите действие..."
-
-    )   
 def get_abstract_keyboard() -> ReplyKeyboardMarkup:
     """Создает клавиатуру для раздела конспектов"""
     keyboard = [
         [KeyboardButton(text="➡️ Далее к задачам")],
     ]
     return ReplyKeyboardMarkup(keyboard=keyboard, resize_keyboard=True)
-
+    
