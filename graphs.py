@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import io
-from sympy import sympify, symbols, parse_expr, sin, cos, tan, cot, asin, acos, atan, acot, pi, sqrt, log, Abs, Piecewise
+from sympy import sympify, symbols, parse_expr, sin, cos, tan, cot, asin, acos, atan, acot, pi, sqrt, log, Abs, Piecewise, solve
 from sympy.utilities.lambdify import lambdify
 import re
 from formula_utils import FormulaUtils
@@ -44,12 +44,37 @@ class Graphs:
             except Exception as lambdify_error:
                 raise ValueError(f"Ошибка при конвертации функции: {str(lambdify_error)}")
             
+            # Находим вершину параболы, если это квадратичная функция
+            def find_parabola_vertex(expr):
+                try:
+                    # Проверяем, является ли функция квадратичной
+                    if expr.as_poly(x).degree() == 2:
+                        # Находим производную
+                        derivative = expr.diff(x)
+                        # Находим корень производной (x-координата вершины)
+                        x_vertex = float(solve(derivative, x)[0])
+                        # Находим y-координату вершины
+                        y_vertex = float(expr.subs(x, x_vertex))
+                        return x_vertex, y_vertex
+                except:
+                    pass
+                return None
+            
+            # Получаем координаты вершины
+            vertex = find_parabola_vertex(expr)
+            
             # Создаем массив значений x
-            # Для тригонометрических функций используем больше точек и меньший диапазон
-            if any(func in cleaned_function for func in ['sin', 'cos', 'tan', 'cot']):
-                x_vals = np.linspace(-2*np.pi, 2*np.pi, 1000)
+            if vertex is not None:
+                # Если это парабола, центрируем график вокруг вершины
+                x_vertex, y_vertex = vertex
+                x_range = 5  # Диапазон по x в обе стороны от вершины
+                x_vals = np.linspace(x_vertex - x_range, x_vertex + x_range, 1000)
             else:
-                x_vals = np.linspace(-5, 5, 1000)  # Уменьшаем диапазон до [-5, 5]
+                # Для других функций используем стандартный диапазон
+                if any(func in cleaned_function for func in ['sin', 'cos', 'tan', 'cot']):
+                    x_vals = np.linspace(-2*np.pi, 2*np.pi, 1000)
+                else:
+                    x_vals = np.linspace(-5, 5, 1000)
             
             try:
                 # Вычисляем значения y
@@ -72,8 +97,9 @@ class Graphs:
                 y_vals = y_vals[mask]
                 
                 # Создаем график
-                fig = plt.figure(figsize=(8, 8))  # Уменьшаем размер фигуры
-                ax = fig.add_subplot(1, 1, 1, aspect='equal')  # Равный масштаб по осям
+                fig = plt.figure(figsize=(10, 10))
+                ax = fig.add_subplot(1, 1, 1)
+                ax.set_aspect('equal', adjustable='datalim')
                 
                 # Настраиваем оси
                 ax.spines['left'].set_position('zero')
@@ -83,11 +109,21 @@ class Graphs:
                 
                 # Рисуем график
                 ax.plot(x_vals, y_vals, 'b-', label=f'f(x) = {self.formula}')
-                ax.grid(True, which='both')
+                ax.grid(True, which='major', color='#cccccc', linestyle='--', linewidth=0.7, alpha=0.7)
                 
                 # Добавляем дополнительные линии сетки для единичных отрезков
-                ax.set_xticks(np.arange(-5, 6, 1))
-                ax.set_yticks(np.arange(-5, 6, 1))
+                if vertex is not None:
+                    # Для параболы делаем диапазон по x шире, по y уже
+                    x_range = 5
+                    y_range = 7
+                    plt.xlim(x_vertex - x_range, x_vertex + x_range)
+                    plt.ylim(y_vertex - y_range, y_vertex + y_range)
+                    # Сетка и подписи через 1
+                    ax.set_xticks(np.arange(int(x_vertex - x_range), int(x_vertex + x_range) + 1, 1))
+                    ax.set_yticks(np.arange(int(y_vertex - y_range), int(y_vertex + y_range) + 1, 1))
+                else:
+                    ax.set_xticks(np.arange(-5, 6, 1))
+                    ax.set_yticks(np.arange(-5, 6, 1))
                 
                 # Добавляем стрелки на концах осей
                 ax.plot((1), (0), '>k', transform=ax.get_yaxis_transform(), clip_on=False)
@@ -98,20 +134,27 @@ class Graphs:
                 ax.set_ylabel('y', y=1.0, horizontalalignment='left')
                 
                 # Заголовок и легенда
-                plt.title(f'График функции: {self.formula}')
+                plt.title(f'График функции: {self.formula}', fontsize=18, y=1.08)
                 plt.legend(loc='upper left')
                 
                 # Определяем пределы для осей
-                if any(func in cleaned_function for func in ['sin', 'cos']):
+                if vertex is not None:
+                    # Для параболы делаем диапазон по x шире, по y уже
+                    x_range = 5
+                    y_range = 7
+                    plt.xlim(x_vertex - x_range, x_vertex + x_range)
+                    plt.ylim(y_vertex - y_range, y_vertex + y_range)
+                elif any(func in cleaned_function for func in ['sin', 'cos']):
                     limit = 2*np.pi
+                    plt.xlim(-limit, limit)
+                    plt.ylim(-limit, limit)
                 else:
                     # Находим максимальные значения по обеим осям
                     max_abs_x = min(5, np.max(np.abs(x_vals)))
                     max_abs_y = min(5, np.max(np.abs(y_vals[np.isfinite(y_vals)])))
                     limit = max(max_abs_x, max_abs_y)
-                
-                plt.xlim(-limit, limit)
-                plt.ylim(-limit, limit)
+                    plt.xlim(-limit, limit)
+                    plt.ylim(-limit, limit)
                 
                 # Сохраняем график в байтовый буфер с увеличенным DPI для четкости
                 buf = io.BytesIO()
