@@ -270,6 +270,38 @@ class Format:
             text = text.replace("\\in", "∈")
             text = text.replace("\\pi", "π")
             text = text.replace("\\sum", "∑")
+
+            # ВАЖНОЕ исправление: перед возвратом текста, проверим все HTML-теги на корректность
+            # Убедимся, что для каждого открывающего тега есть закрывающий
+            common_tags = ["b", "i", "code", "pre", "sup", "sub"]
+            for tag in common_tags:
+                open_count = text.count(f"<{tag}>")
+                close_count = text.count(f"</{tag}>")
+                
+                # Если количество открывающих и закрывающих тегов не совпадает
+                if open_count > close_count:
+                    # Добавляем недостающие закрывающие теги
+                    text += f"</{tag}>" * (open_count - close_count)
+                elif open_count < close_count:
+                    # Здесь слишком много закрывающих тегов - это может указывать на проблему
+                    # Для безопасности удалим лишние закрывающие теги
+                    # В текущей реализации мы используем простой подход - заменяем их на пустую строку
+                    # Создаем паттерн для поиска закрывающих тегов
+                    pattern = f"</{tag}>"
+                    # Ищем все вхождения закрывающего тега
+                    positions = [match.start() for match in re.finditer(pattern, text)]
+                    
+                    # Удаляем лишние закрывающие теги
+                    for i in range(close_count - open_count):
+                        if i < len(positions):
+                            pos = positions[i]
+                            text = text[:pos] + text[pos + len(pattern):]
+            
+            # Проверяем на наличие любых одиночных "<" или ">" без парных
+            # Экранируем их, если они не являются частью HTML-тега
+            text = re.sub(r'<(?![/a-zA-Z])', '&lt;', text)
+            text = re.sub(r'(?<![/a-zA-Z"\'])>', '&gt;', text)
+            
             return text
             
         except Exception as e:
