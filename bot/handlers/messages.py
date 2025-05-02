@@ -258,14 +258,6 @@ async def audio_voice_handler(message: Message, state: FSMContext):
 async def photo_handler(message: Message, state: FSMContext):
     """Обработчик для фотографий"""
     try:
-        # Не удаляем сообщение, если это фото
-        try:
-            # Получаем предыдущее сообщение
-            prev_message = await message.chat.get_messages(limit=2)
-            if len(prev_message) > 1 and not prev_message[1].photo:
-                await message.bot.delete_message(message.chat.id, message.message_id - 1)
-        except Exception as e:
-            logger.error(f"Ошибка при поиске и удалении сообщения {str(e)}")
         wait_message = await message.answer(os.getenv("Wait_text"), parse_mode="HTML")
         
         # Start typing status after wait message
@@ -323,8 +315,7 @@ async def photo_handler(message: Message, state: FSMContext):
             await message.answer(response + feedback_question, parse_mode="HTML", reply_markup=get_feedback_keyboard())
     except Exception as e:
         logger.error(f"Error in photo handler: {str(e)}", exc_info=True)
-        await message.answer(
-            "Произошла ошибка при обработке запроса. Пожалуйста, попробуйте еще раз.",
+        await message.answer(str(e),
             reply_markup=get_main_keyboard()
         )
 
@@ -410,8 +401,7 @@ async def fallback_message_handler(message: Message, state: FSMContext):
             await message.answer(response + feedback_question, parse_mode="HTML", reply_markup=get_feedback_keyboard())
     except Exception as e:
         logger.error(f"Error in fallback handler: {str(e)}", exc_info=True)
-        await message.answer(
-            "Произошла ошибка при обработке запроса. Пожалуйста, попробуйте еще раз.",
+        await message.answer(str(e),
             reply_markup=get_main_keyboard()
         )
 
