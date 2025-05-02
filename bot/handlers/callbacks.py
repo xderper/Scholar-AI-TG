@@ -40,13 +40,24 @@ async def check_subscription_callback(callback: CallbackQuery, state: FSMContext
 
 @router.callback_query(F.data == "feedback_yes")
 async def positive_feedback_handler(callback: CallbackQuery):
-    await callback.message.edit_reply_markup(reply_markup=None) 
-    await callback.message.answer(os.getenv("POS_FEEDBACK_TEXT"), parse_mode="HTML")
-    await callback.bot.send_message(
-        chat_id=os.getenv("FEEDBACK_GROUP_ID"),
-        text=f"👍 Положительный отзыв от пользователя: @{callback.from_user.username or callback.from_user.first_name}"
-    )
-    await callback.answer()
+    try:
+        # Try to remove the reply markup if it exists
+        try:
+            await callback.message.edit_reply_markup(reply_markup=None)
+        except:
+            pass  # Ignore if the markup is already removed
+            
+        feedback_text = os.getenv("POSITIVE_FEEDBACK_TEXT").replace("\\n", "\n")
+        await callback.message.answer(feedback_text)
+        await callback.bot.send_message(
+            chat_id=os.getenv("FEEDBACK_GROUP_ID"),
+            message_thread_id=int(os.getenv("POSITIVE_FEEDBACK_GROUP_ID")),
+            text=f"👍 Положительный отзыв от пользователя: @{callback.from_user.username or callback.from_user.first_name}"
+        )
+        await callback.answer()
+    except Exception as e:
+        print(f"Ошибка при обработке положительного отзыва: {str(e)}")
+        await callback.answer("Произошла ошибка. Пожалуйста, попробуйте еще раз.")
 
 
 @router.callback_query(F.data == "feedback_no")
@@ -56,6 +67,10 @@ async def negative_feedback_handler(callback: CallbackQuery, state: FSMContext):
         await state.set_state(Form.feedback_message)
         # Устанавливаем секцию отзыва
         await state.update_data(section="feedback")
+        # Сохраняем текст задачи и решение для отзыва
+        await state.update_data(
+            original_task=callback.message.text.split("\n\n✨ Понравился ли вам ответ? 🌟")[0]
+        )
 
         # Запрашиваем у пользователя подробности
         await callback.message.edit_reply_markup(reply_markup=None) 
@@ -76,11 +91,46 @@ async def feedback_message_handler(message: Message, state: FSMContext):
             await state.clear()
             return
 
-        text = f"📝 Отзыв от пользователя: @{message.from_user.username or message.from_user.first_name}\n\n{message.text}"
-        await message.bot.send_message(
-            chat_id=os.getenv("FEEDBACK_GROUP_ID"),
-            text=text
-        )
+        # Проверяем, есть ли фото задачи
+        user_task_photo = state_data.get('user_task_photo')
+        if user_task_photo:
+            # Формируем полную и короткую подпись для фото
+            feedback_caption_full = f"""<b><u>{os.getenv('NEGATIVE_FEEDBACK_HEADER')}</u></b>\n@{message.from_user.username or message.from_user.first_name}\n\n<b><u>{os.getenv('FEEDBACK_USER_COMMENT_HEADER')}</u></b>\n{message.text}\n\n<b><u>{os.getenv('FEEDBACK_ORIGINAL_TASK_HEADER')}</u></b>\n(см. фото)\n\n<b><u>{os.getenv('FEEDBACK_BOT_SOLUTION_HEADER')}</u></b>\n{state_data.get('original_task', os.getenv('SOLUTION_NOT_FOUND_TEXT'))}"""
+            feedback_caption_short = f"<b><u>{os.getenv('NEGATIVE_FEEDBACK_HEADER')}</u></b>\n@{message.from_user.username or message.from_user.first_name}\n(см. подробности ниже)"
+            if len(feedback_caption_full) > 1024:
+                # Отправляем фото с короткой подписью и текст отдельно
+                await message.bot.send_photo(
+                    chat_id=os.getenv("FEEDBACK_GROUP_ID"),
+                    message_thread_id=2,
+                    photo=user_task_photo,
+                    caption=feedback_caption_short,
+                    parse_mode="HTML"
+                )
+                # Остальной текст
+                feedback_message = f"""<b><u>{os.getenv('FEEDBACK_USER_COMMENT_HEADER')}</u></b>\n{message.text}\n\n<b><u>{os.getenv('FEEDBACK_ORIGINAL_TASK_HEADER')}</u></b>\n(см. фото)\n\n<b><u>{os.getenv('FEEDBACK_BOT_SOLUTION_HEADER')}</u></b>\n{state_data.get('original_task', os.getenv('SOLUTION_NOT_FOUND_TEXT'))}"""
+                await message.bot.send_message(
+                    chat_id=os.getenv("FEEDBACK_GROUP_ID"),
+                    message_thread_id=2,
+                    text=feedback_message,
+                    parse_mode="HTML"
+                )
+            else:
+                await message.bot.send_photo(
+                    chat_id=os.getenv("FEEDBACK_GROUP_ID"),
+                    message_thread_id=2,
+                    photo=user_task_photo,
+                    caption=feedback_caption_full,
+                    parse_mode="HTML"
+                )
+        else:
+            # Формируем сообщение для группы обратной связи
+            feedback_message = f"""<b><u>{os.getenv('NEGATIVE_FEEDBACK_HEADER')}</u></b>\n@{message.from_user.username or message.from_user.first_name}\n\n<b><u>{os.getenv('FEEDBACK_USER_COMMENT_HEADER')}</u></b>\n{message.text}\n\n<b><u>{os.getenv('FEEDBACK_ORIGINAL_TASK_HEADER')}</u></b>\n{state_data.get('user_task', os.getenv('TASK_NOT_FOUND_TEXT'))}\n\n<b><u>{os.getenv('FEEDBACK_BOT_SOLUTION_HEADER')}</u></b>\n{state_data.get('original_task', os.getenv('SOLUTION_NOT_FOUND_TEXT'))}"""
+            await message.bot.send_message(
+                chat_id=os.getenv("FEEDBACK_GROUP_ID"),
+                message_thread_id=2,  # ID топика для негативных отзывов
+                text=feedback_message, parse_mode="HTML"
+            )
+
         await message.answer(os.getenv("FEEDBACK_SUCCESS_TEXT"), reply_markup=get_main_keyboard())
         # Сбрасываем состояние
         await state.clear()
