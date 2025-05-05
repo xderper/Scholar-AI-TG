@@ -254,38 +254,66 @@ async def audio_voice_handler(message: Message, state: FSMContext):
             reply_markup=get_main_keyboard()
         )
 
+@router.message(F.text == "➡️ Далее к задачам")
+async def next_to_tasks_handler(message: Message, state: FSMContext):
+    try:
+        # Отправка сообщегия для отзыва
+        feedback_question = "✨ Понравился ли вам ответ? 🌟"
+        await message.answer(feedback_question, reply_markup=get_feedback_keyboard())
+        # mainkeyboard
+        await state.set_state(None)
+        await message.answer("📚 Выберите предмет:", reply_markup=get_main_keyboard())
+        # Удаление
+        await message.bot.delete_message(message.chat.id, message.message_id - 1)
+        await message.delete()
+    except Exception as e:
+        logger.error(f"Error in next_to_tasks handler: {str(e)}")
+
 @router.message(F.photo)
 async def photo_handler(message: Message, state: FSMContext):
     """Обработчик для фотографий"""
     try:
         wait_message = await message.answer(os.getenv("Wait_text"), parse_mode="HTML")
+        
+        # Start typing status after wait message
         await message.bot.send_chat_action(
             chat_id=message.chat.id,
             action="typing"
         )
+        
         current_state = await state.get_state()
         state_data = await state.get_data()
+        
+        # Если нет состояния, устанавливаем состояние chatgpt
         if not current_state:
             await state.set_state(Form.section)
             await state.update_data(section="chatgpt")
             state_data = await state.get_data()
+            
         solution = state_data.get('solution')
         section = state_data.get('section', 'chatgpt')
+
         # Получаем последнюю фотографию из списка
         photo = message.photo[-1]  # берем самую большую версию
         file = await message.bot.get_file(photo.file_id)
         file_path = file.file_path
+
+        # Скачиваем файл
         temp_file_path = os.path.join("temp", f"temp_{photo.file_id}.jpg")
         os.makedirs(os.path.dirname(temp_file_path), exist_ok=True)
         await message.bot.download_file(file_path, destination=temp_file_path)
-        # Сохраняем file_id фото как задачу пользователя
-        await state.update_data(user_task_photo=photo.file_id)
+
         # Конвертируем в base64
         with open(temp_file_path, "rb") as image_file:
             image_data = f"data:image/jpeg;base64,{base64.b64encode(image_file.read()).decode('utf-8')}"
+
+        # Удаляем временный файл
         if os.path.exists(temp_file_path):
             os.remove(temp_file_path)
+
+        # Используем caption из сообщения, если он есть
         text_content = message.caption or ""
+
         response = Requests().main(
             request=text_content,
             subject=section,
@@ -297,11 +325,14 @@ async def photo_handler(message: Message, state: FSMContext):
         if section == "abstract":
             await message.answer(response, parse_mode="HTML", reply_markup=get_abstract_keyboard())
         else:
+            # Добавляем вопрос о качестве ответа
             feedback_question = "\n\n✨ Понравился ли вам ответ? 🌟"
             await message.answer(response + feedback_question, parse_mode="HTML", reply_markup=get_feedback_keyboard())
     except Exception as e:
         logger.error(f"Error in photo handler: {str(e)}", exc_info=True)
-        await message.answer(str(e), reply_markup=get_main_keyboard())
+        await message.answer(str(e),
+            reply_markup=get_main_keyboard()
+        )
 
 
 @router.message()
@@ -338,9 +369,6 @@ async def fallback_message_handler(message: Message, state: FSMContext):
         section = state_data.get('section', 'chatgpt')  # По умолчанию используем chatgpt
         solution = state_data.get('solution')
         
-        # Сохраняем текст задачи пользователя
-        await state.update_data(user_task=message.text)
-        
         # Создаем экземпляр класса Requests
         requests = Requests()
         
@@ -372,20 +400,29 @@ async def fallback_message_handler(message: Message, state: FSMContext):
                     # Создаем FSInputFile из временного файла
                     image = FSInputFile(temp_file.name)
                     
-                    # Отправляем изображение с подписью и вопросом о качестве ответа
-                    await message.answer_photo(
-                        photo=image,
-                        caption=caption + "\n\n✨ Понравился ли вам ответ? 🌟",
-                        reply_markup=get_feedback_keyboard()
-                    )
+                    # Отправляем изображение с подписью и вопросом о качестве ответа (если не abstract)
+                    if section != "abstract":
+                        await message.answer_photo(
+                            photo=image,
+                            caption=caption + "\n\n✨ Понравился ли вам ответ? 🌟",
+                            reply_markup=get_feedback_keyboard()
+                        )
+                    else:
+                        await message.answer_photo(
+                            photo=image,
+                            caption=caption
+                        )
                 finally:
                     # Удаляем временный файл после использования
                     if os.path.exists(temp_file.name):
                         os.unlink(temp_file.name)
         else:
             # Это текстовый ответ
-            feedback_question = "\n\n✨ Понравился ли вам ответ? 🌟"
-            await message.answer(response + feedback_question, parse_mode="HTML", reply_markup=get_feedback_keyboard())
+            if section != "abstract":
+                feedback_question = "\n\n✨ Понравился ли вам ответ? 🌟"
+                await message.answer(response + feedback_question, parse_mode="HTML", reply_markup=get_feedback_keyboard())
+            else:
+                await message.answer(response, parse_mode="HTML")
     except Exception as e:
         logger.error(f"Error in fallback handler: {str(e)}", exc_info=True)
         await message.answer(str(e),
