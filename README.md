@@ -47,3 +47,9 @@ bot/
 
 ## Лицензия
 MIT License
+
+#rebuild
+
+docker compose down --remove-orphans
+docker compose build
+docker compose up -d
